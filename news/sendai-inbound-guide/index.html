@@ -1,6 +1,15 @@
 <!doctype html>
 <html lang="ja">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-08TBS4LE54"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    window.gtag = window.gtag || gtag;
+    gtag('js', new Date());
+    gtag('config', 'G-08TBS4LE54');
+  </script>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>「仙台えらぶ！」で訪日外国人向け仙台ガイドの提供を開始しました｜合同会社SGP</title>
@@ -20,7 +29,7 @@
   <meta name="twitter:title" content="「仙台えらぶ！」で訪日外国人向け仙台ガイドの提供を開始しました｜合同会社SGP" />
   <meta name="twitter:description" content="「仙台えらぶ！」は、外国人旅行者が仙台での滞在、移動、食事、体験を選びやすくするインバウンド向けガイドの提供を開始しました。" />
   <meta name="theme-color" content="#06131a" />
-  <link rel="stylesheet" href="/styles.css" />
+  <link rel="stylesheet" href="/assets/style.css" />
   <link rel="stylesheet" href="/news/news.css" />
   <script type="application/ld+json">
 {
@@ -74,32 +83,41 @@
 }
   </script>
 </head>
-<body class="news-page">
+<body style="margin:0">
+<section class="sgp-site news-page" id="top" data-page-type="news" data-service-context="general">
 
-  <header class="site-header" id="top">
-    <div class="container nav-wrap">
-      <a class="brand" href="/" aria-label="合同会社SGP トップへ戻る">
-        <span class="brand-logo-wrap"><img class="brand-logo" src="/assets/sgp-wordmark.webp" alt="SGP Sakamoto Growth Partners" /></span>
-        <span class="brand-text"><strong>合同会社SGP</strong><small>AIとWebで、地域企業の未来を支える</small></span>
+  <nav class="sgp-nav" aria-label="メインナビゲーション">
+    <div class="sgp-container sgp-nav-inner">
+      <a class="sgp-logo" href="/" aria-label="合同会社SGP トップへ">
+        <span class="sgp-logo-mark"><img src="/assets/sgp-logo-mark.svg" alt="SGPロゴマーク" /></span>
+        <span class="sgp-logo-text"><strong>合同会社SGP</strong><small>Sakamoto Growth Partners</small></span>
       </a>
-      <button class="menu-button" type="button" aria-label="メニューを開く" aria-expanded="false" aria-controls="global-navigation" data-menu-button>
-        <span></span><span></span><span></span>
-      </button>
-      <nav class="nav" id="global-navigation" aria-label="メインナビゲーション" data-nav>
-        <a href="/#services">サービス</a>
-        <a href="/#cases">支援・事例</a>
+      <div class="sgp-nav-links">
+        <a href="/services/">サービス</a>
+        <a href="/cases/">支援事例</a>
         <a href="/news/" aria-current="page">NEWS</a>
-        <a href="/#company">会社概要</a>
-        <a href="/#faq">よくある質問</a>
-        <a class="nav-cta" href="mailto:naoya.sakamoto@sakamoto-growth-partners.com?subject=無料30分相談の申し込み">無料30分相談する</a>
-      </nav>
+        <a href="/about/">会社情報</a>
+        <a href="/faq/">よくある質問</a>
+        <a class="sgp-nav-cta" href="/diagnosis/" data-cta-track data-cta-type="diagnosis" data-cta-location="header">無料経営導線診断</a>
+      </div>
+      <details class="sgp-mobile-menu">
+        <summary>メニュー</summary>
+        <nav aria-label="スマートフォン用ナビゲーション">
+          <a href="/services/">サービス</a>
+          <a href="/cases/">支援事例</a>
+          <a href="/news/" aria-current="page">NEWS</a>
+          <a href="/about/">会社情報</a>
+          <a href="/faq/">よくある質問</a>
+          <a href="/diagnosis/" data-cta-track data-cta-type="diagnosis" data-cta-location="mobile_menu">無料経営導線診断</a>
+        </nav>
+      </details>
     </div>
-  </header>
+  </nav>
 
   <main>
     <article class="news-article">
       <header class="news-article-header">
-        <div class="container news-article-header-inner">
+        <div class="sgp-container news-article-header-inner">
           <nav class="news-breadcrumb" aria-label="パンくずリスト"><a href="/">HOME</a><span aria-hidden="true">/</span><a href="/news/">NEWS</a><span aria-hidden="true">/</span><span aria-current="page">「仙台えらぶ！」で訪日外国人向け仙台ガイドの提供を開始しました</span></nav>
           <p class="news-eyebrow">NEWS</p>
           <div class="news-article-meta"><time datetime="2026-07-05">2026.07.05</time><span class="news-category">MEDIA</span></div>
@@ -107,7 +125,7 @@
           <p class="news-lead">「仙台えらぶ！」では、仙台を訪れる外国人旅行者の意思決定を支援するインバウンド向けコンテンツの提供を開始しました。観光スポットを列挙するだけでなく、滞在・移動・食事・体験を選びやすくする情報設計を進めています。</p>
         </div>
       </header>
-      <div class="container news-article-body">
+      <div class="sgp-container news-article-body">
 
         <section>
           <h2>インバウンド向け情報提供を開始</h2>
@@ -151,9 +169,9 @@
           <h2 id="news-company-title">合同会社SGPについて</h2>
           <p>合同会社SGPは、仙台を拠点に、AI・Web・システム開発を活用して企業の売上・業務・組織課題を「現場で動く仕組み」に変える会社です。受託支援に加えて、地域メディア「仙台えらぶ！」をはじめとする自社プロダクト・データ・IPの開発にも取り組んでいます。</p>
           <div class="news-company-links">
-            <a href="/#company">合同会社SGPの会社概要を見る</a>
-            <a href="/#services">合同会社SGPのサービスを見る</a>
-            <a href="mailto:naoya.sakamoto@sakamoto-growth-partners.com">合同会社SGPへ問い合わせる</a>
+            <a href="/about/">合同会社SGPの会社概要を見る</a>
+            <a href="/services/">合同会社SGPのサービスを見る</a>
+            <a href="/contact/">合同会社SGPへ問い合わせる</a>
           </div>
         </aside>
         <p class="news-back"><a href="/news/">← NEWS一覧へ戻る</a></p>
@@ -161,18 +179,18 @@
     </article>
   </main>
 
-  <footer class="site-footer">
-    <div class="container news-footer-grid">
-      <p>© 2026 合同会社SGP / Sakamoto Growth Partners</p>
-      <nav class="news-footer-links" aria-label="フッターナビゲーション">
-        <a href="/news/">NEWS</a>
-        <a href="/#services">サービス</a>
-        <a href="/#company">会社概要</a>
-        <a href="mailto:naoya.sakamoto@sakamoto-growth-partners.com">お問い合わせ</a>
+  <footer class="sgp-footer">
+    <div class="sgp-container sgp-footer-inner">
+      <div class="sgp-footer-logo"><img src="/assets/sgp-logo-footer.svg" alt="合同会社SGP ロゴ" loading="lazy" /></div>
+      <nav class="sgp-footer-links" aria-label="フッターナビゲーション">
+        <a href="/services/">サービス一覧</a><a href="/cases/">支援事例</a><a href="/news/" aria-current="page">NEWS</a><a href="/diagnosis/" data-cta-track data-cta-type="diagnosis" data-cta-location="footer">無料経営導線診断</a><a href="/contact/" data-cta-track data-cta-type="contact" data-cta-location="footer">お問い合わせ</a><a href="/about/">会社情報</a><a href="/naoya-sakamoto/">代表 坂本直哉</a><a href="/faq/">よくある質問</a><a href="/privacy/">プライバシーポリシー</a><a href="https://www.linkedin.com/in/nao329/" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://lin.ee/URIZpwg" target="_blank" rel="noopener noreferrer" data-line-cta data-cta-location="footer">LINEで無料相談する</a>
       </nav>
-      <a href="#top">ページ上部へ</a>
+      <div class="sgp-footer-meta"><span>© 2026 合同会社SGP / Sakamoto Growth Partners</span><span>仙台・宮城｜経営導線を実装するIT工務店</span></div>
     </div>
   </footer>
-  <script src="/script.js"></script>
+</section>
+  <script src="/assets/line-cta-tracking.js"></script>
+  <script src="/assets/lead-attribution.js"></script>
+  <script src="/assets/site-analytics.js"></script>
 </body>
 </html>

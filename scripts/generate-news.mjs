@@ -8,6 +8,20 @@ const rootDir = path.resolve(__dirname, "..");
 const siteUrl = "https://sakamoto-growth-partners.com";
 const companyName = "合同会社SGP";
 const companyDescription = "合同会社SGPは、仙台を拠点に、AI・Web・システム開発を活用して企業の売上・業務・組織課題を「現場で動く仕組み」に変える会社です。受託支援に加えて、地域メディア「仙台えらぶ！」をはじめとする自社プロダクト・データ・IPの開発にも取り組んでいます。";
+const baseSitemapPages = [
+  "/",
+  "/about/",
+  "/naoya-sakamoto/",
+  "/services/",
+  "/services/ai/",
+  "/services/business-improvement/",
+  "/services/web-marketing/",
+  "/cases/",
+  "/contact/",
+  "/diagnosis/",
+  "/faq/",
+  "/senior-family-support/"
+];
 
 const escapeHtml = (value) => String(value)
   .replaceAll("&", "&amp;")
@@ -45,39 +59,44 @@ const sortedNews = [...newsItems].sort((a, b) => b.date.localeCompare(a.date));
 
 function renderHeader() {
   return `
-  <header class="site-header" id="top">
-    <div class="container nav-wrap">
-      <a class="brand" href="/" aria-label="合同会社SGP トップへ戻る">
-        <span class="brand-logo-wrap"><img class="brand-logo" src="/assets/sgp-wordmark.webp" alt="SGP Sakamoto Growth Partners" /></span>
-        <span class="brand-text"><strong>合同会社SGP</strong><small>AIとWebで、地域企業の未来を支える</small></span>
+  <nav class="sgp-nav" aria-label="メインナビゲーション">
+    <div class="sgp-container sgp-nav-inner">
+      <a class="sgp-logo" href="/" aria-label="合同会社SGP トップへ">
+        <span class="sgp-logo-mark"><img src="/assets/sgp-logo-mark.svg" alt="SGPロゴマーク" /></span>
+        <span class="sgp-logo-text"><strong>合同会社SGP</strong><small>Sakamoto Growth Partners</small></span>
       </a>
-      <button class="menu-button" type="button" aria-label="メニューを開く" aria-expanded="false" aria-controls="global-navigation" data-menu-button>
-        <span></span><span></span><span></span>
-      </button>
-      <nav class="nav" id="global-navigation" aria-label="メインナビゲーション" data-nav>
-        <a href="/#services">サービス</a>
-        <a href="/#cases">支援・事例</a>
+      <div class="sgp-nav-links">
+        <a href="/services/">サービス</a>
+        <a href="/cases/">支援事例</a>
         <a href="/news/" aria-current="page">NEWS</a>
-        <a href="/#company">会社概要</a>
-        <a href="/#faq">よくある質問</a>
-        <a class="nav-cta" href="mailto:naoya.sakamoto@sakamoto-growth-partners.com?subject=無料30分相談の申し込み">無料30分相談する</a>
-      </nav>
+        <a href="/about/">会社情報</a>
+        <a href="/faq/">よくある質問</a>
+        <a class="sgp-nav-cta" href="/diagnosis/" data-cta-track data-cta-type="diagnosis" data-cta-location="header">無料経営導線診断</a>
+      </div>
+      <details class="sgp-mobile-menu">
+        <summary>メニュー</summary>
+        <nav aria-label="スマートフォン用ナビゲーション">
+          <a href="/services/">サービス</a>
+          <a href="/cases/">支援事例</a>
+          <a href="/news/" aria-current="page">NEWS</a>
+          <a href="/about/">会社情報</a>
+          <a href="/faq/">よくある質問</a>
+          <a href="/diagnosis/" data-cta-track data-cta-type="diagnosis" data-cta-location="mobile_menu">無料経営導線診断</a>
+        </nav>
+      </details>
     </div>
-  </header>`;
+  </nav>`;
 }
 
 function renderFooter() {
   return `
-  <footer class="site-footer">
-    <div class="container news-footer-grid">
-      <p>© 2026 合同会社SGP / Sakamoto Growth Partners</p>
-      <nav class="news-footer-links" aria-label="フッターナビゲーション">
-        <a href="/news/">NEWS</a>
-        <a href="/#services">サービス</a>
-        <a href="/#company">会社概要</a>
-        <a href="mailto:naoya.sakamoto@sakamoto-growth-partners.com">お問い合わせ</a>
+  <footer class="sgp-footer">
+    <div class="sgp-container sgp-footer-inner">
+      <div class="sgp-footer-logo"><img src="/assets/sgp-logo-footer.svg" alt="合同会社SGP ロゴ" loading="lazy" /></div>
+      <nav class="sgp-footer-links" aria-label="フッターナビゲーション">
+        <a href="/services/">サービス一覧</a><a href="/cases/">支援事例</a><a href="/news/" aria-current="page">NEWS</a><a href="/diagnosis/" data-cta-track data-cta-type="diagnosis" data-cta-location="footer">無料経営導線診断</a><a href="/contact/" data-cta-track data-cta-type="contact" data-cta-location="footer">お問い合わせ</a><a href="/about/">会社情報</a><a href="/naoya-sakamoto/">代表 坂本直哉</a><a href="/faq/">よくある質問</a><a href="/privacy/">プライバシーポリシー</a><a href="https://www.linkedin.com/in/nao329/" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://lin.ee/URIZpwg" target="_blank" rel="noopener noreferrer" data-line-cta data-cta-location="footer">LINEで無料相談する</a>
       </nav>
-      <a href="#top">ページ上部へ</a>
+      <div class="sgp-footer-meta"><span>© 2026 合同会社SGP / Sakamoto Growth Partners</span><span>仙台・宮城｜経営導線を実装するIT工務店</span></div>
     </div>
   </footer>`;
 }
@@ -93,6 +112,15 @@ function renderBasePage({ title, description, canonical, ogType, content, struct
   return `<!doctype html>
 <html lang="ja">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-08TBS4LE54"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    window.gtag = window.gtag || gtag;
+    gtag('js', new Date());
+    gtag('config', 'G-08TBS4LE54');
+  </script>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>${escapeHtml(title)}</title>
@@ -110,15 +138,19 @@ function renderBasePage({ title, description, canonical, ogType, content, struct
   <meta name="twitter:title" content="${escapeHtml(title)}" />
   <meta name="twitter:description" content="${escapeHtml(description)}" />
   <meta name="theme-color" content="#06131a" />
-  <link rel="stylesheet" href="/styles.css" />
+  <link rel="stylesheet" href="/assets/style.css" />
   <link rel="stylesheet" href="/news/news.css" />
 ${schemas}
 </head>
-<body class="news-page">
+<body style="margin:0">
+<section class="sgp-site news-page" id="top" data-page-type="news" data-service-context="general">
 ${renderHeader()}
 ${content}
 ${renderFooter()}
-  <script src="/script.js"></script>
+</section>
+  <script src="/assets/line-cta-tracking.js"></script>
+  <script src="/assets/lead-attribution.js"></script>
+  <script src="/assets/site-analytics.js"></script>
 </body>
 </html>
 `;
@@ -174,7 +206,7 @@ function renderNewsIndex() {
   const content = `
   <main>
     <header class="news-hero">
-      <div class="container news-hero-inner">
+      <div class="sgp-container news-hero-inner">
         <nav class="news-breadcrumb" aria-label="パンくずリスト"><a href="/">HOME</a><span aria-hidden="true">/</span><span aria-current="page">NEWS</span></nav>
         <p class="news-eyebrow">NEWS</p>
         <h1>SGPの活動・公開情報</h1>
@@ -185,7 +217,7 @@ function renderNewsIndex() {
       </div>
     </header>
     <section class="news-archive" aria-label="NEWS一覧">
-      <div class="container">
+      <div class="sgp-container">
 ${renderTimeline(sortedNews)}
       </div>
     </section>
@@ -248,7 +280,7 @@ ${section.body.map((paragraph) => `          <p>${escapeHtml(paragraph)}</p>`).j
   <main>
     <article class="news-article">
       <header class="news-article-header">
-        <div class="container news-article-header-inner">
+        <div class="sgp-container news-article-header-inner">
           <nav class="news-breadcrumb" aria-label="パンくずリスト"><a href="/">HOME</a><span aria-hidden="true">/</span><a href="/news/">NEWS</a><span aria-hidden="true">/</span><span aria-current="page">${escapeHtml(item.title)}</span></nav>
           <p class="news-eyebrow">NEWS</p>
           <div class="news-article-meta"><time datetime="${item.date}">${displayDate(item.date)}</time><span class="news-category">${escapeHtml(item.category)}</span></div>
@@ -256,7 +288,7 @@ ${section.body.map((paragraph) => `          <p>${escapeHtml(paragraph)}</p>`).j
           <p class="news-lead">${escapeHtml(item.lead)}</p>
         </div>
       </header>
-      <div class="container news-article-body">
+      <div class="sgp-container news-article-body">
 ${sections}
 ${renderRelatedLinks(item.relatedLinks)}
         <aside class="news-company" aria-labelledby="news-company-title">
@@ -264,9 +296,9 @@ ${renderRelatedLinks(item.relatedLinks)}
           <h2 id="news-company-title">合同会社SGPについて</h2>
           <p>${escapeHtml(companyDescription)}</p>
           <div class="news-company-links">
-            <a href="/#company">合同会社SGPの会社概要を見る</a>
-            <a href="/#services">合同会社SGPのサービスを見る</a>
-            <a href="mailto:naoya.sakamoto@sakamoto-growth-partners.com">合同会社SGPへ問い合わせる</a>
+            <a href="/about/">合同会社SGPの会社概要を見る</a>
+            <a href="/services/">合同会社SGPのサービスを見る</a>
+            <a href="/contact/">合同会社SGPへ問い合わせる</a>
           </div>
         </aside>
         <p class="news-back"><a href="/news/">← NEWS一覧へ戻る</a></p>
@@ -287,16 +319,16 @@ ${renderRelatedLinks(item.relatedLinks)}
 function renderHomeLatest() {
   const latest = sortedNews.slice(0, 3);
   return `<!-- NEWS_LATEST_START -->
-    <section class="section home-news" aria-labelledby="home-news-title">
-      <div class="container home-news-heading">
+    <section class="sgp-architecture-band sgp-architecture-soft sgp-news-activity" aria-labelledby="home-news-title">
+      <div class="sgp-container sgp-news-activity-heading">
         <div>
-          <p class="section-label">Latest News / Activity</p>
+          <p>Latest News / Activity</p>
           <h2 id="home-news-title">SGPの最新活動</h2>
-          <p>会社の設立以降に開始・公開した事業、プロダクト、研究開発を記録しています。</p>
+          <span>会社の設立以降に開始・公開した事業、プロダクト、研究開発を記録しています。</span>
         </div>
-        <a class="home-news-all" href="/news/">すべてのNEWSを見る<span aria-hidden="true"> →</span></a>
+        <a class="sgp-news-all" href="/news/">すべてのNEWSを見る<span aria-hidden="true"> →</span></a>
       </div>
-      <div class="container home-news-list">
+      <div class="sgp-container sgp-news-activity-list">
 ${latest.map((item) => `        <article>
           <div><time datetime="${item.date}">${displayDate(item.date)}</time><span>${escapeHtml(item.category)}</span></div>
           <h3><a href="/news/${item.slug}/">${escapeHtml(item.title)}</a></h3>
@@ -306,9 +338,29 @@ ${latest.map((item) => `        <article>
 <!-- NEWS_LATEST_END -->`;
 }
 
+function renderAboutActivity() {
+  const latest = sortedNews.slice(0, 3);
+  return `<!-- NEWS_ACTIVITY_START -->
+  <section class="sgp-section sgp-section-soft sgp-news-activity" aria-labelledby="about-news-title">
+    <div class="sgp-container">
+      <div class="sgp-news-activity-heading">
+        <div><p>ACTIVITY</p><h2 id="about-news-title">会社の最新活動</h2><span>合同会社SGPが開始・公開した事業、研究開発、プロダクトの公式記録です。</span></div>
+        <a class="sgp-news-all" href="/news/">すべてのNEWSを見る<span aria-hidden="true"> →</span></a>
+      </div>
+      <div class="sgp-news-activity-list">
+${latest.map((item) => `        <article>
+          <div><time datetime="${item.date}">${displayDate(item.date)}</time><span>${escapeHtml(item.category)}</span></div>
+          <h3><a href="/news/${item.slug}/">${escapeHtml(item.title)}</a></h3>
+        </article>`).join("\n")}
+      </div>
+    </div>
+  </section>
+<!-- NEWS_ACTIVITY_END -->`;
+}
+
 function renderSitemap() {
   const urls = [
-    { loc: `${siteUrl}/`, lastmod: "2026-08-31" },
+    ...baseSitemapPages.map((page) => ({ loc: `${siteUrl}${page}`, lastmod: "2026-08-31" })),
     { loc: canonicalFor(), lastmod: sortedNews[0].date },
     ...sortedNews.map((item) => ({ loc: canonicalFor(item.slug), lastmod: item.date }))
   ];
@@ -371,8 +423,16 @@ async function main() {
     renderHomeLatest()
   );
   await writeFile(indexPath, nextIndex, "utf8");
+  const aboutPath = path.join(rootDir, "about", "index.html");
+  const aboutSource = await readFile(aboutPath, "utf8");
+  const nextAbout = replaceGeneratedBlock(
+    aboutSource,
+    "<!-- NEWS_ACTIVITY_START -->",
+    "<!-- NEWS_ACTIVITY_END -->",
+    renderAboutActivity()
+  );
+  await writeFile(aboutPath, nextAbout, "utf8");
   await writeFile(path.join(rootDir, "sitemap.xml"), renderSitemap(), "utf8");
-  await writeFile(path.join(rootDir, "robots.txt"), `User-agent: *\nAllow: /\n\nSitemap: ${siteUrl}/sitemap.xml\n`, "utf8");
   await writeFile(path.join(newsDir, "feed.xml"), renderFeed(), "utf8");
 
   console.log(`Generated ${newsItems.length} NEWS articles, archive, homepage activity, sitemap and RSS.`);

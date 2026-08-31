@@ -4,8 +4,8 @@
   background: #fff;
 }
 
-.news-page .site-header {
-  background: rgba(4, 13, 18, .96);
+.news-page .sgp-nav-links a[aria-current="page"] {
+  color: var(--sgp-turquoise-text);
 }
 
 .news-page main {
@@ -330,6 +330,22 @@
 }
 
 @media (max-width: 900px) {
+  .news-page .sgp-container {
+    width: calc(100% - 32px);
+  }
+
+  .news-page .sgp-nav-inner {
+    height: 68px;
+    min-height: 68px;
+    padding: 0;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .news-page .sgp-nav-links {
+    display: none;
+  }
+
   .news-page .news-hero-inner {
     padding-top: 58px;
     padding-bottom: 68px;

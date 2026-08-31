@@ -41,8 +41,8 @@ export const newsItems = [
       }
     ],
     relatedLinks: [
-      { label: "合同会社SGPの会社概要を見る", href: "/#company" },
-      { label: "合同会社SGPのサービスを見る", href: "/#services" },
+      { label: "合同会社SGPの会社概要を見る", href: "/about/" },
+      { label: "合同会社SGPのサービスを見る", href: "/services/" },
       { label: "合同会社SGPへ問い合わせる", href: "mailto:naoya.sakamoto@sakamoto-growth-partners.com" }
     ]
   },
@@ -91,7 +91,7 @@ export const newsItems = [
       }
     ],
     relatedLinks: [
-      { label: "中小企業向けIT支援サービスを見る", href: "/#services" },
+      { label: "中小企業向けIT支援サービスを見る", href: "/services/" },
       { label: "無料の経営導線診断について相談する", href: "mailto:naoya.sakamoto@sakamoto-growth-partners.com?subject=経営導線診断について" },
       { label: "合同会社SGPへ問い合わせる", href: "mailto:naoya.sakamoto@sakamoto-growth-partners.com" }
     ]
@@ -141,7 +141,7 @@ export const newsItems = [
       }
     ],
     relatedLinks: [
-      { label: "合同会社SGPのAI・システム開発支援を見る", href: "/#services" },
+      { label: "合同会社SGPのAI・システム開発支援を見る", href: "/services/" },
       { label: "AI活用について合同会社SGPへ相談する", href: "mailto:naoya.sakamoto@sakamoto-growth-partners.com?subject=AI活用について" }
     ]
   },
@@ -191,7 +191,7 @@ export const newsItems = [
     ],
     relatedLinks: [
       { label: "「仙台えらぶ！」公式サイトを見る", href: "https://sendai-erabu.jp/" },
-      { label: "合同会社SGPの会社概要を見る", href: "/#company" }
+      { label: "合同会社SGPの会社概要を見る", href: "/about/" }
     ]
   },
   {
@@ -337,7 +337,7 @@ export const newsItems = [
     ],
     relatedLinks: [
       { label: "「仙台えらぶ！」公式サイトを見る", href: "https://sendai-erabu.jp/" },
-      { label: "合同会社SGPのWeb・データ活用支援を見る", href: "/#services" }
+      { label: "合同会社SGPのWeb・データ活用支援を見る", href: "/services/" }
     ]
   },
   {
@@ -385,7 +385,7 @@ export const newsItems = [
       }
     ],
     relatedLinks: [
-      { label: "合同会社SGPの支援サービスを見る", href: "/#services" },
+      { label: "合同会社SGPの支援サービスを見る", href: "/services/" },
       { label: "業務改善について合同会社SGPへ相談する", href: "mailto:naoya.sakamoto@sakamoto-growth-partners.com?subject=業務改善について" }
     ]
   },
@@ -434,7 +434,7 @@ export const newsItems = [
       }
     ],
     relatedLinks: [
-      { label: "合同会社SGPの会社概要を見る", href: "/#company" },
+      { label: "合同会社SGPの会社概要を見る", href: "/about/" },
       { label: "合同会社SGPのNEWS一覧を見る", href: "/news/" }
     ]
   },
@@ -627,8 +627,8 @@ export const newsItems = [
       }
     ],
     relatedLinks: [
-      { label: "代表社員について見る", href: "/#founder" },
-      { label: "合同会社SGPのAI・システム開発支援を見る", href: "/#services" },
+      { label: "代表社員について見る", href: "/naoya-sakamoto/" },
+      { label: "合同会社SGPのAI・システム開発支援を見る", href: "/services/" },
       { label: "AI活用について合同会社SGPへ相談する", href: "mailto:naoya.sakamoto@sakamoto-growth-partners.com?subject=AI活用について" }
     ]
   }

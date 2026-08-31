@@ -7,6 +7,20 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.resolve(__dirname, "..");
 const siteUrl = "https://sakamoto-growth-partners.com";
 const failures = [];
+const basePaths = [
+  "/",
+  "/about/",
+  "/naoya-sakamoto/",
+  "/services/",
+  "/services/ai/",
+  "/services/business-improvement/",
+  "/services/web-marketing/",
+  "/cases/",
+  "/contact/",
+  "/diagnosis/",
+  "/faq/",
+  "/senior-family-support/"
+];
 
 const fail = (message) => failures.push(message);
 const read = (relativePath) => readFile(path.join(rootDir, relativePath), "utf8");
@@ -134,18 +148,40 @@ await checkInternalLinks(home, "index.html");
 const sitemap = await read("sitemap.xml");
 const sitemapUrls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
 const expectedUrls = [
-  `${siteUrl}/`,
+  ...basePaths.map((pagePath) => `${siteUrl}${pagePath}`),
   `${siteUrl}/news/`,
   ...newsItems.map((item) => `${siteUrl}/news/${item.slug}/`)
 ];
 for (const url of expectedUrls) {
   if (!sitemapUrls.includes(url)) fail(`sitemap.xml: missing ${url}`);
+  const targetPath = htmlPathForUrl(url);
+  try {
+    await access(path.join(rootDir, targetPath));
+  } catch {
+    fail(`sitemap.xml: local target missing for ${url}`);
+  }
 }
 if (new Set(sitemapUrls).size !== sitemapUrls.length) fail("sitemap.xml: duplicate URL");
 
 const robots = await read("robots.txt");
 if (!robots.includes("Allow: /")) fail("robots.txt: Allow directive missing");
 if (!robots.includes(`Sitemap: ${siteUrl}/sitemap.xml`)) fail("robots.txt: sitemap directive missing");
+
+for (const pagePath of [
+  "index.html",
+  "about/index.html",
+  "faq/index.html",
+  "cases/index.html",
+  "contact/index.html",
+  "naoya-sakamoto/index.html",
+  "services/index.html",
+  "services/ai/index.html",
+  "services/business-improvement/index.html",
+  "services/web-marketing/index.html"
+]) {
+  const html = await read(pagePath);
+  if (!html.includes('href="/news/"')) fail(`${pagePath}: global NEWS link missing`);
+}
 
 if (failures.length) {
   console.error(failures.map((message) => `- ${message}`).join("\n"));

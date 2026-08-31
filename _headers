@@ -1,0 +1,20 @@
+/diagnosis/thanks/
+  X-Robots-Tag: noindex, follow
+
+/diagnosis/thanks/*
+  X-Robots-Tag: noindex, follow
+
+/contact/thanks/
+  X-Robots-Tag: noindex, follow
+
+/contact/thanks/*
+  X-Robots-Tag: noindex, follow
+
+/privacy/
+  X-Robots-Tag: noindex, follow
+
+/privacy/*
+  X-Robots-Tag: noindex, follow
+
+/ogp.png
+  Content-Type: image/png

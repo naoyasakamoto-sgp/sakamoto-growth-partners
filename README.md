@@ -25,6 +25,20 @@ npm run check
 - `/news/{slug}/`
 - `/news/feed.xml`
 
+## 本番サイト構成
+
+公式ドメイン `https://sakamoto-growth-partners.com/` はNetlifyの `sgp-sendai` サイトから配信しています。GitHubとの自動連携は設定されていないため、本番反映時はテスト後にNetlifyへ手動デプロイします。
+
+本番デプロイには、トップページに加えて以下の静的ページと共通アセットを含めます。
+
+- `/about/`、`/naoya-sakamoto/`、`/services/`、`/faq/`
+- `/cases/`、`/contact/`、`/diagnosis/`
+- `/senior-family-support/`
+- `/news/`とNEWS記事
+- `assets/`、`netlify/functions/`、`robots.txt`、`sitemap.xml`、`_headers`
+
+デプロイ前に必ず`npm test`を実行し、`sitemap.xml`に記載した全URLのHTTP応答を確認してください。
+
 ## デザイン方針
 - 直前のビジュアル案をベースに、ダークアジュール × ターコイズ × 白背景で構成
 - 守を固めるため、料金目安・支援の流れ・相談しやすさ・誤情報のない強み表現を追加
