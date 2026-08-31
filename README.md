@@ -4,6 +4,26 @@
 - `index.html`: トップページ本体
 - `styles.css`: デザイン一式
 - `script.js`: モバイルメニュー・スクロールアニメーション
+- `news/news-data.mjs`: NEWS記事の単一データソース
+- `scripts/generate-news.mjs`: NEWS一覧・記事・トップ最新3件・sitemap・RSSの生成
+- `scripts/check-site.mjs`: NEWSのHTML・SEO・Schema・内部リンク検証
+
+## NEWSの更新
+
+NEWSは `news/news-data.mjs` をSource of Truthとして管理します。記事追加後に以下を実行すると、`/news/`、各記事、トップページの最新3件、`sitemap.xml`、`news/feed.xml`が更新されます。
+
+```powershell
+npm run build
+npm run check
+```
+
+生成済みHTMLを直接編集せず、記事本文・日付・カテゴリ・関連リンクはデータファイルで更新してください。
+
+公開URL:
+
+- `/news/`
+- `/news/{slug}/`
+- `/news/feed.xml`
 
 ## デザイン方針
 - 直前のビジュアル案をベースに、ダークアジュール × ターコイズ × 白背景で構成

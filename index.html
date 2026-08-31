@@ -5,9 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>合同会社SGP｜仙台・東北の中小企業社長の右腕AI実装会社</title>
   <meta name="description" content="合同会社SGPは、仙台・東北の中小企業社長に向けて、Web集客・業務改善・CRM・生成AI活用を現場で使える仕組みに実装する会社です。" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://sakamoto-growth-partners.com/" />
+  <link rel="alternate" type="application/rss+xml" title="合同会社SGP NEWS" href="https://sakamoto-growth-partners.com/news/feed.xml" />
   <meta property="og:title" content="合同会社SGP｜社長の右腕AI実装会社" />
   <meta property="og:description" content="Web集客・業務改善・AI活用を、売上と生産性につながる仕組みに変えます。" />
   <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://sakamoto-growth-partners.com/" />
+  <meta property="og:site_name" content="合同会社SGP" />
+  <meta property="og:locale" content="ja_JP" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="合同会社SGP｜社長の右腕AI実装会社" />
+  <meta name="twitter:description" content="Web集客・業務改善・AI活用を、売上と生産性につながる仕組みに変えます。" />
   <meta name="theme-color" content="#06131a" />
   <link rel="stylesheet" href="styles.css" />
 </head>
@@ -18,15 +27,13 @@
         <span class="brand-logo-wrap"><img class="brand-logo" src="assets/sgp-wordmark.webp" alt="SGP Sakamoto Growth Partners" /></span>
         <span class="brand-text"><strong>合同会社SGP</strong><small>AIとWebで、地域企業の未来を支える</small></span>
       </a>
-      <button class="menu-button" type="button" aria-label="メニューを開く" aria-expanded="false" data-menu-button>
+      <button class="menu-button" type="button" aria-label="メニューを開く" aria-expanded="false" aria-controls="global-navigation" data-menu-button>
         <span></span><span></span><span></span>
       </button>
-      <nav class="nav" data-nav>
+      <nav class="nav" id="global-navigation" aria-label="メインナビゲーション" data-nav>
         <a href="#services">サービス</a>
         <a href="#cases">支援・事例</a>
-        <a href="#process">支援の流れ</a>
-        <a href="#price">料金</a>
-        <a href="#founder">代表紹介</a>
+        <a href="/news/">NEWS</a>
         <a href="#company">会社概要</a>
         <a href="#faq">よくある質問</a>
         <a class="nav-cta" href="mailto:naoya.sakamoto@sakamoto-growth-partners.com?subject=無料30分相談の申し込み">無料30分相談する</a>
@@ -228,6 +235,33 @@
       </div>
     </section>
 
+<!-- NEWS_LATEST_START -->
+    <section class="section home-news" aria-labelledby="home-news-title">
+      <div class="container home-news-heading">
+        <div>
+          <p class="section-label">Latest News / Activity</p>
+          <h2 id="home-news-title">SGPの最新活動</h2>
+          <p>会社の設立以降に開始・公開した事業、プロダクト、研究開発を記録しています。</p>
+        </div>
+        <a class="home-news-all" href="/news/">すべてのNEWSを見る<span aria-hidden="true"> →</span></a>
+      </div>
+      <div class="container home-news-list">
+        <article>
+          <div><time datetime="2026-08-31">2026.08.31</time><span>TECHNOLOGY</span></div>
+          <h3><a href="/news/enterprise-ai-experience/">大規模AIプロダクト開発で培った実務知見を、SGPの法人支援体制へ統合しました</a></h3>
+        </article>
+        <article>
+          <div><time datetime="2026-08-30">2026.08.30</time><span>PRODUCT</span></div>
+          <h3><a href="/news/sendai-erabu-map-phase1/">仙台の選択を地図から支援する「仙台えらぶ！MAP」Phase 1を公開しました</a></h3>
+        </article>
+        <article>
+          <div><time datetime="2026-08-27">2026.08.27</time><span>PRODUCT</span></div>
+          <h3><a href="/news/sendai-living-os-yohaku-index/">仙台での暮らしを構造から考える「仙台暮らしOS」「仙台余白指数」を公開しました</a></h3>
+        </article>
+      </div>
+    </section>
+<!-- NEWS_LATEST_END -->
+
     <section class="final-cta section-dark">
       <div class="container final-cta-grid">
         <div><p class="eyebrow">まずは、社長の課題を聞かせてください。</p><h2>一緒に、理想の未来への一歩目を決めます。</h2></div>
@@ -237,7 +271,7 @@
   </main>
 
   <footer class="site-footer">
-    <div class="container footer-grid"><p>© 2026 合同会社SGP / Sakamoto Growth Partners</p><img src="assets/sgp-wordmark.webp" alt="SGP" /><a href="#top">Page Top ↑</a></div>
+    <div class="container footer-grid"><p>© 2026 合同会社SGP / Sakamoto Growth Partners</p><img src="assets/sgp-wordmark.webp" alt="SGP" /><a href="/news/">NEWS</a><a href="#top">Page Top ↑</a></div>
   </footer>
 
   <script src="script.js"></script>

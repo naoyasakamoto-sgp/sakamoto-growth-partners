@@ -1,0 +1,11 @@
+{
+  "name": "sakamoto-growth-partners",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/generate-news.mjs",
+    "check": "node scripts/check-site.mjs",
+    "preview": "node scripts/serve.mjs",
+    "test": "npm run build && npm run check"
+  }
+}
