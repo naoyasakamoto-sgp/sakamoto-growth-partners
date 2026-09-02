@@ -26,7 +26,22 @@ jobs:
         run: npm install --ignore-scripts --no-audit --no-fund
 
       - name: Build and validate
-        run: npm test
+        shell: bash
+        run: |
+          set +e
+          npm test 2>&1 | tee validation.log
+          status=${PIPESTATUS[0]}
+          echo "npm_test_exit_code=${status}" >> "$GITHUB_STEP_SUMMARY"
+          exit "$status"
+
+      - name: Upload validation log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: validation-log-${{ github.sha }}
+          path: validation.log
+          if-no-files-found: warn
+          retention-days: 7
 
       - name: Upload generated site outputs
         if: success()
