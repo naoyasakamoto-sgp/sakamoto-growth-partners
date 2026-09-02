@@ -12,23 +12,27 @@ permissions:
 jobs:
   test:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: npm
+
       - name: Install
-        run: npm install --ignore-scripts
+        run: npm install --ignore-scripts --no-audit --no-fund
+
       - name: Build and validate
         run: npm test
+
       - name: Upload generated site outputs
         if: success()
         uses: actions/upload-artifact@v4
         with:
-          name: generated-site
+          name: generated-site-${{ github.sha }}
           path: |
             index.html
             sitemap.xml
@@ -36,5 +40,9 @@ jobs:
             news/index.html
             news/feed.xml
             news/*/index.html
+            case-studies/index.html
+            case-studies/*/index.html
+            contact/index.html
+            assets/case-studies/my-jazz-day/*.webp
           if-no-files-found: error
-          retention-days: 1
+          retention-days: 7
