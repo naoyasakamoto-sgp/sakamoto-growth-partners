@@ -1,43 +1,103 @@
-# SGP Homepage Redesign
+# SGP Homepage / News / Case Study
 
-## 内容
-- `index.html`: トップページ本体
-- `styles.css`: デザイン一式
+合同会社SGPの静的コーポレートサイトです。既存のHTML/CSS/JavaScript構成を維持しながら、NEWSとCase Studyを営業資産として運用できるようにしています。
+
+## 主な構成
+
+- `index.html`: トップページ
+- `styles.css`: 既存デザイン
 - `script.js`: モバイルメニュー・スクロールアニメーション
+- `analytics.js`: GA4/GTM互換のイベント送信層。Measurement IDはハードコードしない
+- `news/news-data.mjs`: 既存NEWSのSource of Truth
+- `news/news-extra-data.mjs`: Case Study等の拡張NEWSデータ
+- `scripts/generate-news.mjs`: NEWS一覧・記事・トップ最新3件・sitemap・RSS・Case Study導線の生成
+- `scripts/check-site.mjs`: 既存NEWS/SEO/内部リンク検証
+- `scripts/check-case-studies.mjs`: Case Study/SEO/Analytics/CTA/Contact検証
+- `case-studies/`: 開発事例
+- `content/case-studies/`: MDX互換のコンテンツ契約とschema
+- `contact/`: Case Study起点の問い合わせ導線
+- `docs/analytics.md`: GA4イベント・カスタムディメンション仕様
+
+## 公開URL
+
+- `/news/`
+- `/news/{slug}/`
+- `/case-studies/`
+- `/case-studies/my-jazz-day/`
+- `/contact/`
+
+## Build / Check
+
+```bash
+npm run build
+npm run check
+npm test
+```
+
+`npm run build` はNEWS一覧・RSS・sitemap・トップページの最新NEWSを再生成します。`MY JAZZ DAY` のNEWSは `renderMode: "custom"` のため、専用の静的記事を保持しつつ一覧・RSS・sitemapにはSource of Truthから参加します。
+
+## Case Study #001 — MY JAZZ DAY
+
+`仙台えらぶ！` で開発した、897の演奏枠・50会場の公開情報から、普段の音楽嗜好、当日の気分、利用可能時間、開始エリア、歩行量、新しい音との距離を使って一日の鑑賞プランを組み立てるプロダクトを開発事例化しています。
+
+2026-09-02 00:23 JSTのデータスナップショットを表示し、主催者の公式サービスではないことを明示しています。
+
+### MDXについて
+
+現行サイトは依存関係を増やさない静的HTML構成です。そのためMDXランタイム/コンパイラは追加せず、`content/case-studies/my-jazz-day.mdx` と `content/case-studies/schema.mjs` を将来のCMS/Next.js移行にも使えるContent Contractとして追加しています。公開HTMLは現在の静的アーキテクチャに合わせてコミットします。
+
+## Analytics
+
+`analytics.js` はイベント名・パラメータを統一します。GA4 Measurement IDはリポジトリ上で推測・新規発行せず、本番側の既存設定に接続してください。
+
+主なイベント:
+
+- `case_study_view`
+- `case_study_product_click`
+- `case_study_contact_click`
+- `news_view`
+- `news_case_study_click`
+- `news_contact_click`
+- `contact_submit`
+
+詳細は `docs/analytics.md` を参照してください。
 
 ## デザイン方針
-- 直前のビジュアル案をベースに、ダークアジュール × ターコイズ × 白背景で構成
-- 守を固めるため、料金目安・支援の流れ・相談しやすさ・誤情報のない強み表現を追加
-- 実績数字は入れず、「代表個人としての経験を含む」と明記
-- ダッシュボードは実績ではなく「イメージ」と明記
 
-## 反映する場合
-既存サイトのトップページとして使う場合は、`index.html` / `styles.css` / `script.js` を同じディレクトリに配置してください。
+- 既存のダークアジュール × ターコイズ × 白背景を維持
+- Case Studyは editorial / technical / restrained / premium を重視
+- 実画面、数字、図解、余白を主役にする
+- 誤認リスクのある「公式」「公認」「提携」「世界初」等は使用しない
+- Case Studyの897/50はデータスナップショット日時とセットで扱う
+- 代表者個人の経験とSGP法人実績は混同しない
 
-## Codex用指示文
-以下をCodexに貼り付けてください。
+## 画像アセット
 
----
-現在の `https://sakamoto-growth-partners.com/` のトップページを、添付の `index.html` `styles.css` `script.js` の内容をベースに全面リデザインしてください。
-要件:
-1. 既存サイトの会社情報・メールアドレス・代表名・設立日・事業内容は維持する。
-2. デザインはダークアジュール、ターコイズ、白背景を基調にし、ファーストビューは高級感のあるBtoBサイトにする。
-3. 「Web集客・業務改善・AI活用で、売上と生産性を一緒に上げていきます。」をメインコピーにする。
-4. 誤認リスクのある実績数字は入れない。
-5. 「会社設立前の代表者個人としての経験を含みます。守秘義務に配慮し、内容を一部抽象化しています。」という注記を残す。
-6. ダッシュボードや数値表示は実績ではなく「イメージ」と明記する。
-7. 料金は「目安」として表示し、税別・内容により変動する注記を入れる。
-8. モバイル表示でナビゲーション・カード・CTAが崩れないようにする。
-9. LighthouseでSEO・アクセシビリティ・パフォーマンスを大きく落とさない。
-10. 本番反映前に、メールリンクとCTAのリンク先を確認する。
----
+既存:
 
-## 画像アセットについて
+- `assets/sgp-wordmark.webp`
+- `assets/sgp-stack.webp`
+- `assets/sendai-office.webp`
 
-既存公開ページから以下を取得し、`assets/` に格納しています。
+MY JAZZ DAY Case Study:
 
-- SGPロゴ：`assets/sgp-wordmark.webp`
-- SGPロゴ縦版：`assets/sgp-stack.webp`
-- 仙台拠点写真：`assets/sendai-office.webp`
+- `assets/case-studies/my-jazz-day/hero-mobile.webp`
+- `assets/case-studies/my-jazz-day/why-festival.webp`
+- `assets/case-studies/my-jazz-day/pwa-navigator.webp`
+- `assets/case-studies/my-jazz-day/jazz-map.webp`
+- `assets/case-studies/my-jazz-day/question-taste.webp`
+- `assets/case-studies/my-jazz-day/question-time-area.webp`
+- `assets/case-studies/my-jazz-day/area-options.webp`
+- `assets/case-studies/my-jazz-day/area-options-more.webp`
+- `assets/case-studies/my-jazz-day/discovery-submit.webp`
+- `assets/case-studies/my-jazz-day/og-my-jazz-day.webp`
 
-代表顔写真は、公開ページ上で確認できなかったため未同梱です。代表写真を追加する場合は、`assets/founder-naoya-sakamoto.webp` などの名前で配置し、`#founder` セクションの画像パスを差し替えてください。
+## Definition of Done
+
+- build success
+- check/test success
+- mobile/desktopで横スクロールやCTA崩れがない
+- canonical/metadata/JSON-LD/sitemapを確認
+- Analyticsのイベント名・パラメータを確認
+- Case Study → Product / Contact、NEWS → Case Study の内部リンクを確認
+- 既存ページの回帰を確認
