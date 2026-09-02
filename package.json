@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "build": "node scripts/generate-news.mjs",
-    "check": "node scripts/check-site.mjs",
+    "check": "node scripts/check-site.mjs && node scripts/check-case-studies.mjs",
     "preview": "node scripts/serve.mjs",
     "test": "npm run build && npm run check"
   }
