@@ -35,7 +35,8 @@ norm,det=tp.normalize_ticket(buf.tobytes())
 assert norm.shape==(tp.CANON_H,tp.CANON_W,3),norm.shape
 status=tp.runtime_status()
 assert status['opencv'] and status['paddle_import'] and status['tesseract_jpn'],status
-assert status['pipeline_version']=='7.0.1',status
+assert status['pipeline_version']=='7.0.2',status
+assert status['license_full_card_roi'] and status['mobile_only'] and status['deadline_suggestion_disabled'],status
 print('POC build smoke test OK',tp.PIPELINE_VERSION,'document_detected=',det)
 PY
 EXPOSE 8000
