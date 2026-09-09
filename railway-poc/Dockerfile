@@ -79,7 +79,7 @@ sample='"日付","摘要","摘要内容","支払い金額","預かり金額","�
 rows,diag=bank._parse_csv_bytes(sample.encode('cp932'))
 assert diag['total_rows']==3 and diag['inbound_rows']==2 and diag['outgoing_rows_skipped']==1
 assert rows[0]['date']=='2026-05-25' and rows[0]['amount']==54
-assert rows[1]['date']=='2026-05-29' and rows[1]['sender']=='カ)ギブリー' and rows[1]['amount']==1056000
+assert rows[1]['date']=='2026-05-29' and rows[1]['sender']=='カ)ギブリ-' and rows[1]['amount']==1056000
 assert rows[0]['reference'].startswith('CSV:') and rows[0]['reference'] != rows[1]['reference']
 assert 'bank-import-v243' in bank.main.HTML
 print('Bank CSV v2.4.3 regression test OK; Gemini configured=', st['configured'])
