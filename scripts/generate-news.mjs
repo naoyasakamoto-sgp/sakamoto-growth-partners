@@ -2,6 +2,8 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { newsCategories, newsItems } from "../news/news-data.mjs";
+import { extraNewsItems } from "../news/news-extra-data.mjs";
+import { insightCategories, publishedInsights } from "../insights/insights-data.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.resolve(__dirname, "..");
@@ -20,8 +22,11 @@ const baseSitemapPages = [
   "/contact/",
   "/diagnosis/",
   "/faq/",
-  "/senior-family-support/"
+  "/senior-family-support/",
+  "/case-studies/",
+  "/case-studies/my-jazz-day/"
 ];
+const allNewsItems = [...newsItems, ...extraNewsItems];
 
 const escapeHtml = (value) => String(value)
   .replaceAll("&", "&amp;")
@@ -41,7 +46,7 @@ const canonicalFor = (slug = "") => `${siteUrl}/news/${slug ? `${slug}/` : ""}`;
 
 function validateNewsData() {
   const slugs = new Set();
-  for (const item of newsItems) {
+  for (const item of allNewsItems) {
     if (!item.slug || !/^[-a-z0-9]+$/.test(item.slug)) throw new Error(`Invalid slug: ${item.slug}`);
     if (slugs.has(item.slug)) throw new Error(`Duplicate slug: ${item.slug}`);
     slugs.add(item.slug);
@@ -52,10 +57,10 @@ function validateNewsData() {
     }
     if (!Array.isArray(item.sections) || item.sections.length === 0) throw new Error(`Missing sections: ${item.slug}`);
   }
-  if (newsItems.length !== 13) throw new Error(`Expected 13 news items, received ${newsItems.length}`);
+  if (allNewsItems.length < 14) throw new Error(`Expected at least 14 news items, received ${allNewsItems.length}`);
 }
 
-const sortedNews = [...newsItems].sort((a, b) => b.date.localeCompare(a.date));
+const sortedNews = [...allNewsItems].sort((a, b) => b.date.localeCompare(a.date));
 
 function renderHeader() {
   return `
@@ -67,6 +72,7 @@ function renderHeader() {
       </a>
       <div class="sgp-nav-links">
         <a href="/services/">サービス</a>
+        <a href="/insights/">実務ノウハウ</a>
         <a href="/cases/">支援事例</a>
         <a href="/news/" aria-current="page">NEWS</a>
         <a href="/about/">会社情報</a>
@@ -77,7 +83,9 @@ function renderHeader() {
         <summary>メニュー</summary>
         <nav aria-label="スマートフォン用ナビゲーション">
           <a href="/services/">サービス</a>
+          <a href="/insights/">実務ノウハウ</a>
           <a href="/cases/">支援事例</a>
+          <a href="/case-studies/">開発事例</a>
           <a href="/news/" aria-current="page">NEWS</a>
           <a href="/about/">会社情報</a>
           <a href="/faq/">よくある質問</a>
@@ -94,7 +102,7 @@ function renderFooter() {
     <div class="sgp-container sgp-footer-inner">
       <div class="sgp-footer-logo"><img src="/assets/sgp-logo-footer.svg" alt="合同会社SGP ロゴ" loading="lazy" /></div>
       <nav class="sgp-footer-links" aria-label="フッターナビゲーション">
-        <a href="/services/">サービス一覧</a><a href="/cases/">支援事例</a><a href="/news/" aria-current="page">NEWS</a><a href="/diagnosis/" data-cta-track data-cta-type="diagnosis" data-cta-location="footer">無料経営導線診断</a><a href="/contact/" data-cta-track data-cta-type="contact" data-cta-location="footer">お問い合わせ</a><a href="/about/">会社情報</a><a href="/naoya-sakamoto/">代表 坂本直哉</a><a href="/faq/">よくある質問</a><a href="/privacy/">プライバシーポリシー</a><a href="https://www.linkedin.com/in/nao329/" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://lin.ee/URIZpwg" target="_blank" rel="noopener noreferrer" data-line-cta data-cta-location="footer">LINEで無料相談する</a>
+        <a href="/services/">サービス一覧</a><a href="/insights/">実務ノウハウ</a><a href="/cases/">支援事例</a><a href="/case-studies/">開発事例</a><a href="/news/" aria-current="page">NEWS</a><a href="/diagnosis/" data-cta-track data-cta-type="diagnosis" data-cta-location="footer">無料経営導線診断</a><a href="/contact/" data-cta-track data-cta-type="contact" data-cta-location="footer">お問い合わせ</a><a href="/about/">会社情報</a><a href="/naoya-sakamoto/">代表 坂本直哉</a><a href="/faq/">よくある質問</a><a href="/privacy/">プライバシーポリシー</a><a href="https://www.linkedin.com/in/nao329/" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://lin.ee/URIZpwg" target="_blank" rel="noopener noreferrer" data-line-cta data-cta-location="footer">LINEで無料相談する</a>
       </nav>
       <div class="sgp-footer-meta"><span>© 2026 合同会社SGP / Sakamoto Growth Partners</span><span>仙台・宮城｜経営導線を実装するIT工務店</span></div>
     </div>
@@ -360,9 +368,26 @@ ${latest.map((item) => `        <article>
 
 function renderSitemap() {
   const urls = [
-    ...baseSitemapPages.map((page) => ({ loc: `${siteUrl}${page}`, lastmod: "2026-08-31" })),
+    ...baseSitemapPages.map((page) => ({
+      loc: `${siteUrl}${page}`,
+      lastmod: page.startsWith("/case-studies/") ? "2026-09-02" : "2026-08-31"
+    })),
     { loc: canonicalFor(), lastmod: sortedNews[0].date },
-    ...sortedNews.map((item) => ({ loc: canonicalFor(item.slug), lastmod: item.date }))
+    ...sortedNews.map((item) => ({ loc: canonicalFor(item.slug), lastmod: item.date })),
+    { loc: `${siteUrl}/insights/`, lastmod: publishedInsights[0].updatedAt || publishedInsights[0].publishedAt },
+    ...insightCategories.map((category) => ({
+      loc: `${siteUrl}/insights/${category.slug}/`,
+      lastmod: publishedInsights
+        .filter((article) => article.category === category.slug)
+        .reduce((latest, article) => {
+          const date = article.updatedAt || article.publishedAt;
+          return date > latest ? date : latest;
+        }, publishedInsights[0].updatedAt || publishedInsights[0].publishedAt)
+    })),
+    ...publishedInsights.map((article) => ({
+      loc: `${siteUrl}/insights/${article.slug}/`,
+      lastmod: article.updatedAt || article.publishedAt
+    }))
   ];
   return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -408,7 +433,8 @@ async function main() {
   await mkdir(newsDir, { recursive: true });
   await writeFile(path.join(newsDir, "index.html"), renderNewsIndex(), "utf8");
 
-  for (const item of newsItems) {
+  for (const item of allNewsItems) {
+    if (item.renderMode === "custom") continue;
     const articleDir = path.join(newsDir, item.slug);
     await mkdir(articleDir, { recursive: true });
     await writeFile(path.join(articleDir, "index.html"), renderArticle(item), "utf8");
@@ -435,7 +461,7 @@ async function main() {
   await writeFile(path.join(rootDir, "sitemap.xml"), renderSitemap(), "utf8");
   await writeFile(path.join(newsDir, "feed.xml"), renderFeed(), "utf8");
 
-  console.log(`Generated ${newsItems.length} NEWS articles, archive, homepage activity, sitemap and RSS.`);
+  console.log(`Generated ${allNewsItems.length} NEWS entries, archive, homepage activity, sitemap and RSS.`);
 }
 
 await main();

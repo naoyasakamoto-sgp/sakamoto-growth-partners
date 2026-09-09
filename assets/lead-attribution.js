@@ -9,6 +9,7 @@
     "utm_content",
     "utm_term",
   ];
+  var LEAD_CONTEXT_KEYS = ["source", "case", "intent"];
 
   function safe(value, maxLength) {
     return String(value || "")
@@ -98,9 +99,15 @@
     UTM_KEYS.forEach(function (key) {
       setField(form, key, searchParams.get(key));
     });
+    var leadContext = {};
+    LEAD_CONTEXT_KEYS.forEach(function (key) {
+      var value = safe(searchParams.get(key), 120);
+      leadContext["lead_" + key] = value;
+      setField(form, "lead_" + key, value);
+    });
     setField(form, "service_interest", serviceInterest || "general");
     setField(form, "submission_id", submissionId());
-    return data;
+    return Object.assign({}, data, leadContext);
   }
 
   window.SGPLeadAttribution = {

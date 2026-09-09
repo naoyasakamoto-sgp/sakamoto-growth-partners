@@ -1,77 +1,100 @@
-# SGP Homepage Redesign
+# 合同会社SGP 公式サイト
 
-## 内容
-- `index.html`: トップページ本体
-- `styles.css`: デザイン一式
-- `script.js`: モバイルメニュー・スクロールアニメーション
-- `news/news-data.mjs`: NEWS記事の単一データソース
-- `scripts/generate-news.mjs`: NEWS一覧・記事・トップ最新3件・sitemap・RSSの生成
-- `scripts/check-site.mjs`: NEWSのHTML・SEO・Schema・内部リンク検証
+合同会社SGP（Sakamoto Growth Partners）の静的HTMLサイトです。公式ドメインは `https://sakamoto-growth-partners.com/`、配信先はNetlifyの `sgp-sendai` サイトです。
 
-## NEWSの更新
-
-NEWSは `news/news-data.mjs` をSource of Truthとして管理します。記事追加後に以下を実行すると、`/news/`、各記事、トップページの最新3件、`sitemap.xml`、`news/feed.xml`が更新されます。
+## 開発コマンド
 
 ```powershell
 npm run build
 npm run check
+npm test
+npm run preview
 ```
 
-生成済みHTMLを直接編集せず、記事本文・日付・カテゴリ・関連リンクはデータファイルで更新してください。
+`npm run build` はNEWS、INSIGHTS、トップページの最新コンテンツ、RSS、サイトマップ、共通ナビゲーションを生成します。`npm test` は生成後にSEO、構造化データ、内部リンク、Contact、Case Study、INSIGHTSをまとめて検証します。
 
-公開URL:
+## コンテンツ管理
 
-- `/news/`
-- `/news/{slug}/`
-- `/news/feed.xml`
+### NEWS
+
+- 通常記事: `news/news-data.mjs`
+- 独自レイアウト記事: `news/news-extra-data.mjs`
+- 生成処理: `scripts/generate-news.mjs`
+- 公開URL: `/news/`、`/news/{slug}/`、`/news/feed.xml`
+
+`renderMode: "custom"` のNEWSは一覧・RSS・サイトマップには含めますが、記事HTMLを再生成しません。
+
+### 実務ノウハウ / INSIGHTS
+
+- 記事・カテゴリ・著者データ: `insights/insights-data.mjs`
+- 生成処理: `scripts/generate-insights.mjs`
+- 専用CSS/JS: `insights/insights.css`、`insights/insights.js`
+- 公開URL: `/insights/`、`/insights/{category}/`、`/insights/{slug}/`
+
+記事は `status: "published"` の場合だけ一覧、カテゴリ、サイトマップ、本番HTMLへ出力されます。下書きは `status: "draft"` に設定します。ROIは実績ではなくモデルケースとして、仮定・計算式・非保証文を必ず明示します。
+
+### 開発事例 / Case Study
+
+- 一覧: `/case-studies/`
+- MY JAZZ DAY: `/case-studies/my-jazz-day/`
+- データ契約: `case-studies/case-study-data.mjs`
+- 素材: `assets/case-studies/my-jazz-day/`
+
+MY JAZZ DAYの数値は `2026-09-02 00:23 JST` 時点の公開情報を整理したデータスナップショットです。`1 MIN` は操作体験の設計目標であり実測実績ではありません。
+
+## 計測
+
+- GA4測定ID: `G-08TBS4LE54`
+- Googleタグは各HTMLの `head` に手動設置
+- 共通計測: `assets/site-analytics.js`
+- LINE CTA: `assets/line-cta-tracking.js`
+- 流入属性: `assets/lead-attribution.js`
+
+主なイベント:
+
+- `click_line_cta`
+- `cta_click`
+- `case_study_view` / `case_study_product_click` / `case_study_contact_click`
+- `news_view` / `news_case_study_click` / `news_contact_click`
+- `insight_view` / `insight_50_percent` / `insight_90_percent`
+- `insight_cta_click` / `insight_related_article_click` / `insight_service_click`
+- `diagnosis_click` / `contact_submit` / `generate_lead`
+
+Contactでは `source`、`case`、`intent` を `lead_source`、`lead_case`、`lead_intent` としてNetlify Formsへ引き継ぎます。氏名、会社名、メール、電話番号、相談本文はGA4へ送信しません。
+
+GA4確認手順:
+
+1. GA4の「レポート」から「リアルタイム」を開く。
+2. 対象ページを別タブで開き、ページビューを確認する。
+3. LINE CTA、Case Study、INSIGHTS、Contactの対象操作を行う。
+4. リアルタイムのイベント名とDebugViewでイベント・パラメータを確認する。
+5. 管理画面で問い合わせに関する `contact_submit` と必要なCTAイベントをキーイベントに設定する。
+
+## Search Console
+
+DNS認証の登録状態はGoogle Search Console管理画面で確認します。meta認証を使う場合は各ページの `head` に `google-site-verification` を追加し、HTMLファイル認証を使う場合は発行された `googleXXXX.html` をリポジトリ直下へ配置します。認証コードが発行されるまでは仮値を公開しません。
 
 ## 本番サイト構成
 
-公式ドメイン `https://sakamoto-growth-partners.com/` はNetlifyの `sgp-sendai` サイトから配信しています。GitHubとの自動連携は設定されていないため、本番反映時はテスト後にNetlifyへ手動デプロイします。
-
-本番デプロイには、トップページに加えて以下の静的ページと共通アセットを含めます。
+本番に含める主なパス:
 
 - `/about/`、`/naoya-sakamoto/`、`/services/`、`/faq/`
-- `/cases/`、`/contact/`、`/diagnosis/`
-- `/senior-family-support/`
-- `/news/`とNEWS記事
+- `/cases/`、`/case-studies/`、`/contact/`、`/diagnosis/`
+- `/senior-family-support/`、`/news/`、`/insights/`
 - `assets/`、`netlify/functions/`、`robots.txt`、`sitemap.xml`、`_headers`
 
-デプロイ前に必ず`npm test`を実行し、`sitemap.xml`に記載した全URLのHTTP応答を確認してください。
+## Netlifyデプロイ
 
-## デザイン方針
-- 直前のビジュアル案をベースに、ダークアジュール × ターコイズ × 白背景で構成
-- 守を固めるため、料金目安・支援の流れ・相談しやすさ・誤情報のない強み表現を追加
-- 実績数字は入れず、「代表個人としての経験を含む」と明記
-- ダッシュボードは実績ではなく「イメージ」と明記
+GitHubとの自動連携は設定されていません。`npm test` の後、静的ファイルとFunctionsを含むサイトルートをNetlifyへ手動デプロイします。DNS、カスタムドメイン、SSLは変更しません。
 
-## 反映する場合
-既存サイトのトップページとして使う場合は、`index.html` / `styles.css` / `script.js` を同じディレクトリに配置してください。
+公開前確認:
 
-## Codex用指示文
-以下をCodexに貼り付けてください。
+1. `npm test` を成功させる。
+2. `sitemap.xml` の全URL、canonical、robots、OGP、JSON-LDを確認する。
+3. Draft deployへデプロイし、PC・タブレット・390pxの主要画面、Console、CTA、Contact送信を確認する。
+4. 問題がない場合だけproduction deployを実行する。
+5. 本番URLのHTTP 200、CSS/JS/画像、画像、フォームFunctionを再確認する。
 
----
-現在の `https://sakamoto-growth-partners.com/` のトップページを、添付の `index.html` `styles.css` `script.js` の内容をベースに全面リデザインしてください。
-要件:
-1. 既存サイトの会社情報・メールアドレス・代表名・設立日・事業内容は維持する。
-2. デザインはダークアジュール、ターコイズ、白背景を基調にし、ファーストビューは高級感のあるBtoBサイトにする。
-3. 「Web集客・業務改善・AI活用で、売上と生産性を一緒に上げていきます。」をメインコピーにする。
-4. 誤認リスクのある実績数字は入れない。
-5. 「会社設立前の代表者個人としての経験を含みます。守秘義務に配慮し、内容を一部抽象化しています。」という注記を残す。
-6. ダッシュボードや数値表示は実績ではなく「イメージ」と明記する。
-7. 料金は「目安」として表示し、税別・内容により変動する注記を入れる。
-8. モバイル表示でナビゲーション・カード・CTAが崩れないようにする。
-9. LighthouseでSEO・アクセシビリティ・パフォーマンスを大きく落とさない。
-10. 本番反映前に、メールリンクとCTAのリンク先を確認する。
----
+現在のNetlify site ID: `2a45dabd-9519-466b-a66d-9589261e17a7`
 
-## 画像アセットについて
-
-既存公開ページから以下を取得し、`assets/` に格納しています。
-
-- SGPロゴ：`assets/sgp-wordmark.webp`
-- SGPロゴ縦版：`assets/sgp-stack.webp`
-- 仙台拠点写真：`assets/sendai-office.webp`
-
-代表顔写真は、公開ページ上で確認できなかったため未同梱です。代表写真を追加する場合は、`assets/founder-naoya-sakamoto.webp` などの名前で配置し、`#founder` セクションの画像パスを差し替えてください。
+Netlify access tokenなどの認証情報はREADMEやGitに保存しません。

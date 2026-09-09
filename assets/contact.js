@@ -7,6 +7,8 @@
   var interest = document.getElementById("contact-interest");
   var submitButton = form.querySelector("button[type='submit']");
   var submitError = document.getElementById("contact-submit-error");
+  var attributionBanner = document.getElementById("contact-attribution-banner");
+  var attributionContext = {};
   var hasStarted = false;
   var isSubmitting = false;
   var allowedInterests = [
@@ -17,6 +19,24 @@
     "meo-line",
     "other",
   ];
+  var topicIntakes = {
+    "business-improvement": {
+      section: document.getElementById("business-improvement-intake"),
+      requiredFields: [document.getElementById("contact-improvement-target")],
+      requiredGroups: [
+        {
+          name: "currentMethods",
+          group: document.getElementById("contact-current-methods-group"),
+          output: document.getElementById("contact-current-methods-error"),
+        },
+        {
+          name: "painPoints",
+          group: document.getElementById("contact-pain-points-group"),
+          output: document.getElementById("contact-pain-points-error"),
+        },
+      ],
+    },
+  };
 
   function track(eventName, params) {
     if (typeof window.sgpTrackEvent === "function") {
@@ -43,7 +63,23 @@
 
   function applyAttribution() {
     if (!window.SGPLeadAttribution) return;
-    window.SGPLeadAttribution.apply(form, currentInterest());
+    attributionContext =
+      window.SGPLeadAttribution.apply(form, currentInterest()) || {};
+    if (attributionBanner && attributionContext.lead_case === "my-jazz-day") {
+      attributionBanner.hidden = false;
+    }
+  }
+
+  function contactSubmitParams() {
+    var params = {
+      form_id: "contact",
+      service_interest: currentInterest(),
+      contact_method: "form",
+    };
+    ["lead_source", "lead_case", "lead_intent"].forEach(function (key) {
+      if (attributionContext[key]) params[key] = attributionContext[key];
+    });
+    return params;
   }
 
   function markStarted() {
@@ -87,6 +123,69 @@
     return !message;
   }
 
+  function intakeFields(intake) {
+    return intake && intake.section
+      ? Array.prototype.slice.call(
+          intake.section.querySelectorAll("input, select, textarea"),
+        )
+      : [];
+  }
+
+  function setGroupError(config, message) {
+    if (!config.group) return;
+    config.group.setAttribute("aria-invalid", message ? "true" : "false");
+    if (config.output) config.output.textContent = message || "";
+  }
+
+  function checkedFields(name) {
+    return Array.prototype.slice.call(
+      form.querySelectorAll('input[name="' + name + '"]:checked'),
+    );
+  }
+
+  function validateRequiredGroup(config) {
+    var isValid = checkedFields(config.name).length > 0;
+    setGroupError(config, isValid ? "" : "1つ以上選択してください。");
+    return isValid;
+  }
+
+  function updateCurrentMethodOther() {
+    var container = document.getElementById("contact-current-method-other");
+    var input = document.getElementById("contact-current-method-other-input");
+    var other = form.querySelector(
+      'input[name="currentMethods"][value="その他"]',
+    );
+    var isBusinessImprovement =
+      interest.value === "business-improvement" &&
+      topicIntakes["business-improvement"].section.hidden === false;
+    var shouldShow = Boolean(isBusinessImprovement && other && other.checked);
+    container.hidden = !shouldShow;
+    input.disabled = !shouldShow;
+  }
+
+  function updateTopicIntake() {
+    Object.keys(topicIntakes).forEach(function (topic) {
+      var intake = topicIntakes[topic];
+      if (!intake.section) return;
+      var isActive = interest.value === topic;
+
+      intake.section.hidden = !isActive;
+      intake.section.setAttribute("aria-hidden", isActive ? "false" : "true");
+      intakeFields(intake).forEach(function (field) {
+        field.disabled = !isActive;
+        if (!isActive) setError(field, "");
+      });
+      intake.requiredFields.forEach(function (field) {
+        field.required = isActive;
+      });
+      intake.requiredGroups.forEach(function (group) {
+        group.group.setAttribute("aria-required", isActive ? "true" : "false");
+        if (!isActive) setGroupError(group, "");
+      });
+    });
+    updateCurrentMethodOther();
+  }
+
   function validateForm() {
     var fields = [
       document.getElementById("contact-interest"),
@@ -100,6 +199,18 @@
     fields.forEach(function (field) {
       if (!validateField(field) && !firstInvalid) firstInvalid = field;
     });
+
+    var intake = topicIntakes[interest.value];
+    if (intake && intake.section && !intake.section.hidden) {
+      intake.requiredFields.forEach(function (field) {
+        if (!validateField(field) && !firstInvalid) firstInvalid = field;
+      });
+      intake.requiredGroups.forEach(function (group) {
+        if (!validateRequiredGroup(group) && !firstInvalid) {
+          firstInvalid = group.group.querySelector("input");
+        }
+      });
+    }
 
     if (firstInvalid) {
       firstInvalid.focus();
@@ -121,11 +232,7 @@
       window.location.assign("/contact/thanks/");
     }
 
-    var params = {
-      form_id: "contact",
-      service_interest: currentInterest(),
-      contact_method: "form",
-    };
+    var params = contactSubmitParams();
 
     window.dataLayer = window.dataLayer || [];
     if (typeof window.gtag === "function") {
@@ -145,10 +252,29 @@
   }
 
   applyInterestFromUrl();
+  updateTopicIntake();
   applyAttribution();
   interest.addEventListener("change", function () {
+    updateTopicIntake();
     var serviceInterest = form.querySelector("[name='service_interest']");
     if (serviceInterest) serviceInterest.value = currentInterest();
+  });
+  form
+    .querySelectorAll('input[name="currentMethods"]')
+    .forEach(function (field) {
+      field.addEventListener("change", function () {
+        updateCurrentMethodOther();
+        var group = topicIntakes["business-improvement"].requiredGroups[0];
+        if (group.group.getAttribute("aria-invalid") === "true")
+          validateRequiredGroup(group);
+      });
+    });
+  form.querySelectorAll('input[name="painPoints"]').forEach(function (field) {
+    field.addEventListener("change", function () {
+      var group = topicIntakes["business-improvement"].requiredGroups[1];
+      if (group.group.getAttribute("aria-invalid") === "true")
+        validateRequiredGroup(group);
+    });
   });
   form.addEventListener("input", markStarted, { once: true });
   form.addEventListener("change", markStarted, { once: true });
@@ -187,6 +313,7 @@
         return response.json();
       })
       .then(function () {
+        track("contact_submit", contactSubmitParams());
         redirectAfterLeadEvent();
       })
       .catch(function () {

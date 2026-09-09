@@ -2,6 +2,8 @@ import { access, readFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { newsItems } from "../news/news-data.mjs";
+import { extraNewsItems } from "../news/news-extra-data.mjs";
+import { insightCategories, publishedInsights } from "../insights/insights-data.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.resolve(__dirname, "..");
@@ -19,8 +21,11 @@ const basePaths = [
   "/contact/",
   "/diagnosis/",
   "/faq/",
-  "/senior-family-support/"
+  "/senior-family-support/",
+  "/case-studies/",
+  "/case-studies/my-jazz-day/"
 ];
+const allNewsItems = [...newsItems, ...extraNewsItems];
 
 const fail = (message) => failures.push(message);
 const read = (relativePath) => readFile(path.join(rootDir, relativePath), "utf8");
@@ -130,7 +135,7 @@ await checkPage("news/index.html", {
   schemaTypes: ["BreadcrumbList", "ItemList"]
 });
 
-for (const item of newsItems) {
+for (const item of allNewsItems) {
   await checkPage(`news/${item.slug}/index.html`, {
     canonical: `${siteUrl}/news/${item.slug}/`,
     ogType: "article",
@@ -140,7 +145,7 @@ for (const item of newsItems) {
 
 const home = await read("index.html");
 if (!home.includes('href="/news/"')) fail("index.html: NEWS navigation is missing");
-for (const item of [...newsItems].sort((a, b) => b.date.localeCompare(a.date)).slice(0, 3)) {
+for (const item of [...allNewsItems].sort((a, b) => b.date.localeCompare(a.date)).slice(0, 3)) {
   if (!home.includes(`/news/${item.slug}/`)) fail(`index.html: latest NEWS missing ${item.slug}`);
 }
 await checkInternalLinks(home, "index.html");
@@ -150,7 +155,10 @@ const sitemapUrls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) =>
 const expectedUrls = [
   ...basePaths.map((pagePath) => `${siteUrl}${pagePath}`),
   `${siteUrl}/news/`,
-  ...newsItems.map((item) => `${siteUrl}/news/${item.slug}/`)
+  ...allNewsItems.map((item) => `${siteUrl}/news/${item.slug}/`),
+  `${siteUrl}/insights/`,
+  ...insightCategories.map((category) => `${siteUrl}/insights/${category.slug}/`),
+  ...publishedInsights.map((article) => `${siteUrl}/insights/${article.slug}/`)
 ];
 for (const url of expectedUrls) {
   if (!sitemapUrls.includes(url)) fail(`sitemap.xml: missing ${url}`);
@@ -162,6 +170,19 @@ for (const url of expectedUrls) {
   }
 }
 if (new Set(sitemapUrls).size !== sitemapUrls.length) fail("sitemap.xml: duplicate URL");
+const indexedTitles = new Map();
+for (const url of sitemapUrls) {
+  const targetPath = htmlPathForUrl(url);
+  const html = await read(targetPath);
+  if (/noindex/i.test(metaContent(html, "robots"))) fail(`${targetPath}: sitemap target must not be noindex`);
+  if (canonical(html) !== url) fail(`${targetPath}: sitemap URL and canonical differ`);
+  if (count(html, /<link\s+[^>]*rel=["']canonical["']/gi) !== 1) fail(`${targetPath}: expected one canonical`);
+  if (count(html, /<h1\b/gi) !== 1) fail(`${targetPath}: sitemap page must have one H1`);
+  const title = html.match(/<title>([^<]+)<\/title>/i)?.[1] || "";
+  if (!title) fail(`${targetPath}: sitemap page title missing`);
+  if (indexedTitles.has(title)) fail(`${targetPath}: duplicate title with ${indexedTitles.get(title)}`);
+  indexedTitles.set(title, targetPath);
+}
 
 const robots = await read("robots.txt");
 if (!robots.includes("Allow: /")) fail("robots.txt: Allow directive missing");
@@ -181,11 +202,12 @@ for (const pagePath of [
 ]) {
   const html = await read(pagePath);
   if (!html.includes('href="/news/"')) fail(`${pagePath}: global NEWS link missing`);
+  if (!html.includes('href="/insights/"')) fail(`${pagePath}: global INSIGHTS link missing`);
 }
 
 if (failures.length) {
   console.error(failures.map((message) => `- ${message}`).join("\n"));
   process.exitCode = 1;
 } else {
-  console.log(`Validated NEWS archive, ${newsItems.length} articles, metadata, structured data, internal links and sitemap.`);
+  console.log(`Validated NEWS archive, ${allNewsItems.length} articles, metadata, structured data, internal links and sitemap.`);
 }

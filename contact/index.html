@@ -112,7 +112,7 @@
             ></a
           >
           <div class="sgp-nav-links">
-            <a href="/services/">サービス</a><a href="/cases/">支援事例</a
+            <a href="/services/">サービス</a><a href="/insights/">実務ノウハウ</a><a href="/cases/">支援事例</a
             ><a href="/news/">NEWS</a><a href="/about/">SGPについて</a><a href="/faq/">よくある質問</a
             ><a class="sgp-nav-cta" href="#contact-form">入力へ進む</a>
           </div>
@@ -188,6 +188,14 @@
             <input type="hidden" name="referrer" />
             <input type="hidden" name="service_interest" />
             <input type="hidden" name="submission_id" />
+            <input type="hidden" name="lead_source" />
+            <input type="hidden" name="lead_case" />
+            <input type="hidden" name="lead_intent" />
+            <input type="hidden" name="business_improvement_intake" />
+            <div class="contact-attribution-banner" id="contact-attribution-banner" hidden>
+              <strong>MY JAZZ DAYの開発事例をご覧になった方へ</strong>
+              <span>同様の意思決定支援プロダクトや業務改善について、現在の課題からご相談いただけます。</span>
+            </div>
             <p class="contact-honeypot">
               <label
                 >この欄は入力しないでください
@@ -215,6 +223,253 @@
                 aria-live="polite"
               ></p>
             </div>
+            <section
+              class="contact-intake"
+              id="business-improvement-intake"
+              aria-labelledby="business-improvement-intake-title"
+              aria-hidden="true"
+              hidden
+            >
+              <div class="contact-intake-heading">
+                <p class="growth-eyebrow">ABOUT YOUR WORK</p>
+                <h2 id="business-improvement-intake-title">
+                  業務についてもう少し教えてください
+                </h2>
+                <p>
+                  打ち合わせをより具体的にするため、現在の業務について分かる範囲でご回答ください。約2分で入力できます。
+                </p>
+              </div>
+
+              <div class="contact-field contact-intake-field" data-intake-question="1">
+                <label for="contact-improvement-target"
+                  >現在、改善したい業務は何ですか？ <span>必須</span></label
+                ><textarea
+                  id="contact-improvement-target"
+                  name="improvementTarget"
+                  maxlength="1000"
+                  rows="4"
+                  placeholder="例：在庫管理、顧客管理、日報作成、店舗間の情報共有など"
+                  disabled
+                ></textarea>
+                <p
+                  class="contact-error"
+                  id="contact-improvement-target-error"
+                  aria-live="polite"
+                ></p>
+              </div>
+
+              <fieldset
+                class="contact-intake-question"
+                id="contact-current-methods-group"
+                data-intake-question="2"
+                aria-describedby="contact-current-methods-error"
+              >
+                <legend>
+                  現在、その業務をどのように行っていますか？
+                  <span class="contact-required">必須</span>
+                </legend>
+                <div class="contact-option-grid">
+                  <label class="contact-option"
+                    ><input
+                      type="checkbox"
+                      name="currentMethods"
+                      value="紙"
+                      disabled
+                    /><span>紙</span></label
+                  >
+                  <label class="contact-option"
+                    ><input
+                      type="checkbox"
+                      name="currentMethods"
+                      value="Excel / スプレッドシート"
+                      disabled
+                    /><span>Excel / スプレッドシート</span></label
+                  >
+                  <label class="contact-option"
+                    ><input
+                      type="checkbox"
+                      name="currentMethods"
+                      value="LINE / メール"
+                      disabled
+                    /><span>LINE / メール</span></label
+                  >
+                  <label class="contact-option"
+                    ><input
+                      type="checkbox"
+                      name="currentMethods"
+                      value="既存システム"
+                      disabled
+                    /><span>既存システム</span></label
+                  >
+                  <label class="contact-option"
+                    ><input
+                      type="checkbox"
+                      name="currentMethods"
+                      value="複数の方法を併用"
+                      disabled
+                    /><span>複数の方法を併用</span></label
+                  >
+                  <label class="contact-option"
+                    ><input
+                      type="checkbox"
+                      name="currentMethods"
+                      value="その他"
+                      data-reveals="contact-current-method-other"
+                      disabled
+                    /><span>その他</span></label
+                  >
+                </div>
+                <div
+                  class="contact-field contact-intake-other"
+                  id="contact-current-method-other"
+                  hidden
+                >
+                  <label for="contact-current-method-other-input"
+                    >その他の方法 <small>任意</small></label
+                  ><input
+                    id="contact-current-method-other-input"
+                    name="currentMethodOther"
+                    type="text"
+                    maxlength="300"
+                    placeholder="現在の方法を入力してください"
+                    disabled
+                  />
+                </div>
+                <p
+                  class="contact-error"
+                  id="contact-current-methods-error"
+                  aria-live="polite"
+                ></p>
+              </fieldset>
+
+              <fieldset
+                class="contact-intake-question"
+                data-intake-question="3"
+              >
+                <legend>
+                  その業務には誰が関わっていますか？
+                  <span class="contact-optional">任意</span>
+                </legend>
+                <div class="contact-option-grid">
+                  <label class="contact-option"
+                    ><input type="checkbox" name="stakeholders" value="経営者" disabled /><span>経営者</span></label
+                  >
+                  <label class="contact-option"
+                    ><input type="checkbox" name="stakeholders" value="店長・管理者" disabled /><span>店長・管理者</span></label
+                  >
+                  <label class="contact-option"
+                    ><input type="checkbox" name="stakeholders" value="現場スタッフ" disabled /><span>現場スタッフ</span></label
+                  >
+                  <label class="contact-option"
+                    ><input type="checkbox" name="stakeholders" value="事務担当" disabled /><span>事務担当</span></label
+                  >
+                  <label class="contact-option"
+                    ><input type="checkbox" name="stakeholders" value="外部業者" disabled /><span>外部業者</span></label
+                  >
+                  <label class="contact-option"
+                    ><input type="checkbox" name="stakeholders" value="その他" disabled /><span>その他</span></label
+                  >
+                </div>
+              </fieldset>
+
+              <fieldset
+                class="contact-intake-question"
+                id="contact-pain-points-group"
+                data-intake-question="4"
+                aria-describedby="contact-pain-points-error"
+              >
+                <legend>
+                  一番困っていることは何ですか？
+                  <span class="contact-required">必須</span>
+                </legend>
+                <div class="contact-option-grid">
+                  <label class="contact-option"
+                    ><input type="checkbox" name="painPoints" value="作業に時間がかかる" disabled /><span>作業に時間がかかる</span></label
+                  >
+                  <label class="contact-option"
+                    ><input type="checkbox" name="painPoints" value="転記作業が多い" disabled /><span>転記作業が多い</span></label
+                  >
+                  <label class="contact-option"
+                    ><input type="checkbox" name="painPoints" value="ミス・確認漏れが起きる" disabled /><span>ミス・確認漏れが起きる</span></label
+                  >
+                  <label class="contact-option"
+                    ><input type="checkbox" name="painPoints" value="情報がバラバラになっている" disabled /><span>情報がバラバラになっている</span></label
+                  >
+                  <label class="contact-option"
+                    ><input type="checkbox" name="painPoints" value="特定の人しか分からない" disabled /><span>特定の人しか分からない</span></label
+                  >
+                  <label class="contact-option"
+                    ><input type="checkbox" name="painPoints" value="集計・報告が大変" disabled /><span>集計・報告が大変</span></label
+                  >
+                  <label class="contact-option"
+                    ><input type="checkbox" name="painPoints" value="状況をリアルタイムで把握できない" disabled /><span>状況をリアルタイムで把握できない</span></label
+                  >
+                  <label class="contact-option"
+                    ><input type="checkbox" name="painPoints" value="その他" disabled /><span>その他</span></label
+                  >
+                </div>
+                <p
+                  class="contact-error"
+                  id="contact-pain-points-error"
+                  aria-live="polite"
+                ></p>
+              </fieldset>
+
+              <fieldset
+                class="contact-intake-question"
+                data-intake-question="5"
+              >
+                <legend>
+                  その業務はどれくらいの頻度で発生しますか？
+                  <span class="contact-optional">任意</span>
+                </legend>
+                <div class="contact-option-grid contact-option-grid-frequency">
+                  <label class="contact-option"
+                    ><input type="radio" name="frequency" value="1日に何度も" disabled /><span>1日に何度も</span></label
+                  >
+                  <label class="contact-option"
+                    ><input type="radio" name="frequency" value="毎日" disabled /><span>毎日</span></label
+                  >
+                  <label class="contact-option"
+                    ><input type="radio" name="frequency" value="週に数回" disabled /><span>週に数回</span></label
+                  >
+                  <label class="contact-option"
+                    ><input type="radio" name="frequency" value="月に数回" disabled /><span>月に数回</span></label
+                  >
+                  <label class="contact-option"
+                    ><input type="radio" name="frequency" value="不定期" disabled /><span>不定期</span></label
+                  >
+                </div>
+              </fieldset>
+
+              <div class="contact-field contact-intake-field" data-intake-question="6">
+                <label for="contact-desired-state"
+                  >理想的には、どのような状態になってほしいですか？
+                  <small>任意</small></label
+                ><textarea
+                  id="contact-desired-state"
+                  name="desiredState"
+                  maxlength="1000"
+                  rows="4"
+                  placeholder="例：スマホから入力すると自動で一覧化される、確認漏れがあれば通知される、集計作業をなくしたい など"
+                  disabled
+                ></textarea>
+              </div>
+
+              <div class="contact-field contact-intake-field" data-intake-question="7">
+                <label for="contact-current-tools"
+                  >現在使っているツールやシステムがあれば教えてください
+                  <small>任意</small></label
+                ><textarea
+                  id="contact-current-tools"
+                  name="currentTools"
+                  maxlength="1000"
+                  rows="3"
+                  placeholder="例：Excel、Googleスプレッドシート、LINE、POS、会計ソフト、社内システムなど"
+                  disabled
+                ></textarea>
+              </div>
+            </section>
             <div class="contact-field">
               <label for="contact-name">お名前 <span>必須</span></label
               ><input
@@ -362,7 +617,7 @@
             <img src="../assets/sgp-logo-footer.svg" alt="合同会社SGP ロゴ" />
           </div>
           <nav class="sgp-footer-links" aria-label="フッターナビゲーション">
-            <a href="/services/">サービス</a><a href="/services/ai/">AI導入</a
+            <a href="/services/">サービス</a><a href="/insights/">実務ノウハウ</a><a href="/services/ai/">AI導入</a
             ><a href="/services/business-improvement/">業務改善</a
             ><a href="/services/web-marketing/">Web集客</a
             ><a href="/cases/">支援事例</a><a href="/news/">NEWS</a><a href="/contact/">お問い合わせ</a
