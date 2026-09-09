@@ -28,7 +28,8 @@ COPY start_v6.py .
 COPY start_v7.py .
 COPY start_v8.py .
 COPY start_v9.py .
-RUN python -m py_compile main.py ticket_pipeline.py ticket_pipeline_patch.py extraction_orchestrator.py orchestrator_patch_v8_1.py orchestrator_patch_v8_2.py vlm_pipeline_v9.py gemini_pipeline_v10.py client_ai_ops_v101.py start_v2.py start_v3.py start_v4.py start_v5.py start_v6.py start_v7.py start_v8.py start_v9.py \
+COPY start_v10.py .
+RUN python -m py_compile main.py ticket_pipeline.py ticket_pipeline_patch.py extraction_orchestrator.py orchestrator_patch_v8_1.py orchestrator_patch_v8_2.py vlm_pipeline_v9.py gemini_pipeline_v10.py client_ai_ops_v101.py start_v2.py start_v3.py start_v4.py start_v5.py start_v6.py start_v7.py start_v8.py start_v9.py start_v10.py \
  && python - <<'PY'
 import json
 import extraction_orchestrator as eo
@@ -68,7 +69,12 @@ assert ops.VERSION=='10.1.0-client-owned'
 assert ops.BILLING_OWNER=='client'
 bs=ops.budget_state()
 assert bs['soft_limit_jpy'] >= 0 and bs['hard_limit_jpy'] >= 0
-print('Client-owned Gemini v10.1 regression test OK; configured=', st['configured'])
+import start_v10 as ui
+assert ui.APP_VERSION=='2.4.2-poc'
+assert 'mobile-responsive-v242' in ui.main.HTML
+assert 'bank-actions' in ui.main.HTML
+assert 'min-width:0!important' in ui.main.HTML
+print('Responsive bank UI v2.4.2 regression test OK; Gemini configured=', st['configured'])
 PY
 EXPOSE 8000
-CMD ["python","start_v9.py"]
+CMD ["python","start_v10.py"]
