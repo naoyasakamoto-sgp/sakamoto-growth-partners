@@ -1,9 +1,21 @@
 FROM python:3.11-slim
-ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1
+ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install -y --no-install-recommends tesseract-ocr tesseract-ocr-jpn libglib2.0-0 libgomp1 && rm -rf /var/lib/apt/lists/*
 WORKDIR /app
 COPY requirements-v2.txt .
-RUN pip install --no-cache-dir -r requirements-v2.txt
+RUN pip install --no-cache-dir -r requirements-v2.txt \
+ && pip uninstall -y opencv-python opencv-contrib-python opencv-python-headless \
+ && pip install --no-cache-dir opencv-python-headless==4.10.0.84
+RUN python - <<'PY' || true
+try:
+    import cv2
+    print('OpenCV headless OK', cv2.__version__)
+    from paddleocr import PaddleOCR
+    PaddleOCR(use_angle_cls=False, lang='japan', show_log=False, use_gpu=False)
+    print('PaddleOCR Japanese model preloaded')
+except Exception as e:
+    print('PaddleOCR preload skipped:', repr(e))
+PY
 COPY main.py .
 COPY ticket_pipeline.py .
 COPY start_v2.py .
