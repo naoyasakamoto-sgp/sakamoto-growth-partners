@@ -32,7 +32,8 @@ COPY start_v9.py .
 COPY start_v10.py .
 COPY start_v11.py .
 COPY start_v12.py .
-RUN python -m py_compile main.py ticket_pipeline.py ticket_pipeline_patch.py extraction_orchestrator.py orchestrator_patch_v8_1.py orchestrator_patch_v8_2.py vlm_pipeline_v9.py gemini_pipeline_v10.py client_ai_ops_v101.py bank_matching_engine.py start_v2.py start_v3.py start_v4.py start_v5.py start_v6.py start_v7.py start_v8.py start_v9.py start_v10.py start_v11.py start_v12.py \
+COPY start_v13.py .
+RUN python -m py_compile main.py ticket_pipeline.py ticket_pipeline_patch.py extraction_orchestrator.py orchestrator_patch_v8_1.py orchestrator_patch_v8_2.py vlm_pipeline_v9.py gemini_pipeline_v10.py client_ai_ops_v101.py bank_matching_engine.py start_v2.py start_v3.py start_v4.py start_v5.py start_v6.py start_v7.py start_v8.py start_v9.py start_v10.py start_v11.py start_v12.py start_v13.py \
  && python - <<'PY'
 import json
 import extraction_orchestrator as eo
@@ -97,7 +98,11 @@ assert matchapp.APP_VERSION=='2.5.0-poc'
 assert matchapp.MATCHING_VERSION=='1.0.1-deterministic-high-precision'
 assert 'bank-match-v250' in matchapp.main.HTML
 assert matchapp.AUTO_THRESHOLD==95 and matchapp.REVIEW_THRESHOLD==70 and matchapp.MARGIN_THRESHOLD==10
-print('Bank matching v2.5.0 regression test OK; Gemini configured=', st['configured'])
+import start_v13 as integrity
+assert integrity.APP_VERSION=='2.5.1-poc'
+assert integrity.start_v12._persist_candidates is integrity._persist
+assert 'v2.5.1-poc' in integrity.main.HTML
+print('Bank matching v2.5.1 regression test OK; Gemini configured=', st['configured'])
 PY
 EXPOSE 8000
-CMD ["python","start_v12.py"]
+CMD ["python","start_v13.py"]
