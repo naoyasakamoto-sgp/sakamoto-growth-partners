@@ -4,10 +4,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     tesseract-ocr tesseract-ocr-jpn libglib2.0-0 libgomp1 \
     && rm -rf /var/lib/apt/lists/*
 WORKDIR /app
-COPY requirements-v2.txt .
-RUN pip install --no-cache-dir -r requirements-v2.txt \
- && pip uninstall -y opencv-python opencv-contrib-python opencv-python-headless \
- && pip install --no-cache-dir opencv-python-headless==4.10.0.84
+COPY requirements-web.txt .
+RUN pip install --no-cache-dir -r requirements-web.txt
 RUN python - <<'PY'
 import cv2
 print('OpenCV headless OK', cv2.__version__)
