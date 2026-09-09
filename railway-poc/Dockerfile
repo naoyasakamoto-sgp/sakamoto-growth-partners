@@ -19,18 +19,24 @@ COPY main.py .
 COPY ticket_pipeline.py .
 COPY ticket_pipeline_patch.py .
 COPY extraction_orchestrator.py .
+COPY orchestrator_patch_v8_1.py .
 COPY start_v2.py .
 COPY start_v3.py .
 COPY start_v4.py .
-RUN python -m py_compile main.py ticket_pipeline.py ticket_pipeline_patch.py extraction_orchestrator.py start_v2.py start_v3.py start_v4.py \
+COPY start_v5.py .
+RUN python -m py_compile main.py ticket_pipeline.py ticket_pipeline_patch.py extraction_orchestrator.py orchestrator_patch_v8_1.py start_v2.py start_v3.py start_v4.py start_v5.py \
  && python - <<'PY'
 import extraction_orchestrator as eo
+import orchestrator_patch_v8_1 as p
 assert eo.parse_date_value('令和8年9月2日') == '2026-09-02'
 assert eo.parse_date_value('R8.10.2') == '2026-10-02'
 assert eo.parse_money_value('40,000円') == 40000
 assert eo.parse_phone_value('070-2292-7017') == '070-2292-7017'
+p.apply(eo)
+assert eo.ENGINE_VERSION == '8.1.0-layout-aware'
+assert eo.runtime_status()['layout_aware_fallback']
 assert eo.runtime_status()['tesseract_jpn']
 print('Orchestrator smoke test OK', eo.ENGINE_VERSION)
 PY
 EXPOSE 8000
-CMD ["python","start_v4.py"]
+CMD ["python","start_v5.py"]
