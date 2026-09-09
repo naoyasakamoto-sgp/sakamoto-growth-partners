@@ -5,7 +5,7 @@ import unicodedata
 from datetime import date
 from difflib import SequenceMatcher
 
-ENGINE_VERSION = "1.0.0-deterministic-high-precision"
+ENGINE_VERSION = "1.0.1-deterministic-high-precision"
 PAYABLE_STATUSES = {"ACTIVE", "DUE_SOON", "OVERDUE", "FORFEITURE_HOLD", "FORFEITURE_REVIEW"}
 NON_CUSTOMER_KEYWORDS = (
     "現金還元", "キャッシュバック", "ポイント還元", "預金利息", "普通預金利息",
@@ -27,7 +27,6 @@ def _kata(s: str) -> str:
 
 def normalize_sender(v) -> str:
     s = _kata(_text(v).upper())
-    # Normalize common Japanese corporate markers so bank abbreviations can match master names.
     reps = (
         ("株式会社", ""), ("有限会社", ""), ("合同会社", ""),
         ("(株)", ""), ("(有)", ""), ("(同)", ""),
@@ -41,12 +40,17 @@ def normalize_sender(v) -> str:
 
 
 def classify_credit(summary: str = "", sender: str = "", amount: int = 0) -> tuple[str, str]:
-    if int(amount or 0) <= 0:
+    amount = int(amount or 0)
+    if amount <= 0:
         return "INVALID", "amount_non_positive"
     hay = _text(summary) + " " + _text(sender)
     for kw in NON_CUSTOMER_KEYWORDS:
         if kw in hay:
             return "NON_CUSTOMER", f"non_customer_keyword:{kw}"
+    # Some bank exports put only a reward-period label (e.g. 8ネン 4ガツブン)
+    # in 摘要内容. A sub-100-yen credit with that shape is bank-generated, not a pawn payment.
+    if amount < 100 and re.search(r"\d+\s*ネン.*\d+\s*ガツ(?:ブン)?", _text(sender)):
+        return "NON_CUSTOMER", "bank_reward_period_label"
     return "CUSTOMER_PAYMENT", "credit_candidate"
 
 
@@ -91,7 +95,6 @@ def amount_fit(amount: int, principal: int, monthly_interest: int, max_interest_
     if monthly_interest > 0:
         for months in range(1, max_interest_months + 1):
             if amount == monthly_interest * months:
-                # Still strong for multiple months, but one-month exact is easiest to auto-apply.
                 score = 30.0 if months == 1 else max(25.0, 30.0 - (months - 1))
                 return {"score": score, "payment_type": "INTEREST", "months": months, "kind": f"interest_{months}m"}
     if principal > 0 and monthly_interest > 0:
