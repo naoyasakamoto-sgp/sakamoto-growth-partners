@@ -13,31 +13,24 @@ import cv2
 from paddleocr import PaddleOCR
 print('OpenCV headless OK', cv2.__version__)
 PaddleOCR(use_angle_cls=False, lang='japan', show_log=False, use_gpu=False)
-print('PaddleOCR Japanese model preloaded')
+print('PaddleOCR Japanese model preloaded for future dedicated runtime')
 PY
 COPY main.py .
 COPY ticket_pipeline.py .
 COPY ticket_pipeline_patch.py .
+COPY extraction_orchestrator.py .
 COPY start_v2.py .
 COPY start_v3.py .
-RUN python -m py_compile main.py ticket_pipeline.py ticket_pipeline_patch.py start_v2.py start_v3.py \
+COPY start_v4.py .
+RUN python -m py_compile main.py ticket_pipeline.py ticket_pipeline_patch.py extraction_orchestrator.py start_v2.py start_v3.py start_v4.py \
  && python - <<'PY'
-import cv2, numpy as np
-import ticket_pipeline as tp
-import ticket_pipeline_patch as patch
-patch.apply(tp)
-img=np.full((700,1200,3),235,np.uint8)
-cv2.rectangle(img,(60,90),(1140,610),(252,252,252),-1)
-cv2.rectangle(img,(60,90),(1140,610),(40,40,40),3)
-for y in (170,240,320,400,480): cv2.line(img,(80,y),(1120,y),(120,120,120),2)
-ok,buf=cv2.imencode('.jpg',img); assert ok
-norm,det=tp.normalize_ticket(buf.tobytes())
-assert norm.shape==(tp.CANON_H,tp.CANON_W,3),norm.shape
-status=tp.runtime_status()
-assert status['opencv'] and status['paddle_import'] and status['tesseract_jpn'],status
-assert status['pipeline_version']=='7.0.2',status
-assert status['license_full_card_roi'] and status['mobile_only'] and status['deadline_suggestion_disabled'],status
-print('POC build smoke test OK',tp.PIPELINE_VERSION,'document_detected=',det)
+import extraction_orchestrator as eo
+assert eo.parse_date_value('令和8年9月2日') == '2026-09-02'
+assert eo.parse_date_value('R8.10.2') == '2026-10-02'
+assert eo.parse_money_value('40,000円') == 40000
+assert eo.parse_phone_value('070-2292-7017') == '070-2292-7017'
+assert eo.runtime_status()['tesseract_jpn']
+print('Orchestrator smoke test OK', eo.ENGINE_VERSION)
 PY
 EXPOSE 8000
-CMD ["python","start_v3.py"]
+CMD ["python","start_v4.py"]
