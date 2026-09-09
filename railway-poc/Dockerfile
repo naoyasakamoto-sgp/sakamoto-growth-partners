@@ -29,7 +29,8 @@ COPY start_v7.py .
 COPY start_v8.py .
 COPY start_v9.py .
 COPY start_v10.py .
-RUN python -m py_compile main.py ticket_pipeline.py ticket_pipeline_patch.py extraction_orchestrator.py orchestrator_patch_v8_1.py orchestrator_patch_v8_2.py vlm_pipeline_v9.py gemini_pipeline_v10.py client_ai_ops_v101.py start_v2.py start_v3.py start_v4.py start_v5.py start_v6.py start_v7.py start_v8.py start_v9.py start_v10.py \
+COPY start_v11.py .
+RUN python -m py_compile main.py ticket_pipeline.py ticket_pipeline_patch.py extraction_orchestrator.py orchestrator_patch_v8_1.py orchestrator_patch_v8_2.py vlm_pipeline_v9.py gemini_pipeline_v10.py client_ai_ops_v101.py start_v2.py start_v3.py start_v4.py start_v5.py start_v6.py start_v7.py start_v8.py start_v9.py start_v10.py start_v11.py \
  && python - <<'PY'
 import json
 import extraction_orchestrator as eo
@@ -72,9 +73,16 @@ assert bs['soft_limit_jpy'] >= 0 and bs['hard_limit_jpy'] >= 0
 import start_v10 as ui
 assert ui.APP_VERSION=='2.4.2-poc'
 assert 'mobile-responsive-v242' in ui.main.HTML
-assert 'bank-actions' in ui.main.HTML
-assert 'min-width:0!important' in ui.main.HTML
-print('Responsive bank UI v2.4.2 regression test OK; Gemini configured=', st['configured'])
+import start_v11 as bank
+assert bank.APP_VERSION=='2.4.3-poc'
+sample='"日付","摘要","摘要内容","支払い金額","預かり金額","差引残高","メモ","未資金化区分","入払区分"\n"2026/5/6","デビット１","SHOP","7,700","","1,588,671","","","振替支払い"\n"2026/5/25","Ｄ現金還元","８ネン　４ガツブン","","54","1,356,672","","","振替入金"\n"2026/5/29","振込１","カ）ギブリ－","","1,056,000","2,205,172","","","振替入金"\n'
+rows,diag=bank._parse_csv_bytes(sample.encode('cp932'))
+assert diag['total_rows']==3 and diag['inbound_rows']==2 and diag['outgoing_rows_skipped']==1
+assert rows[0]['date']=='2026-05-25' and rows[0]['amount']==54
+assert rows[1]['date']=='2026-05-29' and rows[1]['sender']=='カ)ギブリー' and rows[1]['amount']==1056000
+assert rows[0]['reference'].startswith('CSV:') and rows[0]['reference'] != rows[1]['reference']
+assert 'bank-import-v243' in bank.main.HTML
+print('Bank CSV v2.4.3 regression test OK; Gemini configured=', st['configured'])
 PY
 EXPOSE 8000
-CMD ["python","start_v10.py"]
+CMD ["python","start_v11.py"]
