@@ -1,0 +1,32 @@
+FROM python:3.11-slim
+ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 DEBIAN_FRONTEND=noninteractive OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    tesseract-ocr tesseract-ocr-jpn libglib2.0-0 libgomp1 ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
+WORKDIR /app
+COPY requirements-web.txt .
+RUN pip install --no-cache-dir -r requirements-web.txt
+COPY main.py ticket_pipeline.py ticket_pipeline_patch.py extraction_orchestrator.py orchestrator_patch_v8_1.py orchestrator_patch_v8_2.py ./
+COPY vlm_pipeline_v9.py gemini_pipeline_v10.py client_ai_ops_v101.py bank_matching_engine.py ground_truth_v1_public.json ./
+COPY start_v2.py start_v3.py start_v4.py start_v5.py start_v6.py start_v7.py start_v8.py start_v9.py start_v10.py start_v11.py start_v12.py start_v13.py start_v14.py ./
+RUN python -m py_compile *.py \
+ && python - <<'PY'
+import bank_matching_engine as bme
+import start_v11 as bank
+sample='"日付","摘要","摘要内容","支払い金額","預かり金額","差引残高","メモ","未資金化区分","入払区分"\n"2026/5/6","デビット１","SHOP","7,700","","1,588,671","","","振替支払い"\n"2026/5/25","Ｄ現金還元","８ネン　４ガツブン","","54","1,356,672","","","振替入金"\n"2026/5/29","振込１","カ）ギブリ－","","1,056,000","2,205,172","","","振替入金"\n'
+rows,diag=bank._parse_csv_bytes(sample.encode('cp932'))
+assert diag['total_rows']==3 and diag['inbound_rows']==2 and diag['outgoing_rows_skipped']==1
+assert rows[0]['amount']==54 and rows[1]['amount']==1056000
+assert bme.classify_credit('Ｄ現金還元','8ネン 4ガツブン',54)[0]=='NON_CUSTOMER'
+import start_v14 as ui
+assert ui.APP_VERSION=='2.5.2-poc'
+assert 'contract-mobile-responsive-v252' in ui.main.HTML
+assert 'aria-label="契約一覧"' in ui.main.HTML
+assert '#ks,#ks tbody{display:block;width:100%;min-width:0!important;max-width:100%!important}' in ui.main.HTML
+assert "grid-template-areas:'contract status' 'customer amount' 'item item'" in ui.main.HTML
+h=ui.health_v252()
+assert h['version']=='2.5.2-poc' and h['contract_mobile_responsive'] is True
+print('Contract responsive v2.5.2 regression test OK')
+PY
+EXPOSE 8000
+CMD ["python","start_v14.py"]
