@@ -5,7 +5,7 @@ import unicodedata
 import cv2
 import numpy as np
 
-PATCH_VERSION='7.0.1'
+PATCH_VERSION='7.0.2'
 LICENSE_W,LICENSE_H=1400,882
 LICENSE_ROIS={
     'name':(.055,.045,.610,.185),
@@ -56,7 +56,6 @@ def normalize_license(raw):
     if crop is not None:
         out=cv2.resize(crop,(LICENSE_W,LICENSE_H),interpolation=cv2.INTER_AREA);det=True
     else:
-        # Keep the v6 geometric fallback, but use it only when full-card color segmentation fails.
         try:
             out,det=_tp._license_norm(raw)
         except Exception:
@@ -118,7 +117,6 @@ def recognize_license(raw):
     im,det=normalize_license(raw)
     name,nraw,nc,ne=_field_candidate(_crop(im,LICENSE_ROIS['name'],2),_name)
     addr,araw,ac,ae=_field_candidate(_crop(im,LICENSE_ROIS['address'],2),_address)
-    # Full-card fallback only if the fixed printed-field ROI did not resolve.
     if not name or not addr:
         ft,fc=_tp._tess(im,6)
         if not name:
@@ -147,9 +145,42 @@ def mobile_only(text):
 
 def apply(module):
     global _tp
+    if getattr(module,'_v7_patch_applied',False):return module
     _tp=module
+    original_recognize=module.recognize_ticket
+    old_status=module.runtime_status
     module.normalize_license=normalize_license
     module.recognize_license=recognize_license
     module._phone=mobile_only
+
+    def recognize_ticket_safe(raw,lic=None):
+        result=original_recognize(raw,lic)
+        # Do not turn a failed date OCR into a legal/operational deadline automatically.
+        result['suggestions']={}
+        fields=result.get('fields') or {}
+        principal=int((fields.get('principal_amount') or {}).get('value') or 0)
+        interest=int((fields.get('interest_amount') or {}).get('value') or 0)
+        if principal<=0 and 'interest_amount' in fields:
+            fields['interest_amount'].update(value=0,status='invalid',confidence=0,note='元金未確定のため利息も要確認')
+        elif principal>0 and interest>0 and (interest>=principal or interest/principal>.25):
+            fields['interest_amount'].update(value=0,status='invalid',confidence=.1,note='元金との整合性エラー')
+        phone=(fields.get('phone') or {}).get('value') or ''
+        if phone and not re.fullmatch(r'0[789]0-\d{4}-\d{4}',str(phone)):
+            fields['phone'].update(value='',status='invalid',confidence=0,note='携帯番号として再確認')
+        result['pipeline_version']=PATCH_VERSION
+        result['engine']=str(result.get('engine') or '')+' + v7 safety'
+        return result
+
+    def status():
+        x=old_status()
+        x['pipeline_version']=PATCH_VERSION
+        x['license_full_card_roi']=True
+        x['mobile_only']=True
+        x['deadline_suggestion_disabled']=True
+        return x
+
+    module.recognize_ticket=recognize_ticket_safe
+    module.runtime_status=status
     module.PIPELINE_VERSION=PATCH_VERSION
+    module._v7_patch_applied=True
     return module
