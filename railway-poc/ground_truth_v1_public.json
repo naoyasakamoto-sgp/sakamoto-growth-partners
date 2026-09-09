@@ -1,0 +1,69 @@
+{
+  "dataset_id": "shichiya_yamagata_v1_gt_001",
+  "description": "Ground Truth Dataset v1 for the current five-image pawn-ticket POC. Direct personal identifiers are intentionally excluded because this repository is public; identity-document GT must be stored in the secured ground_truth table or encrypted private fixture.",
+  "sensitivity": {
+    "contains_direct_pii": false,
+    "identity_fields_external": true,
+    "do_not_commit": [
+      "customer_name",
+      "birth_date",
+      "full_address",
+      "mobile_phone",
+      "license_number",
+      "license_issue_code"
+    ]
+  },
+  "template_id": "shichiya_yamagata_v1",
+  "transaction_defaults": {
+    "staff": "伊藤",
+    "monthly_interest_rate": 0.03
+  },
+  "pawn_ticket_A": {
+    "pawn_date": "2026-09-02",
+    "forfeit_date": "2026-10-02",
+    "loan_amount": 40000,
+    "monthly_interest": 1200,
+    "total_quantity": 2,
+    "items": [
+      {
+        "raw_text": "竿 かちどき",
+        "normalized_name": "かちどき",
+        "model": "16",
+        "quantity": 1
+      },
+      {
+        "raw_text": "閃光 LⅡ",
+        "normalized_name": "飛天弓 閃光 L II",
+        "model": "15",
+        "quantity": 1
+      }
+    ]
+  },
+  "pawn_ticket_B": {
+    "pawn_date": "2026-09-02",
+    "forfeit_date": "2026-10-02",
+    "loan_amount": 40000,
+    "monthly_interest": 1200,
+    "total_quantity": 2,
+    "items": [
+      {
+        "raw_text": "竿 匠絆 忠相 十三・十六",
+        "normalized_name": "匠絆 忠相",
+        "models": ["13", "16"],
+        "quantity": 2
+      }
+    ]
+  },
+  "fixed_template_noise": {
+    "shop_phones": ["023-674-8217", "022-302-7782"],
+    "must_never_be_customer_phone": true,
+    "must_never_be_money_candidate": true
+  },
+  "acceptance": {
+    "critical_fields": ["pawn_date", "forfeit_date", "loan_amount", "monthly_interest"],
+    "critical_exact_match_required": true,
+    "false_accept_target": 0.001,
+    "item_name_exact_or_master_normalized": true,
+    "blank_field_rule": "blank GT must never be filled from printed template text"
+  }
+}
