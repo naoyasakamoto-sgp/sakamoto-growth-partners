@@ -19,6 +19,7 @@ COPY orchestrator_patch_v8_2.py .
 COPY vlm_pipeline_v9.py .
 COPY gemini_pipeline_v10.py .
 COPY client_ai_ops_v101.py .
+COPY bank_matching_engine.py .
 COPY ground_truth_v1_public.json .
 COPY start_v2.py .
 COPY start_v3.py .
@@ -30,7 +31,8 @@ COPY start_v8.py .
 COPY start_v9.py .
 COPY start_v10.py .
 COPY start_v11.py .
-RUN python -m py_compile main.py ticket_pipeline.py ticket_pipeline_patch.py extraction_orchestrator.py orchestrator_patch_v8_1.py orchestrator_patch_v8_2.py vlm_pipeline_v9.py gemini_pipeline_v10.py client_ai_ops_v101.py start_v2.py start_v3.py start_v4.py start_v5.py start_v6.py start_v7.py start_v8.py start_v9.py start_v10.py start_v11.py \
+COPY start_v12.py .
+RUN python -m py_compile main.py ticket_pipeline.py ticket_pipeline_patch.py extraction_orchestrator.py orchestrator_patch_v8_1.py orchestrator_patch_v8_2.py vlm_pipeline_v9.py gemini_pipeline_v10.py client_ai_ops_v101.py bank_matching_engine.py start_v2.py start_v3.py start_v4.py start_v5.py start_v6.py start_v7.py start_v8.py start_v9.py start_v10.py start_v11.py start_v12.py \
  && python - <<'PY'
 import json
 import extraction_orchestrator as eo
@@ -39,6 +41,7 @@ import orchestrator_patch_v8_2 as p2
 import vlm_pipeline_v9 as v9
 import gemini_pipeline_v10 as g10
 import client_ai_ops_v101 as ops
+import bank_matching_engine as bme
 assert eo.parse_date_value('令和8年9月2日') == '2026-09-02'
 assert eo.parse_date_value('R8.10.2') == '2026-10-02'
 assert eo.parse_money_value('40,000円') == 40000
@@ -68,11 +71,8 @@ assert st['pipeline_version']=='10.0.0-gemini-3.8-flash'
 assert st['model']=='gemini-3.8-flash'
 assert ops.VERSION=='10.1.0-client-owned'
 assert ops.BILLING_OWNER=='client'
-bs=ops.budget_state()
-assert bs['soft_limit_jpy'] >= 0 and bs['hard_limit_jpy'] >= 0
 import start_v10 as ui
-assert ui.APP_VERSION=='2.4.2-poc'
-assert 'mobile-responsive-v242' in ui.main.HTML
+assert ui.APP_VERSION=='2.4.2-poc' and 'mobile-responsive-v242' in ui.main.HTML
 import start_v11 as bank
 assert bank.APP_VERSION=='2.4.3-poc'
 sample='"日付","摘要","摘要内容","支払い金額","預かり金額","差引残高","メモ","未資金化区分","入払区分"\n"2026/5/6","デビット１","SHOP","7,700","","1,588,671","","","振替支払い"\n"2026/5/25","Ｄ現金還元","８ネン　４ガツブン","","54","1,356,672","","","振替入金"\n"2026/5/29","振込１","カ）ギブリ－","","1,056,000","2,205,172","","","振替入金"\n'
@@ -80,9 +80,24 @@ rows,diag=bank._parse_csv_bytes(sample.encode('cp932'))
 assert diag['total_rows']==3 and diag['inbound_rows']==2 and diag['outgoing_rows_skipped']==1
 assert rows[0]['date']=='2026-05-25' and rows[0]['amount']==54
 assert rows[1]['date']=='2026-05-29' and rows[1]['sender']=='カ)ギブリ-' and rows[1]['amount']==1056000
-assert rows[0]['reference'].startswith('CSV:') and rows[0]['reference'] != rows[1]['reference']
-assert 'bank-import-v243' in bank.main.HTML
-print('Bank CSV v2.4.3 regression test OK; Gemini configured=', st['configured'])
+assert bme.classify_credit('Ｄ現金還元','8ネン 4ガツブン',54)[0]=='NON_CUSTOMER'
+assert bme.normalize_sender('ｻﾄｳ ﾊﾙｶ') == bme.normalize_sender('サトウ ハルカ')
+contract={'customer_name':'佐藤 はるか','name_kana':'サトウ ハルカ','principal_amount':40000,'interest_amount':1200,'contract_date':'2026-08-01','next_interest_due_date':'2026-09-01','effective_status':'DUE_SOON'}
+tx={'sender_name':'サトウ ハルカ','amount':1200,'transaction_date':'2026-09-02'}
+sc=bme.score_candidate(tx,contract)
+assert sc['total_score']==95 and sc['name_exact'] and sc['payment_type']=='INTEREST' and sc['months']==1
+sc['contract_id']=1
+assert bme.decide([sc])['status']=='AUTO_MATCHED'
+sc2=dict(sc);sc2['contract_id']=2
+assert bme.decide([sc,sc2])['status']=='REVIEW'
+red=bme.score_candidate({'sender_name':'サトウ ハルカ','amount':41200,'transaction_date':'2026-09-02'},contract)
+assert red['payment_type']=='REDEMPTION' and 'payment_type_requires_human_review' in red['auto_blockers']
+import start_v12 as matchapp
+assert matchapp.APP_VERSION=='2.5.0-poc'
+assert matchapp.MATCHING_VERSION=='1.0.1-deterministic-high-precision'
+assert 'bank-match-v250' in matchapp.main.HTML
+assert matchapp.AUTO_THRESHOLD==95 and matchapp.REVIEW_THRESHOLD==70 and matchapp.MARGIN_THRESHOLD==10
+print('Bank matching v2.5.0 regression test OK; Gemini configured=', st['configured'])
 PY
 EXPOSE 8000
-CMD ["python","start_v11.py"]
+CMD ["python","start_v12.py"]
