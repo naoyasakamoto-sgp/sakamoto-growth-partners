@@ -10,10 +10,7 @@ RUN pip install --no-cache-dir -r requirements-v2.txt \
  && pip install --no-cache-dir opencv-python-headless==4.10.0.84
 RUN python - <<'PY'
 import cv2
-from paddleocr import PaddleOCR
 print('OpenCV headless OK', cv2.__version__)
-PaddleOCR(use_angle_cls=False, lang='japan', show_log=False, use_gpu=False)
-print('PaddleOCR Japanese model preloaded for future dedicated runtime')
 PY
 COPY main.py .
 COPY ticket_pipeline.py .
