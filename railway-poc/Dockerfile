@@ -17,15 +17,15 @@ print('PaddleOCR Japanese model preloaded')
 PY
 COPY main.py .
 COPY ticket_pipeline.py .
-COPY ocr_hotfix.py .
+COPY ticket_pipeline_patch.py .
 COPY start_v2.py .
 COPY start_v3.py .
-RUN python -m py_compile main.py ticket_pipeline.py ocr_hotfix.py start_v2.py start_v3.py \
+RUN python -m py_compile main.py ticket_pipeline.py ticket_pipeline_patch.py start_v2.py start_v3.py \
  && python - <<'PY'
 import cv2, numpy as np
 import ticket_pipeline as tp
-import ocr_hotfix
-ocr_hotfix.apply(tp)
+import ticket_pipeline_patch as patch
+patch.apply(tp)
 img=np.full((700,1200,3),235,np.uint8)
 cv2.rectangle(img,(60,90),(1140,610),(252,252,252),-1)
 cv2.rectangle(img,(60,90),(1140,610),(40,40,40),3)
@@ -35,7 +35,7 @@ norm,det=tp.normalize_ticket(buf.tobytes())
 assert norm.shape==(tp.CANON_H,tp.CANON_W,3),norm.shape
 status=tp.runtime_status()
 assert status['opencv'] and status['paddle_import'] and status['tesseract_jpn'],status
-assert status['pipeline_version']=='6.1.0',status
+assert status['pipeline_version']=='7.0.1',status
 print('POC build smoke test OK',tp.PIPELINE_VERSION,'document_detected=',det)
 PY
 EXPOSE 8000
