@@ -17,6 +17,7 @@ COPY extraction_orchestrator.py .
 COPY orchestrator_patch_v8_1.py .
 COPY orchestrator_patch_v8_2.py .
 COPY vlm_pipeline_v9.py .
+COPY gemini_pipeline_v10.py .
 COPY ground_truth_v1_public.json .
 COPY start_v2.py .
 COPY start_v3.py .
@@ -24,13 +25,15 @@ COPY start_v4.py .
 COPY start_v5.py .
 COPY start_v6.py .
 COPY start_v7.py .
-RUN python -m py_compile main.py ticket_pipeline.py ticket_pipeline_patch.py extraction_orchestrator.py orchestrator_patch_v8_1.py orchestrator_patch_v8_2.py vlm_pipeline_v9.py start_v2.py start_v3.py start_v4.py start_v5.py start_v6.py start_v7.py \
+COPY start_v8.py .
+RUN python -m py_compile main.py ticket_pipeline.py ticket_pipeline_patch.py extraction_orchestrator.py orchestrator_patch_v8_1.py orchestrator_patch_v8_2.py vlm_pipeline_v9.py gemini_pipeline_v10.py start_v2.py start_v3.py start_v4.py start_v5.py start_v6.py start_v7.py start_v8.py \
  && python - <<'PY'
 import json
 import extraction_orchestrator as eo
 import orchestrator_patch_v8_1 as p1
 import orchestrator_patch_v8_2 as p2
 import vlm_pipeline_v9 as v9
+import gemini_pipeline_v10 as g10
 assert eo.parse_date_value('令和8年9月2日') == '2026-09-02'
 assert eo.parse_date_value('R8.10.2') == '2026-10-02'
 assert eo.parse_money_value('40,000円') == 40000
@@ -53,9 +56,12 @@ assert v9._mobile('070-2292-7017') == '070-2292-7017'
 assert v9._valid_date_pair('2026-09-02','2026-10-02')
 assert v9._valid_money_pair(40000,1200)
 assert not v9._valid_money_pair(7782,7782)
-s=v9._schema(); assert s['type']=='object' and s['additionalProperties'] is False
-assert v9.status()['pipeline_version']=='9.0.0-vlm-first'
-print('VLM-first v9 regression test OK; configured=', v9.status()['configured'])
+s=g10._sanitize_schema(v9._schema())
+assert s['type']=='object' and 'additionalProperties' not in s
+st=g10.status()
+assert st['pipeline_version']=='10.0.0-gemini-3.8-flash'
+assert st['model']=='gemini-3.8-flash'
+print('Gemini 3.8 Flash v10 regression test OK; configured=', st['configured'])
 PY
 EXPOSE 8000
-CMD ["python","start_v7.py"]
+CMD ["python","start_v8.py"]
