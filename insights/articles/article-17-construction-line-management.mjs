@@ -1,0 +1,106 @@
+import { publishedArticle, qualityScore, sourcesFor } from "./article-utils.mjs";
+
+export default publishedArticle({
+  slug: "construction-line-management",
+  title: "建設会社のLINE問い合わせを一元管理する方法",
+  description: "建設会社・工務店・リフォーム会社のLINE問い合わせを、公式アカウントから顧客・現場・案件へ関連付ける方法を解説します。担当振り分け、本人照合、写真、CRM連携、権限まで整理します。",
+  category: "industry",
+  tags: ["建設業", "LINE公式アカウント", "問い合わせ管理", "CRM"],
+  priority: 66,
+  relatedArticles: ["construction-crm", "renovation-project-management", "homebuilder-customer-management", "sales-process-integration"],
+  relatedServices: ["/services/web-marketing/", "/services/business-improvement/"],
+  ctaType: "service-web",
+  seoTitle: "建設会社のLINE問い合わせを一元管理する方法｜合同会社SGP",
+  seoDescription: "建設会社のLINE問い合わせを公式アカウントで受け、顧客・現場・案件へ一元管理する方法を解説します。友だち追加後の本人照合、用件分類、担当振り分け、写真保存、CRM連携、応答期限、権限、有人切替、同意・削除対応を整理し、個人LINEへ情報が残らない運用と導入テストを示します。",
+  brief: {
+    primaryReader: "顧客LINEが個人端末に分散する建設・工務店・リフォーム会社責任者",
+    readerSituation: "写真や現場連絡はLINEが便利だが、担当不在・引継ぎ・案件照合で困っている",
+    primaryProblem: "LINEを連絡手段と正式記録の両方に使い、顧客・案件・重要合意との関連を持たせていない",
+    primaryIntent: "建設会社 LINE 問い合わせ 一元管理",
+    decision: "LINE公式、共有対応、CRM連携のどこまで整備するか",
+    mainAnswer: "公式アカウントを受付にし、顧客・案件を安全に照合して重要情報をCRM・案件管理へ保存する",
+    notToRecommend: "個人LINEの共用や、表示名だけによる顧客自動統合",
+    relevantService: "LINE公式・営業導線構築支援",
+    primaryCta: "Web・営業導線改善",
+    secondaryCta: "業務改善支援",
+    parentArticle: "construction-crm",
+    childArticles: ["line-to-crm"],
+    siblingArticles: ["renovation-project-management", "customer-data-fragmentation"],
+    originalAsset: "LINE受付から案件保存までの8段階フロー",
+    requiredEvidence: "LINE公式Webhook署名・非同期処理・アカウント連携、情報管理",
+  },
+  originalAssets: ["8段階受付フロー", "本人・案件照合", "メッセージ分類表", "有人切替ルール", "運用KPI"],
+  qualityScore: qualityScore({ searchIntent: 15, practicalValue: 19, originality: 14, accuracy: 15 }),
+  sources: sourcesFor("lineWebhooks", "lineAccountLinking", "ipaSmeSecurity", "ppcGenerativeAi"),
+  whatYouLearn: ["個人LINEから公式アカウントへ移す方法", "LINE利用者と顧客・案件の照合", "写真・メッセージを正式記録へ残す範囲", "CRM連携と有人対応の設計"],
+  summary: [
+    "LINE公式アカウントは問い合わせ入口として使い、顧客・現場・案件・契約の正本はCRMや案件管理へ置きます。",
+    "表示名や電話番号の推測で自動統合せず、顧客本人が認証済みページ等で確認する公式のアカウント連携方式を検討します。",
+    "日程、見積条件、追加変更など重要な合意はLINE履歴だけに残さず、案件IDと正式文書へ関連付けます。",
+  ],
+  sections: [
+    { id: "problems", title: "建設会社のLINE運用で起きる問題", blocks: [
+      { type: "table", caption: "LINE分散の問題", headers: ["状態", "問題", "業務影響"], rows: [
+        ["個人LINEで受信", "会社が履歴・対応状況を把握できない", "退職・休暇で引継げない"],
+        ["表示名だけで管理", "同姓・ニックネーム・家族を識別できない", "誤送信・案件混同"],
+        ["写真がトーク内", "現場・部位・工程と関連しない", "報告・見積・検査で探し直す"],
+        ["口頭合意をLINEで確認", "正式版・変更理由が不明", "契約・請求差異"],
+        ["担当別アカウント", "応答品質と時間が見えない", "対応漏れ"],
+      ] },
+    ] },
+    { id: "roles", title: "LINEと案件管理の役割を分ける", blocks: [
+      { type: "judgement", title: "LINEは入口、案件管理は正本", text: "顧客が使いやすいLINEをやめる必要はありません。LINEで受けた内容へ受付IDを付け、誰が・どの案件で・何を・いつまでに対応するかを案件管理へ保存します。" },
+      { type: "table", caption: "情報の保存先", headers: ["情報", "LINE", "CRM・案件管理"], rows: [
+        ["相談・写真", "送受信の入口", "顧客・現場・案件へ関連付け"],
+        ["担当・期限", "必要時に案内", "正本として管理・通知"],
+        ["見積・契約", "正式版への案内", "版・承認・提出を保存"],
+        ["追加変更", "依頼受付", "差額・工期・承認・請求を管理"],
+        ["個人情報", "必要最小限を受信", "目的・権限・期間を管理"],
+      ] },
+    ] },
+    { id: "flow", title: "LINE受付から案件保存までの流れ", blocks: [
+      { type: "architecture", nodes: ["LINE公式アカウントで受信", "Webhook署名を検証", "受付IDを発行して重複を確認", "利用者と顧客を安全に照合", "相談種別・緊急度・現場候補を分類", "担当キューへ割り当て", "人が内容・案件を確認", "CRMへ活動・写真・次回タスクを保存", "LINEで受付・次の手順を返信"] },
+      { type: "paragraph", text: "LINE公式のMessaging APIでは、Webhook受信時に署名を検証し、処理は非同期で行うことが案内されています。再送や順序、失敗を想定し、Webhook受信と重い処理・返信を分離します。" },
+    ] },
+    { id: "identity", title: "LINE利用者と顧客・案件を安全に照合する", blocks: [
+      { type: "steps", items: [
+        { title: "未照合として受付", text: "表示名だけで既存顧客へ自動結合せず、受付IDを発行します。" },
+        { title: "認証済み導線へ案内", text: "自社サイトのログイン・本人確認済みページ等で顧客が連携を開始します。" },
+        { title: "短時間の連携トークンを検証", text: "公式ドキュメントに沿い、推測困難で一回限りのnonce等を使います。" },
+        { title: "顧客とLINEユーザーを関連付け", text: "連携日時・方法を記録し、解除・変更手順を用意します。" },
+        { title: "案件は都度確認", text: "同じ顧客に複数現場・工事がある場合、担当者または顧客が対象を選びます。" },
+      ] },
+      { type: "risk", title: "照合で避けること", items: ["表示名・アイコンだけで本人と判断する", "電話番号や住所をチャット上で何度も送らせる", "長期間有効な連携URLを使う", "家族の一人を世帯全員の情報へ無条件で結び付ける", "連携解除と誤結合の修正方法がない"] },
+    ] },
+    { id: "routing", title: "相談内容と担当を分類する", blocks: [
+      { type: "table", caption: "LINEメッセージの分類例", headers: ["分類", "必要情報", "担当・応答"], rows: [
+        ["新規相談", "工事種別、現場、希望時期", "営業受付・対応可否"],
+        ["現調調整", "案件、候補日、立会、鍵", "営業・工務"],
+        ["見積質問", "見積版、項目、質問", "見積責任者"],
+        ["工事中連絡", "案件、場所、写真、緊急性", "現場責任者"],
+        ["追加変更", "内容、場所、希望、期限", "変更受付・正式見積"],
+        ["不具合・アフター", "過去工事、症状、発生時期", "アフター担当・緊急判定"],
+      ] },
+      { type: "paragraph", text: "AIで分類・要約する場合も、事故、安全、漏水、停電など緊急性がある内容はキーワードだけに頼らず、即時の有人通知と電話等の代替連絡先を案内します。" },
+    ] },
+    { id: "formal-record", title: "重要な会話を正式記録へ変える", blocks: [
+      { type: "checklist", items: ["顧客・現場・案件ID", "メッセージ日時・送受信者・担当者", "相談または変更の要点", "関連する写真・図面・見積版", "会社側の回答・約束・次回行動", "正式確認が必要な未確定事項", "保存目的・期間・閲覧権限"] },
+      { type: "paragraph", text: "自動要約は原文を置き換える正式合意ではありません。見積額、工期、工事範囲、追加変更、保証などは、社内承認を通した見積書・変更書・契約書等の正式版へ反映し、顧客へ確認します。" },
+    ] },
+    { id: "operations", title: "担当不在でも止まらない運用", blocks: [
+      { type: "process", beforeLabel: "個人対応", before: ["担当者だけが受信", "返信判断も個人", "休暇中は停止", "後で転記"], afterLabel: "チーム対応", after: ["共通キューで受信", "種別・期限で割当", "対応履歴を共有", "未処理を自動通知"] },
+      { type: "checklist", items: ["営業時間と一次返信目標", "新規・工事中・緊急の担当キュー", "担当者不在時の再割当時間", "顧客へ自動回答してよい定型範囲", "苦情・契約・追加費用の承認者", "未読・未返信・期限超過の監視", "誤送信・情報漏えい時の停止と報告"] },
+    ] },
+    { id: "kpi", title: "LINE一元管理の効果を測る", blocks: [
+      { type: "table", caption: "LINE問い合わせ管理KPI", headers: ["KPI", "確認すること", "改善先"], rows: [
+        ["初回返信時間", "営業時間内の応答", "受付・通知"],
+        ["未割当・期限超過", "対応漏れ", "キュー・再割当"],
+        ["顧客・案件照合率", "履歴の利用可能性", "連携導線"],
+        ["転記時間", "二重入力", "CRM連携"],
+        ["再問い合わせ率", "回答の明確さ", "テンプレート・担当"],
+        ["正式記録反映率", "変更・約束の漏れ", "承認フロー"],
+      ] },
+      { type: "fit", fit: ["LINE相談が多く複数担当で対応する", "顧客・現場・案件の正本を別に持てる", "本人照合と重要情報の確認を設計できる", "管理者が未処理・誤結合・権限を監視できる"], notFit: ["個人LINEの共有だけで済ませる", "表示名で顧客を自動統合する", "LINE履歴を契約・変更の正式版とみなす", "保存目的・権限・削除期間を決めない"] },
+    ] },
+  ],
+});

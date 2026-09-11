@@ -68,6 +68,18 @@ const ctaPresets = {
   },
 };
 
+const qualityKeys = [
+  "searchIntent",
+  "practicalValue",
+  "originality",
+  "accuracy",
+  "readability",
+  "businessRelevance",
+  "internalLinking",
+  "seoAiSearch",
+  "uxTechnical",
+];
+
 function validateData() {
   const categorySlugs = new Set(insightCategories.map((category) => category.slug));
   const slugs = new Set();
@@ -79,6 +91,17 @@ function validateData() {
     if (!["draft", "published"].includes(article.status)) throw new Error(`Invalid insight status: ${article.slug}`);
     if (!Array.isArray(article.sections) || !article.sections.length) throw new Error(`Insight sections missing: ${article.slug}`);
     if (!ctaPresets[article.ctaType]) throw new Error(`Unknown CTA type: ${article.slug}`);
+    if (!article.brief?.primaryIntent || !article.brief?.decision || !article.brief?.mainAnswer) throw new Error(`Article brief missing: ${article.slug}`);
+    if (!Array.isArray(article.originalAssets) || article.originalAssets.length < 2) throw new Error(`Original assets missing: ${article.slug}`);
+    if (article.featured && article.originalAssets.length < 4) throw new Error(`Featured insight needs four original assets: ${article.slug}`);
+    const score = article.qualityScore;
+    if (!score || qualityKeys.some((key) => !Number.isFinite(score[key]))) throw new Error(`Quality score missing: ${article.slug}`);
+    const total = qualityKeys.reduce((sum, key) => sum + score[key], 0);
+    if (total !== score.total || total < 90 || score.searchIntent < 13 || score.practicalValue < 17 || score.originality < 12 || score.accuracy < 13) throw new Error(`Quality gate failed: ${article.slug}`);
+    if (article.updatedAt && article.updatedAt <= article.publishedAt) throw new Error(`updatedAt must be later than publishedAt: ${article.slug}`);
+    for (const source of article.sources || []) {
+      if (!/^https:\/\//.test(source.url) || !source.title || !source.publisher || !source.checkedAt) throw new Error(`Invalid source: ${article.slug}`);
+    }
     for (const relatedSlug of article.relatedArticles || []) {
       if (!insightArticles.some((candidate) => candidate.slug === relatedSlug)) throw new Error(`Unknown related insight ${relatedSlug}: ${article.slug}`);
     }
@@ -169,6 +192,7 @@ function renderBlock(block) {
   if (block.type === "risk") return `<aside class="insight-risk"><h3>${escapeHtml(block.title)}</h3><ul>${block.items.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul></aside>`;
   if (block.type === "fit") return `<div class="insight-fit"><section><h3>向いている</h3><ul>${block.fit.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul></section><section><h3>向いていない・先に整理が必要</h3><ul>${block.notFit.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul></section></div>`;
   if (block.type === "roi") return `<aside class="insight-roi"><p>MODEL CASE / 試算</p><h3>ROIの計算方法</h3><code>${escapeHtml(block.formula)}</code><dl><dt>仮定</dt><dd>${block.assumptions.map((item) => escapeHtml(item)).join(" / ")}</dd><dt>計算例</dt><dd>${escapeHtml(block.result)}</dd></dl><small>以下はモデルケースによる試算です。実際の効果を保証するものではありません。</small></aside>`;
+  if (block.type === "steps") return `<ol class="insight-steps">${block.items.map((item) => `<li><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.text)}</p></li>`).join("")}</ol>`;
   throw new Error(`Unknown insight block: ${block.type}`);
 }
 
@@ -212,9 +236,14 @@ function renderArticle(article) {
   const relatedServices = (article.relatedServices || []).filter((href) => serviceLabels[href]);
   const middleIndex = Math.ceil(article.sections.length / 2);
   const sections = article.sections.map((section, index) => `${index === middleIndex ? `<aside class="insight-mid-link"><p>関連サービス</p><a href="${relatedServices[0] || "/services/"}" data-analytics-event="insight_service_click" data-article-slug="${article.slug}" data-destination="${relatedServices[0] || "/services/"}">${escapeHtml(serviceLabels[relatedServices[0]] || "合同会社SGPのサービスを見る")}<span aria-hidden="true"> →</span></a></aside>` : ""}<section id="${section.id}" class="insight-article-section"><h2>${escapeHtml(section.title)}</h2>${section.blocks.map(renderBlock).join("")}</section>`).join("");
+  const updated = article.updatedAt ? `<div><dt>更新</dt><dd><time datetime="${article.updatedAt}">${displayDate(article.updatedAt)}</time></dd></div>` : "";
+  const sources = article.sources?.length ? `<section class="insight-sources"><h2>参考資料</h2><p>仕様・制度は変更される場合があります。リンク先の最新情報も確認してください。</p><ul>${article.sources.map((source) => `<li><a href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(source.title)}</a><span>${escapeHtml(source.publisher)} / 確認日 ${displayDate(source.checkedAt)}</span></li>`).join("")}</ul></section>` : "";
   const content = `<main><article class="insight-article" data-insight-article><header class="insight-article-header"><div class="sgp-container"><nav class="insight-breadcrumb" aria-label="パンくずリスト"><a href="/">HOME</a><span>/</span><a href="/insights/">実務ノウハウ</a><span>/</span><a href="/insights/${category.slug}/">${escapeHtml(category.name)}</a></nav><p class="insight-eyebrow">INSIGHTS / ${escapeHtml(category.name)}</p><h1>${escapeHtml(article.title)}</h1><p class="insight-article-description">${escapeHtml(article.description)}</p><dl class="insight-byline"><div><dt>執筆</dt><dd><a href="${author.profileUrl}">${escapeHtml(author.name)}</a> / ${escapeHtml(author.role)}</dd></div><div><dt>公開</dt><dd><time datetime="${article.publishedAt}">${displayDate(article.publishedAt)}</time></dd></div><div><dt>更新</dt><dd><time datetime="${article.updatedAt || article.publishedAt}">${displayDate(article.updatedAt || article.publishedAt)}</time></dd></div><div><dt>読了目安</dt><dd>${minutes}分</dd></div></dl></div></header><div class="sgp-container insight-article-layout"><aside class="insight-toc"><details open><summary>目次</summary><ol>${article.sections.map((section) => `<li><a href="#${section.id}">${escapeHtml(section.title)}</a></li>`).join("")}</ol></details></aside><div class="insight-reading"><section class="insight-learn"><h2>この記事で分かること</h2><ul>${article.whatYouLearn.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul></section><section class="insight-summary"><p>SUMMARY / 3行結論</p><h2>先に結論</h2><ol>${article.summary.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ol></section>${sections}<section class="insight-related-services"><h2>関連サービス</h2><ul>${relatedServices.map((href) => `<li><a href="${href}" data-analytics-event="insight_service_click" data-article-slug="${article.slug}" data-destination="${href}">${escapeHtml(serviceLabels[href])}</a></li>`).join("")}</ul></section><section class="insight-related"><h2>関連記事</h2><div class="insight-card-grid">${related.map((item) => renderInsightCard(item, "related")).join("")}</div></section></div></div></article>${renderEndCta(ctaPresets[article.ctaType], `article-${article.slug}`)}</main>`;
-  const blogPosting = { "@context": "https://schema.org", "@type": "BlogPosting", "@id": `${canonical}#article`, headline: article.title, description: article.description, datePublished: article.publishedAt, dateModified: article.updatedAt || article.publishedAt, author: { "@type": "Person", name: author.name, url: `${siteUrl}${author.profileUrl}` }, publisher: { "@type": "Organization", "@id": organizationId, name: "合同会社SGP", url: `${siteUrl}/` }, mainEntityOfPage: { "@type": "WebPage", "@id": canonical }, inLanguage: "ja-JP", keywords: article.tags.join(", ") };
-  return renderBasePage({ title: article.seoTitle, description: article.seoDescription, canonical, content, pageType: "insight", bodyData: `data-article-slug="${article.slug}" data-article-title="${escapeHtml(article.title)}" data-category="${article.category}"`, schemas: [blogPosting, breadcrumb([{ name: "HOME", url: `${siteUrl}/` }, { name: "実務ノウハウ", url: canonicalFor() }, { name: category.name, url: canonicalFor(category.slug) }, { name: article.title, url: canonical }])] });
+  const finalizedContent = content
+    .replace(`<div><dt>更新</dt><dd><time datetime="${article.updatedAt || article.publishedAt}">${displayDate(article.updatedAt || article.publishedAt)}</time></dd></div>`, updated)
+    .replace(`</section></div></div></article>`, `</section>${sources}</div></div></article>`);
+  const blogPosting = { "@context": "https://schema.org", "@type": "BlogPosting", "@id": `${canonical}#article`, headline: article.title, description: article.description, datePublished: article.publishedAt, dateModified: article.updatedAt || article.publishedAt, author: { "@type": "Person", name: author.name, url: `${siteUrl}${author.profileUrl}` }, publisher: { "@type": "Organization", "@id": organizationId, name: "合同会社SGP", url: `${siteUrl}/` }, mainEntityOfPage: { "@type": "WebPage", "@id": canonical }, inLanguage: "ja-JP", keywords: article.tags.join(", "), ...(article.sources?.length ? { citation: article.sources.map((source) => source.url) } : {}) };
+  return renderBasePage({ title: article.seoTitle, description: article.seoDescription, canonical, content: finalizedContent, pageType: "insight", bodyData: `data-article-slug="${article.slug}" data-article-title="${escapeHtml(article.title)}" data-category="${article.category}"`, schemas: [blogPosting, breadcrumb([{ name: "HOME", url: `${siteUrl}/` }, { name: "実務ノウハウ", url: canonicalFor() }, { name: category.name, url: canonicalFor(category.slug) }, { name: article.title, url: canonical }])] });
 }
 
 function renderHomeBlock() {

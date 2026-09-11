@@ -1,0 +1,100 @@
+import { publishedArticle, qualityScore, sourcesFor } from "./article-utils.mjs";
+
+export default publishedArticle({
+  slug: "construction-crm",
+  title: "建設会社の営業管理をCRM化する方法｜導入前に整理すべき項目",
+  description: "建設会社の問い合わせ、現調、見積、追客、契約、工事引継ぎをCRMで管理する方法を解説します。顧客・現場・案件の分離、ステージ退出条件、必須項目、LINE・メール連携まで整理します。",
+  category: "industry",
+  tags: ["建設業", "CRM", "営業管理", "案件管理"],
+  priority: 70,
+  relatedArticles: ["sales-process-integration", "excel-vs-crm", "construction-estimate-ai", "owner-dependent-estimates"],
+  relatedServices: ["/services/web-marketing/", "/services/business-improvement/"],
+  ctaType: "service-web",
+  seoTitle: "建設会社の営業管理をCRM化｜導入前に整理する項目｜合同会社SGP",
+  seoDescription: "建設会社の問い合わせ、現地調査、見積、追客、契約、工事引継ぎをCRM化する方法を解説します。顧客・案件・活動・見積のデータ設計、営業ステージの完了条件、必須入力、次回行動、権限、LINEやメールとの連携、現場への引継ぎ票を整理し、入力負担を抑えた導入順を示します。",
+  brief: {
+    primaryReader: "案件増加に伴う追客漏れと営業引継ぎに悩む建設会社経営者",
+    readerSituation: "顧客情報がExcel、LINE、メール、担当者メモに分散している",
+    primaryProblem: "CRM製品を先に選び、顧客・現場・案件・活動と営業ステージを定義していない",
+    primaryIntent: "建設会社 CRM 営業管理",
+    decision: "CRMへ何を記録し、どのステージと責任で運用するか",
+    mainAnswer: "顧客・現場・案件・活動を分け、各ステージの必須情報と次回行動を定義する",
+    notToRecommend: "すべてを自由記述にし、入力件数だけを管理すること",
+    relevantService: "建設業向け営業・業務導線改善",
+    primaryCta: "Web・営業導線改善",
+    secondaryCta: "業務改善支援",
+    parentArticle: "sales-process-integration",
+    childArticles: ["homebuilder-customer-management", "renovation-project-management"],
+    siblingArticles: ["construction-line-management", "estimate-followup-automation"],
+    originalAsset: "建設営業ステージと退出条件",
+    requiredEvidence: "CRMの顧客・案件・活動管理、建設見積・引継ぎ実務",
+  },
+  originalAssets: ["営業ステージ設計", "4台帳データモデル", "必須項目表", "追客アラート", "現場引継ぎ票"],
+  qualityScore: qualityScore({ searchIntent: 15, practicalValue: 20, originality: 14, accuracy: 15 }),
+  sources: sourcesFor("salesforceSmbCrm", "metiSmeDx", "ipaSmeSecurity", "mlitEstimate"),
+  whatYouLearn: ["建設会社向けCRMのデータ構造", "営業ステージと退出条件", "入力を定着させる最小項目", "見積・工事へ引き継ぐ方法"],
+  summary: [
+    "建設会社のCRMは顧客名簿ではなく、問い合わせから現調、見積、追客、契約、工事引継ぎまで次回行動を管理する仕組みです。",
+    "同じ顧客の複数現場・複数工事を扱えるよう、顧客、現場、案件、活動を別データとして関連付けます。",
+    "ステージごとに完了条件、必須項目、担当、期限を決め、工事部門へ確定情報だけを引き継ぎます。",
+  ],
+  sections: [
+    { id: "goal", title: "建設会社がCRMで改善する対象", blocks: [
+      { type: "checklist", items: ["問い合わせへの初回返信が遅れる", "現調日程と必要資料が担当者だけに分かる", "見積提出後の次回連絡日が空欄", "同じ顧客・現場を重複登録する", "失注理由を集計できない", "契約後に営業と現場で認識が違う"] },
+      { type: "judgement", title: "CRM導入の目的を『入力』にしない", text: "改善対象は、初回返信、現調準備、見積提出、追客、引継ぎのリードタイムと漏れです。登録件数ではなく、各案件に次回行動と責任者がある状態を目標にします。" },
+    ] },
+    { id: "model", title: "顧客・現場・案件・活動を分ける", blocks: [
+      { type: "architecture", nodes: ["顧客: 法人・世帯の基本情報", "連絡先: 担当者・家族・同意・希望手段", "現場: 住所・建物・アクセス・所有関係", "案件: 工事種別・予算・時期・担当・ステージ", "活動: 電話・LINE・メール・訪問・現調", "見積・契約: 案件IDと版", "次回タスク: 担当・期限・完了条件"] },
+      { type: "paragraph", text: "一顧客が複数現場や複数工事を持つため、一枚の顧客表へすべて上書きしません。顧客ID、現場ID、案件IDを分けると、過去工事と今回相談を混同せず履歴を追えます。" },
+    ] },
+    { id: "stages", title: "営業ステージと退出条件を決める", blocks: [
+      { type: "table", caption: "建設営業のステージ例", headers: ["ステージ", "必須情報", "次へ進む条件"], rows: [
+        ["受付", "相談内容、連絡先、現場、希望時期", "対応可否と初回担当を決定"],
+        ["事前確認", "工種、予算感、所有・利用状況", "現調要否と不足資料を確定"],
+        ["現調", "日時、担当、写真、寸法、要望", "見積に必要な情報がそろう"],
+        ["見積中", "提出期限、積算担当、確認事項", "承認済みの版を確定"],
+        ["提出・追客", "提出日、金額、次回連絡日", "受注・失注・保留理由を記録"],
+        ["契約・引継ぎ", "契約版、工期、支払、前提、窓口", "工事責任者が受領確認"],
+      ] },
+    ] },
+    { id: "minimum", title: "定着させる最小入力項目", blocks: [
+      { type: "table", caption: "全ステージで持つ最小項目", headers: ["項目", "入力ルール", "用途"], rows: [
+        ["案件名・ID", "顧客・現場・工事を識別", "重複防止・連携"],
+        ["担当者", "個人でなく役割も持つ", "責任と引継ぎ"],
+        ["ステージ", "定義済み選択肢", "進捗集計"],
+        ["次回行動", "動詞で具体化", "何をするか"],
+        ["次回期限", "日付必須", "遅延通知"],
+        ["最終接触日", "活動から自動更新", "放置検知"],
+        ["保留・失注理由", "選択肢 + 補足", "営業改善"],
+      ] },
+      { type: "paragraph", text: "最初から数十項目を必須にすると、後入力と形だけの値が増えます。各ステージを進める際に必要な項目だけを必須にし、活動履歴や更新者はできる限り自動記録します。" },
+    ] },
+    { id: "channels", title: "LINE・メール・フォームをCRMへつなぐ", blocks: [
+      { type: "process", beforeLabel: "分散", before: ["チャネル別に受信", "担当者が個別返信", "Excelへ後で転記", "次回連絡を記憶"], afterLabel: "統合", after: ["受付IDを発行", "顧客・案件を照合", "活動として保存", "次回タスクを作成"] },
+      { type: "risk", title: "チャネル連携の注意点", items: ["同じ顧客をメールアドレスだけで自動統合しない", "個人LINEや私用メールを業務の正本にしない", "メッセージ本文の保存目的・期間・権限を決める", "API失敗・重複受信・送信失敗を記録する", "重要な条件変更は見積・契約の正式版へ反映する"] },
+    ] },
+    { id: "handoff", title: "契約後の工事引継ぎを設計する", blocks: [
+      { type: "checklist", items: ["顧客・現場・緊急連絡先", "契約範囲と対象図書・見積版", "工期、訪問条件、鍵、駐車、近隣", "顧客要望、営業時の約束、禁止事項", "未確定事項と期限・責任者", "支払条件、追加変更の受付方法", "写真・現調記録・質疑の保存場所"] },
+      { type: "judgement", title: "自由記述の『申し送り』だけにしない", text: "工事責任者が必須項目を確認し、未確定事項をタスクとして受領して初めて引継ぎ完了にします。営業ステージを契約済みに変えただけでは完了にしません。" },
+    ] },
+    { id: "implementation", title: "CRM導入を4段階で進める", blocks: [
+      { type: "steps", items: [
+        { title: "現状案件を棚卸し", text: "進行中案件で、情報の場所、更新者、漏れ、待ち時間を確認します。" },
+        { title: "ステージと最小項目を試す", text: "Excelや簡易SaaSでもよいので、一部署で運用します。" },
+        { title: "CRMへ正本化", text: "重複を整理し、進行中案件から移行して更新先を一本化します。" },
+        { title: "連携・自動化を追加", text: "入力が定着した後にフォーム、LINE、見積、通知をつなぎます。" },
+      ] },
+    ] },
+    { id: "kpi", title: "CRM化の効果と最終判断", blocks: [
+      { type: "table", caption: "建設営業CRMのKPI", headers: ["KPI", "見る理由", "改善例"], rows: [
+        ["初回返信時間", "取りこぼし", "受付・担当通知"],
+        ["現調化率", "受付条件", "質問・対応範囲"],
+        ["見積提出日数", "待ち工程", "情報・承認"],
+        ["追客実施率", "放置案件", "次回行動必須化"],
+        ["受注・失注理由", "案件選別と提案", "商品・商圏・価格"],
+        ["引継ぎ差戻し", "営業と工事の断絶", "必須情報・受領確認"],
+      ] },
+      { type: "fit", fit: ["複数担当・複数案件で追客漏れがある", "問い合わせから工事引継ぎまで責任を定義できる", "現場と営業が最小項目に合意できる", "運用管理者が毎週データ品質を確認できる"], notFit: ["製品導入だけで営業方法が統一されると考えている", "ステージと完了条件を決められない", "入力を営業だけの事務作業として扱う", "契約・見積・現場の正本を区別しない"] },
+    ] },
+  ],
+});

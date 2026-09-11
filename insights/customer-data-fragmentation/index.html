@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-08TBS4LE54"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}window.gtag=window.gtag||gtag;gtag("js",new Date());gtag("config","G-08TBS4LE54");</script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>顧客情報がLINE・メール・Excelに散らばる時の改善｜合同会社SGP</title>
+  <meta name="description" content="LINE、メール、Excel、問い合わせフォームに分散する顧客情報を、顧客ID、正本、接点履歴、案件、次回行動へ統合する方法を解説します。どのシステムを正本にするか、同一人物をどう照合するか、重複・表記ゆれをどう直すか、権限と履歴をどう残すかを整理し、業務を止めない段階移行を示します。" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://sakamoto-growth-partners.com/insights/customer-data-fragmentation/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://sakamoto-growth-partners.com/insights/customer-data-fragmentation/" />
+  <meta property="og:title" content="顧客情報がLINE・メール・Excelに散らばる時の改善｜合同会社SGP" />
+  <meta property="og:description" content="LINE、メール、Excel、問い合わせフォームに分散する顧客情報を、顧客ID、正本、接点履歴、案件、次回行動へ統合する方法を解説します。どのシステムを正本にするか、同一人物をどう照合するか、重複・表記ゆれをどう直すか、権限と履歴をどう残すかを整理し、業務を止めない段階移行を示します。" />
+  <meta property="og:image" content="https://sakamoto-growth-partners.com/ogp.png" />
+  <meta property="og:site_name" content="合同会社SGP" />
+  <meta property="og:locale" content="ja_JP" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="顧客情報がLINE・メール・Excelに散らばる時の改善｜合同会社SGP" />
+  <meta name="twitter:description" content="LINE、メール、Excel、問い合わせフォームに分散する顧客情報を、顧客ID、正本、接点履歴、案件、次回行動へ統合する方法を解説します。どのシステムを正本にするか、同一人物をどう照合するか、重複・表記ゆれをどう直すか、権限と履歴をどう残すかを整理し、業務を止めない段階移行を示します。" />
+  <meta name="twitter:image" content="https://sakamoto-growth-partners.com/ogp.png" />
+  <meta name="theme-color" content="#06293d" />
+  <link rel="icon" href="/assets/sgp-logo-mark.svg" />
+  <link rel="stylesheet" href="/assets/style.css" />
+  <link rel="stylesheet" href="/insights/insights.css" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "@id": "https://sakamoto-growth-partners.com/insights/customer-data-fragmentation/#article",
+  "headline": "顧客情報がLINE・メール・Excelに散らばる場合の改善方法",
+  "description": "LINE、メール、Excel、フォームに散らばる顧客情報を、顧客ID、正本、接点履歴、案件、次回行動へ整理する方法を解説します。重複統合、本人照合、権限、段階移行まで具体化します。",
+  "datePublished": "2026-09-09",
+  "dateModified": "2026-09-09",
+  "author": {
+    "@type": "Person",
+    "name": "坂本 直哉",
+    "url": "https://sakamoto-growth-partners.com/naoya-sakamoto/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "@id": "https://sakamoto-growth-partners.com/#organization",
+    "name": "合同会社SGP",
+    "url": "https://sakamoto-growth-partners.com/"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://sakamoto-growth-partners.com/insights/customer-data-fragmentation/"
+  },
+  "inLanguage": "ja-JP",
+  "keywords": "顧客情報, データ統合, CRM, LINE",
+  "citation": [
+    "https://www.salesforce.com/jp/small-business/",
+    "https://developers.line.biz/en/docs/messaging-api/linking-accounts/",
+    "https://www.ipa.go.jp/security/guide/sme/about.html",
+    "https://www.ppc.go.jp/news/careful_information/230602_AI_utilize_alert/",
+    "https://www.meti.go.jp/policy/it_policy/investment/dx-chukenchushotebiki/dx-chukenchushotebiki.html"
+  ]
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "HOME",
+      "item": "https://sakamoto-growth-partners.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "実務ノウハウ",
+      "item": "https://sakamoto-growth-partners.com/insights/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "業務改善",
+      "item": "https://sakamoto-growth-partners.com/insights/business-improvement/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "顧客情報がLINE・メール・Excelに散らばる場合の改善方法",
+      "item": "https://sakamoto-growth-partners.com/insights/customer-data-fragmentation/"
+    }
+  ]
+}
+  </script>
+</head>
+<body style="margin:0">
+<section class="sgp-site insights-page" id="top" data-page-type="insight" data-service-context="general" data-article-slug="customer-data-fragmentation" data-article-title="顧客情報がLINE・メール・Excelに散らばる場合の改善方法" data-category="business-improvement">
+<nav class="sgp-nav" aria-label="メインナビゲーション">
+    <div class="sgp-container sgp-nav-inner">
+      <a class="sgp-logo" href="/" aria-label="合同会社SGP トップへ"><span class="sgp-logo-mark"><img src="/assets/sgp-logo-mark.svg" alt="" /></span><span class="sgp-logo-text"><strong>合同会社SGP</strong><small>Sakamoto Growth Partners</small></span></a>
+      <div class="sgp-nav-links">
+        <a href="/services/">サービス</a><a href="/insights/" aria-current="page">実務ノウハウ</a><a href="/cases/">支援事例</a><a href="/news/">NEWS</a><a href="/about/">会社情報</a><a class="sgp-nav-cta" href="/diagnosis/" data-cta-track data-cta-type="diagnosis" data-cta-location="header">無料診断</a>
+      </div>
+      <details class="sgp-mobile-menu"><summary>メニュー</summary><nav aria-label="スマートフォン用ナビゲーション"><a href="/services/">サービス</a><a href="/insights/" aria-current="page">実務ノウハウ</a><a href="/cases/">支援事例</a><a href="/case-studies/">開発事例</a><a href="/news/">NEWS</a><a href="/about/">会社情報</a><a href="/faq/">よくある質問</a><a href="/diagnosis/" data-cta-track data-cta-type="diagnosis" data-cta-location="mobile_menu">無料経営導線診断</a></nav></details>
+    </div>
+  </nav>
+<main><article class="insight-article" data-insight-article><header class="insight-article-header"><div class="sgp-container"><nav class="insight-breadcrumb" aria-label="パンくずリスト"><a href="/">HOME</a><span>/</span><a href="/insights/">実務ノウハウ</a><span>/</span><a href="/insights/business-improvement/">業務改善</a></nav><p class="insight-eyebrow">INSIGHTS / 業務改善</p><h1>顧客情報がLINE・メール・Excelに散らばる場合の改善方法</h1><p class="insight-article-description">LINE、メール、Excel、フォームに散らばる顧客情報を、顧客ID、正本、接点履歴、案件、次回行動へ整理する方法を解説します。重複統合、本人照合、権限、段階移行まで具体化します。</p><dl class="insight-byline"><div><dt>執筆</dt><dd><a href="/naoya-sakamoto/">坂本 直哉</a> / 合同会社SGP 代表</dd></div><div><dt>公開</dt><dd><time datetime="2026-09-09">2026.09.09</time></dd></div><div><dt>読了目安</dt><dd>5分</dd></div></dl></div></header><div class="sgp-container insight-article-layout"><aside class="insight-toc"><details open><summary>目次</summary><ol><li><a href="#symptoms">顧客情報が散らばると何が起きるか</a></li><li><a href="#root">ツール数より正本と責任の欠如が問題</a></li><li><a href="#model">顧客・案件・活動・タスクを分ける</a></li><li><a href="#identity">顧客IDと重複照合ルール</a></li><li><a href="#integration">チャネルから正本へつなぐ流れ</a></li><li><a href="#migration">業務を止めない段階移行</a></li><li><a href="#governance">個人情報・権限・保存を管理する</a></li><li><a href="#kpi">統合後の品質と効果を測る</a></li></ol></details></aside><div class="insight-reading"><section class="insight-learn"><h2>この記事で分かること</h2><ul><li>顧客情報が分散する原因</li><li>顧客・案件・活動・タスクの正本設計</li><li>重複顧客を安全に照合する方法</li><li>業務を止めず段階統合する手順</li></ul></section><section class="insight-summary"><p>SUMMARY / 3行結論</p><h2>先に結論</h2><ol><li>顧客情報の統合は、全データをコピーすることではなく、顧客・案件・活動・次回タスクの正本と更新責任を決めることです。</li><li>LINE・メール・フォームは接点として残し、受信時に受付IDを付け、確認後に顧客ID・案件IDへ関連付けます。</li><li>名前や電話番号だけの自動統合は避け、確実一致、候補提示、人の確認、未照合の4状態で安全に処理します。</li></ol></section><section id="symptoms" class="insight-article-section"><h2>顧客情報が散らばると何が起きるか</h2><div class="insight-table-wrap" tabindex="0" role="region" aria-label="情報分散の症状"><table><caption>情報分散の症状</caption><thead><tr><th scope="col">症状</th><th scope="col">原因</th><th scope="col">影響</th></tr></thead><tbody><tr><th scope="row">同じ顧客へ別担当が連絡</th><td>重複・担当・履歴が不明</td><td>顧客体験悪化</td></tr><tr><th scope="row">問い合わせへ返信できない</th><td>個人LINE・メールだけで受信</td><td>機会損失</td></tr><tr><th scope="row">最新住所・連絡先が違う</th><td>各台帳が正本を主張</td><td>誤送信</td></tr><tr><th scope="row">見積後の追客が漏れる</th><td>活動と次回タスクが分離</td><td>案件停滞</td></tr><tr><th scope="row">退職者しか経緯を知らない</th><td>会話が個人アカウントに残る</td><td>引継ぎ不能</td></tr><tr><th scope="row">集計値が合わない</th><td>顧客と案件を一行で上書き</td><td>経営判断遅延</td></tr></tbody></table></div></section><section id="root" class="insight-article-section"><h2>ツール数より正本と責任の欠如が問題</h2><aside class="insight-judgement"><p>SGP JUDGEMENT</p><h3>一つの画面に集めても統合とは限らない</h3><p>コピーされたデータの更新元、重複時の優先、誤りの修正先が不明なら分散は残ります。項目ごとに正本、更新者、連携方向、更新頻度を決めます。</p></aside><div class="insight-checklist"><ul><li>顧客基本情報の正本</li><li>案件ステージ・金額・担当の正本</li><li>メール・LINE等の接点履歴の保存先</li><li>次回行動・期限の正本</li><li>見積・契約・請求の正式版</li><li>同意・配信停止・保存期限の管理先</li><li>重複・誤結合を修正する責任者</li></ul></div></section><section id="model" class="insight-article-section"><h2>顧客・案件・活動・タスクを分ける</h2><figure class="insight-architecture"><figcaption>実装構成</figcaption><ol><li>顧客: 一意ID・名称・基本属性</li><li>連絡先: 氏名・所属・連絡手段・同意</li><li>案件: 相談・商談・工事ごとの担当・ステージ</li><li>活動: LINE・メール・電話・面談・フォーム</li><li>次回タスク: 行動・担当・期限・完了</li><li>文書: 見積・契約・提出版</li><li>請求・継続: 確定データ・次回提案</li></ol></figure><p>一顧客が複数案件を持ち、一案件へ複数担当者・活動が紐づく構造にします。『最終連絡内容』を顧客行へ上書きせず、活動履歴から最終接触日を計算します。</p></section><section id="identity" class="insight-article-section"><h2>顧客IDと重複照合ルール</h2><div class="insight-table-wrap" tabindex="0" role="region" aria-label="顧客照合の4状態"><table><caption>顧客照合の4状態</caption><thead><tr><th scope="col">状態</th><th scope="col">処理</th><th scope="col">例</th></tr></thead><tbody><tr><th scope="row">確実一致</th><td>既存顧客へ関連付け</td><td>認証済みID・一意の会員番号</td></tr><tr><th scope="row">候補あり</th><td>担当者へ比較表示</td><td>電話・メールは一致、氏名表記が違う</td></tr><tr><th scope="row">新規</th><td>新しい顧客IDを発行</td><td>照合候補なし</td></tr><tr><th scope="row">未照合</th><td>受付IDのまま保留</td><td>情報不足・家族・代理人</td></tr></tbody></table></div><aside class="insight-risk"><h3>自動統合してはいけない条件</h3><ul><li>氏名・会社名の部分一致だけ</li><li>共有電話・代表メールだけ</li><li>LINE表示名・アイコンだけ</li><li>家族・同一世帯を同一人物とみなす</li><li>旧担当者の記憶だけ</li><li>統合後に元へ戻す履歴がない</li></ul></aside></section><aside class="insight-mid-link"><p>関連サービス</p><a href="/services/business-improvement/" data-analytics-event="insight_service_click" data-article-slug="customer-data-fragmentation" data-destination="/services/business-improvement/">業務改善・DX支援<span aria-hidden="true"> →</span></a></aside><section id="integration" class="insight-article-section"><h2>チャネルから正本へつなぐ流れ</h2><figure class="insight-architecture"><figcaption>実装構成</figcaption><ol><li>LINE・メール・フォーム・電話</li><li>チャネル固有IDと受付IDを保存</li><li>入力形式・必須項目を検証</li><li>顧客候補・案件候補を照合</li><li>担当者が誤結合を確認</li><li>活動履歴と添付を保存</li><li>次回タスク・期限を作成</li><li>返信・送信結果を記録</li><li>失敗・未照合キューを監視</li></ol></figure><p>LINEのアカウント連携が必要な場合は、LINE公式ドキュメントのトークンとnonceを用いる方式等を確認します。表示名から推測せず、顧客本人が認証済みの自社導線から連携を開始できるようにします。</p></section><section id="migration" class="insight-article-section"><h2>業務を止めない段階移行</h2><ol class="insight-steps"><li><h3>進行中案件を集める</h3><p>全顧客ではなく、現在対応中の顧客・案件・次回行動から整理します。</p></li><li><h3>正本とIDを決める</h3><p>項目ごとの更新元、重複ルール、責任者を定義します。</p></li><li><h3>一チャネルを連携する</h3><p>フォームなど構造化しやすい入口から受付IDと案件登録を試します。</p></li><li><h3>LINE・メールを追加する</h3><p>照合・権限・失敗処理を確認し、活動履歴へ広げます。</p></li><li><h3>旧台帳を参照専用にする</h3><p>移行後は二重更新を止め、必要な過去情報だけ段階移行します。</p></li></ol></section><section id="governance" class="insight-article-section"><h2>個人情報・権限・保存を管理する</h2><div class="insight-checklist"><ul><li>顧客情報を利用する目的と取得経路</li><li>本人・家族・法人担当者の区別</li><li>営業・工事・経理・管理者の閲覧・編集権限</li><li>同意、配信停止、連絡希望手段の記録</li><li>退職・異動・委託終了時の権限停止</li><li>チャネル原文・添付・要約・ログの保存期間</li><li>誤送信・誤結合・漏えい時の停止・報告・修正</li></ul></div><p>必要以上の個人情報を集約せず、利用目的に必要な範囲へ限定します。AIで要約・分類する場合は、入力情報、学習利用、保存、委託、削除、監督を採用サービスの最新条件で確認します。</p></section><section id="kpi" class="insight-article-section"><h2>統合後の品質と効果を測る</h2><div class="insight-table-wrap" tabindex="0" role="region" aria-label="顧客データ統合KPI"><table><caption>顧客データ統合KPI</caption><thead><tr><th scope="col">KPI</th><th scope="col">意味</th><th scope="col">改善先</th></tr></thead><tbody><tr><th scope="row">重複率</th><td>同一顧客の複数登録</td><td>照合・入力</td></tr><tr><th scope="row">未照合率</th><td>受付が顧客・案件へ未接続</td><td>質問・本人確認</td></tr><tr><th scope="row">次回行動設定率</th><td>追客可能性</td><td>必須項目</td></tr><tr><th scope="row">初回返信時間</th><td>受付・担当割当</td><td>通知・キュー</td></tr><tr><th scope="row">転記時間</th><td>二重入力</td><td>連携</td></tr><tr><th scope="row">誤送信・誤結合</th><td>安全性</td><td>権限・レビュー</td></tr></tbody></table></div><div class="insight-fit"><section><h3>向いている</h3><ul><li>複数チャネルと担当で顧客対応する</li><li>顧客・案件・活動・タスクを分けられる</li><li>正本・ID・更新責任を決められる</li><li>進行中案件から段階移行できる</li></ul></section><section><h3>向いていない・先に整理が必要</h3><ul><li>すべてを一括コピーすれば統合と考える</li><li>名前・電話だけで自動統合する</li><li>旧ExcelとCRMを永久に二重更新する</li><li>個人情報の目的・権限・削除を決めない</li></ul></section></div></section><section class="insight-related-services"><h2>関連サービス</h2><ul><li><a href="/services/business-improvement/" data-analytics-event="insight_service_click" data-article-slug="customer-data-fragmentation" data-destination="/services/business-improvement/">業務改善・DX支援</a></li><li><a href="/services/web-marketing/" data-analytics-event="insight_service_click" data-article-slug="customer-data-fragmentation" data-destination="/services/web-marketing/">Web集客・営業導線支援</a></li></ul></section><section class="insight-related"><h2>関連記事</h2><div class="insight-card-grid"><article class="insight-card" data-insight-card data-category="sales" data-tags="営業管理|CRM|問い合わせ|案件管理"><p class="insight-card-meta"><span>営業・Web</span><time datetime="2026-09-09">2026.09.09</time><small>7分</small></p><h3><a href="/insights/sales-process-integration/" data-analytics-event="insight_related_article_click" data-article-slug="sales-process-integration" data-destination="/insights/sales-process-integration/">営業・問い合わせ・見積・案件管理を一元化する方法</a></h3><p>Web、LINE、メールから入る問い合わせを、商談、見積、受注、案件引継ぎまで一元管理する方法を解説します。CRM導入前に決めるべき営業段階、必須データ、担当責任、完了条件を具体化します。</p><ul aria-label="タグ"><li>営業管理</li><li>CRM</li><li>問い合わせ</li></ul></article><article class="insight-card" data-insight-card data-category="business-improvement" data-tags="Excel|CRM|顧客管理|営業管理"><p class="insight-card-meta"><span>業務改善</span><time datetime="2026-09-09">2026.09.09</time><small>6分</small></p><h3><a href="/insights/excel-vs-crm/" data-analytics-event="insight_related_article_click" data-article-slug="excel-vs-crm" data-destination="/insights/excel-vs-crm/">ExcelとCRMの違い｜中小企業はどちらを使うべきか</a></h3><p>ExcelとCRMを、人数、更新頻度、履歴、権限、営業プロセス、連携、費用の観点で比較します。Excelを続けられる条件、CRMへ移すサイン、段階的な移行方法を中小企業向けに解説します。</p><ul aria-label="タグ"><li>Excel</li><li>CRM</li><li>顧客管理</li></ul></article><article class="insight-card" data-insight-card data-category="business-improvement" data-tags="DX|優先順位|業務改善|中小企業"><p class="insight-card-meta"><span>業務改善</span><time datetime="2026-09-09">2026.09.09</time><small>6分</small></p><h3><a href="/insights/dx-prioritization/" data-analytics-event="insight_related_article_click" data-article-slug="dx-prioritization" data-destination="/insights/dx-prioritization/">中小企業DXの優先順位の決め方｜最初に見るべき7項目</a></h3><p>DX候補を経営効果、頻度、標準化、リスク、データ、定着、依存関係の7項目で評価し、最初の90日で何に着手するか決める方法を解説します。ツール選定前に使える実務的な判断基準です。</p><ul aria-label="タグ"><li>DX</li><li>優先順位</li><li>業務改善</li></ul></article><article class="insight-card" data-insight-card data-category="industry" data-tags="建設業|CRM|営業管理|案件管理"><p class="insight-card-meta"><span>業界別</span><time datetime="2026-09-09">2026.09.09</time><small>5分</small></p><h3><a href="/insights/construction-crm/" data-analytics-event="insight_related_article_click" data-article-slug="construction-crm" data-destination="/insights/construction-crm/">建設会社の営業管理をCRM化する方法｜導入前に整理すべき項目</a></h3><p>建設会社の問い合わせ、現調、見積、追客、契約、工事引継ぎをCRMで管理する方法を解説します。顧客・現場・案件の分離、ステージ退出条件、必須項目、LINE・メール連携まで整理します。</p><ul aria-label="タグ"><li>建設業</li><li>CRM</li><li>営業管理</li></ul></article></div></section><section class="insight-sources"><h2>参考資料</h2><p>仕様・制度は変更される場合があります。リンク先の最新情報も確認してください。</p><ul><li><a href="https://www.salesforce.com/jp/small-business/" target="_blank" rel="noopener noreferrer">中堅・中小企業向けCRM</a><span>Salesforce / 確認日 2026.09.09</span></li><li><a href="https://developers.line.biz/en/docs/messaging-api/linking-accounts/" target="_blank" rel="noopener noreferrer">User account linking</a><span>LINE Developers / 確認日 2026.09.09</span></li><li><a href="https://www.ipa.go.jp/security/guide/sme/about.html" target="_blank" rel="noopener noreferrer">中小企業の情報セキュリティ対策ガイドライン</a><span>独立行政法人情報処理推進機構（IPA） / 確認日 2026.09.09</span></li><li><a href="https://www.ppc.go.jp/news/careful_information/230602_AI_utilize_alert/" target="_blank" rel="noopener noreferrer">生成AIサービスの利用に関する注意喚起等について</a><span>個人情報保護委員会 / 確認日 2026.09.09</span></li><li><a href="https://www.meti.go.jp/policy/it_policy/investment/dx-chukenchushotebiki/dx-chukenchushotebiki.html" target="_blank" rel="noopener noreferrer">中堅・中小企業等向けDX推進の手引き</a><span>経済産業省 / 確認日 2026.09.09</span></li></ul></section></div></div></article><section class="insight-end-cta"><div class="sgp-container"><p>RELATED SERVICE</p><h2>Excel・紙・転記を、現場で動く仕組みに変えたい方へ</h2><span>現在の業務を分解し、既存SaaS・CRM・個別開発を比較して、必要な範囲から実装します。</span><a href="/services/business-improvement/" data-analytics-event="insight_cta_click" data-cta-type="service" data-cta-location="article-customer-data-fragmentation" data-destination="/services/business-improvement/">業務改善・DX支援を見る<span aria-hidden="true"> →</span></a></div></section></main>
+<footer class="sgp-footer"><div class="sgp-container sgp-footer-inner"><div class="sgp-footer-logo"><img src="/assets/sgp-logo-footer.svg" alt="合同会社SGP ロゴ" loading="lazy" /></div><nav class="sgp-footer-links" aria-label="フッターナビゲーション"><a href="/services/">サービス一覧</a><a href="/insights/">実務ノウハウ</a><a href="/cases/">支援事例</a><a href="/case-studies/">開発事例</a><a href="/news/">NEWS</a><a href="/diagnosis/" data-cta-track data-cta-type="diagnosis" data-cta-location="footer">無料経営導線診断</a><a href="/contact/">お問い合わせ</a><a href="/about/">会社情報</a><a href="/naoya-sakamoto/">代表 坂本直哉</a><a href="/faq/">よくある質問</a><a href="/privacy/">プライバシーポリシー</a></nav><div class="sgp-footer-meta"><span>© 2026 合同会社SGP / Sakamoto Growth Partners</span><span>仙台・宮城｜経営導線を実装するIT工務店</span></div></div></footer>
+</section>
+  <script src="/assets/line-cta-tracking.js"></script>
+  <script src="/assets/lead-attribution.js"></script>
+  <script src="/assets/site-analytics.js"></script>
+  <script src="/insights/insights.js"></script>
+</body>
+</html>

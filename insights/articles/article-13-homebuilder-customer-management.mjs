@@ -1,0 +1,106 @@
+import { publishedArticle, qualityScore, sourcesFor } from "./article-utils.mjs";
+
+export default publishedArticle({
+  slug: "homebuilder-customer-management",
+  title: "工務店の顧客管理をExcelから改善する方法",
+  description: "工務店の顧客管理を、世帯、土地、資金、要望、相談履歴、次回行動、引渡後に分けて改善します。Excelを整える範囲、CRMへ移行するサイン、段階移行の方法を解説します。",
+  category: "industry",
+  tags: ["工務店", "顧客管理", "Excel", "CRM"],
+  priority: 69,
+  relatedArticles: ["construction-crm", "construction-line-management", "estimate-followup-automation", "customer-data-fragmentation"],
+  relatedServices: ["/services/web-marketing/", "/services/business-improvement/"],
+  ctaType: "service-web",
+  seoTitle: "工務店の顧客管理をExcelから改善する方法｜合同会社SGP",
+  seoDescription: "工務店の顧客管理を、世帯、土地、資金、要望、相談履歴、検討段階、次回行動、引渡後まで一元化する方法を解説します。Excelで続けられる条件とCRMへ移行すべきサイン、顧客・案件データの分け方、追客ルール、権限、重複整理、担当者が定着しやすい段階移行を具体化します。",
+  brief: {
+    primaryReader: "顧客Excelと個人メモで追客する地域工務店の経営者・営業責任者",
+    readerSituation: "検討期間が長く、家族・土地・資金・要望の変化を担当者しか把握できない",
+    primaryProblem: "顧客名簿へ案件・家族・活動・次回行動を一行で詰め込み、履歴を上書きしている",
+    primaryIntent: "工務店 顧客管理 Excel 改善",
+    decision: "Excelをどう整え、どの時点でCRMへ移すか",
+    mainAnswer: "世帯・連絡先・案件・土地・活動・タスクを分け、次回行動を中心に管理する",
+    notToRecommend: "家族の個人情報や資金情報を権限なしの共有Excelへ集約すること",
+    relevantService: "工務店向け営業導線・顧客管理改善",
+    primaryCta: "Web・営業導線改善",
+    secondaryCta: "業務改善支援",
+    parentArticle: "construction-crm",
+    childArticles: ["construction-line-management", "estimate-followup-automation"],
+    siblingArticles: ["renovation-project-management", "customer-data-fragmentation"],
+    originalAsset: "工務店の顧客・世帯・案件データモデル",
+    requiredEvidence: "CRMの顧客接点管理、個人情報・権限、段階的DX",
+  },
+  originalAssets: ["顧客データモデル", "検討ステージ表", "Excel改善チェック", "CRM移行サイン", "追客ルール"],
+  qualityScore: qualityScore({ searchIntent: 15, practicalValue: 19, originality: 14, accuracy: 15 }),
+  sources: sourcesFor("salesforceSmbCrm", "metiSmeDx", "ipaSmeSecurity", "ppcGenerativeAi"),
+  whatYouLearn: ["工務店顧客管理の基本構造", "Excelで改善できる範囲", "CRM移行が必要なサイン", "長期検討客の追客と引継ぎ方法"],
+  summary: [
+    "工務店の顧客管理は、世帯、個人連絡先、建築案件、土地、活動履歴、次回タスクを分けて関連付けます。",
+    "Excelでも少人数なら改善できますが、複数担当・長期追客・チャネル分散・権限制御が必要ならCRMを検討します。",
+    "顧客を一律に追うのではなく、検討段階、阻害要因、次回判断日、希望連絡手段に基づいて追客します。",
+  ],
+  sections: [
+    { id: "problem", title: "工務店の顧客管理が難しい理由", blocks: [
+      { type: "checklist", items: ["夫婦・親族など複数人が意思決定に関わる", "土地、資金、時期、要望が並行して変わる", "初回相談から契約まで長期化する", "Web、電話、LINE、見学会、紹介から接点が増える", "契約後も打合せ、工事、引渡し、アフターが続く", "営業・設計・工務で必要情報が異なる"] },
+      { type: "paragraph", text: "一行の顧客Excelへ最新状況だけを書くと、誰が何を希望し、いつ条件が変わり、次に何を判断するかが失われます。名簿ではなく、世帯と案件の意思決定履歴を管理します。" },
+    ] },
+    { id: "model", title: "顧客情報を6つに分ける", blocks: [
+      { type: "architecture", nodes: ["世帯: 世帯ID・住所・紹介元", "個人: 氏名・関係・連絡先・同意・希望手段", "案件: 新築・建替・時期・予算・担当・ステージ", "土地・資金: 状況・期限・専門相談先", "活動: 来場・電話・LINE・打合せ・資料送付", "次回タスク: 判断事項・担当・期限・完了条件", "契約後: 図書・変更・引渡・点検"] },
+      { type: "judgement", title: "一世帯一案件とは限らない", text: "土地候補や計画変更、OB顧客の増改築など、同じ世帯に複数案件が生じます。世帯情報を上書きせず、案件ごとに予算・時期・要望・ステージを持たせます。" },
+    ] },
+    { id: "stages", title: "検討ステージを顧客行動で定義する", blocks: [
+      { type: "table", caption: "工務店の検討ステージ例", headers: ["ステージ", "顧客の状態", "次の支援"], rows: [
+        ["情報収集", "地域・会社・費用感を比較", "事例・考え方・相談入口"],
+        ["相談準備", "土地・資金・要望を整理中", "質問表・専門家接続"],
+        ["個別相談", "自社条件で実現可能性を確認", "面談・現地・資金確認"],
+        ["計画検討", "プラン・見積・会社を比較", "前提・差分・次回判断"],
+        ["契約判断", "条件と不安を最終確認", "正式図書・責任範囲"],
+        ["保留", "時期・土地・資金等で停止", "再開条件と確認日"],
+      ] },
+      { type: "paragraph", text: "資料送付や電話回数をステージにせず、顧客がどの判断を終えたかで定義します。ステージ変更には根拠となる活動履歴と、次回行動を必須にします。" },
+    ] },
+    { id: "excel", title: "Excelのまま改善する7項目", blocks: [
+      { type: "checklist", items: ["顧客ID・世帯ID・案件IDを付ける", "世帯・案件・活動・タスクを別テーブルにする", "ステージ・流入元・保留理由を選択式にする", "一セル一情報にして色だけの管理をやめる", "更新者・更新日・次回期限を必須にする", "保存先・ファイル名・バックアップを統一する", "個人情報・資金情報の閲覧権限を限定する"] },
+      { type: "paragraph", text: "少人数で更新者が限られ、件数も少ないならExcel改善で十分な場合があります。まず進行中顧客だけを対象にし、古い名簿の全件清掃から始めないことが重要です。" },
+    ] },
+    { id: "crm-signs", title: "CRMへ移行すべきサイン", blocks: [
+      { type: "table", caption: "Excel管理の限界サイン", headers: ["サイン", "経営への影響", "CRMで必要な機能"], rows: [
+        ["複数人が同時更新", "上書き・版違い", "履歴・権限"],
+        ["追客漏れ", "商談機会の損失", "次回タスク・通知"],
+        ["LINE・メール分散", "引継ぎ不全", "活動履歴連携"],
+        ["集計を毎回作成", "判断遅延", "ステージ・流入元レポート"],
+        ["設計・工務へ再入力", "認識差・手戻り", "案件引継ぎ・関連データ"],
+        ["閲覧制御が必要", "個人情報リスク", "役割・項目権限"],
+      ] },
+    ] },
+    { id: "followup", title: "長期検討客の追客ルール", blocks: [
+      { type: "table", caption: "追客判断に必要な項目", headers: ["項目", "記録例", "使い方"], rows: [
+        ["阻害要因", "土地未定、時期、資金、家族合意", "送る情報と専門接続を変える"],
+        ["再開条件", "土地申込、年度替り、売却完了", "一律配信を避ける"],
+        ["次回判断日", "条件を確認する日", "担当タスク化"],
+        ["希望手段", "LINE、メール、電話、郵送", "同意・頻度に合わせる"],
+        ["関心テーマ", "平屋、断熱、相続、土地", "関連事例・相談会を案内"],
+      ] },
+      { type: "risk", title: "追客で避けること", items: ["返答がない顧客への高頻度な一斉送信", "家族間の共有可否を確認せず個人情報を送る", "予算・土地・健康等のセンシティブな推測", "同意・配信停止・連絡履歴を残さない", "営業担当の個人アカウントだけで継続する"] },
+    ] },
+    { id: "migration", title: "Excelから段階移行する", blocks: [
+      { type: "steps", items: [
+        { title: "進行中案件を整理", text: "重複、担当、ステージ、次回行動を営業会議で確定します。" },
+        { title: "最小項目で試す", text: "一チームで受付、活動、次回タスクだけをCRMへ登録します。" },
+        { title: "正本を切り替える", text: "CRMへ移した項目はExcelで更新せず、分析用に出力します。" },
+        { title: "チャネルと引継ぎを追加", text: "定着後にフォーム・LINE・見積・工事管理との連携を進めます。" },
+      ] },
+      { type: "paragraph", text: "移行時は保存目的がなくなった個人情報を持ち続けず、利用目的、アクセス権、保存期間、削除手順を確認します。共有リンクや退職者権限も棚卸しします。" },
+    ] },
+    { id: "kpi", title: "改善効果と最終判断", blocks: [
+      { type: "table", caption: "工務店の顧客管理KPI", headers: ["KPI", "確認する問題", "改善先"], rows: [
+        ["初回返信時間", "受付の放置", "通知・担当"],
+        ["次回行動設定率", "追客漏れ", "必須項目"],
+        ["相談・現調化率", "流入品質・受付", "導線・質問"],
+        ["保留理由", "再開条件不明", "分類・コンテンツ"],
+        ["引継ぎ差戻し", "営業・設計・工務の断絶", "必須情報"],
+        ["OB相談対応", "履歴検索", "世帯・過去案件"],
+      ] },
+      { type: "fit", fit: ["長期検討客と複数案件を継続管理する", "営業・設計・工務で情報共有が必要", "次回行動と引継ぎ品質を測れる", "管理者がデータ品質を改善できる"], notFit: ["顧客名簿のデジタル化だけが目的", "入力項目を増やせば管理できると考えている", "個人LINEを正本として残す", "個人情報の利用目的・権限・削除を決めない"] },
+    ] },
+  ],
+});

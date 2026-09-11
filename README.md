@@ -27,11 +27,15 @@ npm run preview
 ### 実務ノウハウ / INSIGHTS
 
 - 記事・カテゴリ・著者データ: `insights/insights-data.mjs`
+- 第2フェーズ記事データ: `insights/articles/article-*.mjs`
+- 公式・一次情報の出典レジストリ: `insights/insight-sources.mjs`
 - 生成処理: `scripts/generate-insights.mjs`
 - 専用CSS/JS: `insights/insights.css`、`insights/insights.js`
 - 公開URL: `/insights/`、`/insights/{category}/`、`/insights/{slug}/`
 
-記事は `status: "published"` の場合だけ一覧、カテゴリ、サイトマップ、本番HTMLへ出力されます。下書きは `status: "draft"` に設定します。ROIは実績ではなくモデルケースとして、仮定・計算式・非保証文を必ず明示します。
+記事は `status: "published"` の場合だけ一覧、カテゴリ、サイトマップ、本番HTMLへ出力されます。下書きは `status: "draft"` に設定します。ROIを掲載する場合は実績ではなくモデルケースとして、仮定・計算式・非保証文を必ず明示します。
+
+各記事にはArticle Brief、独自資産、品質スコア、根拠資料、関連記事2〜4本を設定します。個別確認は `node scripts/check-insight-article.mjs {slug}`、30記事の監査レポート再生成は `npm run report:insights`、全体確認は `npm test` で実行します。
 
 ### 開発事例 / Case Study
 

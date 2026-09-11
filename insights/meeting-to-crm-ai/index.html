@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-08TBS4LE54"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}window.gtag=window.gtag||gtag;gtag("js",new Date());gtag("config","G-08TBS4LE54");</script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>商談議事録からCRM入力をAIで自動化する方法｜合同会社SGP</title>
+  <meta name="description" content="ZoomやGoogle Meet等の商談文字起こしから、顧客課題、予算、期限、決裁者、確度、次回行動をAIで抽出し、担当者確認後にCRMとタスクへ登録する設計を解説します。抽出項目の定義、信頼度別レビュー、API連携、精度評価、個人情報の扱い、時間削減ROIまで具体化します。" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://sakamoto-growth-partners.com/insights/meeting-to-crm-ai/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://sakamoto-growth-partners.com/insights/meeting-to-crm-ai/" />
+  <meta property="og:title" content="商談議事録からCRM入力をAIで自動化する方法｜合同会社SGP" />
+  <meta property="og:description" content="ZoomやGoogle Meet等の商談文字起こしから、顧客課題、予算、期限、決裁者、確度、次回行動をAIで抽出し、担当者確認後にCRMとタスクへ登録する設計を解説します。抽出項目の定義、信頼度別レビュー、API連携、精度評価、個人情報の扱い、時間削減ROIまで具体化します。" />
+  <meta property="og:image" content="https://sakamoto-growth-partners.com/ogp.png" />
+  <meta property="og:site_name" content="合同会社SGP" />
+  <meta property="og:locale" content="ja_JP" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="商談議事録からCRM入力をAIで自動化する方法｜合同会社SGP" />
+  <meta name="twitter:description" content="ZoomやGoogle Meet等の商談文字起こしから、顧客課題、予算、期限、決裁者、確度、次回行動をAIで抽出し、担当者確認後にCRMとタスクへ登録する設計を解説します。抽出項目の定義、信頼度別レビュー、API連携、精度評価、個人情報の扱い、時間削減ROIまで具体化します。" />
+  <meta name="twitter:image" content="https://sakamoto-growth-partners.com/ogp.png" />
+  <meta name="theme-color" content="#06293d" />
+  <link rel="icon" href="/assets/sgp-logo-mark.svg" />
+  <link rel="stylesheet" href="/assets/style.css" />
+  <link rel="stylesheet" href="/insights/insights.css" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "@id": "https://sakamoto-growth-partners.com/insights/meeting-to-crm-ai/#article",
+  "headline": "商談議事録からCRM入力・次回タスク作成までAIで自動化する方法",
+  "description": "商談の文字起こしから、顧客課題、予算、期限、決裁、次回行動をAIで抽出し、担当者確認後にCRMとタスクへ登録する方法を解説します。項目設計、連携、評価、安全対策まで具体化します。",
+  "datePublished": "2026-09-09",
+  "dateModified": "2026-09-09",
+  "author": {
+    "@type": "Person",
+    "name": "坂本 直哉",
+    "url": "https://sakamoto-growth-partners.com/naoya-sakamoto/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "@id": "https://sakamoto-growth-partners.com/#organization",
+    "name": "合同会社SGP",
+    "url": "https://sakamoto-growth-partners.com/"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://sakamoto-growth-partners.com/insights/meeting-to-crm-ai/"
+  },
+  "inLanguage": "ja-JP",
+  "keywords": "商談議事録, CRM, AI自動化, 営業管理",
+  "citation": [
+    "https://www.meti.go.jp/press/2024/04/20240419004/20240419004.html",
+    "https://www.ppc.go.jp/news/careful_information/230602_AI_utilize_alert/",
+    "https://openai.com/business-data/",
+    "https://www.salesforce.com/jp/small-business/"
+  ]
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "HOME",
+      "item": "https://sakamoto-growth-partners.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "実務ノウハウ",
+      "item": "https://sakamoto-growth-partners.com/insights/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "AI活用",
+      "item": "https://sakamoto-growth-partners.com/insights/ai/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "商談議事録からCRM入力・次回タスク作成までAIで自動化する方法",
+      "item": "https://sakamoto-growth-partners.com/insights/meeting-to-crm-ai/"
+    }
+  ]
+}
+  </script>
+</head>
+<body style="margin:0">
+<section class="sgp-site insights-page" id="top" data-page-type="insight" data-service-context="general" data-article-slug="meeting-to-crm-ai" data-article-title="商談議事録からCRM入力・次回タスク作成までAIで自動化する方法" data-category="ai">
+<nav class="sgp-nav" aria-label="メインナビゲーション">
+    <div class="sgp-container sgp-nav-inner">
+      <a class="sgp-logo" href="/" aria-label="合同会社SGP トップへ"><span class="sgp-logo-mark"><img src="/assets/sgp-logo-mark.svg" alt="" /></span><span class="sgp-logo-text"><strong>合同会社SGP</strong><small>Sakamoto Growth Partners</small></span></a>
+      <div class="sgp-nav-links">
+        <a href="/services/">サービス</a><a href="/insights/" aria-current="page">実務ノウハウ</a><a href="/cases/">支援事例</a><a href="/news/">NEWS</a><a href="/about/">会社情報</a><a class="sgp-nav-cta" href="/diagnosis/" data-cta-track data-cta-type="diagnosis" data-cta-location="header">無料診断</a>
+      </div>
+      <details class="sgp-mobile-menu"><summary>メニュー</summary><nav aria-label="スマートフォン用ナビゲーション"><a href="/services/">サービス</a><a href="/insights/" aria-current="page">実務ノウハウ</a><a href="/cases/">支援事例</a><a href="/case-studies/">開発事例</a><a href="/news/">NEWS</a><a href="/about/">会社情報</a><a href="/faq/">よくある質問</a><a href="/diagnosis/" data-cta-track data-cta-type="diagnosis" data-cta-location="mobile_menu">無料経営導線診断</a></nav></details>
+    </div>
+  </nav>
+<main><article class="insight-article" data-insight-article><header class="insight-article-header"><div class="sgp-container"><nav class="insight-breadcrumb" aria-label="パンくずリスト"><a href="/">HOME</a><span>/</span><a href="/insights/">実務ノウハウ</a><span>/</span><a href="/insights/ai/">AI活用</a></nav><p class="insight-eyebrow">INSIGHTS / AI活用</p><h1>商談議事録からCRM入力・次回タスク作成までAIで自動化する方法</h1><p class="insight-article-description">商談の文字起こしから、顧客課題、予算、期限、決裁、次回行動をAIで抽出し、担当者確認後にCRMとタスクへ登録する方法を解説します。項目設計、連携、評価、安全対策まで具体化します。</p><dl class="insight-byline"><div><dt>執筆</dt><dd><a href="/naoya-sakamoto/">坂本 直哉</a> / 合同会社SGP 代表</dd></div><div><dt>公開</dt><dd><time datetime="2026-09-09">2026.09.09</time></dd></div><div><dt>読了目安</dt><dd>8分</dd></div></dl></div></header><div class="sgp-container insight-article-layout"><aside class="insight-toc"><details open><summary>目次</summary><ol><li><a href="#goal">商談議事録のAI自動化で何を改善するか</a></li><li><a href="#flow">文字起こしからCRM登録までの全体フロー</a></li><li><a href="#schema">AIに抽出させる項目をどう定義するか</a></li><li><a href="#review">どこに人の確認を残すべきか</a></li><li><a href="#integration">CRM・タスク管理へ安全につなぐ実装手順</a></li><li><a href="#evaluation">本番導入前に精度をどう評価するか</a></li><li><a href="#security">録音・個人情報・生成AI利用の安全対策</a></li><li><a href="#roi">費用対効果は入力時間と追客漏れで測る</a></li><li><a href="#fit">導入に向く会社・先に整えるべき会社</a></li></ol></details></aside><div class="insight-reading"><section class="insight-learn"><h2>この記事で分かること</h2><ul><li>商談文字起こしから抽出する営業項目</li><li>人の確認を残す項目と自動登録できる項目</li><li>CRM API・タスク管理までつなぐ構成</li><li>精度、時間、修正量を測る評価方法</li></ul></section><section class="insight-summary"><p>SUMMARY / 3行結論</p><h2>先に結論</h2><ol><li>商談AI自動化の目的は要約文を増やすことではなく、次回行動と判断材料をCRMへ早く正確に残すことです。</li><li>AIは文字起こしから項目候補と根拠箇所を抽出し、担当者が確認・修正した後にCRMへ登録します。</li><li>録音同意、個人情報、誤認識、確度判断、二重登録を管理できない場合は、まず下書き生成だけに限定します。</li></ol></section><section id="goal" class="insight-article-section"><h2>商談議事録のAI自動化で何を改善するか</h2><p>改善対象は議事録作成時間だけではありません。商談後にCRM更新が遅れ、次回タスクが設定されず、見積担当や上司が会話を再確認する待ち時間も対象です。商談終了から次回行動確定までの時間を短くし、引継ぎに必要な情報をそろえます。</p><aside class="insight-judgement"><p>SGP JUDGEMENT</p><h3>全文要約より、次の業務に必要な項目を優先する</h3><p>長い要約は読み返しに時間がかかります。CRMで利用する課題、期限、予算、決裁、競合、懸念、次回行動を構造化し、原文の根拠時刻へ戻れるようにします。</p></aside></section><section id="flow" class="insight-article-section"><h2>文字起こしからCRM登録までの全体フロー</h2><figure class="insight-architecture"><figcaption>実装構成</figcaption><ol><li>Zoom・Meet・対面録音</li><li>文字起こし</li><li>顧客・案件の照合</li><li>AIが営業項目を抽出</li><li>根拠時刻と信頼度を付与</li><li>担当者が確認・修正</li><li>CRM APIへ登録</li><li>次回タスク・通知を作成</li></ol></figure><figure class="insight-process"><div><figcaption>導入前</figcaption><ol><li>録画を保存</li><li>担当者が後でメモ</li><li>CRMを手入力</li><li>タスクを別登録</li></ol></div><span aria-hidden="true">→</span><div><figcaption>導入後</figcaption><ol><li>文字起こしを取得</li><li>AIが項目候補を作成</li><li>担当者が一画面で確認</li><li>CRMとタスクへ同時登録</li></ol></div></figure></section><section id="schema" class="insight-article-section"><h2>AIに抽出させる項目をどう定義するか</h2><div class="insight-table-wrap" tabindex="0" role="region" aria-label="商談情報の抽出スキーマ"><table><caption>商談情報の抽出スキーマ</caption><thead><tr><th scope="col">項目</th><th scope="col">出力条件</th><th scope="col">人の確認</th></tr></thead><tbody><tr><th scope="row">顧客課題</th><td>顧客自身が述べた現状と困り事</td><td>表現と優先度を確認</td></tr><tr><th scope="row">期限</th><td>日付または時期の発言がある</td><td>曖昧表現を確認</td></tr><tr><th scope="row">予算</th><td>金額・上限・未定を区別</td><td>通貨・税込・確定度を確認</td></tr><tr><th scope="row">決裁</th><td>決裁者、関係者、手続きを分ける</td><td>推測で補わない</td></tr><tr><th scope="row">次回行動</th><td>誰が・何を・いつまでに</td><td>顧客との約束を確認</td></tr><tr><th scope="row">案件確度</th><td>社内定義に基づく候補</td><td>営業担当が最終決定</td></tr></tbody></table></div><p>項目ごとに、値、根拠発言、発言者、時刻、信頼度、不明理由を返す形式にします。発言がない項目は空欄にし、一般知識や過去案件から推測させません。</p></section><section id="review" class="insight-article-section"><h2>どこに人の確認を残すべきか</h2><div class="insight-matrix"><section><h3>自動登録しやすい</h3><p>会議日時、参加者、文字起こしURLなど、元データと一致を確認しやすい項目。</p></section><section><h3>確認後に登録</h3><p>課題、期限、予算、競合など、文脈で意味が変わる項目。</p></section><section><h3>人が決定</h3><p>案件確度、値引き、提案方針、顧客への約束など、営業責任を伴う項目。</p></section><section><h3>登録しない</h3><p>雑談、不要な個人情報、根拠のない推測、センシティブな内容。</p></section></div><p>レビュー画面では原文、AI候補、修正欄を並べ、変更内容を保存します。修正履歴は次回評価に使えますが、必要以上の会話原文を長期保存しないよう保存期間とアクセス権を決めます。</p></section><section id="integration" class="insight-article-section"><h2>CRM・タスク管理へ安全につなぐ実装手順</h2><ol class="insight-steps"><li><h3>案件を一意に照合する</h3><p>会議URLだけで判断せず、顧客ID、案件ID、参加者メール、予定IDを組み合わせます。候補が複数ある場合は担当者に選択させます。</p></li><li><h3>下書きを構造化して保存する</h3><p>AIの出力をJSON Schema等で検証し、必須項目、日付形式、文字数、選択肢をCRM側の定義に合わせます。検証エラーは自動登録しません。</p></li><li><h3>担当者レビューを通す</h3><p>根拠発言と時刻を見ながら承認・修正し、顧客への約束、案件確度、金額は明示的な承認を必須にします。</p></li><li><h3>APIで更新し結果を記録する</h3><p>CRM更新には一意な処理IDを付け、再実行による二重登録を防ぎます。成功・失敗・更新前後の値を監査ログへ残します。</p></li><li><h3>次回タスクと通知を作る</h3><p>担当者、期限、タスク種別がそろったものだけ登録し、期限不明は『要確認』として翌営業日などを勝手に補いません。</p></li></ol><aside class="insight-risk"><h3>API連携前に決める例外処理</h3><ul><li>文字起こしが途中で欠落した場合は自動更新を止める</li><li>案件を照合できない場合は未処理キューへ送る</li><li>CRM API失敗時は指数的な再試行回数に上限を設ける</li><li>同じ会議の再処理は処理IDで検知し、担当者に差分を示す</li></ul></aside></section><aside class="insight-mid-link"><p>関連サービス</p><a href="/services/ai/" data-analytics-event="insight_service_click" data-article-slug="meeting-to-crm-ai" data-destination="/services/ai/">AI導入・生成AI活用支援<span aria-hidden="true"> →</span></a></aside><section id="evaluation" class="insight-article-section"><h2>本番導入前に精度をどう評価するか</h2><p>実際の商談から、受注・失注、初回・継続、短時間・長時間、複数話者を含む評価用データを用意します。顧客情報は評価目的に必要な範囲へ限定し、社内ルールに沿って匿名化またはマスキングします。</p><div class="insight-table-wrap" tabindex="0" role="region" aria-label="商談AIの評価指標"><table><caption>商談AIの評価指標</caption><thead><tr><th scope="col">指標</th><th scope="col">確認内容</th><th scope="col">改善判断</th></tr></thead><tbody><tr><th scope="row">項目正解率</th><td>人が確定した値と一致した割合</td><td>重要項目ごとに計測する</td></tr><tr><th scope="row">見逃し率</th><td>会話にある情報を空欄にした割合</td><td>期限・次回行動を優先する</td></tr><tr><th scope="row">根拠一致率</th><td>値と引用箇所が対応する割合</td><td>根拠不一致は承認不可にする</td></tr><tr><th scope="row">修正時間</th><td>担当者が確認を完了する時間</td><td>手入力より遅ければ項目を減らす</td></tr><tr><th scope="row">登録遅延</th><td>商談終了からCRM反映まで</td><td>営業プロセスのKPIとして追う</td></tr></tbody></table></div><aside class="insight-judgement"><p>SGP JUDGEMENT</p><h3>平均点だけで合格にしない</h3><p>案件確度や金額の誤りは、参加者名の誤りより影響が大きいため、項目別に合格基準を設けます。重要項目は完全自動化率ではなく、人が短時間で正しく確定できる状態を目標にします。</p></aside></section><section id="security" class="insight-article-section"><h2>録音・個人情報・生成AI利用の安全対策</h2><div class="insight-checklist"><ul><li>録音・文字起こしを行うことを参加者へ事前に案内する</li><li>顧客名、連絡先、契約情報を処理できるAIサービスか契約条件を確認する</li><li>文字起こし、要約、監査ログそれぞれの保存期間を定める</li><li>営業担当、管理者、運用担当の閲覧・修正権限を分ける</li><li>退職・異動時の権限停止と共有リンクの棚卸しを行う</li><li>誤登録や情報漏えい時の停止、報告、削除手順を用意する</li></ul></div><p>個人情報保護委員会は、生成AIへ個人情報を入力する場合、利用目的の範囲や提供事業者による機械学習利用等を確認するよう注意喚起しています。入力可否はサービス名だけで決めず、契約プラン、保存、学習利用、国外移転、削除方法を現在の公式条件で確認します。</p></section><section id="roi" class="insight-article-section"><h2>費用対効果は入力時間と追客漏れで測る</h2><aside class="insight-roi"><p>MODEL CASE / 試算</p><h3>ROIの計算方法</h3><code>月間効果 = 削減できたCRM入力時間 × 人件費換算 + 追客漏れ削減による期待粗利 - 月間運用費</code><dl><dt>仮定</dt><dd>商談件数と、現状の議事録・CRM・タスク入力時間を実測する / AI処理後のレビュー時間と修正率を記録する / 文字起こし、生成AI、連携基盤、保守の費用を含める / 受注効果はAIだけに帰属させず、追客実施率など中間指標も見る</dd><dt>計算例</dt><dd>例: 月100商談で1件あたり入力を15分削減できれば25時間。ここからレビュー時間、API・AI利用料、保守費を差し引いて判断します。</dd></dl><small>以下はモデルケースによる試算です。実際の効果を保証するものではありません。</small></aside><figure class="insight-framework"><figcaption>小さく始める4週間の検証</figcaption><ol><li>1週目: 既存CRM項目と商談後作業を棚卸しする</li><li>2週目: 過去商談で抽出スキーマと根拠表示を評価する</li><li>3週目: 1チームで下書き生成と人の承認だけを運用する</li><li>4週目: 修正時間、見逃し、登録遅延を比較しAPI連携範囲を決める</li></ol></figure></section><section id="fit" class="insight-article-section"><h2>導入に向く会社・先に整えるべき会社</h2><div class="insight-fit"><section><h3>向いている</h3><ul><li>CRMの必須項目と案件ステージが定義されている</li><li>商談件数が多く、入力遅延や追客漏れが測定できる</li><li>文字起こし利用の案内と情報管理ルールを整備できる</li><li>担当者がAI下書きを確認する運用時間を確保できる</li></ul></section><section><h3>向いていない・先に整理が必要</h3><ul><li>CRM項目が担当者ごとに異なり、何を残すか決まっていない</li><li>録音同意、保存期間、アクセス権を決められない</li><li>AIが案件確度や顧客への約束を無確認で決める前提になっている</li><li>商談数が少なく、連携開発費を回収できる業務量がない</li></ul></section></div><p>該当しない場合は、まず商談後に必ず残す5〜8項目と次回行動の定義を統一します。そのうえで、文字起こしから下書きを作るところだけを試すと、CRM全体を作り直さずに効果とリスクを確認できます。</p></section><section class="insight-related-services"><h2>関連サービス</h2><ul><li><a href="/services/ai/" data-analytics-event="insight_service_click" data-article-slug="meeting-to-crm-ai" data-destination="/services/ai/">AI導入・生成AI活用支援</a></li><li><a href="/services/web-marketing/" data-analytics-event="insight_service_click" data-article-slug="meeting-to-crm-ai" data-destination="/services/web-marketing/">Web集客・営業導線支援</a></li></ul></section><section class="insight-related"><h2>関連記事</h2><div class="insight-card-grid"><article class="insight-card" data-insight-card data-category="sales" data-tags="営業管理|CRM|問い合わせ|案件管理"><p class="insight-card-meta"><span>営業・Web</span><time datetime="2026-09-09">2026.09.09</time><small>7分</small></p><h3><a href="/insights/sales-process-integration/" data-analytics-event="insight_related_article_click" data-article-slug="sales-process-integration" data-destination="/insights/sales-process-integration/">営業・問い合わせ・見積・案件管理を一元化する方法</a></h3><p>Web、LINE、メールから入る問い合わせを、商談、見積、受注、案件引継ぎまで一元管理する方法を解説します。CRM導入前に決めるべき営業段階、必須データ、担当責任、完了条件を具体化します。</p><ul aria-label="タグ"><li>営業管理</li><li>CRM</li><li>問い合わせ</li></ul></article><article class="insight-card" data-insight-card data-category="ai" data-tags="AI導入|生成AI|業務整理|優先順位"><p class="insight-card-meta"><span>AI活用</span><time datetime="2026-09-08">2026.09.08</time><small>6分</small></p><h3><a href="/insights/ai-business-tasks/" data-analytics-event="insight_related_article_click" data-article-slug="ai-business-tasks" data-destination="/insights/ai-business-tasks/">中小企業で最初にAI化すべき業務20選｜導入優先順位の決め方</a></h3><p>AIを何に使うか迷う中小企業向けに、候補業務20例と、頻度・作業時間・標準化可能性・誤りの許容度・データ整備度による優先順位の決め方を解説します。</p><ul aria-label="タグ"><li>AI導入</li><li>生成AI</li><li>業務整理</li></ul></article><article class="insight-card" data-insight-card data-category="ai" data-tags="ChatGPT|生成AI|社内ルール|情報セキュリティ"><p class="insight-card-meta"><span>AI活用</span><time datetime="2026-09-09">2026.09.09</time><small>7分</small></p><h3><a href="/insights/chatgpt-company-policy/" data-analytics-event="insight_related_article_click" data-article-slug="chatgpt-company-policy" data-destination="/insights/chatgpt-company-policy/">ChatGPTを会社で安全に使うための運用ルール｜中小企業向け</a></h3><p>ChatGPTなどの生成AIを会社で使う際に必要な、利用目的、入力禁止情報、人の確認、アカウント、ログ、事故対応のルールを解説します。全面禁止でも自由利用でもない、業務リスク別の運用方法です。</p><ul aria-label="タグ"><li>ChatGPT</li><li>生成AI</li><li>社内ルール</li></ul></article><article class="insight-card" data-insight-card data-category="ai" data-tags="生成AI|AI導入|PoC|失敗対策"><p class="insight-card-meta"><span>AI活用</span><time datetime="2026-09-09">2026.09.09</time><small>6分</small></p><h3><a href="/insights/ai-implementation-failures/" data-analytics-event="insight_related_article_click" data-article-slug="ai-implementation-failures" data-destination="/insights/ai-implementation-failures/">生成AI導入で失敗する会社の共通点｜よくある10パターン</a></h3><p>生成AI導入が定着しない原因を、目的、業務、データ、安全、運用の5領域・10パターンで整理します。PoCで止まる理由、見直す指標、中止条件、立て直し手順を中小企業向けに具体化します。</p><ul aria-label="タグ"><li>生成AI</li><li>AI導入</li><li>PoC</li></ul></article></div></section><section class="insight-sources"><h2>参考資料</h2><p>仕様・制度は変更される場合があります。リンク先の最新情報も確認してください。</p><ul><li><a href="https://www.meti.go.jp/press/2024/04/20240419004/20240419004.html" target="_blank" rel="noopener noreferrer">AI事業者ガイドライン</a><span>経済産業省・総務省 / 確認日 2026.09.09</span></li><li><a href="https://www.ppc.go.jp/news/careful_information/230602_AI_utilize_alert/" target="_blank" rel="noopener noreferrer">生成AIサービスの利用に関する注意喚起等について</a><span>個人情報保護委員会 / 確認日 2026.09.09</span></li><li><a href="https://openai.com/business-data/" target="_blank" rel="noopener noreferrer">Business data privacy, security, and compliance</a><span>OpenAI / 確認日 2026.09.09</span></li><li><a href="https://www.salesforce.com/jp/small-business/" target="_blank" rel="noopener noreferrer">中堅・中小企業向けCRM</a><span>Salesforce / 確認日 2026.09.09</span></li></ul></section></div></div></article><section class="insight-end-cta"><div class="sgp-container"><p>RELATED SERVICE</p><h2>AIを業務へ組み込む方法を具体化したい方へ</h2><span>業務整理、データ、権限、人の確認を含めて、現場で使えるAI導入を設計します。</span><a href="/services/ai/" data-analytics-event="insight_cta_click" data-cta-type="service" data-cta-location="article-meeting-to-crm-ai" data-destination="/services/ai/">AI導入・生成AI活用支援を見る<span aria-hidden="true"> →</span></a></div></section></main>
+<footer class="sgp-footer"><div class="sgp-container sgp-footer-inner"><div class="sgp-footer-logo"><img src="/assets/sgp-logo-footer.svg" alt="合同会社SGP ロゴ" loading="lazy" /></div><nav class="sgp-footer-links" aria-label="フッターナビゲーション"><a href="/services/">サービス一覧</a><a href="/insights/">実務ノウハウ</a><a href="/cases/">支援事例</a><a href="/case-studies/">開発事例</a><a href="/news/">NEWS</a><a href="/diagnosis/" data-cta-track data-cta-type="diagnosis" data-cta-location="footer">無料経営導線診断</a><a href="/contact/">お問い合わせ</a><a href="/about/">会社情報</a><a href="/naoya-sakamoto/">代表 坂本直哉</a><a href="/faq/">よくある質問</a><a href="/privacy/">プライバシーポリシー</a></nav><div class="sgp-footer-meta"><span>© 2026 合同会社SGP / Sakamoto Growth Partners</span><span>仙台・宮城｜経営導線を実装するIT工務店</span></div></div></footer>
+</section>
+  <script src="/assets/line-cta-tracking.js"></script>
+  <script src="/assets/lead-attribution.js"></script>
+  <script src="/assets/site-analytics.js"></script>
+  <script src="/insights/insights.js"></script>
+</body>
+</html>

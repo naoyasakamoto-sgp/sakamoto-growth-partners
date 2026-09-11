@@ -96,6 +96,28 @@
 .insight-judgement p:last-child { margin-bottom: 0; }
 .insight-risk { border-left: 5px solid #b14a42; background: #fff8f7; }
 .insight-risk ul { margin: 0; padding-left: 22px; }
+.insight-steps { margin: 24px 0; padding: 0; list-style: none; counter-reset: insight-step; display: grid; gap: 12px; }
+.insight-steps li { position: relative; counter-increment: insight-step; padding: 18px 18px 18px 62px; border: 1px solid var(--insight-line); border-radius: 6px; background: #fff; }
+.insight-steps li::before { content: counter(insight-step, decimal-leading-zero); position: absolute; top: 18px; left: 18px; color: var(--insight-teal-text); font-weight: 800; }
+.insight-steps h3 { margin: 0 0 6px; font-size: 1rem; }
+.insight-steps p { margin: 0; }
+.insight-sources { margin-top: 54px; padding-top: 28px; border-top: 1px solid var(--insight-line); }
+.insight-sources > p { color: var(--insight-muted); font-size: .9rem; }
+.insight-sources ul { padding-left: 20px; }
+.insight-sources li + li { margin-top: 12px; }
+.insight-sources a { color: var(--insight-teal-text); font-weight: 700; }
+.insight-sources span { display: block; color: var(--insight-muted); font-size: .82rem; }
+.insight-steps { margin: 24px 0; padding: 0; list-style: none; counter-reset: insight-step; display: grid; gap: 12px; }
+.insight-steps li { position: relative; counter-increment: insight-step; padding: 18px 18px 18px 62px; border: 1px solid var(--insight-line); border-radius: 6px; background: #fff; }
+.insight-steps li::before { content: counter(insight-step, decimal-leading-zero); position: absolute; top: 18px; left: 18px; color: var(--insight-teal-text); font-weight: 900; }
+.insight-steps h3 { margin: 0 0 6px; color: var(--insight-navy); font-size: 17px; }
+.insight-steps p { margin: 0; }
+.insight-sources { margin-top: 54px; padding-top: 28px; border-top: 1px solid var(--insight-line); }
+.insight-sources > p { color: var(--insight-muted); font-size: 14px; }
+.insight-sources ul { padding-left: 20px; }
+.insight-sources li + li { margin-top: 12px; }
+.insight-sources a { color: var(--insight-teal-text); font-weight: 800; }
+.insight-sources span { display: block; color: var(--insight-muted); font-size: 13px; }
 .insight-framework, .insight-architecture, .insight-process { margin: 30px 0; }
 .insight-framework figcaption, .insight-architecture figcaption, .insight-process figcaption { margin-bottom: 10px; color: var(--insight-navy); font-weight: 950; }
 .insight-framework ol { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; margin: 0; padding: 0; list-style: none; }

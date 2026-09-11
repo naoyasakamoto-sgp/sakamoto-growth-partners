@@ -46,9 +46,16 @@ async function checkLinks(html, sourcePath) {
   }
 }
 
-assert.equal(publishedInsights.length, 3, "初期公開記事は3件必要です。");
+assert.equal(publishedInsights.length, 30, "初期公開記事は30件必要です。");
 assert.equal(insightCategories.length, 4, "カテゴリは4件必要です。");
 assert.equal(new Set(publishedInsights.map((article) => article.slug)).size, publishedInsights.length);
+assert.equal(new Set(publishedInsights.map((article) => article.seoTitle)).size, publishedInsights.length, "SEO title must be unique");
+assert.equal(new Set(publishedInsights.map((article) => article.seoDescription)).size, publishedInsights.length, "Meta description must be unique");
+const incomingLinks = Object.fromEntries(publishedInsights.map((article) => [article.slug, 0]));
+for (const article of publishedInsights) {
+  for (const relatedSlug of article.relatedArticles) incomingLinks[relatedSlug] += 1;
+}
+for (const [slug, count] of Object.entries(incomingLinks)) assert.ok(count >= 1, `${slug}: at least one contextual incoming article link is required`);
 
 const index = await read("insights/index.html");
 assert.equal(canonical(index), `${siteUrl}/insights/`);
@@ -79,12 +86,45 @@ const requiredComponents = [
   "insight-architecture",
   "insight-risk",
   "insight-fit",
+  "insight-matrix",
+  "insight-process",
+  "insight-steps",
+  "insight-sources",
   "insight-related-services",
   "insight-related",
   "insight-end-cta",
 ];
 
+const qualityKeys = [
+  "searchIntent",
+  "practicalValue",
+  "originality",
+  "accuracy",
+  "readability",
+  "businessRelevance",
+  "internalLinking",
+  "seoAiSearch",
+  "uxTechnical",
+];
+
 for (const article of publishedInsights) {
+  const descriptionLength = [...article.seoDescription].length;
+  assert.ok(descriptionLength >= 120 && descriptionLength <= 160, `${article.slug}: meta description should be 120-160 characters (${descriptionLength})`);
+  const textLength = JSON.stringify({ description: article.description, summary: article.summary, sections: article.sections }).replace(/[\s{}\[\]"':,]/g, "").length;
+  assert.ok(textLength >= 2200, `${article.slug}: practical article text is too short (${textLength})`);
+  assert.ok(article.sections.length >= 7, `${article.slug}: needs at least seven sections`);
+  assert.equal(new Set(article.sections.map((section) => section.id)).size, article.sections.length, `${article.slug}: duplicate section id`);
+  assert.ok(article.brief?.primaryIntent && article.brief?.decision && article.brief?.mainAnswer, `${article.slug}: Article Brief incomplete`);
+  assert.ok(article.originalAssets.length >= (article.featured ? 4 : 2), `${article.slug}: original assets incomplete`);
+  const scoreTotal = qualityKeys.reduce((sum, key) => sum + article.qualityScore[key], 0);
+  assert.equal(scoreTotal, article.qualityScore.total, `${article.slug}: score total mismatch`);
+  assert.ok(scoreTotal >= 90, `${article.slug}: quality score must be at least 90`);
+  assert.ok(article.qualityScore.searchIntent >= 13, `${article.slug}: search intent gate failed`);
+  assert.ok(article.qualityScore.practicalValue >= 17, `${article.slug}: practical value gate failed`);
+  assert.ok(article.qualityScore.originality >= 12, `${article.slug}: originality gate failed`);
+  assert.ok(article.qualityScore.accuracy >= 13, `${article.slug}: accuracy gate failed`);
+  assert.ok(article.sources?.length >= 2, `${article.slug}: at least two primary or authoritative sources are required`);
+  assert.ok(article.relatedArticles?.length >= 2 && article.relatedArticles.length <= 4, `${article.slug}: related article count must be 2-4`);
   const relativePath = `insights/${article.slug}/index.html`;
   const html = await read(relativePath);
   const expectedCanonical = `${siteUrl}/insights/${article.slug}/`;
@@ -99,7 +139,8 @@ for (const article of publishedInsights) {
   assert.match(html, new RegExp(`data-article-slug="${article.slug}"`));
   assert.match(html, /data-analytics-event="insight_cta_click"/);
   assert.match(html, /data-analytics-event="insight_service_click"/);
-  assert.match(html, /以下はモデルケースによる試算です。実際の効果を保証するものではありません。/);
+  const hasRoiBlock = article.sections.some((section) => section.blocks.some((block) => block.type === "roi"));
+  if (hasRoiBlock) assert.match(html, /以下はモデルケースによる試算です。実際の効果を保証するものではありません。/);
   assert.doesNotMatch(html, /Lorem ipsum|架空の支援実績|架空の顧客/i);
   const parsed = schemas(html);
   const blogPosting = findSchema(parsed, "BlogPosting");
@@ -111,6 +152,9 @@ for (const article of publishedInsights) {
   assert.equal(blogPosting.author["@type"], "Person");
   assert.equal(blogPosting.publisher["@id"], `${siteUrl}/#organization`);
   assert.ok(findSchema(parsed, "BreadcrumbList"), `${relativePath}: BreadcrumbListが必要です。`);
+  assert.ok(Array.isArray(blogPosting.citation) && blogPosting.citation.length === article.sources.length, `${relativePath}: citations must match sources`);
+  assert.match(html, /class="insight-sources"/);
+  assert.match(html, /target="_blank" rel="noopener noreferrer"/);
   await checkLinks(html, relativePath);
 }
 
@@ -144,4 +188,4 @@ for (const eventName of ["insight_view", "insight_50_percent", "insight_90_perce
   assert.match(analytics + combinedArticles, new RegExp(eventName), `${eventName}が必要です。`);
 }
 
-console.log("Validated INSIGHTS data model, 8 generated URLs, metadata, JSON-LD, internal links, responsive CSS, draft exclusion and GA4 events.");
+console.log(`Validated INSIGHTS data model, ${publishedInsights.length + insightCategories.length + 1} generated URLs, metadata, JSON-LD, internal links, responsive CSS, quality gates, sources, draft exclusion and GA4 events.`);

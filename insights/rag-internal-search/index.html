@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-08TBS4LE54"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}window.gtag=window.gtag||gtag;gtag("js",new Date());gtag("config","G-08TBS4LE54");</script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>社内資料をAI検索するRAGとは？仕組み・費用・導入判断｜合同会社SGP</title>
+  <meta name="description" content="社内資料をAI検索するRAGの仕組みを、通常検索やChatGPTとの違いから解説します。資料量、検索頻度、更新性、情報分散、権限、誤回答リスクによる導入判断に加え、文書整理、回答根拠の表示、評価質問の作り方、費用構造、自社で小さく検証する手順を中小企業向けに整理します。" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://sakamoto-growth-partners.com/insights/rag-internal-search/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://sakamoto-growth-partners.com/insights/rag-internal-search/" />
+  <meta property="og:title" content="社内資料をAI検索するRAGとは？仕組み・費用・導入判断｜合同会社SGP" />
+  <meta property="og:description" content="社内資料をAI検索するRAGの仕組みを、通常検索やChatGPTとの違いから解説します。資料量、検索頻度、更新性、情報分散、権限、誤回答リスクによる導入判断に加え、文書整理、回答根拠の表示、評価質問の作り方、費用構造、自社で小さく検証する手順を中小企業向けに整理します。" />
+  <meta property="og:image" content="https://sakamoto-growth-partners.com/ogp.png" />
+  <meta property="og:site_name" content="合同会社SGP" />
+  <meta property="og:locale" content="ja_JP" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="社内資料をAI検索するRAGとは？仕組み・費用・導入判断｜合同会社SGP" />
+  <meta name="twitter:description" content="社内資料をAI検索するRAGの仕組みを、通常検索やChatGPTとの違いから解説します。資料量、検索頻度、更新性、情報分散、権限、誤回答リスクによる導入判断に加え、文書整理、回答根拠の表示、評価質問の作り方、費用構造、自社で小さく検証する手順を中小企業向けに整理します。" />
+  <meta name="twitter:image" content="https://sakamoto-growth-partners.com/ogp.png" />
+  <meta name="theme-color" content="#06293d" />
+  <link rel="icon" href="/assets/sgp-logo-mark.svg" />
+  <link rel="stylesheet" href="/assets/style.css" />
+  <link rel="stylesheet" href="/insights/insights.css" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "@id": "https://sakamoto-growth-partners.com/insights/rag-internal-search/#article",
+  "headline": "社内資料をAI検索するRAGとは？仕組み・費用・導入判断を解説",
+  "description": "RAGは社内資料を検索し、その根拠を使って生成AIが回答する構成です。通常検索との違い、向く会社、データ整備、権限制御、評価、費用構造を整理し、自社にRAGが必要か判断できるように解説します。",
+  "datePublished": "2026-09-09",
+  "dateModified": "2026-09-09",
+  "author": {
+    "@type": "Person",
+    "name": "坂本 直哉",
+    "url": "https://sakamoto-growth-partners.com/naoya-sakamoto/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "@id": "https://sakamoto-growth-partners.com/#organization",
+    "name": "合同会社SGP",
+    "url": "https://sakamoto-growth-partners.com/"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://sakamoto-growth-partners.com/insights/rag-internal-search/"
+  },
+  "inLanguage": "ja-JP",
+  "keywords": "RAG, 社内検索, 生成AI, ナレッジ管理",
+  "citation": [
+    "https://learn.microsoft.com/en-us/azure/foundry/concepts/retrieval-augmented-generation",
+    "https://platform.openai.com/docs/models/default-usage-policies-by-endpoint",
+    "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf",
+    "https://www.ipa.go.jp/security/guide/sme/about.html"
+  ]
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "HOME",
+      "item": "https://sakamoto-growth-partners.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "実務ノウハウ",
+      "item": "https://sakamoto-growth-partners.com/insights/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "AI活用",
+      "item": "https://sakamoto-growth-partners.com/insights/ai/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "社内資料をAI検索するRAGとは？仕組み・費用・導入判断を解説",
+      "item": "https://sakamoto-growth-partners.com/insights/rag-internal-search/"
+    }
+  ]
+}
+  </script>
+</head>
+<body style="margin:0">
+<section class="sgp-site insights-page" id="top" data-page-type="insight" data-service-context="general" data-article-slug="rag-internal-search" data-article-title="社内資料をAI検索するRAGとは？仕組み・費用・導入判断を解説" data-category="ai">
+<nav class="sgp-nav" aria-label="メインナビゲーション">
+    <div class="sgp-container sgp-nav-inner">
+      <a class="sgp-logo" href="/" aria-label="合同会社SGP トップへ"><span class="sgp-logo-mark"><img src="/assets/sgp-logo-mark.svg" alt="" /></span><span class="sgp-logo-text"><strong>合同会社SGP</strong><small>Sakamoto Growth Partners</small></span></a>
+      <div class="sgp-nav-links">
+        <a href="/services/">サービス</a><a href="/insights/" aria-current="page">実務ノウハウ</a><a href="/cases/">支援事例</a><a href="/news/">NEWS</a><a href="/about/">会社情報</a><a class="sgp-nav-cta" href="/diagnosis/" data-cta-track data-cta-type="diagnosis" data-cta-location="header">無料診断</a>
+      </div>
+      <details class="sgp-mobile-menu"><summary>メニュー</summary><nav aria-label="スマートフォン用ナビゲーション"><a href="/services/">サービス</a><a href="/insights/" aria-current="page">実務ノウハウ</a><a href="/cases/">支援事例</a><a href="/case-studies/">開発事例</a><a href="/news/">NEWS</a><a href="/about/">会社情報</a><a href="/faq/">よくある質問</a><a href="/diagnosis/" data-cta-track data-cta-type="diagnosis" data-cta-location="mobile_menu">無料経営導線診断</a></nav></details>
+    </div>
+  </nav>
+<main><article class="insight-article" data-insight-article><header class="insight-article-header"><div class="sgp-container"><nav class="insight-breadcrumb" aria-label="パンくずリスト"><a href="/">HOME</a><span>/</span><a href="/insights/">実務ノウハウ</a><span>/</span><a href="/insights/ai/">AI活用</a></nav><p class="insight-eyebrow">INSIGHTS / AI活用</p><h1>社内資料をAI検索するRAGとは？仕組み・費用・導入判断を解説</h1><p class="insight-article-description">RAGは社内資料を検索し、その根拠を使って生成AIが回答する構成です。通常検索との違い、向く会社、データ整備、権限制御、評価、費用構造を整理し、自社にRAGが必要か判断できるように解説します。</p><dl class="insight-byline"><div><dt>執筆</dt><dd><a href="/naoya-sakamoto/">坂本 直哉</a> / 合同会社SGP 代表</dd></div><div><dt>公開</dt><dd><time datetime="2026-09-09">2026.09.09</time></dd></div><div><dt>読了目安</dt><dd>7分</dd></div></dl></div></header><div class="sgp-container insight-article-layout"><aside class="insight-toc"><details open><summary>目次</summary><ol><li><a href="#definition">RAGとは何か</a></li><li><a href="#decision">RAGはどんな会社に必要か</a></li><li><a href="#search-comparison">通常検索・AIチャット・RAGはどう違うか</a></li><li><a href="#data-preparation">RAG導入前に資料をどう整えるか</a></li><li><a href="#permissions">閲覧権限をRAGへどう反映するか</a></li><li><a href="#evaluation">RAGの精度をどう評価するか</a></li><li><a href="#cost">RAG導入費用は何で決まるか</a></li><li><a href="#small-start">RAGを自社で小さく試す方法</a></li><li><a href="#fit">RAGが向いている会社・向いていない会社</a></li></ol></details></aside><div class="insight-reading"><section class="insight-learn"><h2>この記事で分かること</h2><ul><li>RAGが検索と生成をどう組み合わせる仕組みか</li><li>通常のフォルダ検索や全文検索で十分な条件</li><li>資料、権限、更新、回答評価を整える手順</li><li>初期費用と継続費がどこで発生するか</li></ul></section><section class="insight-summary"><p>SUMMARY / 3行結論</p><h2>先に結論</h2><ol><li>RAGは、質問に関係する社内資料の一部を検索し、その内容を根拠として生成AIへ回答させる設計パターンです。</li><li>資料が少ない、検索頻度が低い、既存検索で見つかる場合はRAGを作る必要はありません。</li><li>導入する場合は文書投入より先に、代表質問、正しい根拠、閲覧権限、許容できない誤りを定義します。</li></ol></section><section id="definition" class="insight-article-section"><h2>RAGとは何か</h2><p>RAGはRetrieval-Augmented Generationの略で、利用者の質問に関連する情報を検索し、取り出した文章を生成AIへ渡して回答を作る構成です。モデルが覚えている一般知識だけに頼らず、自社の規程、マニュアル、商品資料、過去案件などを根拠にできます。ただし、検索結果が誤っていれば回答も誤るため、文書検索と回答生成を別々に評価します。</p><figure class="insight-architecture"><figcaption>実装構成</figcaption><ol><li>利用者の質問</li><li>認証・権限確認</li><li>検索用クエリへ変換</li><li>許可された資料から検索</li><li>関連箇所と出典を取得</li><li>生成AIが回答案を作成</li><li>利用者が根拠を確認</li></ol></figure></section><section id="decision" class="insight-article-section"><h2>RAGはどんな会社に必要か</h2><figure class="insight-framework"><figcaption>RAG必要度</figcaption><ol><li>情報量</li><li>検索頻度</li><li>更新頻度</li><li>情報分散度</li><li>権限制御</li><li>誤回答リスク</li></ol></figure><div class="insight-checklist"><ul><li>同じ質問を複数部門が繰り返す</li><li>回答根拠が複数資料へまたがる</li><li>ファイル名を知らない人が探せない</li><li>資料更新が多く古い版を参照しやすい</li><li>回答と一緒に出典箇所を示したい</li></ul></div><aside class="insight-judgement"><p>SGP JUDGEMENT</p><h3>検索で十分ならRAGは不要</h3><p>共有フォルダの命名統一、文書の目次、既存ストレージの全文検索で必要情報へ到達できるなら、RAGの追加費用と誤回答リスクを負う必要はありません。検索時間と質問件数を測ってから判断します。</p></aside></section><section id="search-comparison" class="insight-article-section"><h2>通常検索・AIチャット・RAGはどう違うか</h2><div class="insight-table-wrap" tabindex="0" role="region" aria-label="情報探索方法の比較"><table><caption>情報探索方法の比較</caption><thead><tr><th scope="col">方法</th><th scope="col">得意なこと</th><th scope="col">弱点</th><th scope="col">向く状況</th></tr></thead><tbody><tr><th scope="row">フォルダ・キーワード検索</th><td>一致する文書を探す</td><td>言い換えや複数資料の統合が苦手</td><td>資料構造が整理されている</td></tr><tr><th scope="row">一般AIチャット</th><td>文章作成や一般知識の説明</td><td>社内資料を知らず根拠がない</td><td>機密でない一般作業</td></tr><tr><th scope="row">RAG</th><td>社内資料を検索して回答案を作る</td><td>検索・権限・評価の運用が必要</td><td>質問が多く資料が分散している</td></tr></tbody></table></div></section><section id="data-preparation" class="insight-article-section"><h2>RAG導入前に資料をどう整えるか</h2><ol class="insight-steps"><li><h3>対象質問を集める</h3><p>現場で実際に繰り返される質問と、回答に使う資料を対にします。</p></li><li><h3>正本を決める</h3><p>重複版、期限切れ、草稿を区分し、回答根拠として使う文書を決めます。</p></li><li><h3>属性を付ける</h3><p>文書種別、部署、案件、発効日、失効日、閲覧区分を持たせます。</p></li><li><h3>更新責任を決める</h3><p>資料の更新、削除、再登録を誰が行うか決めます。</p></li></ol><p>PDFを大量に投入するだけでは、古い規程と新しい規程が同時に検索される、表の見出しが欠落する、スキャン画像を読めないなどの問題が起きます。代表資料で分割方法と検索結果を確認してから対象を広げます。</p></section><section id="permissions" class="insight-article-section"><h2>閲覧権限をRAGへどう反映するか</h2><p>RAGの回答画面だけにログインを付けても不十分です。検索時点で、その利用者が閲覧できる文書だけを候補にします。部署、役職、案件参加者などの属性を検索条件へ反映し、引用元URLを直接開く場合も同じ権限を確認します。Microsoftの公式RAG解説でも、検索時のアクセス制御と取得内容を信頼しない設計が示されています。</p><aside class="insight-risk"><h3>権限設計で見落としやすい点</h3><ul><li>退職・異動後の権限更新</li><li>案件終了後の閲覧範囲</li><li>給与・人事・契約資料の分離</li><li>検索ログに残る質問文</li><li>外部AIサービスの保存・学習設定</li><li>引用リンクからの直接閲覧</li></ul></aside></section><aside class="insight-mid-link"><p>関連サービス</p><a href="/services/ai/" data-analytics-event="insight_service_click" data-article-slug="rag-internal-search" data-destination="/services/ai/">AI導入・生成AI活用支援<span aria-hidden="true"> →</span></a></aside><section id="evaluation" class="insight-article-section"><h2>RAGの精度をどう評価するか</h2><div class="insight-table-wrap" tabindex="0" role="region" aria-label="RAG評価セットの項目"><table><caption>RAG評価セットの項目</caption><thead><tr><th scope="col">評価対象</th><th scope="col">確認すること</th><th scope="col">失敗例</th></tr></thead><tbody><tr><th scope="row">検索</th><td>正しい資料と箇所が上位に出る</td><td>似た旧版だけが出る</td></tr><tr><th scope="row">回答</th><td>根拠の範囲で簡潔に答える</td><td>資料にない数字を補う</td></tr><tr><th scope="row">出典</th><td>利用者が原文を確認できる</td><td>文書名だけで箇所が不明</td></tr><tr><th scope="row">権限</th><td>許可文書だけを検索する</td><td>他部署の機密を引用する</td></tr><tr><th scope="row">棄権</th><td>根拠不足なら答えない</td><td>推測で断定する</td></tr></tbody></table></div><p>実際の質問30〜50件程度から評価セットを作り、期待する資料、必要な回答要素、答えてはいけない条件を記録します。モデルや検索設定を変えたときに同じ質問で再評価できるようにし、正答率だけでなく重大な誤回答を個別に確認します。件数は業務の種類に応じて増減します。</p></section><section id="cost" class="insight-article-section"><h2>RAG導入費用は何で決まるか</h2><figure class="insight-framework"><figcaption>RAG費用の構成</figcaption><ol><li>文書棚卸し・整形</li><li>検索インデックス</li><li>生成AI利用</li><li>認証・権限</li><li>画面・外部連携</li><li>評価・監視</li><li>更新運用</li></ol></figure><p>継続費には、検索基盤、埋め込み処理、生成AIの入力・出力、保存容量、監視、文書更新が含まれます。利用量だけでなく、資料を誰が更新し、回答品質を誰が確認するかという社内運用時間も見積もります。サービスごとにデータ保持や削除条件が異なるため、公式仕様を導入時に確認します。</p><aside class="insight-roi"><p>MODEL CASE / 試算</p><h3>ROIの計算方法</h3><code>年間検索削減額 = 1回あたり削減時間 × 月間質問件数 × 12 × 時間単価</code><dl><dt>仮定</dt><dd>1回8分を削減 / 月200件 / 時間単価3,000円</dd><dt>計算例</dt><dd>約0.133時間 × 200件 × 12か月 × 3,000円 ≒ 年間957,600円相当</dd></dl><small>以下はモデルケースによる試算です。実際の効果を保証するものではありません。</small></aside></section><section id="small-start" class="insight-article-section"><h2>RAGを自社で小さく試す方法</h2><ol class="insight-steps"><li><h3>1テーマへ限定する</h3><p>社内規程、商品仕様、施工標準など、更新責任と利用者が同じ資料群を選びます。</p></li><li><h3>質問と根拠を作る</h3><p>日常質問と正しい文書箇所を対にし、検索だけでも見つかるか確認します。</p></li><li><h3>権限を単純化する</h3><p>初期検証は同一権限の少人数で行い、本番前に権限条件を追加します。</p></li><li><h3>回答より検索を評価する</h3><p>生成文の自然さより、根拠文書と引用箇所が正しいかを先に確認します。</p></li><li><h3>不足時は答えさせない</h3><p>該当資料がない場合の定型応答と、人へ確認する導線を用意します。</p></li></ol></section><section id="fit" class="insight-article-section"><h2>RAGが向いている会社・向いていない会社</h2><div class="insight-fit"><section><h3>向いている</h3><ul><li>同じ質問への回答を何度も探している</li><li>正本資料と更新担当を決められる</li><li>回答根拠を表示する必要がある</li><li>部署・案件別の権限を設計できる</li></ul></section><section><h3>向いていない・先に整理が必要</h3><ul><li>資料が少なく既存検索で十分</li><li>正しい文書を決められない</li><li>質問が月に数件しかない</li><li>誤回答を人が確認できない</li></ul></section></div><aside class="insight-judgement"><p>SGP JUDGEMENT</p><h3>RAGの前に情報管理を直す場合もある</h3><p>検索できない原因がファイル名、保存場所、版管理の乱れなら、先に文書管理を整える方が安く確実です。RAGは情報管理を不要にする仕組みではなく、整った情報へ自然言語で到達しやすくする追加層です。</p></aside></section><section class="insight-related-services"><h2>関連サービス</h2><ul><li><a href="/services/ai/" data-analytics-event="insight_service_click" data-article-slug="rag-internal-search" data-destination="/services/ai/">AI導入・生成AI活用支援</a></li><li><a href="/services/business-improvement/" data-analytics-event="insight_service_click" data-article-slug="rag-internal-search" data-destination="/services/business-improvement/">業務改善・DX支援</a></li></ul></section><section class="insight-related"><h2>関連記事</h2><div class="insight-card-grid"><article class="insight-card" data-insight-card data-category="ai" data-tags="ChatGPT|RAG|社内AI|生成AI"><p class="insight-card-meta"><span>AI活用</span><time datetime="2026-09-09">2026.09.09</time><small>6分</small></p><h3><a href="/insights/chatgpt-vs-rag/" data-analytics-event="insight_related_article_click" data-article-slug="chatgpt-vs-rag" data-destination="/insights/chatgpt-vs-rag/">ChatGPTとRAGの違い｜社内AIを作るならどちらが必要？</a></h3><p>ChatGPTとRAGを、回答根拠、社内情報、更新性、権限、導入速度、運用責任で比較します。一般業務はChatGPT、社内文書に基づく回答はRAGという基本と、接続機能を含む判断方法を解説します。</p><ul aria-label="タグ"><li>ChatGPT</li><li>RAG</li><li>社内AI</li></ul></article><article class="insight-card" data-insight-card data-category="ai" data-tags="RAG|導入費用|社内検索|生成AI"><p class="insight-card-meta"><span>AI活用</span><time datetime="2026-09-09">2026.09.09</time><small>6分</small></p><h3><a href="/insights/rag-cost/" data-analytics-event="insight_related_article_click" data-article-slug="rag-cost" data-destination="/insights/rag-cost/">RAG導入費用はいくら？費用を左右する7つの要素</a></h3><p>RAG導入費用を、検証、部署運用、本番連携のモデルケースで示し、データ形式、更新、検索、権限、画面、連携、評価・運用の7要素に分解します。見積比較とROIの考え方も解説します。</p><ul aria-label="タグ"><li>RAG</li><li>導入費用</li><li>社内検索</li></ul></article><article class="insight-card" data-insight-card data-category="industry" data-tags="建設業|RAG|社内検索|見積"><p class="insight-card-meta"><span>業界別</span><time datetime="2026-09-09">2026.09.09</time><small>5分</small></p><h3><a href="/insights/construction-rag/" data-analytics-event="insight_related_article_click" data-article-slug="construction-rag" data-destination="/insights/construction-rag/">建設会社の過去案件・見積・図面をRAGで検索する方法</a></h3><p>建設会社の過去案件、見積、図面、写真、施工記録をRAGで検索する方法を解説します。文書整理、メタデータ、版・権限、検索方式、引用、評価質問、導入費用の考え方まで整理します。</p><ul aria-label="タグ"><li>建設業</li><li>RAG</li><li>社内検索</li></ul></article><article class="insight-card" data-insight-card data-category="ai" data-tags="ChatGPT|生成AI|社内ルール|情報セキュリティ"><p class="insight-card-meta"><span>AI活用</span><time datetime="2026-09-09">2026.09.09</time><small>7分</small></p><h3><a href="/insights/chatgpt-company-policy/" data-analytics-event="insight_related_article_click" data-article-slug="chatgpt-company-policy" data-destination="/insights/chatgpt-company-policy/">ChatGPTを会社で安全に使うための運用ルール｜中小企業向け</a></h3><p>ChatGPTなどの生成AIを会社で使う際に必要な、利用目的、入力禁止情報、人の確認、アカウント、ログ、事故対応のルールを解説します。全面禁止でも自由利用でもない、業務リスク別の運用方法です。</p><ul aria-label="タグ"><li>ChatGPT</li><li>生成AI</li><li>社内ルール</li></ul></article></div></section><section class="insight-sources"><h2>参考資料</h2><p>仕様・制度は変更される場合があります。リンク先の最新情報も確認してください。</p><ul><li><a href="https://learn.microsoft.com/en-us/azure/foundry/concepts/retrieval-augmented-generation" target="_blank" rel="noopener noreferrer">Retrieval augmented generation (RAG) and indexes in Microsoft Foundry</a><span>Microsoft Learn / 確認日 2026.09.09</span></li><li><a href="https://platform.openai.com/docs/models/default-usage-policies-by-endpoint" target="_blank" rel="noopener noreferrer">Data controls in the OpenAI platform</a><span>OpenAI / 確認日 2026.09.09</span></li><li><a href="https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf" target="_blank" rel="noopener noreferrer">Artificial Intelligence Risk Management Framework: Generative Artificial Intelligence Profile</a><span>NIST / 確認日 2026.09.09</span></li><li><a href="https://www.ipa.go.jp/security/guide/sme/about.html" target="_blank" rel="noopener noreferrer">中小企業の情報セキュリティ対策ガイドライン</a><span>独立行政法人情報処理推進機構（IPA） / 確認日 2026.09.09</span></li></ul></section></div></div></article><section class="insight-end-cta"><div class="sgp-container"><p>RELATED SERVICE</p><h2>AIを業務へ組み込む方法を具体化したい方へ</h2><span>業務整理、データ、権限、人の確認を含めて、現場で使えるAI導入を設計します。</span><a href="/services/ai/" data-analytics-event="insight_cta_click" data-cta-type="service" data-cta-location="article-rag-internal-search" data-destination="/services/ai/">AI導入・生成AI活用支援を見る<span aria-hidden="true"> →</span></a></div></section></main>
+<footer class="sgp-footer"><div class="sgp-container sgp-footer-inner"><div class="sgp-footer-logo"><img src="/assets/sgp-logo-footer.svg" alt="合同会社SGP ロゴ" loading="lazy" /></div><nav class="sgp-footer-links" aria-label="フッターナビゲーション"><a href="/services/">サービス一覧</a><a href="/insights/">実務ノウハウ</a><a href="/cases/">支援事例</a><a href="/case-studies/">開発事例</a><a href="/news/">NEWS</a><a href="/diagnosis/" data-cta-track data-cta-type="diagnosis" data-cta-location="footer">無料経営導線診断</a><a href="/contact/">お問い合わせ</a><a href="/about/">会社情報</a><a href="/naoya-sakamoto/">代表 坂本直哉</a><a href="/faq/">よくある質問</a><a href="/privacy/">プライバシーポリシー</a></nav><div class="sgp-footer-meta"><span>© 2026 合同会社SGP / Sakamoto Growth Partners</span><span>仙台・宮城｜経営導線を実装するIT工務店</span></div></div></footer>
+</section>
+  <script src="/assets/line-cta-tracking.js"></script>
+  <script src="/assets/lead-attribution.js"></script>
+  <script src="/assets/site-analytics.js"></script>
+  <script src="/insights/insights.js"></script>
+</body>
+</html>

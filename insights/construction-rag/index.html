@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-08TBS4LE54"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}window.gtag=window.gtag||gtag;gtag("js",new Date());gtag("config","G-08TBS4LE54");</script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>建設会社の過去案件・見積・図面をRAG検索する方法｜合同会社SGP</title>
+  <meta name="description" content="建設会社の過去案件、見積、図面、写真、施工記録をRAGで検索する方法を解説します。検索前に必要な文書整理、案件・工種・年度のメタデータ、最新版と権限の管理、回答根拠の引用、評価質問、誤回答時の人による確認、費用を左右する要素を整理し、小さな対象範囲から検証する手順を示します。" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://sakamoto-growth-partners.com/insights/construction-rag/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://sakamoto-growth-partners.com/insights/construction-rag/" />
+  <meta property="og:title" content="建設会社の過去案件・見積・図面をRAG検索する方法｜合同会社SGP" />
+  <meta property="og:description" content="建設会社の過去案件、見積、図面、写真、施工記録をRAGで検索する方法を解説します。検索前に必要な文書整理、案件・工種・年度のメタデータ、最新版と権限の管理、回答根拠の引用、評価質問、誤回答時の人による確認、費用を左右する要素を整理し、小さな対象範囲から検証する手順を示します。" />
+  <meta property="og:image" content="https://sakamoto-growth-partners.com/ogp.png" />
+  <meta property="og:site_name" content="合同会社SGP" />
+  <meta property="og:locale" content="ja_JP" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="建設会社の過去案件・見積・図面をRAG検索する方法｜合同会社SGP" />
+  <meta name="twitter:description" content="建設会社の過去案件、見積、図面、写真、施工記録をRAGで検索する方法を解説します。検索前に必要な文書整理、案件・工種・年度のメタデータ、最新版と権限の管理、回答根拠の引用、評価質問、誤回答時の人による確認、費用を左右する要素を整理し、小さな対象範囲から検証する手順を示します。" />
+  <meta name="twitter:image" content="https://sakamoto-growth-partners.com/ogp.png" />
+  <meta name="theme-color" content="#06293d" />
+  <link rel="icon" href="/assets/sgp-logo-mark.svg" />
+  <link rel="stylesheet" href="/assets/style.css" />
+  <link rel="stylesheet" href="/insights/insights.css" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "@id": "https://sakamoto-growth-partners.com/insights/construction-rag/#article",
+  "headline": "建設会社の過去案件・見積・図面をRAGで検索する方法",
+  "description": "建設会社の過去案件、見積、図面、写真、施工記録をRAGで検索する方法を解説します。文書整理、メタデータ、版・権限、検索方式、引用、評価質問、導入費用の考え方まで整理します。",
+  "datePublished": "2026-09-09",
+  "dateModified": "2026-09-09",
+  "author": {
+    "@type": "Person",
+    "name": "坂本 直哉",
+    "url": "https://sakamoto-growth-partners.com/naoya-sakamoto/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "@id": "https://sakamoto-growth-partners.com/#organization",
+    "name": "合同会社SGP",
+    "url": "https://sakamoto-growth-partners.com/"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://sakamoto-growth-partners.com/insights/construction-rag/"
+  },
+  "inLanguage": "ja-JP",
+  "keywords": "建設業, RAG, 社内検索, 見積",
+  "citation": [
+    "https://learn.microsoft.com/en-us/azure/foundry/concepts/retrieval-augmented-generation",
+    "https://www.mlit.go.jp/tec/tec_fr_000158.html",
+    "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf",
+    "https://www.ipa.go.jp/security/guide/sme/about.html",
+    "https://www.meti.go.jp/press/2024/04/20240419004/20240419004.html"
+  ]
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "HOME",
+      "item": "https://sakamoto-growth-partners.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "実務ノウハウ",
+      "item": "https://sakamoto-growth-partners.com/insights/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "業界別",
+      "item": "https://sakamoto-growth-partners.com/insights/industry/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "建設会社の過去案件・見積・図面をRAGで検索する方法",
+      "item": "https://sakamoto-growth-partners.com/insights/construction-rag/"
+    }
+  ]
+}
+  </script>
+</head>
+<body style="margin:0">
+<section class="sgp-site insights-page" id="top" data-page-type="insight" data-service-context="general" data-article-slug="construction-rag" data-article-title="建設会社の過去案件・見積・図面をRAGで検索する方法" data-category="industry">
+<nav class="sgp-nav" aria-label="メインナビゲーション">
+    <div class="sgp-container sgp-nav-inner">
+      <a class="sgp-logo" href="/" aria-label="合同会社SGP トップへ"><span class="sgp-logo-mark"><img src="/assets/sgp-logo-mark.svg" alt="" /></span><span class="sgp-logo-text"><strong>合同会社SGP</strong><small>Sakamoto Growth Partners</small></span></a>
+      <div class="sgp-nav-links">
+        <a href="/services/">サービス</a><a href="/insights/" aria-current="page">実務ノウハウ</a><a href="/cases/">支援事例</a><a href="/news/">NEWS</a><a href="/about/">会社情報</a><a class="sgp-nav-cta" href="/diagnosis/" data-cta-track data-cta-type="diagnosis" data-cta-location="header">無料診断</a>
+      </div>
+      <details class="sgp-mobile-menu"><summary>メニュー</summary><nav aria-label="スマートフォン用ナビゲーション"><a href="/services/">サービス</a><a href="/insights/" aria-current="page">実務ノウハウ</a><a href="/cases/">支援事例</a><a href="/case-studies/">開発事例</a><a href="/news/">NEWS</a><a href="/about/">会社情報</a><a href="/faq/">よくある質問</a><a href="/diagnosis/" data-cta-track data-cta-type="diagnosis" data-cta-location="mobile_menu">無料経営導線診断</a></nav></details>
+    </div>
+  </nav>
+<main><article class="insight-article" data-insight-article><header class="insight-article-header"><div class="sgp-container"><nav class="insight-breadcrumb" aria-label="パンくずリスト"><a href="/">HOME</a><span>/</span><a href="/insights/">実務ノウハウ</a><span>/</span><a href="/insights/industry/">業界別</a></nav><p class="insight-eyebrow">INSIGHTS / 業界別</p><h1>建設会社の過去案件・見積・図面をRAGで検索する方法</h1><p class="insight-article-description">建設会社の過去案件、見積、図面、写真、施工記録をRAGで検索する方法を解説します。文書整理、メタデータ、版・権限、検索方式、引用、評価質問、導入費用の考え方まで整理します。</p><dl class="insight-byline"><div><dt>執筆</dt><dd><a href="/naoya-sakamoto/">坂本 直哉</a> / 合同会社SGP 代表</dd></div><div><dt>公開</dt><dd><time datetime="2026-09-09">2026.09.09</time></dd></div><div><dt>読了目安</dt><dd>5分</dd></div></dl></div></header><div class="sgp-container insight-article-layout"><aside class="insight-toc"><details open><summary>目次</summary><ol><li><a href="#use-cases">建設会社でRAGが役立つ検索業務</a></li><li><a href="#documents">文書種別ごとに検索方法を分ける</a></li><li><a href="#prepare">RAG投入前に文書を整える</a></li><li><a href="#metadata">建設案件のメタデータを設計する</a></li><li><a href="#architecture">権限付きRAGの構成</a></li><li><a href="#evaluation">評価質問を業務別に作る</a></li><li><a href="#pilot">一種類の文書から段階導入する</a></li><li><a href="#fit">建設RAGを導入する最終判断</a></li></ol></details></aside><div class="insight-reading"><section class="insight-learn"><h2>この記事で分かること</h2><ul><li>建設文書でRAGが役立つ検索</li><li>図面・見積・写真ごとの限界</li><li>版・権限・メタデータの設計</li><li>実務で使える評価方法</li></ul></section><section class="insight-summary"><p>SUMMARY / 3行結論</p><h2>先に結論</h2><ol><li>建設RAGは、過去案件や承認済み文書から候補と根拠を探す仕組みであり、正式図面・数量・単価・工法を確定する仕組みではありません。</li><li>案件ID、工種、建物種別、地域、規模、版、状態、日付、権限をメタデータとして持つと、意味検索だけより候補を絞れます。</li><li>最初は整った見積・施工要領など一種類と、20〜50問の評価セットに限定し、検索精度と確認時間を測ります。</li></ol></section><section id="use-cases" class="insight-article-section"><h2>建設会社でRAGが役立つ検索業務</h2><div class="insight-table-wrap" tabindex="0" role="region" aria-label="建設RAGの利用候補"><table><caption>建設RAGの利用候補</caption><thead><tr><th scope="col">質問</th><th scope="col">検索対象</th><th scope="col">人の判断</th></tr></thead><tbody><tr><th scope="row">似た案件はあるか</th><td>案件概要・見積・完工実績</td><td>条件差・比較可能性</td></tr><tr><th scope="row">この工種の標準手順は</th><td>承認済み施工要領・手順書</td><td>現場適用・最新版</td></tr><tr><th scope="row">過去の質疑と回答は</th><td>質疑書・議事録・変更履歴</td><td>今回契約との違い</td></tr><tr><th scope="row">この不具合の対応例は</th><td>アフター・是正・写真</td><td>原因・安全・保証</td></tr><tr><th scope="row">必要な提出書類は</th><td>発注者要領・社内チェック</td><td>工事固有要件</td></tr></tbody></table></div><aside class="insight-judgement"><p>SGP JUDGEMENT</p><h3>検索結果は候補であり確定根拠ではない</h3><p>過去案件の単価・工法・契約条件は現在の案件へそのまま適用できません。RAGは参照候補と該当箇所を示し、担当者が図書・現場・最新条件と照合します。</p></aside></section><section id="documents" class="insight-article-section"><h2>文書種別ごとに検索方法を分ける</h2><div class="insight-table-wrap" tabindex="0" role="region" aria-label="文書別のRAG適合"><table><caption>文書別のRAG適合</caption><thead><tr><th scope="col">文書</th><th scope="col">検索しやすい内容</th><th scope="col">注意点</th></tr></thead><tbody><tr><th scope="row">見積</th><td>工種、説明、前提、除外</td><td>表構造・単価時点・版</td></tr><tr><th scope="row">仕様・施工要領</th><td>本文、条件、手順</td><td>承認・適用範囲・失効</td></tr><tr><th scope="row">図面</th><td>表題、注記、文字情報</td><td>形状・寸法の正確な解釈は別確認</td></tr><tr><th scope="row">写真</th><td>登録済み説明・部位・工程</td><td>画像だけでは案件文脈が不足</td></tr><tr><th scope="row">議事録・質疑</th><td>決定、質問、回答、担当</td><td>発言と正式決定を区別</td></tr><tr><th scope="row">完工・アフター</th><td>不具合、対応、結果</td><td>原因推定と保証判断を分離</td></tr></tbody></table></div></section><section id="prepare" class="insight-article-section"><h2>RAG投入前に文書を整える</h2><div class="insight-checklist"><ul><li>対象文書の所有者と利用目的を決める</li><li>重複、旧版、ドラフト、提出版を区分する</li><li>画像PDFはOCR結果と原文を照合する</li><li>表・図面・写真は本文との関連を保持する</li><li>案件・文書IDと一意の保存場所を持つ</li><li>個人情報、原価、契約、協力会社情報を分類する</li><li>失効・削除・更新の手順を決める</li></ul></div><p>ファイル名が『最終』『最新版2』のままでは、RAGも正式版を判断できません。文書管理側で承認済み・提出済み・失効を確定し、検索結果に状態を表示します。</p></section><section id="metadata" class="insight-article-section"><h2>建設案件のメタデータを設計する</h2><figure class="insight-architecture"><figcaption>実装構成</figcaption><ol><li>案件ID・現場ID・文書ID</li><li>工事種別・工種・部位</li><li>建物用途・構造・規模</li><li>地域・時期・発注区分</li><li>文書種別・版・承認状態</li><li>作成日・適用日・失効日</li><li>顧客・部署・案件権限</li><li>関連図面・見積・変更・写真</li></ol></figure><p>意味検索だけでなく、『同じ工種』『同規模』『承認済み』『2025年以降』などの項目条件を組み合わせます。数値やコードを厳密に探す場合は、RAGではなくデータベース検索と併用します。</p></section><aside class="insight-mid-link"><p>関連サービス</p><a href="/services/ai/" data-analytics-event="insight_service_click" data-article-slug="construction-rag" data-destination="/services/ai/">AI導入・生成AI活用支援<span aria-hidden="true"> →</span></a></aside><section id="architecture" class="insight-article-section"><h2>権限付きRAGの構成</h2><figure class="insight-architecture"><figcaption>実装構成</figcaption><ol><li>社員認証・所属・担当案件</li><li>質問から工種・案件条件を抽出</li><li>検索前に権限条件を適用</li><li>文書メタデータと本文を検索</li><li>候補を再評価し最新版を優先</li><li>回答と文書名・版・該当箇所を表示</li><li>利用者が原本を確認</li><li>評価・誤り・権限ログを保存</li></ol></figure><aside class="insight-risk"><h3>建設RAGの主要リスク</h3><ul><li>他案件の原価・契約・個人情報を取得する</li><li>旧版図面・失効手順を最新として表示する</li><li>表の列関係や図面寸法を誤って読む</li><li>文書中の命令をシステム指示として扱う</li><li>類似案件の条件差を省略する</li><li>回答を確認せず見積・施工へ転記する</li></ul></aside></section><section id="evaluation" class="insight-article-section"><h2>評価質問を業務別に作る</h2><div class="insight-table-wrap" tabindex="0" role="region" aria-label="建設RAGの評価セット"><table><caption>建設RAGの評価セット</caption><thead><tr><th scope="col">質問種別</th><th scope="col">正解に必要なこと</th><th scope="col">危険な失敗</th></tr></thead><tbody><tr><th scope="row">類似案件</th><td>条件一致と差異の説明</td><td>名称だけで類似と判断</td></tr><tr><th scope="row">見積条件</th><td>版・前提・除外を引用</td><td>金額だけ提示</td></tr><tr><th scope="row">施工要領</th><td>承認済み最新版と適用範囲</td><td>失効版を断定</td></tr><tr><th scope="row">権限外</th><td>検索せず拒否</td><td>文書名や内容を漏らす</td></tr><tr><th scope="row">答えなし</th><td>不足を示し担当へ誘導</td><td>もっともらしく補完</td></tr><tr><th scope="row">矛盾文書</th><td>複数版を示し判断を止める</td><td>一方を勝手に採用</td></tr></tbody></table></div><p>検索正解率、根拠一致率、危険誤回答率、確認時間を分けて測ります。日常質問だけでなく、誤字、略称、図面版違い、権限外、答えなしを含めます。</p></section><section id="pilot" class="insight-article-section"><h2>一種類の文書から段階導入する</h2><ol class="insight-steps"><li><h3>対象を絞る</h3><p>承認済み見積や施工要領など、所有者と版が明確な一種類を選びます。</p></li><li><h3>20〜50問を作る</h3><p>担当者が正解文書・箇所・答えられない条件を定義します。</p></li><li><h3>読み取り専用で試す</h3><p>引用元を必ず開き、業務システムへ自動転記しません。</p></li><li><h3>検索・確認時間を測る</h3><p>現行検索と比較し、文書不足・権限・精度を修正します。</p></li><li><h3>対象文書を追加する</h3><p>品質基準を満たした種類だけを同じ運用責任で広げます。</p></li></ol></section><section id="fit" class="insight-article-section"><h2>建設RAGを導入する最終判断</h2><div class="insight-fit"><section><h3>向いている</h3><ul><li>同じ資料検索が繰り返され、時間を測れる</li><li>対象文書の版・所有者・権限が明確</li><li>業務担当が正解と条件差を評価できる</li><li>回答を候補として確認する運用にできる</li></ul></section><section><h3>向いていない・先に整理が必要</h3><ul><li>共有フォルダの全ファイルを無整理で入れる</li><li>図面・数量・単価をAIだけで確定する</li><li>案件別原価や契約の権限を適用できない</li><li>文書更新と評価の担当者がいない</li></ul></section></div><p>SGPは対象質問、文書、メタデータ、権限、評価セットを先に設計し、既製検索で足りる範囲と個別RAGが必要な範囲を切り分けます。国交省のBIM/CIM関連要領等は対象工事の最新版を確認します。</p></section><section class="insight-related-services"><h2>関連サービス</h2><ul><li><a href="/services/ai/" data-analytics-event="insight_service_click" data-article-slug="construction-rag" data-destination="/services/ai/">AI導入・生成AI活用支援</a></li><li><a href="/services/business-improvement/" data-analytics-event="insight_service_click" data-article-slug="construction-rag" data-destination="/services/business-improvement/">業務改善・DX支援</a></li></ul></section><section class="insight-related"><h2>関連記事</h2><div class="insight-card-grid"><article class="insight-card" data-insight-card data-category="industry" data-tags="建設業|文書管理|写真管理|図面管理"><p class="insight-card-meta"><span>業界別</span><time datetime="2026-09-09">2026.09.09</time><small>6分</small></p><h3><a href="/insights/construction-document-management/" data-analytics-event="insight_related_article_click" data-article-slug="construction-document-management" data-destination="/insights/construction-document-management/">建設会社の写真・図面・書類管理を改善する方法</a></h3><p>建設会社の写真、図面、見積、契約、施工記録を、案件ID、文書種別、版、承認状態、権限で整理する方法を解説します。共有フォルダ改善から文書管理・検索まで段階的に進めます。</p><ul aria-label="タグ"><li>建設業</li><li>文書管理</li><li>写真管理</li></ul></article><article class="insight-card" data-insight-card data-category="industry" data-tags="建設業|見積|Excel|AI活用"><p class="insight-card-meta"><span>業界別</span><time datetime="2026-09-09">2026.09.09</time><small>6分</small></p><h3><a href="/insights/construction-estimate-ai/" data-analytics-event="insight_related_article_click" data-article-slug="construction-estimate-ai" data-destination="/insights/construction-estimate-ai/">建設会社の見積業務を効率化する方法｜Excel・AI・システムの使い分け</a></h3><p>建設会社の見積業務を、受付、現調、数量、単価、原価、承認、提出に分解し、Excel・AI・業務システムの役割を解説します。見積精度を落とさず作成時間と属人化を減らす方法です。</p><ul aria-label="タグ"><li>建設業</li><li>見積</li><li>Excel</li></ul></article><article class="insight-card" data-insight-card data-category="ai" data-tags="RAG|社内検索|生成AI|ナレッジ管理"><p class="insight-card-meta"><span>AI活用</span><time datetime="2026-09-09">2026.09.09</time><small>7分</small></p><h3><a href="/insights/rag-internal-search/" data-analytics-event="insight_related_article_click" data-article-slug="rag-internal-search" data-destination="/insights/rag-internal-search/">社内資料をAI検索するRAGとは？仕組み・費用・導入判断を解説</a></h3><p>RAGは社内資料を検索し、その根拠を使って生成AIが回答する構成です。通常検索との違い、向く会社、データ整備、権限制御、評価、費用構造を整理し、自社にRAGが必要か判断できるように解説します。</p><ul aria-label="タグ"><li>RAG</li><li>社内検索</li><li>生成AI</li></ul></article><article class="insight-card" data-insight-card data-category="ai" data-tags="RAG|導入費用|社内検索|生成AI"><p class="insight-card-meta"><span>AI活用</span><time datetime="2026-09-09">2026.09.09</time><small>6分</small></p><h3><a href="/insights/rag-cost/" data-analytics-event="insight_related_article_click" data-article-slug="rag-cost" data-destination="/insights/rag-cost/">RAG導入費用はいくら？費用を左右する7つの要素</a></h3><p>RAG導入費用を、検証、部署運用、本番連携のモデルケースで示し、データ形式、更新、検索、権限、画面、連携、評価・運用の7要素に分解します。見積比較とROIの考え方も解説します。</p><ul aria-label="タグ"><li>RAG</li><li>導入費用</li><li>社内検索</li></ul></article></div></section><section class="insight-sources"><h2>参考資料</h2><p>仕様・制度は変更される場合があります。リンク先の最新情報も確認してください。</p><ul><li><a href="https://learn.microsoft.com/en-us/azure/foundry/concepts/retrieval-augmented-generation" target="_blank" rel="noopener noreferrer">Retrieval augmented generation (RAG) and indexes in Microsoft Foundry</a><span>Microsoft Learn / 確認日 2026.09.09</span></li><li><a href="https://www.mlit.go.jp/tec/tec_fr_000158.html" target="_blank" rel="noopener noreferrer">BIM/CIM関連基準要領等（令和7年3月）</a><span>国土交通省 / 確認日 2026.09.09</span></li><li><a href="https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf" target="_blank" rel="noopener noreferrer">Artificial Intelligence Risk Management Framework: Generative Artificial Intelligence Profile</a><span>NIST / 確認日 2026.09.09</span></li><li><a href="https://www.ipa.go.jp/security/guide/sme/about.html" target="_blank" rel="noopener noreferrer">中小企業の情報セキュリティ対策ガイドライン</a><span>独立行政法人情報処理推進機構（IPA） / 確認日 2026.09.09</span></li><li><a href="https://www.meti.go.jp/press/2024/04/20240419004/20240419004.html" target="_blank" rel="noopener noreferrer">AI事業者ガイドライン</a><span>経済産業省・総務省 / 確認日 2026.09.09</span></li></ul></section></div></div></article><section class="insight-end-cta"><div class="sgp-container"><p>RELATED SERVICE</p><h2>AIを業務へ組み込む方法を具体化したい方へ</h2><span>業務整理、データ、権限、人の確認を含めて、現場で使えるAI導入を設計します。</span><a href="/services/ai/" data-analytics-event="insight_cta_click" data-cta-type="service" data-cta-location="article-construction-rag" data-destination="/services/ai/">AI導入・生成AI活用支援を見る<span aria-hidden="true"> →</span></a></div></section></main>
+<footer class="sgp-footer"><div class="sgp-container sgp-footer-inner"><div class="sgp-footer-logo"><img src="/assets/sgp-logo-footer.svg" alt="合同会社SGP ロゴ" loading="lazy" /></div><nav class="sgp-footer-links" aria-label="フッターナビゲーション"><a href="/services/">サービス一覧</a><a href="/insights/">実務ノウハウ</a><a href="/cases/">支援事例</a><a href="/case-studies/">開発事例</a><a href="/news/">NEWS</a><a href="/diagnosis/" data-cta-track data-cta-type="diagnosis" data-cta-location="footer">無料経営導線診断</a><a href="/contact/">お問い合わせ</a><a href="/about/">会社情報</a><a href="/naoya-sakamoto/">代表 坂本直哉</a><a href="/faq/">よくある質問</a><a href="/privacy/">プライバシーポリシー</a></nav><div class="sgp-footer-meta"><span>© 2026 合同会社SGP / Sakamoto Growth Partners</span><span>仙台・宮城｜経営導線を実装するIT工務店</span></div></div></footer>
+</section>
+  <script src="/assets/line-cta-tracking.js"></script>
+  <script src="/assets/lead-attribution.js"></script>
+  <script src="/assets/site-analytics.js"></script>
+  <script src="/insights/insights.js"></script>
+</body>
+</html>
