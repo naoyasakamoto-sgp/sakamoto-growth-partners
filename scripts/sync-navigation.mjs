@@ -24,18 +24,25 @@ function addInsightsLink(block, link) {
   return block.replace(serviceLink, (match) => `${match}${link}`);
 }
 
+function addWorksLink(block, link) {
+  if (block.includes('href="/works/"')) return block;
+  const insightsLink = /<a\s+[^>]*href="\/insights\/"[^>]*>[\s\S]*?<\/a>/;
+  if (!insightsLink.test(block)) return block;
+  return block.replace(insightsLink, (match) => `${match}${link}`);
+}
+
 function updateNavigation(html) {
   let next = html.replace(
     /<div class="sgp-nav-links">[\s\S]*?<\/div>/g,
-    (block) => addInsightsLink(block, '<a href="/insights/">実務ノウハウ</a>'),
+    (block) => addWorksLink(addInsightsLink(block, '<a href="/insights/">実務ノウハウ</a>'), '<a href="/works/">制作実績</a>'),
   );
   next = next.replace(
     /<details class="sgp-mobile-menu">[\s\S]*?<\/details>/g,
-    (block) => addInsightsLink(block, '<a href="/insights/">実務ノウハウ</a>'),
+    (block) => addWorksLink(addInsightsLink(block, '<a href="/insights/">実務ノウハウ</a>'), '<a href="/works/">制作実績</a>'),
   );
   next = next.replace(
     /<nav class="sgp-footer-links"[\s\S]*?<\/nav>/g,
-    (block) => addInsightsLink(block, '<a href="/insights/">実務ノウハウ</a>'),
+    (block) => addWorksLink(addInsightsLink(block, '<a href="/insights/">実務ノウハウ</a>'), '<a href="/works/">制作・開発実績</a>'),
   );
   return next;
 }
@@ -50,4 +57,4 @@ for (const file of await htmlFiles(rootDir)) {
   modified += 1;
 }
 
-console.log(`Synchronized INSIGHTS navigation in ${modified} HTML files.`);
+console.log(`Synchronized INSIGHTS / WORKS navigation in ${modified} HTML files.`);

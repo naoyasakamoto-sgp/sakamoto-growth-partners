@@ -4,6 +4,7 @@ import { fileURLToPath } from "node:url";
 import { newsItems } from "../news/news-data.mjs";
 import { extraNewsItems } from "../news/news-extra-data.mjs";
 import { insightCategories, publishedInsights } from "../insights/insights-data.mjs";
+import { publicWorks } from "../works/works-data.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.resolve(__dirname, "..");
@@ -22,6 +23,8 @@ const basePaths = [
   "/diagnosis/",
   "/faq/",
   "/senior-family-support/",
+  "/works/",
+  ...publicWorks.map((work) => `/works/${work.slug}/`),
   "/case-studies/",
   "/case-studies/my-jazz-day/"
 ];
@@ -143,6 +146,20 @@ for (const item of allNewsItems) {
   });
 }
 
+await checkPage("works/index.html", {
+  canonical: `${siteUrl}/works/`,
+  ogType: "website",
+  schemaTypes: ["CollectionPage", "ItemList", "BreadcrumbList"]
+});
+
+for (const work of publicWorks) {
+  await checkPage(`works/${work.slug}/index.html`, {
+    canonical: `${siteUrl}/works/${work.slug}/`,
+    ogType: "website",
+    schemaTypes: ["WebPage", "CreativeWork", "BreadcrumbList"]
+  });
+}
+
 const home = await read("index.html");
 if (!home.includes('href="/news/"')) fail("index.html: NEWS navigation is missing");
 for (const item of [...allNewsItems].sort((a, b) => b.date.localeCompare(a.date)).slice(0, 3)) {
@@ -193,6 +210,7 @@ for (const pagePath of [
   "about/index.html",
   "faq/index.html",
   "cases/index.html",
+  "works/index.html",
   "contact/index.html",
   "naoya-sakamoto/index.html",
   "services/index.html",

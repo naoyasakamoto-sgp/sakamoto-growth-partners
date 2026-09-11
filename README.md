@@ -37,6 +37,15 @@ npm run preview
 
 各記事にはArticle Brief、独自資産、品質スコア、根拠資料、関連記事2〜4本を設定します。個別確認は `node scripts/check-insight-article.mjs {slug}`、30記事の監査レポート再生成は `npm run report:insights`、全体確認は `npm test` で実行します。
 
+### 制作・開発実績 / WORKS
+
+- 案件データ: `works/works-data.mjs`
+- 生成処理: `scripts/generate-works.mjs`
+- 専用CSS/JS: `works/works.css`、`works/works.js`
+- 公開URL: `/works/`、`/works/{slug}/`
+
+`visibility: "public"` の案件だけを公開HTMLとサイトマップへ出力します。顧客案件は公開許可と事実確認が完了するまで `private` とし、匿名事例は公開範囲を確定してから `anonymous` を使用します。成果数値は計測方法と対象期間を確認できる場合だけ登録してください。
+
 ### 開発事例 / Case Study
 
 - 一覧: `/case-studies/`

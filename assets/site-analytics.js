@@ -49,6 +49,7 @@
       case_slug: element && element.getAttribute("data-case-slug") || root.getAttribute("data-case-slug"),
       case_title: root.getAttribute("data-case-title"),
       target_case_id: element && element.getAttribute("data-target-case-id"),
+      work_slug: element && element.getAttribute("data-work-slug") || root.getAttribute("data-work-slug"),
       news_slug: element && element.getAttribute("data-news-slug") || root.getAttribute("data-news-slug"),
       intent: element && element.getAttribute("data-intent"),
     };

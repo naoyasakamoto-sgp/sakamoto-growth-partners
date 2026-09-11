@@ -3,8 +3,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "node scripts/generate-news.mjs && node scripts/generate-insights.mjs && node scripts/sync-navigation.mjs",
-    "check": "node scripts/check-site.mjs && node scripts/check-contact.mjs && node scripts/check-case-studies.mjs && node scripts/check-insights.mjs",
+    "build": "node scripts/generate-works.mjs && node scripts/generate-news.mjs && node scripts/generate-insights.mjs && node scripts/sync-navigation.mjs",
+    "check": "node scripts/check-site.mjs && node scripts/check-contact.mjs && node scripts/check-case-studies.mjs && node scripts/check-insights.mjs && node scripts/check-works.mjs",
     "preview": "node scripts/serve.mjs",
     "report:insights": "node scripts/report-insights.mjs",
     "test": "npm run build && npm run check"

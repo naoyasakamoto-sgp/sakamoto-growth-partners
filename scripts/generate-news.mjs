@@ -4,6 +4,7 @@ import { fileURLToPath } from "node:url";
 import { newsCategories, newsItems } from "../news/news-data.mjs";
 import { extraNewsItems } from "../news/news-extra-data.mjs";
 import { insightCategories, publishedInsights } from "../insights/insights-data.mjs";
+import { publicWorks } from "../works/works-data.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.resolve(__dirname, "..");
@@ -23,6 +24,8 @@ const baseSitemapPages = [
   "/diagnosis/",
   "/faq/",
   "/senior-family-support/",
+  "/works/",
+  ...publicWorks.map((work) => `/works/${work.slug}/`),
   "/case-studies/",
   "/case-studies/my-jazz-day/"
 ];
@@ -370,7 +373,11 @@ function renderSitemap() {
   const urls = [
     ...baseSitemapPages.map((page) => ({
       loc: `${siteUrl}${page}`,
-      lastmod: page.startsWith("/case-studies/") ? "2026-09-02" : "2026-08-31"
+      lastmod: page === "/works/"
+        ? publicWorks.reduce((latest, work) => work.publishedAt > latest ? work.publishedAt : latest, "2026-08-31")
+        : page.startsWith("/works/")
+          ? publicWorks.find((work) => page === `/works/${work.slug}/`)?.publishedAt || "2026-08-31"
+          : page.startsWith("/case-studies/") ? "2026-09-02" : "2026-08-31"
     })),
     { loc: canonicalFor(), lastmod: sortedNews[0].date },
     ...sortedNews.map((item) => ({ loc: canonicalFor(item.slug), lastmod: item.date })),
