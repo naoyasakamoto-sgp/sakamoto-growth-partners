@@ -116,6 +116,12 @@ await checkPage("news/index.html", {
   schemaTypes: ["BreadcrumbList", "ItemList"]
 });
 
+await checkPage("ai-employee/index.html", {
+  canonical: `${siteUrl}/ai-employee/`,
+  ogType: "website",
+  schemaTypes: ["Service", "FAQPage", "BreadcrumbList"]
+});
+
 for (const item of newsItems) {
   await checkPage(`news/${item.slug}/index.html`, {
     canonical: `${siteUrl}/news/${item.slug}/`,
@@ -126,6 +132,7 @@ for (const item of newsItems) {
 
 const home = await read("index.html");
 if (!home.includes('href="/news/"')) fail("index.html: NEWS navigation is missing");
+if (!home.includes('href="/ai-employee/"')) fail("index.html: AI employee navigation is missing");
 for (const item of [...newsItems].sort((a, b) => b.date.localeCompare(a.date)).slice(0, 3)) {
   if (!home.includes(`/news/${item.slug}/`)) fail(`index.html: latest NEWS missing ${item.slug}`);
 }
