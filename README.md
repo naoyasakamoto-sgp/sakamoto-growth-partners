@@ -55,6 +55,16 @@ npm run preview
 
 MY JAZZ DAYの数値は `2026-09-02 00:23 JST` 時点の公開情報を整理したデータスナップショットです。`1 MIN` は操作体験の設計目標であり実測実績ではありません。
 
+### Decision Product / MY HOME PLAN
+
+- 公開URL: `/products/my-home-plan/`
+- ページ: `products/my-home-plan/index.html`
+- 専用CSS/JS: `products/my-home-plan/my-home-plan.css`、`products/my-home-plan/app.js`
+- 検証用プランデータ: `products/my-home-plan/plans.js`
+- 自動検査: `scripts/check-my-home-plan.mjs`
+
+8問の生活要件から、Hard Constraint、重み付き適合、Regret Penalty、Pareto/Diversity再構成を通して4つの比較候補を提示する検証用Decision Engineです。表示プラン・価格・性能はデモデータであり、実際の建築可否や見積を示すものではありません。
+
 ## 計測
 
 - GA4測定ID: `G-08TBS4LE54`
@@ -72,6 +82,9 @@ MY JAZZ DAYの数値は `2026-09-02 00:23 JST` 時点の公開情報を整理し
 - `insight_view` / `insight_50_percent` / `insight_90_percent`
 - `insight_cta_click` / `insight_related_article_click` / `insight_service_click`
 - `diagnosis_click` / `contact_submit` / `generate_lead`
+- `product_view` / `product_start` / `product_result_view`
+- `product_detail_open` / `product_sensitivity_change` / `product_save`
+- `product_detail_click` / `product_contact_click`
 
 Contactでは `source`、`case`、`intent` を `lead_source`、`lead_case`、`lead_intent` としてNetlify Formsへ引き継ぎます。氏名、会社名、メール、電話番号、相談本文はGA4へ送信しません。
 
@@ -94,6 +107,7 @@ DNS認証の登録状態はGoogle Search Console管理画面で確認します�
 - `/about/`、`/naoya-sakamoto/`、`/services/`、`/faq/`
 - `/cases/`、`/case-studies/`、`/contact/`、`/diagnosis/`
 - `/senior-family-support/`、`/news/`、`/insights/`
+- `/products/my-home-plan/`
 - `assets/`、`netlify/functions/`、`robots.txt`、`sitemap.xml`、`_headers`
 
 ## Netlifyデプロイ
@@ -109,5 +123,7 @@ GitHubとの自動連携は設定されていません。`npm test` の後、静
 5. 本番URLのHTTP 200、CSS/JS/画像、画像、フォームFunctionを再確認する。
 
 現在のNetlify site ID: `2a45dabd-9519-466b-a66d-9589261e17a7`
+
+本番正本の復旧記録とロールバック基準は `docs/production-source-20260916.md` を参照してください。本番切替時も既存の `contact-submit`、`diagnosis-submit` Functionsと直前のproduction deployを保持します。
 
 Netlify access tokenなどの認証情報はREADMEやGitに保存しません。

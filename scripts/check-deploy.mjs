@@ -21,6 +21,9 @@ const assetPaths = [
   "/insights/insights.js",
   "/works/works.css",
   "/works/works.js",
+  "/products/my-home-plan/my-home-plan.css",
+  "/products/my-home-plan/app.js",
+  "/products/my-home-plan/plans.js",
   "/case-studies/case-study.css",
   "/assets/case-studies/my-jazz-day/hero-mobile.webp",
   "/assets/case-studies/my-jazz-day/question-taste.webp",
@@ -62,6 +65,7 @@ for (const pathName of [
   "/case-studies/my-jazz-day/",
   "/news/sendai-erabu-my-jazz-day-2026/",
   "/contact/",
+  "/products/my-home-plan/",
 ]) {
   const html = resultFor(pathName).text;
   const title = html.match(/<title>([^<]+)<\/title>/i)?.[1] || "";
@@ -88,4 +92,12 @@ if (functionResponse.status !== 405) {
   throw new Error(`Contact Function GET guard: expected 405, received ${functionResponse.status}`);
 }
 
-console.log(`Deployment HTTP checks passed: ${pagePaths.length} sitemap URLs and ${assetPaths.length} assets returned 200; Contact Function GET guard returned 405.`);
+const diagnosisFunctionResponse = await fetch(`${baseUrl}/.netlify/functions/diagnosis-submit`, {
+  headers: { "user-agent": "SGP-Deploy-QA/1.0" },
+  signal: AbortSignal.timeout(20000),
+});
+if (diagnosisFunctionResponse.status !== 405) {
+  throw new Error(`Diagnosis Function GET guard: expected 405, received ${diagnosisFunctionResponse.status}`);
+}
+
+console.log(`Deployment HTTP checks passed: ${pagePaths.length} sitemap URLs and ${assetPaths.length} assets returned 200; both Function GET guards returned 405.`);

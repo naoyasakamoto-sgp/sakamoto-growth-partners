@@ -27,7 +27,8 @@ const baseSitemapPages = [
   "/works/",
   ...publicWorks.map((work) => `/works/${work.slug}/`),
   "/case-studies/",
-  "/case-studies/my-jazz-day/"
+  "/case-studies/my-jazz-day/",
+  "/products/my-home-plan/"
 ];
 const allNewsItems = [...newsItems, ...extraNewsItems];
 
@@ -377,7 +378,9 @@ function renderSitemap() {
         ? publicWorks.reduce((latest, work) => work.publishedAt > latest ? work.publishedAt : latest, "2026-08-31")
         : page.startsWith("/works/")
           ? publicWorks.find((work) => page === `/works/${work.slug}/`)?.publishedAt || "2026-08-31"
-          : page.startsWith("/case-studies/") ? "2026-09-02" : "2026-08-31"
+          : page === "/products/my-home-plan/"
+            ? "2026-09-16"
+            : page.startsWith("/case-studies/") ? "2026-09-02" : "2026-08-31"
     })),
     { loc: canonicalFor(), lastmod: sortedNews[0].date },
     ...sortedNews.map((item) => ({ loc: canonicalFor(item.slug), lastmod: item.date })),

@@ -26,7 +26,8 @@ const basePaths = [
   "/works/",
   ...publicWorks.map((work) => `/works/${work.slug}/`),
   "/case-studies/",
-  "/case-studies/my-jazz-day/"
+  "/case-studies/my-jazz-day/",
+  "/products/my-home-plan/"
 ];
 const allNewsItems = [...newsItems, ...extraNewsItems];
 
@@ -160,8 +161,15 @@ for (const work of publicWorks) {
   });
 }
 
+await checkPage("products/my-home-plan/index.html", {
+  canonical: `${siteUrl}/products/my-home-plan/`,
+  ogType: "website",
+  schemaTypes: ["WebPage", "WebApplication", "BreadcrumbList"]
+});
+
 const home = await read("index.html");
 if (!home.includes('href="/news/"')) fail("index.html: NEWS navigation is missing");
+if (!home.includes('href="/products/my-home-plan/"')) fail("index.html: MY HOME PLAN entry point is missing");
 for (const item of [...allNewsItems].sort((a, b) => b.date.localeCompare(a.date)).slice(0, 3)) {
   if (!home.includes(`/news/${item.slug}/`)) fail(`index.html: latest NEWS missing ${item.slug}`);
 }
