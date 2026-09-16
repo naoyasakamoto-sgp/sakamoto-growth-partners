@@ -122,6 +122,12 @@ await checkPage("ai-employee/index.html", {
   schemaTypes: ["Service", "FAQPage", "BreadcrumbList"]
 });
 
+await checkPage("services/pawn-bpo/index.html", {
+  canonical: `${siteUrl}/services/pawn-bpo/`,
+  ogType: "website",
+  schemaTypes: ["Service", "FAQPage", "BreadcrumbList"]
+});
+
 for (const item of newsItems) {
   await checkPage(`news/${item.slug}/index.html`, {
     canonical: `${siteUrl}/news/${item.slug}/`,
@@ -133,6 +139,7 @@ for (const item of newsItems) {
 const home = await read("index.html");
 if (!home.includes('href="/news/"')) fail("index.html: NEWS navigation is missing");
 if (!home.includes('href="/ai-employee/"')) fail("index.html: AI employee navigation is missing");
+if (!home.includes('href="/services/pawn-bpo/"')) fail("index.html: pawn BPO internal link is missing");
 for (const item of [...newsItems].sort((a, b) => b.date.localeCompare(a.date)).slice(0, 3)) {
   if (!home.includes(`/news/${item.slug}/`)) fail(`index.html: latest NEWS missing ${item.slug}`);
 }
@@ -142,6 +149,7 @@ const sitemap = await read("sitemap.xml");
 const sitemapUrls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
 const expectedUrls = [
   `${siteUrl}/`,
+  `${siteUrl}/services/pawn-bpo/`,
   `${siteUrl}/news/`,
   ...newsItems.map((item) => `${siteUrl}/news/${item.slug}/`)
 ];
