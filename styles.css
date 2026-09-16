@@ -179,3 +179,20 @@ summary:focus-visible {
 .home-mhp-score small{display:block;color:#668087;font-size:8px;font-weight:900}.home-mhp-score strong{display:block;color:#087f8b;font-size:34px;line-height:1}.home-mhp-score span{display:block;color:#74888e;font-size:8px}
 @media(max-width:900px){.home-mhp-grid{grid-template-columns:1fr}.home-mhp-visual{min-height:300px}}
 @media(max-width:640px){.home-mhp-points{grid-template-columns:1fr}.home-mhp-visual{min-height:280px}.home-mhp-plan{inset:42px 24px}.home-mhp-actions .button{width:100%}}
+
+
+/* Pawn BPO spotlight */
+.home-pawn-bpo{background:linear-gradient(135deg,#06131a,#09212b);color:#fff;border-bottom:1px solid rgba(255,255,255,.08)}
+.home-pawn-bpo-grid{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:center}
+.home-pawn-bpo-copy h2{margin:0 0 14px;font-size:clamp(34px,4vw,52px);letter-spacing:-.045em;line-height:1.22}
+.home-pawn-bpo-copy h2 span{color:#6ff2eb}
+.home-pawn-bpo-copy>p:not(.section-label){color:#bcd0d6;max-width:700px}
+.home-pawn-bpo-actions{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-top:22px}
+.home-pawn-bpo-link{color:#6ff2eb;font-weight:900;text-decoration:underline;text-underline-offset:5px}
+.home-pawn-bpo-flow{display:grid;grid-template-columns:1fr auto 1fr auto 1fr auto 1fr;gap:8px;align-items:center;padding:24px;border:1px solid rgba(111,242,235,.16);border-radius:20px;background:rgba(2,7,11,.3)}
+.home-pawn-bpo-flow>div{padding:16px 10px;border-radius:12px;background:#0d2832;text-align:center;border:1px solid rgba(255,255,255,.06)}
+.home-pawn-bpo-flow span{display:block;color:#6ff2eb;font-size:8px;font-weight:900;letter-spacing:.12em}
+.home-pawn-bpo-flow b{display:block;margin-top:4px;font-size:11px}
+.home-pawn-bpo-flow i{font-style:normal;color:#4bbfc2;font-weight:900}
+@media(max-width:900px){.home-pawn-bpo-grid{grid-template-columns:1fr}.home-pawn-bpo-flow{grid-template-columns:1fr 1fr}.home-pawn-bpo-flow i{display:none}}
+@media(max-width:640px){.home-pawn-bpo-actions .button{width:100%}}
