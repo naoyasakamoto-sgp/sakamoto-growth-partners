@@ -36,14 +36,22 @@ export function scoreCandidate(transaction, contract, aliases = []) {
     normalizePayerName(contract.previouslyApprovedPayer) === payer
   );
 
-  const identityScore = Math.max(nameExact ? 1 : 0, aliasExact ? 1 : 0, historyExact ? 1 : 0);
-  const deadlineScore = dateDistanceScore(transaction.transactionDate, contract.nextDeadline);
+  const identityScore = Math.max(
+    nameExact ? 1 : 0,
+    aliasExact ? 1 : 0,
+    historyExact ? 1 : 0
+  );
+  const deadlineScore = dateDistanceScore(
+    transaction.transactionDate,
+    contract.nextDeadline
+  );
 
+  // Alpha policy:
+  // amount + identity are mandatory for auto; deadline proximity supplies the final confidence.
   const total =
-    0.5 * (amountExact ? 1 : 0) +
+    0.55 * (amountExact ? 1 : 0) +
     0.35 * identityScore +
-    0.1 * deadlineScore +
-    0.05 * (historyExact ? 1 : 0);
+    0.1 * deadlineScore;
 
   const reasonCodes = [];
   if (amountExact) reasonCodes.push("AMOUNT_EXACT");
@@ -68,7 +76,12 @@ export function scoreCandidate(transaction, contract, aliases = []) {
   };
 }
 
-export function evaluateCandidates(transaction, candidates, aliasLookup = {}, policy = DEFAULT_MATCH_POLICY) {
+export function evaluateCandidates(
+  transaction,
+  candidates,
+  aliasLookup = {},
+  policy = DEFAULT_MATCH_POLICY
+) {
   const ranked = candidates
     .map((contract) =>
       scoreCandidate(
@@ -92,6 +105,8 @@ export function evaluateCandidates(transaction, candidates, aliasLookup = {}, po
     first.identityExact;
 
   if (safeForAuto) return { decision: "AUTO", selected: first, ranked };
-  if (first.score >= policy.reviewThreshold) return { decision: "REVIEW", selected: first, ranked };
+  if (first.score >= policy.reviewThreshold) {
+    return { decision: "REVIEW", selected: first, ranked };
+  }
   return { decision: "REJECT", selected: first, ranked };
 }
