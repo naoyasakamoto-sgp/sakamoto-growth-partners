@@ -32,8 +32,9 @@ jobs:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
         run: |
           if [ -z "$NETLIFY_AUTH_TOKEN" ]; then
-            echo "NETLIFY_AUTH_TOKEN is not configured." >&2
-            exit 2
+            echo "NETLIFY_AUTH_TOKEN is not configured; skipping Netlify draft deploy."
+            echo "### Demo hosting\nNetlify token unavailable. Use the public demo branch preview for review." >> "$GITHUB_STEP_SUMMARY"
+            exit 0
           fi
           npx --yes netlify-cli@latest deploy \
             --dir=. \
