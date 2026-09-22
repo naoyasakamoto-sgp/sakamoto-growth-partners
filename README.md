@@ -101,3 +101,23 @@ MY JAZZ DAY Case Study:
 - Analyticsのイベント名・パラメータを確認
 - Case Study → Product / Contact、NEWS → Case Study の内部リンクを確認
 - 既存ページの回帰を確認
+
+
+## 社外IT担当 / IT顧問
+
+2026-09-23より、コーポレートサイトのフロントポジショニングを「仙台・宮城の中小企業の社外IT担当 / IT顧問」へ再設計しています。
+
+- ホーム: `/`
+- サービス詳細: `/services/it-adviser/`
+- 無料IT診断: `/contact/?source=home&intent=it-adviser-diagnosis`
+- Light: 月額10,000円（相談・課題整理中心。実作業は原則別途）
+- Standard: 月額30,000円（定例＋軽微作業＋IT台帳/SaaS整理）
+- Growth: 月額80,000円（業務改善・AI導入の継続推進）
+- 社外DX責任者 / FDE Partner: 月額200,000円〜
+
+ブランドメッセージ:
+- Brand: 「地域の企業に、ITで次の成長を。」
+- Position: 「会社のIT、誰に聞けばいい？をなくす。」
+- Product: 「月1万円から、社外IT担当。」
+
+実装・制作・開発は月額顧問へ無制限に内包せず、業務改善Sprint / 定型業務自動化 / AI業務システム等のプロジェクトとして支援範囲と費用を分離します。

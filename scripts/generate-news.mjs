@@ -7,7 +7,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.resolve(__dirname, "..");
 const siteUrl = "https://sakamoto-growth-partners.com";
 const companyName = "合同会社SGP";
-const companyDescription = "合同会社SGPは、仙台を拠点に、AI・Web・システム開発を活用して企業の売上・業務・組織課題を「現場で動く仕組み」に変える会社です。受託支援に加えて、地域メディア「仙台えらぶ！」をはじめとする自社プロダクト・データ・IPの開発にも取り組んでいます。";
+const companyDescription = "合同会社SGP（Sakamoto Growth Partners）は、仙台・宮城の中小企業向けに、社外IT担当・IT顧問としてIT・AI・業務改善を支援し、必要に応じて自動化・システム実装・運用改善まで行う会社です。受託支援に加えて、地域メディア「仙台えらぶ！」をはじめとする自社プロダクト・データ・IPの開発にも取り組んでいます。";
 
 const escapeHtml = (value) => String(value)
   .replaceAll("&", "&amp;")
@@ -47,20 +47,21 @@ function renderHeader() {
   return `
   <header class="site-header" id="top">
     <div class="container nav-wrap">
-      <a class="brand" href="/" aria-label="合同会社SGP トップへ戻る">
+      <a class="brand brand-v2" href="/" aria-label="Sakamoto Growth Partners トップへ戻る">
         <span class="brand-logo-wrap"><img class="brand-logo" src="/assets/sgp-wordmark.webp" alt="SGP Sakamoto Growth Partners" /></span>
-        <span class="brand-text"><strong>合同会社SGP</strong><small>AIとWebで、地域企業の未来を支える</small></span>
+        <span class="brand-text"><strong>Sakamoto Growth Partners</strong><small>地域の企業に、ITで次の成長を。</small></span>
       </a>
       <button class="menu-button" type="button" aria-label="メニューを開く" aria-expanded="false" aria-controls="global-navigation" data-menu-button>
         <span></span><span></span><span></span>
       </button>
       <nav class="nav" id="global-navigation" aria-label="メインナビゲーション" data-nav>
-        <a href="/#services">サービス</a>
-        <a href="/#cases">支援・事例</a>
+        <a href="/services/it-adviser/">社外IT担当</a>
+        <a href="/#pricing">料金</a>
+        <a href="/#industries">業種別支援</a>
+        <a href="/case-studies/">事例</a>
         <a href="/news/" aria-current="page">NEWS</a>
         <a href="/#company">会社概要</a>
-        <a href="/#faq">よくある質問</a>
-        <a class="nav-cta" href="mailto:naoya.sakamoto@sakamoto-growth-partners.com?subject=無料30分相談の申し込み">無料30分相談する</a>
+        <a class="nav-cta" href="/contact/?source=news&intent=it-adviser-diagnosis">30分無料IT診断</a>
       </nav>
     </div>
   </header>`;
@@ -73,9 +74,10 @@ function renderFooter() {
       <p>© 2026 合同会社SGP / Sakamoto Growth Partners</p>
       <nav class="news-footer-links" aria-label="フッターナビゲーション">
         <a href="/news/">NEWS</a>
-        <a href="/#services">サービス</a>
+        <a href="/services/it-adviser/">社外IT担当</a>
+        <a href="/#pricing">料金</a>
         <a href="/#company">会社概要</a>
-        <a href="mailto:naoya.sakamoto@sakamoto-growth-partners.com">お問い合わせ</a>
+        <a href="/contact/?source=news-footer&intent=it-adviser-diagnosis">お問い合わせ</a>
       </nav>
       <a href="#top">ページ上部へ</a>
     </div>
@@ -104,12 +106,12 @@ function renderBasePage({ title, description, canonical, ogType, content, struct
   <meta property="og:description" content="${escapeHtml(description)}" />
   <meta property="og:type" content="${ogType}" />
   <meta property="og:url" content="${canonical}" />
-  <meta property="og:site_name" content="合同会社SGP" />
+  <meta property="og:site_name" content="Sakamoto Growth Partners" />
   <meta property="og:locale" content="ja_JP" />${articleMeta}
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="${escapeHtml(title)}" />
   <meta name="twitter:description" content="${escapeHtml(description)}" />
-  <meta name="theme-color" content="#06131a" />
+  <meta name="theme-color" content="#062b49" />
   <link rel="stylesheet" href="/styles.css" />
   <link rel="stylesheet" href="/news/news.css" />
 ${schemas}
@@ -265,8 +267,8 @@ ${renderRelatedLinks(item.relatedLinks)}
           <p>${escapeHtml(companyDescription)}</p>
           <div class="news-company-links">
             <a href="/#company">合同会社SGPの会社概要を見る</a>
-            <a href="/#services">合同会社SGPのサービスを見る</a>
-            <a href="mailto:naoya.sakamoto@sakamoto-growth-partners.com">合同会社SGPへ問い合わせる</a>
+            <a href="/services/it-adviser/">社外IT担当・IT顧問を見る</a>
+            <a href="/contact/?source=news-article&intent=it-adviser-diagnosis">Sakamoto Growth Partnersへ相談する</a>
           </div>
         </aside>
         <p class="news-back"><a href="/news/">← NEWS一覧へ戻る</a></p>
@@ -308,7 +310,8 @@ ${latest.map((item) => `        <article>
 
 function renderSitemap() {
   const urls = [
-    { loc: `${siteUrl}/`, lastmod: "2026-09-15" },
+    { loc: `${siteUrl}/`, lastmod: "2026-09-23" },
+    { loc: `${siteUrl}/services/it-adviser/`, lastmod: "2026-09-23" },
     { loc: `${siteUrl}/ai-employee/`, lastmod: "2026-09-15" },
     { loc: `${siteUrl}/services/pawn-bpo/`, lastmod: "2026-09-16" },
     { loc: canonicalFor(), lastmod: sortedNews[0].date },

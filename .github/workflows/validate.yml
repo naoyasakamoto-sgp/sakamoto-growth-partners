@@ -59,6 +59,7 @@ jobs:
             case-studies/index.html
             case-studies/*/index.html
             contact/index.html
+            services/it-adviser/index.html
             products/my-home-plan/*
             assets/case-studies/my-jazz-day/*.webp
           if-no-files-found: error
