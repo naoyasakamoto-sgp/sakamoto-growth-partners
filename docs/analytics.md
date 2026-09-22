@@ -15,6 +15,7 @@
 - `news_contact_click`: `news_slug`, `case_id`
 - `home_diagnosis_click`: `cta_location`
 - `home_plan_click`: `plan`, `cta_location`
+- `service_diagnosis_click`: `service`, `cta_location`
 - `contact_submit`: `lead_source`, `lead_case`, `lead_intent`, `lead_plan`, `industry`, `employees`, `topic`
 
 ## GA4 custom dimensions to create after deployment
