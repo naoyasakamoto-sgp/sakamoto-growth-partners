@@ -152,3 +152,25 @@
   .sgp-brand-contact .contact-assurance span{flex:1;text-align:center;padding:8px 6px}
   .sgp-brand-contact .contact-form{padding:22px 18px}
 }
+
+@media(max-width:1080px){
+  .sgp-brand-contact .nav{
+    top:72px;
+    right:18px;
+    width:min(360px,calc(100vw - 36px));
+    padding:12px;
+    gap:4px;
+    border:1px solid #d7e3e8;
+    border-radius:10px;
+    background:#fff;
+    box-shadow:0 22px 54px rgba(6,43,73,.16);
+  }
+  .sgp-brand-contact .nav a{
+    width:100%;
+    padding:11px 12px;
+    border-radius:6px;
+    color:#29485c;
+  }
+  .sgp-brand-contact .nav a:hover{background:#f2f8fa;color:#079baa}
+  .sgp-brand-contact .nav .nav-cta{margin-top:5px;text-align:center;color:#07353f!important}
+}
