@@ -26,6 +26,9 @@ jobs:
       - name: Build and validate
         run: npm test
 
+      - name: Validate demo preview paths
+        run: node scripts/check-demo-preview.mjs
+
       - name: Deploy draft to Netlify
         id: deploy
         env:
