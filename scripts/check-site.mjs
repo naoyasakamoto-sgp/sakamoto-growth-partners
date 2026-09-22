@@ -144,13 +144,15 @@ for (const item of newsItems) {
 
 const home = await read("index.html");
 for (const token of [
-  "社外IT担当</span>という選択を",
+  "誰に聞けばいい？</span>をなくす。",
   'id="advisor"',
   'id="pricing"',
   'id="industries"',
   "月額</small><strong>10,000",
   "月額</small><strong>30,000",
   "30分無料IT診断",
+  "pricing-decision-strip",
+  "pricing-compare",
   "宮城県「令和8年度県内事業者デジタル化実態調査」",
   "Sakamoto Growth Partners"
 ]) {
