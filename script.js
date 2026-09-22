@@ -1,5 +1,7 @@
-const siteBaseElement = document.querySelector('base[href]');
-const siteRoot = siteBaseElement ? new URL(siteBaseElement.href) : new URL('/', window.location.origin);
+const runtimeScript = document.currentScript;
+const siteRoot = runtimeScript?.src
+  ? new URL('./', runtimeScript.src)
+  : new URL('./', window.location.href);
 const siteUrl = (path = '') => new URL(String(path).replace(/^\//, ''), siteRoot).href;
 const isHomePage = document.body?.dataset?.analyticsPage === 'home';
 
