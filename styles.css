@@ -1087,3 +1087,44 @@ body.home-it-adviser-v2{
   .hero-advisory-rules>div>span{width:24px;height:24px}
   .hero-advisory-rules small{font-size:9px}
 }
+
+
+/* Header polish / mobile navigation contrast */
+.home-it-adviser-v2 .brand-v2 .brand-logo-wrap{
+  width:44px;
+  height:44px;
+  border-radius:8px;
+  border:1px solid #dce8ec;
+  box-shadow:none;
+}
+.home-it-adviser-v2 .brand-v2 .brand-logo{transform:none;object-fit:contain}
+.home-it-adviser-v2 .menu-button span{background:var(--sgp-navy)}
+@media(max-width:1080px){
+  .home-it-adviser-v2 .nav-v2{
+    top:72px;
+    right:18px;
+    width:min(360px,calc(100vw - 36px));
+    padding:12px;
+    gap:4px;
+    border:1px solid #d7e3e8;
+    border-radius:10px;
+    background:#fff;
+    box-shadow:0 22px 54px rgba(6,43,73,.16);
+  }
+  .home-it-adviser-v2 .nav-v2 a{
+    width:100%;
+    padding:11px 12px;
+    border-radius:6px;
+    color:#29485c;
+  }
+  .home-it-adviser-v2 .nav-v2 a:hover{background:#f2f8fa;color:#079baa}
+  .home-it-adviser-v2 .nav-v2 .nav-cta{
+    margin-top:5px;
+    text-align:center;
+    background:var(--sgp-cyan);
+    color:#07353f;
+  }
+}
+@media(max-width:640px){
+  .home-it-adviser-v2 .brand-v2 .brand-logo-wrap{width:40px;height:40px}
+}
