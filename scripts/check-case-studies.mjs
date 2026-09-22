@@ -42,7 +42,7 @@ for (const token of ["TechArticle", "BreadcrumbList", "canonical", "data-analyti
 }
 if (!listing.includes("/case-studies/my-jazz-day/")) throw new Error("Case listing does not link detail");
 if (!news.includes("NewsArticle") || !news.includes("/case-studies/my-jazz-day/")) throw new Error("News/Case bridge missing");
-if (!contact.includes("lead_source") || !contact.includes("lead_case") || !contact.includes("lead_intent")) throw new Error("Contact attribution fields missing");
+if (!contact.includes("lead_source") || !contact.includes("lead_case") || !contact.includes("lead_intent") || !contact.includes("lead_plan")) throw new Error("Contact attribution fields missing");
 
 const extraNews = extraNewsItems[0];
 if (extraNews.slug !== "sendai-erabu-my-jazz-day-2026") throw new Error("Unexpected extra NEWS slug");
