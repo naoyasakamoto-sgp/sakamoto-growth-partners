@@ -174,3 +174,104 @@
   .sgp-brand-contact .nav a:hover{background:#f2f8fa;color:#079baa}
   .sgp-brand-contact .nav .nav-cta{margin-top:5px;text-align:center;color:#07353f!important}
 }
+
+
+/* Conversion refinement v4 — diagnosis value + progressive disclosure */
+.diagnosis-output-grid{
+  display:grid;
+  gap:10px;
+  margin-top:22px;
+}
+.diagnosis-output-grid>div{
+  display:grid;
+  grid-template-columns:32px 1fr;
+  gap:10px 12px;
+  align-items:start;
+  padding:14px 0;
+  border-top:1px solid #dce8ec;
+}
+.diagnosis-output-grid>div:first-child{border-top:0}
+.diagnosis-output-grid span{
+  grid-row:1/3;
+  display:grid;
+  place-items:center;
+  width:30px;
+  height:30px;
+  border-radius:7px;
+  background:#effbfc;
+  color:#079baa;
+  font-size:9px;
+  font-weight:900;
+}
+.diagnosis-output-grid b{
+  color:#062b49;
+  font-size:13px;
+  line-height:1.45;
+}
+.diagnosis-output-grid small{
+  color:#6b808c;
+  font-size:10px;
+  line-height:1.55;
+}
+.contact-optional{
+  margin:4px 0 18px;
+  border:1px solid #dce8ec;
+  border-radius:8px;
+  background:#fbfdfe;
+}
+.contact-optional summary{
+  position:relative;
+  padding:14px 42px 14px 15px;
+  cursor:pointer;
+  list-style:none;
+  color:#294c61;
+  font-size:11px;
+  font-weight:900;
+}
+.contact-optional summary::-webkit-details-marker{display:none}
+.contact-optional summary:after{
+  content:"＋";
+  position:absolute;
+  right:14px;
+  top:50%;
+  transform:translateY(-50%);
+  color:#079baa;
+  font-size:17px;
+}
+.contact-optional[open] summary:after{content:"−"}
+.contact-optional summary span{
+  margin-left:6px;
+  color:#84959e;
+  font-size:9px;
+  font-weight:700;
+}
+.contact-optional-body{
+  padding:16px 15px 2px;
+  border-top:1px solid #dce8ec;
+  background:#fff;
+}
+.contact-submit-assurance{
+  display:flex;
+  justify-content:center;
+  gap:0;
+  margin:2px 0 10px;
+  border-top:1px solid #dce8ec;
+  border-bottom:1px solid #dce8ec;
+}
+.contact-submit-assurance span{
+  padding:7px 14px;
+  border-right:1px solid #dce8ec;
+  color:#657b87;
+  font-size:9px;
+  font-weight:900;
+}
+.contact-submit-assurance span:last-child{border-right:0}
+.sgp-brand-contact fieldset{gap:8px;margin-bottom:18px}
+.sgp-brand-contact fieldset label{padding:10px 12px;font-size:12px}
+.sgp-brand-contact .field{margin-bottom:18px}
+.sgp-brand-contact .contact-note{font-size:10px}
+@media(max-width:720px){
+  .diagnosis-output-grid>div{padding:12px 0}
+  .contact-submit-assurance span{flex:1;text-align:center;padding:7px 5px}
+  .contact-optional summary span{display:block;margin:3px 0 0}
+}
