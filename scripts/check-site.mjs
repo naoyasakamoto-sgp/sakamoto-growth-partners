@@ -137,6 +137,25 @@ for (const item of newsItems) {
 }
 
 const home = await read("index.html");
+for (const token of [
+  "社外IT担当という選択を",
+  'id="advisor"',
+  'id="pricing"',
+  'id="industries"',
+  "月額</small><strong>10,000",
+  "月額</small><strong>30,000",
+  "30分無料IT診断",
+  "宮城県「令和8年度県内事業者デジタル化実態調査」",
+  "Sakamoto Growth Partners"
+]) {
+  if (!home.includes(token)) fail(`index.html: IT adviser redesign token missing: ${token}`);
+}
+const homeSchemaTypes = parseSchemas(home, "index.html").flatMap((schema) => schemaTypes(schema));
+for (const type of ["Organization", "Service"]) {
+  if (!homeSchemaTypes.includes(type)) fail(`index.html: missing ${type} JSON-LD`);
+}
+if (!home.includes('href="/contact/?source=home&intent=it-adviser-diagnosis"')) fail("index.html: diagnosis CTA attribution missing");
+if (!home.includes('data-analytics-event="home_plan_click"')) fail("index.html: pricing analytics event missing");
 if (!home.includes('href="/news/"')) fail("index.html: NEWS navigation is missing");
 if (!home.includes('href="/ai-employee/"')) fail("index.html: AI employee navigation is missing");
 if (!home.includes('href="/services/pawn-bpo/"')) fail("index.html: pawn BPO internal link is missing");
