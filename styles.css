@@ -1223,3 +1223,108 @@ body.home-it-adviser-v2{
 @media(max-width:430px){
   .pricing-scope-details>div{grid-template-columns:1fr}
 }
+
+
+/* Conversion refinement v4 — representative trust */
+.operator-trust{
+  padding:34px 0;
+  border-bottom:1px solid var(--sgp-hairline);
+  background:#fff;
+}
+.operator-trust-grid{
+  display:grid;
+  grid-template-columns:1.2fr .8fr;
+  gap:48px;
+  align-items:center;
+}
+.operator-trust-person{
+  display:grid;
+  grid-template-columns:72px 1fr;
+  gap:20px;
+  align-items:center;
+}
+.operator-mark{
+  display:grid;
+  place-items:center;
+  width:72px;
+  height:72px;
+  border:1px solid #d8e4e9;
+  border-radius:10px;
+  background:#f8fbfc;
+}
+.operator-mark img{width:50px;height:44px;object-fit:contain}
+.operator-trust-person .advisor-eyebrow{margin-bottom:6px}
+.operator-trust-person h2{
+  margin:0;
+  color:var(--sgp-navy);
+  font-size:22px;
+  line-height:1.45;
+  letter-spacing:-.025em;
+}
+.operator-trust-person p:last-child{
+  margin:7px 0 0;
+  color:#647986;
+  font-size:11px;
+  line-height:1.7;
+}
+.operator-trust-profile{
+  padding-left:28px;
+  border-left:1px solid var(--sgp-hairline);
+}
+.operator-name{
+  display:flex;
+  align-items:baseline;
+  gap:10px;
+  margin-bottom:13px;
+}
+.operator-name strong{color:var(--sgp-navy);font-size:16px}
+.operator-name span{color:#7d8e97;font-size:9px}
+.operator-proof-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  border-top:1px solid var(--sgp-hairline);
+  border-left:1px solid var(--sgp-hairline);
+}
+.operator-proof-grid>div{
+  padding:9px 10px;
+  border-right:1px solid var(--sgp-hairline);
+  border-bottom:1px solid var(--sgp-hairline);
+}
+.operator-proof-grid span{
+  display:block;
+  color:#8a9aa3;
+  font-size:7px;
+  font-weight:900;
+  letter-spacing:.1em;
+}
+.operator-proof-grid b{
+  display:block;
+  margin-top:2px;
+  color:#345369;
+  font-size:9px;
+}
+.operator-trust-profile>a{
+  display:inline-block;
+  margin-top:11px;
+  color:var(--sgp-cyan-dark);
+  font-size:10px;
+  font-weight:900;
+}
+@media(max-width:860px){
+  .operator-trust-grid{grid-template-columns:1fr;gap:22px}
+  .operator-trust-profile{padding-left:0;border-left:0}
+}
+@media(max-width:520px){
+  .operator-trust{padding:26px 0}
+  .operator-trust-person{grid-template-columns:52px 1fr;gap:14px}
+  .operator-mark{width:52px;height:52px}
+  .operator-mark img{width:38px;height:34px}
+  .operator-trust-person h2{font-size:18px}
+  .operator-proof-grid{grid-template-columns:1fr 1fr}
+}
+
+/* First-view copy density */
+.advisor-hero-copy .hero-description{max-width:570px}
+@media(max-width:760px){
+  .advisor-hero-copy .hero-description{max-width:none}
+}
