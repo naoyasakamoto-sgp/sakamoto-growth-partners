@@ -144,7 +144,7 @@ for (const item of newsItems) {
 
 const home = await read("index.html");
 for (const token of [
-  "社外IT担当という選択を",
+  "社外IT担当</span>という選択を",
   'id="advisor"',
   'id="pricing"',
   'id="industries"',
