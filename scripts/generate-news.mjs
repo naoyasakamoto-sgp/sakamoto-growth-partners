@@ -55,7 +55,7 @@ function renderHeader() {
         <span></span><span></span><span></span>
       </button>
       <nav class="nav" id="global-navigation" aria-label="メインナビゲーション" data-nav>
-        <a href="/#advisor">社外IT担当</a>
+        <a href="/services/it-adviser/">社外IT担当</a>
         <a href="/#pricing">料金</a>
         <a href="/#industries">業種別支援</a>
         <a href="/case-studies/">事例</a>
@@ -74,7 +74,7 @@ function renderFooter() {
       <p>© 2026 合同会社SGP / Sakamoto Growth Partners</p>
       <nav class="news-footer-links" aria-label="フッターナビゲーション">
         <a href="/news/">NEWS</a>
-        <a href="/#advisor">社外IT担当</a>
+        <a href="/services/it-adviser/">社外IT担当</a>
         <a href="/#pricing">料金</a>
         <a href="/#company">会社概要</a>
         <a href="/contact/?source=news-footer&intent=it-adviser-diagnosis">お問い合わせ</a>
@@ -267,7 +267,7 @@ ${renderRelatedLinks(item.relatedLinks)}
           <p>${escapeHtml(companyDescription)}</p>
           <div class="news-company-links">
             <a href="/#company">合同会社SGPの会社概要を見る</a>
-            <a href="/#advisor">社外IT担当・IT顧問を見る</a>
+            <a href="/services/it-adviser/">社外IT担当・IT顧問を見る</a>
             <a href="/contact/?source=news-article&intent=it-adviser-diagnosis">Sakamoto Growth Partnersへ相談する</a>
           </div>
         </aside>
