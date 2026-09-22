@@ -48,8 +48,8 @@ function ensureCaseStudyStyles() {
 
 function ensureHomeCaseStudy() {
   if (location.pathname !== '/' && location.pathname !== '/index.html') return;
-  const newsSection = document.querySelector('.home-news');
-  if (!newsSection || document.querySelector('#home-case-proof')) return;
+  const trustSection = document.querySelector('#operator-trust');
+  if (!trustSection || document.querySelector('#home-case-proof')) return;
   ensureCaseStudyStyles();
   const section = document.createElement('section');
   section.className = 'home-case-proof';
@@ -58,15 +58,15 @@ function ensureHomeCaseStudy() {
   section.innerHTML = `
     <div class="container">
       <div class="home-case-heading">
-        <div><p class="section-label">CASE STUDY</p><h2 id="home-case-title">言葉ではなく、実際につくったもので。</h2><p>SGPが企画・設計・開発したプロダクトから、どのような問題を、どう仕組みに変えたかをご紹介します。</p></div>
-        <a href="/case-studies/">すべての開発事例を見る →</a>
+        <div><p class="section-label">BUILD PROOF / OWN PRODUCT</p><h2 id="home-case-title">実装力は、公開できる自社プロダクトで。</h2><p>提案だけではなく、企画・データ設計・UI・実装まで自分たちでつくる。その一例を公開しています。</p></div>
+        <a href="/case-studies/">開発事例を見る →</a>
       </div>
       <a class="case-feature-card" href="/case-studies/my-jazz-day/">
-        <div class="case-feature-copy"><p class="case-kicker">CASE STUDY 001 / SENDAI ERABU!</p><h2>897の演奏枠を、<br>1分で「自分だけの一日」へ。</h2><p>音楽の好み・気分・時間・開始エリア・歩行量・新しい音との距離から、フェスの一日を構成するMY JAZZ DAY。</p><div class="case-card-metrics"><span><b>897</b> PERFORMANCE SLOTS</span><span><b>50</b> VENUES</span><span><b>1 MIN</b> PERSONALIZATION</span></div></div>
+        <div class="case-feature-copy"><p class="case-kicker">OWN PRODUCT 001 / SENDAI ERABU!</p><h2>897の演奏枠を、<br>1分で「自分だけの一日」へ。</h2><p>音楽の好み・気分・時間・開始エリア・歩行量・新しい音との距離から、フェスの一日を構成するMY JAZZ DAY。</p><div class="case-card-metrics"><span><b>897</b> PERFORMANCE SLOTS</span><span><b>50</b> VENUES</span><span><b>1 MIN</b> PERSONALIZATION</span></div></div>
         <div class="case-feature-image"><img src="/assets/case-studies/my-jazz-day/hero-mobile.webp" alt="MY JAZZ DAYの画面" loading="lazy"></div>
       </a>
     </div>`;
-  newsSection.before(section);
+  trustSection.after(section);
 }
 
 function ensureLatestNews() {
