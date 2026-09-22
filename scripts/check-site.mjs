@@ -128,6 +128,12 @@ await checkPage("services/pawn-bpo/index.html", {
   schemaTypes: ["Service", "FAQPage", "BreadcrumbList"]
 });
 
+await checkPage("services/it-adviser/index.html", {
+  canonical: `${siteUrl}/services/it-adviser/`,
+  ogType: "website",
+  schemaTypes: ["Service", "FAQPage", "BreadcrumbList"]
+});
+
 for (const item of newsItems) {
   await checkPage(`news/${item.slug}/index.html`, {
     canonical: `${siteUrl}/news/${item.slug}/`,
@@ -168,6 +174,7 @@ const sitemap = await read("sitemap.xml");
 const sitemapUrls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
 const expectedUrls = [
   `${siteUrl}/`,
+  `${siteUrl}/services/it-adviser/`,
   `${siteUrl}/services/pawn-bpo/`,
   `${siteUrl}/news/`,
   ...newsItems.map((item) => `${siteUrl}/news/${item.slug}/`)
