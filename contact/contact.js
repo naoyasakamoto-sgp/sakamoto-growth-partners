@@ -48,6 +48,29 @@
   const form = document.querySelector("[data-contact-form]");
   if (!form) return;
 
+  let formStarted = false;
+  form.addEventListener("focusin", () => {
+    if (formStarted) return;
+    formStarted = true;
+    window.sgpAnalytics?.track?.("contact_form_start", {
+      lead_source: source,
+      lead_intent: intent,
+      lead_plan: plan || "none"
+    });
+  }, { once: true });
+
+  const optional = form.querySelector(".contact-optional");
+  if (optional) {
+    optional.addEventListener("toggle", () => {
+      if (!optional.open) return;
+      window.sgpAnalytics?.track?.("contact_optional_open", {
+        lead_source: source,
+        lead_intent: intent,
+        lead_plan: plan || "none"
+      });
+    });
+  }
+
   form.addEventListener("submit", (event) => {
     event.preventDefault();
     if (!form.reportValidity()) return;
@@ -57,7 +80,7 @@
     const lines = [
       "Sakamoto Growth Partners 坂本様",
       "",
-      "Webサイトを拝見し、相談したくご連絡しました。",
+      "Webサイトを拝見し、30分無料IT診断について相談したくご連絡しました。",
       "",
       `会社名・屋号: ${data.get("company") || "未記入"}`,
       `お名前: ${data.get("name") || ""}`,
