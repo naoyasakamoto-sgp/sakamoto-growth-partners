@@ -23,11 +23,11 @@ jobs:
       - name: Install
         run: npm install --ignore-scripts --no-audit --no-fund
 
-      - name: Build and validate
-        run: npm test
-
       - name: Validate demo preview paths
         run: node scripts/check-demo-preview.mjs
+
+      - name: Build and validate
+        run: npm test
 
       - name: Deploy draft to Netlify
         id: deploy
