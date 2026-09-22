@@ -1,0 +1,24 @@
+name: PawnFlow Core
+
+on:
+  push:
+    paths:
+      - "products/pawnflow-core/**"
+      - ".github/workflows/pawnflow-core.yml"
+  pull_request:
+    paths:
+      - "products/pawnflow-core/**"
+      - ".github/workflows/pawnflow-core.yml"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: products/pawnflow-core
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - run: npm test
