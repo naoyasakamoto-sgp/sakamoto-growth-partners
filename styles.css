@@ -1128,3 +1128,7 @@ body.home-it-adviser-v2{
 @media(max-width:640px){
   .home-it-adviser-v2 .brand-v2 .brand-logo-wrap{width:40px;height:40px}
 }
+
+@media(max-width:760px){
+  .pricing-compare{display:none}
+}
