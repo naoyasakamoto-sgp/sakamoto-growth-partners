@@ -1,0 +1,13 @@
+{
+  "name": "@sgp/pawnflow-core",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Deterministic core logic for PawnFlow AI Alpha",
+  "scripts": {
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
