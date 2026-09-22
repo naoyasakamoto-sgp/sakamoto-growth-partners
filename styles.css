@@ -652,3 +652,5 @@ body.home-it-adviser-v2{
   .usage-row{grid-template-columns:1fr}
   .usage-row b{padding-bottom:5px}.usage-row span{padding-top:5px}
 }
+
+.anchor-alias{position:absolute;width:1px;height:1px;overflow:hidden;pointer-events:none}
