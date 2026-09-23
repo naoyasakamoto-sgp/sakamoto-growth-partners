@@ -50,15 +50,25 @@ const css = await readFile(path.join(root, "styles.css"), "utf8");
 if (!css.includes(".home-it-adviser-v2 .site-header{\n    height:58px")) failures.push("styles.css: mobile header must be fixed at 58px");
 if (!css.includes("width:136px;\n    height:34px;\n    flex:0 0 136px")) failures.push("styles.css: mobile official logo geometry must be 136x34");
 if (!css.includes("top:calc(100% + 6px)")) failures.push("styles.css: mobile navigation must anchor to actual header height");
+if (!css.includes(".home-it-adviser-v2 .advisor-final-cta .final-cta-grid")) failures.push("styles.css: mobile final CTA override missing");
+if (!css.includes("grid-template-columns:minmax(0,1fr)!important")) failures.push("styles.css: mobile final CTA must be one column");
+if (!css.includes(".home-it-adviser-v2 .network-map{")) failures.push("styles.css: mobile network static layout missing");
+if (!css.includes(".home-it-adviser-v2 .operator-trust-grid{")) failures.push("styles.css: representative mobile stack missing");
 if (!css.includes(".reveal{opacity:1")) failures.push("styles.css: reveal must be visible by default");
 if (!css.includes(".js-reveal .reveal")) failures.push("styles.css: JS opt-in reveal rule missing");
+
+const contactCss = await readFile(path.join(root, "contact/contact.css"), "utf8");
+if (!contactCss.includes('input[type="radio"]')) failures.push("contact/contact.css: radio-specific sizing missing");
+if (!contactCss.includes("width:20px!important")) failures.push("contact/contact.css: mobile radio width must be fixed");
+if (!contactCss.includes("grid-template-columns:20px minmax(0,1fr)!important")) failures.push("contact/contact.css: radio label grid missing");
 
 const runtime = await readFile(path.join(root, "script.js"), "utf8");
 if (!runtime.includes("document.currentScript")) failures.push("script.js: runtime root must derive from currentScript");
 if (runtime.includes("new URL('/', window.location.origin)")) failures.push("script.js: origin-root URL fallback would break subpath demo");
 
 const logoSvg = await readFile(path.join(root, "assets/sgp-logo-official.svg"), "utf8");
-if (!logoSvg.includes('id="remove-white"')) failures.push("assets/sgp-logo-official.svg: official logo filter for transparent placement missing");
+if (logoSvg.includes('id="remove-white"')) failures.push("assets/sgp-logo-official.svg: filtered faux transparency must not return");
+if (!logoSvg.includes('data:image/webp;base64,')) failures.push("assets/sgp-logo-official.svg: native transparent logo payload missing");
 
 for (const asset of [
   "assets/sgp-logo-official.svg",
