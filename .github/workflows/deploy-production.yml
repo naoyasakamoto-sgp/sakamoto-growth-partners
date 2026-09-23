@@ -1,9 +1,6 @@
 name: Deploy Production to Netlify
 
 on:
-  push:
-    branches:
-      - main
   workflow_dispatch:
 
 permissions:
@@ -33,15 +30,19 @@ jobs:
         run: npm test
 
       - name: Verify Netlify credentials
+        id: netlify-auth
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
         run: |
           if [ -z "$NETLIFY_AUTH_TOKEN" ]; then
-            echo "::error::NETLIFY_AUTH_TOKEN is not configured."
-            exit 1
+            echo "available=false" >> "$GITHUB_OUTPUT"
+            echo "NETLIFY_AUTH_TOKEN is not configured. Add it as a repository Actions secret, then re-run this workflow." >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "available=true" >> "$GITHUB_OUTPUT"
           fi
 
       - name: Deploy production to Netlify
+        if: steps.netlify-auth.outputs.available == 'true'
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
         run: |
