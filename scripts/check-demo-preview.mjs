@@ -37,7 +37,7 @@ for (const page of pages) {
 }
 
 const home = await readFile(path.join(root, "index.html"), "utf8");
-if (!home.includes("assets/sgp-logo-official.svg")) failures.push("index.html: official supplied logo is not wired into homepage");
+if (!home.includes("assets/sgp-wordmark.webp")) failures.push("index.html: direct WebP wordmark is not wired into homepage");
 if (/advisor-hero-copy[^"]*\breveal\b/.test(home)) failures.push("index.html: hero copy must not depend on reveal JS");
 if (/advisor-hero-visual[^"]*\breveal\b/.test(home)) failures.push("index.html: hero visual must not depend on reveal JS");
 if (!home.includes('id="home-case-proof"')) failures.push("index.html: static build proof section missing");
@@ -59,19 +59,25 @@ if (!css.includes(".js-reveal .reveal")) failures.push("styles.css: JS opt-in re
 
 const contactCss = await readFile(path.join(root, "contact/contact.css"), "utf8");
 if (!contactCss.includes('input[type="radio"]')) failures.push("contact/contact.css: radio-specific sizing missing");
-if (!contactCss.includes("width:20px!important")) failures.push("contact/contact.css: mobile radio width must be fixed");
-if (!contactCss.includes("grid-template-columns:20px minmax(0,1fr)!important")) failures.push("contact/contact.css: radio label grid missing");
+if (!contactCss.includes("width:20px!important")) failures.push("contact/contact.css: radio width must be fixed at 20px");
+if (!contactCss.includes("grid-template-columns:20px minmax(0,1fr)")) failures.push("contact/contact.css: radio label grid missing");
+if (/contact-gold|contact-cream|#c99439|#f4f0e5/i.test(contactCss)) failures.push("contact/contact.css: legacy gold/cream theme leaked back in");
+if (!contactCss.includes("--contact-cyan:#10c4d2")) failures.push("contact/contact.css: SGP cyan design token missing");
 
 const runtime = await readFile(path.join(root, "script.js"), "utf8");
 if (!runtime.includes("document.currentScript")) failures.push("script.js: runtime root must derive from currentScript");
 if (runtime.includes("new URL('/', window.location.origin)")) failures.push("script.js: origin-root URL fallback would break subpath demo");
+if (!runtime.includes("function setupMobileActionBar()")) failures.push("script.js: conditional mobile CTA controller missing");
+if (!runtime.includes("document.querySelector('.expert-network')")) failures.push("script.js: mobile CTA must stop before expert network");
 
-const logoSvg = await readFile(path.join(root, "assets/sgp-logo-official.svg"), "utf8");
-if (logoSvg.includes('id="remove-white"')) failures.push("assets/sgp-logo-official.svg: filtered faux transparency must not return");
-if (!logoSvg.includes('data:image/webp;base64,')) failures.push("assets/sgp-logo-official.svg: native transparent logo payload missing");
+for (const legacyMarker of ["Brand polish v5","Header stabilization v6","Mobile layout hardening v7","Official supplied Sakamoto Growth Partners logo"]) {
+  if (css.includes(legacyMarker)) failures.push(`styles.css: obsolete patch layer remains: ${legacyMarker}`);
+}
+if (!css.includes("SGP Responsive System v8")) failures.push("styles.css: consolidated responsive system missing");
+if ((css.match(/\.home-it-adviser-v2 \.advisor-final-cta \.final-cta-grid/g) || []).length > 2) failures.push("styles.css: final CTA selector duplicated excessively");
+if ((css.match(/\.home-it-adviser-v2 \.brand-v2 \.brand-logo-wrap\.brand-logo-official/g) || []).length > 5) failures.push("styles.css: header logo selector duplicated excessively");
 
 for (const asset of [
-  "assets/sgp-logo-official.svg",
   "assets/sgp-stack.webp",
   "assets/sgp-wordmark.webp",
   "assets/sendai-office.webp",
