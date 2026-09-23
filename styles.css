@@ -1393,3 +1393,43 @@ body.home-it-adviser-v2{
     max-width:92%;
   }
 }
+
+
+/* Hero right-column cleanup: advisory card only, no background image */
+.home-it-adviser-v2 .advisor-hero-visual{
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  min-height:0;
+}
+.home-it-adviser-v2 .hero-advisory-card{
+  position:relative;
+  top:auto;
+  right:auto;
+  width:min(520px,100%);
+  margin:0;
+}
+.home-it-adviser-v2 .advisor-hero-visual .sendai-visual,
+.home-it-adviser-v2 .advisor-hero-visual .sendai-visual-compact{
+  display:none!important;
+}
+@media(max-width:1100px){
+  .home-it-adviser-v2 .advisor-hero-visual{
+    max-width:760px;
+    width:100%;
+    min-height:0;
+    margin:0 auto;
+    justify-content:center;
+  }
+  .home-it-adviser-v2 .hero-advisory-card{
+    width:min(620px,100%);
+  }
+}
+@media(max-width:760px){
+  .home-it-adviser-v2 .advisor-hero-visual{
+    min-height:0;
+  }
+  .home-it-adviser-v2 .hero-advisory-card{
+    width:100%;
+  }
+}
