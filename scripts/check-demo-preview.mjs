@@ -11,6 +11,22 @@ const exists = async (p) => {
   try { await access(p); return true; } catch { return false; }
 };
 
+async function checkWebpIntegrity(relativePath) {
+  const file = await readFile(path.join(root, relativePath));
+  if (file.length < 20) {
+    failures.push(`${relativePath}: WebP file too small`);
+    return;
+  }
+  if (file.toString("ascii", 0, 4) !== "RIFF" || file.toString("ascii", 8, 12) !== "WEBP") {
+    failures.push(`${relativePath}: invalid RIFF/WEBP signature`);
+    return;
+  }
+  const declaredTotal = file.readUInt32LE(4) + 8;
+  if (declaredTotal !== file.length) {
+    failures.push(`${relativePath}: truncated WebP (declared ${declaredTotal}, actual ${file.length})`);
+  }
+}
+
 function localTarget(page, raw) {
   if (!raw || raw.startsWith("#") || /^(?:https?:|mailto:|tel:|data:|javascript:)/i.test(raw)) return null;
   const noHash = raw.split("#")[0].split("?")[0];
@@ -35,6 +51,9 @@ for (const page of pages) {
     }
   }
 }
+
+await checkWebpIntegrity("assets/sgp-wordmark-v2.webp");
+await checkWebpIntegrity("assets/sgp-wordmark-transparent.webp");
 
 const home = await readFile(path.join(root, "index.html"), "utf8");
 const brand = await readFile(path.join(root, "brand/index.html"), "utf8");
