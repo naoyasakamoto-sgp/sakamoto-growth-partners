@@ -97,6 +97,50 @@ function ensureNewsArchiveEntry() {
   timeline.prepend(article);
 }
 
+
+function setupMobileActionBar() {
+  const bar = document.querySelector('.mobile-action-bar');
+  if (!bar) return;
+
+  const startTarget =
+    document.querySelector('#pricing') ||
+    document.querySelector('#plans');
+
+  const stopTarget =
+    document.querySelector('#company') ||
+    document.querySelector('.advisor-final-cta') ||
+    document.querySelector('.advisor-footer');
+
+  const sync = () => {
+    if (!window.matchMedia('(max-width: 760px)').matches) {
+      bar.classList.remove('is-visible');
+      return;
+    }
+
+    const startReached = !startTarget ||
+      startTarget.getBoundingClientRect().top <= window.innerHeight * 0.58;
+
+    const stopReached = stopTarget &&
+      stopTarget.getBoundingClientRect().top <= window.innerHeight - 92;
+
+    bar.classList.toggle('is-visible', Boolean(startReached && !stopReached));
+  };
+
+  let ticking = false;
+  const requestSync = () => {
+    if (ticking) return;
+    ticking = true;
+    window.requestAnimationFrame(() => {
+      sync();
+      ticking = false;
+    });
+  };
+
+  sync();
+  window.addEventListener('scroll', requestSync, { passive: true });
+  window.addEventListener('resize', requestSync);
+}
+
 function ensureAnalytics() {
   if (window.sgpAnalytics || document.querySelector('script[src$="analytics.js"]')) return;
   const script = document.createElement('script');
@@ -109,4 +153,5 @@ ensureCaseStudyNav();
 ensureHomeCaseStudy();
 ensureLatestNews();
 ensureNewsArchiveEntry();
+setupMobileActionBar();
 ensureAnalytics();
