@@ -41,6 +41,8 @@ if (!home.includes("assets/sgp-logo-official.svg")) failures.push("index.html: o
 if (/advisor-hero-copy[^"]*\breveal\b/.test(home)) failures.push("index.html: hero copy must not depend on reveal JS");
 if (/advisor-hero-visual[^"]*\breveal\b/.test(home)) failures.push("index.html: hero visual must not depend on reveal JS");
 if (!home.includes('id="home-case-proof"')) failures.push("index.html: static build proof section missing");
+if (!home.includes('id="brand-movie"')) failures.push("index.html: brand movie section missing");
+if (!home.includes("youtube.com/embed/OBJAqJzNgbc")) failures.push("index.html: requested YouTube brand movie missing");
 if (/advisor-hero-visual[\\s\\S]*?sendai-visual/.test(home)) failures.push("index.html: hero must not contain Sendai background image");
 
 const css = await readFile(path.join(root, "styles.css"), "utf8");
@@ -50,6 +52,9 @@ if (!css.includes(".js-reveal .reveal")) failures.push("styles.css: JS opt-in re
 const runtime = await readFile(path.join(root, "script.js"), "utf8");
 if (!runtime.includes("document.currentScript")) failures.push("script.js: runtime root must derive from currentScript");
 if (runtime.includes("new URL('/', window.location.origin)")) failures.push("script.js: origin-root URL fallback would break subpath demo");
+
+const logoSvg = await readFile(path.join(root, "assets/sgp-logo-official.svg"), "utf8");
+if (!logoSvg.includes('id="remove-white"')) failures.push("assets/sgp-logo-official.svg: official logo filter for transparent placement missing");
 
 for (const asset of [
   "assets/sgp-logo-official.svg",
