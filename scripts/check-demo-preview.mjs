@@ -57,6 +57,7 @@ if (!css.includes(".home-it-adviser-v2 .advisor-final-cta .final-cta-grid")) fai
 if (!css.includes("grid-template-columns:minmax(0,1fr)!important")) failures.push("styles.css: mobile final CTA must be one column");
 if (!css.includes(".home-it-adviser-v2 .network-map{")) failures.push("styles.css: mobile network static layout missing");
 if (!css.includes(".operator-trust-grid{display:block;width:100%}")) failures.push("styles.css: representative mobile stack missing");
+if (!css.includes("min-height:0;\n    padding:24px;\n    justify-content:flex-start")) failures.push("styles.css: founder mobile panel must not reserve fixed height");
 if (!css.includes(".reveal{opacity:1")) failures.push("styles.css: reveal must be visible by default");
 if (!css.includes(".js-reveal .reveal")) failures.push("styles.css: JS opt-in reveal rule missing");
 
@@ -66,6 +67,7 @@ if (!contactCss.includes("width:20px!important")) failures.push("contact/contact
 if (!contactCss.includes("grid-template-columns:20px minmax(0,1fr)")) failures.push("contact/contact.css: radio label grid missing");
 if (/contact-gold|contact-cream|#c99439|#f4f0e5/i.test(contactCss)) failures.push("contact/contact.css: legacy gold/cream theme leaked back in");
 if (!contactCss.includes("--contact-cyan:#10c4d2")) failures.push("contact/contact.css: SGP cyan design token missing");
+if (!contactCss.includes(".contact-hero{padding:30px 0 34px}")) failures.push("contact/contact.css: contact mobile hero density regression");
 
 const runtime = await readFile(path.join(root, "script.js"), "utf8");
 if (!runtime.includes("document.currentScript")) failures.push("script.js: runtime root must derive from currentScript");
