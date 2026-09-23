@@ -10,6 +10,29 @@ const failures = [];
 
 const fail = (message) => failures.push(message);
 const read = (relativePath) => readFile(path.join(rootDir, relativePath), "utf8");
+const readBinary = (relativePath) => readFile(path.join(rootDir, relativePath));
+
+async function checkWebpIntegrity(relativePath) {
+  let buffer;
+  try {
+    buffer = await readBinary(relativePath);
+  } catch {
+    fail(`${relativePath}: file missing`);
+    return;
+  }
+  if (buffer.length < 20) {
+    fail(`${relativePath}: WebP file too small`);
+    return;
+  }
+  if (buffer.toString("ascii", 0, 4) !== "RIFF" || buffer.toString("ascii", 8, 12) !== "WEBP") {
+    fail(`${relativePath}: invalid RIFF/WEBP signature`);
+    return;
+  }
+  const declaredTotal = buffer.readUInt32LE(4) + 8;
+  if (declaredTotal !== buffer.length) {
+    fail(`${relativePath}: truncated WebP (declared ${declaredTotal} bytes, actual ${buffer.length})`);
+  }
+}
 
 function hasSiteHref(html, href) {
   const clean = href.replace(/^\//, "");
@@ -152,6 +175,9 @@ for (const item of newsItems) {
     schemaTypes: ["NewsArticle", "BreadcrumbList"]
   });
 }
+
+await checkWebpIntegrity("assets/sgp-wordmark-v2.webp");
+await checkWebpIntegrity("assets/sgp-wordmark-transparent.webp");
 
 const home = await read("index.html");
 for (const token of [
