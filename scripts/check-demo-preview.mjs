@@ -46,6 +46,10 @@ if (!home.includes("youtube.com/embed/OBJAqJzNgbc")) failures.push("index.html: 
 if (/advisor-hero-visual[\\s\\S]*?sendai-visual/.test(home)) failures.push("index.html: hero must not contain Sendai background image");
 
 const css = await readFile(path.join(root, "styles.css"), "utf8");
+// mobile header stabilization
+if (!css.includes(".home-it-adviser-v2 .site-header{\n    height:58px")) failures.push("styles.css: mobile header must be fixed at 58px");
+if (!css.includes("width:136px;\n    height:34px;\n    flex:0 0 136px")) failures.push("styles.css: mobile official logo geometry must be 136x34");
+if (!css.includes("top:calc(100% + 6px)")) failures.push("styles.css: mobile navigation must anchor to actual header height");
 if (!css.includes(".reveal{opacity:1")) failures.push("styles.css: reveal must be visible by default");
 if (!css.includes(".js-reveal .reveal")) failures.push("styles.css: JS opt-in reveal rule missing");
 
