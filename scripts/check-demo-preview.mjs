@@ -37,6 +37,7 @@ for (const page of pages) {
 }
 
 const home = await readFile(path.join(root, "index.html"), "utf8");
+if (!home.includes("assets/sgp-logo-official.svg")) failures.push("index.html: official supplied logo is not wired into homepage");
 if (/advisor-hero-copy[^"]*\breveal\b/.test(home)) failures.push("index.html: hero copy must not depend on reveal JS");
 if (/advisor-hero-visual[^"]*\breveal\b/.test(home)) failures.push("index.html: hero visual must not depend on reveal JS");
 if (!home.includes('id="home-case-proof"')) failures.push("index.html: static build proof section missing");
@@ -50,6 +51,7 @@ if (!runtime.includes("document.currentScript")) failures.push("script.js: runti
 if (runtime.includes("new URL('/', window.location.origin)")) failures.push("script.js: origin-root URL fallback would break subpath demo");
 
 for (const asset of [
+  "assets/sgp-logo-official.svg",
   "assets/sgp-stack.webp",
   "assets/sgp-wordmark.webp",
   "assets/sendai-office.webp",
