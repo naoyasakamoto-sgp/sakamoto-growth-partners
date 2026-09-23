@@ -107,6 +107,7 @@ function setupMobileActionBar() {
     document.querySelector('#plans');
 
   const stopTarget =
+    document.querySelector('.expert-network') ||
     document.querySelector('#company') ||
     document.querySelector('.advisor-final-cta') ||
     document.querySelector('.advisor-footer');
