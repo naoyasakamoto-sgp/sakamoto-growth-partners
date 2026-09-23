@@ -1754,3 +1754,150 @@ html{scroll-padding-top:76px}
   .home-it-adviser-v2 .network-center{width:110px;height:110px}
   .home-it-adviser-v2 .network-node{min-height:74px}
 }
+
+
+/* =========================================================
+   Mobile Rhythm v9 — 390px
+   8px grid: section 56 / heading 24 / cards 16 / actions 24
+   ========================================================= */
+@media(max-width:430px){
+  .home-it-adviser-v2{
+    --m-section-y:56px;
+    --m-section-tight:40px;
+    --m-heading-gap:24px;
+    --m-content-gap:16px;
+    --m-action-gap:24px;
+  }
+
+  /* Hero */
+  .home-it-adviser-v2 .advisor-hero-grid{
+    padding-top:32px;
+    padding-bottom:40px;
+    gap:24px;
+  }
+  .home-it-adviser-v2 .hero-kicker{margin-bottom:8px}
+  .home-it-adviser-v2 .hero-local-note{margin-bottom:16px}
+  .home-it-adviser-v2 .advisor-hero-copy h1{margin-bottom:0}
+  .home-it-adviser-v2 .hero-message{margin-top:20px}
+  .home-it-adviser-v2 .hero-description{margin-top:10px}
+  .home-it-adviser-v2 .advisor-hero-actions{
+    margin-top:24px;
+    gap:10px;
+  }
+  .home-it-adviser-v2 .hero-microproof{margin-top:16px}
+  .home-it-adviser-v2 .advisor-hero-visual{margin-top:0}
+  .home-it-adviser-v2 .hero-advisory-card{padding:18px}
+
+  /* Shared section cadence */
+  .home-it-adviser-v2 .advisor-section{
+    padding:var(--m-section-y) 0;
+  }
+  .home-it-adviser-v2 .advisor-section-heading{
+    margin-bottom:var(--m-heading-gap);
+  }
+  .home-it-adviser-v2 .advisor-section-heading .advisor-eyebrow{
+    margin-bottom:8px;
+  }
+  .home-it-adviser-v2 .advisor-section-heading h2{
+    margin-bottom:12px;
+  }
+  .home-it-adviser-v2 .advisor-section-heading p:last-child{
+    margin-bottom:0;
+  }
+
+  /* Pricing */
+  .home-it-adviser-v2 .advisor-pricing{
+    padding:var(--m-section-y) 0;
+  }
+  .home-it-adviser-v2 .pricing-decision-strip{
+    gap:8px;
+    margin-bottom:24px;
+  }
+  .home-it-adviser-v2 .pricing-grid-v2{
+    gap:16px;
+  }
+  .home-it-adviser-v2 .pricing-card-v2,
+  .home-it-adviser-v2 .pricing-card-v2.featured{
+    padding:20px;
+  }
+  .home-it-adviser-v2 .pricing-scope-details{
+    margin-top:16px;
+  }
+  .home-it-adviser-v2 .fde-band{
+    margin-top:24px;
+  }
+
+  /* Representative */
+  .home-it-adviser-v2 .operator-trust{
+    padding:var(--m-section-y) 0;
+  }
+  .home-it-adviser-v2 .operator-trust-person .advisor-eyebrow{
+    margin-bottom:8px;
+  }
+  .home-it-adviser-v2 .operator-trust-person p:last-child{
+    margin-top:12px;
+  }
+  .home-it-adviser-v2 .operator-trust-profile{
+    margin-top:24px;
+    padding-top:24px;
+  }
+  .home-it-adviser-v2 .operator-name{
+    margin-bottom:16px;
+  }
+  .home-it-adviser-v2 .operator-trust-profile>a{
+    margin-top:16px;
+  }
+
+  /* Specialist network */
+  .home-it-adviser-v2 .expert-network{
+    padding:var(--m-section-y) 0;
+  }
+  .home-it-adviser-v2 .network-copy .advisor-eyebrow{
+    margin-bottom:8px;
+  }
+  .home-it-adviser-v2 .network-copy h2{
+    margin-bottom:12px;
+  }
+  .home-it-adviser-v2 .network-copy>p{
+    margin-top:0;
+  }
+  .home-it-adviser-v2 .network-note{
+    margin-top:16px!important;
+    padding-top:16px;
+  }
+  .home-it-adviser-v2 .network-map{
+    margin-top:24px;
+    gap:12px;
+  }
+
+  /* Founder / proof / movie */
+  .home-it-adviser-v2 .founder-v2-grid{
+    gap:24px!important;
+  }
+  .home-it-adviser-v2 .founder-brand-panel{
+    padding:24px;
+  }
+  .home-it-adviser-v2 .founder-brand-panel p{
+    margin-top:24px;
+  }
+  .home-it-adviser-v2 .brand-movie{
+    padding:var(--m-section-y) 0;
+  }
+  .home-it-adviser-v2 .brand-movie-grid{
+    gap:24px;
+  }
+
+  /* Final contact CTA */
+  .home-it-adviser-v2 .advisor-final-cta{
+    padding:var(--m-section-y) 0 72px;
+  }
+  .home-it-adviser-v2 .advisor-final-cta .final-cta-grid{
+    gap:24px!important;
+  }
+  .home-it-adviser-v2 .advisor-final-cta .final-cta-grid h2{
+    margin-bottom:12px;
+  }
+  .home-it-adviser-v2 .advisor-final-cta .final-cta-actions{
+    gap:12px;
+  }
+}
