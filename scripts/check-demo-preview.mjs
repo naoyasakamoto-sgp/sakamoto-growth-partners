@@ -41,6 +41,7 @@ if (!home.includes("assets/sgp-logo-official.svg")) failures.push("index.html: o
 if (/advisor-hero-copy[^"]*\breveal\b/.test(home)) failures.push("index.html: hero copy must not depend on reveal JS");
 if (/advisor-hero-visual[^"]*\breveal\b/.test(home)) failures.push("index.html: hero visual must not depend on reveal JS");
 if (!home.includes('id="home-case-proof"')) failures.push("index.html: static build proof section missing");
+if (/advisor-hero-visual[\\s\\S]*?sendai-visual/.test(home)) failures.push("index.html: hero must not contain Sendai background image");
 
 const css = await readFile(path.join(root, "styles.css"), "utf8");
 if (!css.includes(".reveal{opacity:1")) failures.push("styles.css: reveal must be visible by default");
