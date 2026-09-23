@@ -68,6 +68,9 @@ if (!contactCss.includes("grid-template-columns:20px minmax(0,1fr)")) failures.p
 if (/contact-gold|contact-cream|#c99439|#f4f0e5/i.test(contactCss)) failures.push("contact/contact.css: legacy gold/cream theme leaked back in");
 if (!contactCss.includes("--contact-cyan:#10c4d2")) failures.push("contact/contact.css: SGP cyan design token missing");
 if (!contactCss.includes(".contact-hero{padding:30px 0 34px}")) failures.push("contact/contact.css: contact mobile hero density regression");
+if (!contactCss.includes("Mobile Rhythm v9 — 390px contact")) failures.push("contact/contact.css: 390px contact rhythm system missing");
+if (!contactCss.includes(".sgp-brand-contact .contact-hero{\n    padding:32px 0 40px;")) failures.push("contact/contact.css: 390px contact hero rhythm must be 32/40px");
+if (!contactCss.includes(".sgp-brand-contact .contact-grid{\n    gap:32px;")) failures.push("contact/contact.css: contact guide/form rhythm must use 32px gap");
 
 const runtime = await readFile(path.join(root, "script.js"), "utf8");
 if (!runtime.includes("document.currentScript")) failures.push("script.js: runtime root must derive from currentScript");
@@ -79,6 +82,10 @@ for (const legacyMarker of ["Brand polish v5","Header stabilization v6","Mobile 
   if (css.includes(legacyMarker)) failures.push(`styles.css: obsolete patch layer remains: ${legacyMarker}`);
 }
 if (!css.includes("SGP Responsive System v8")) failures.push("styles.css: consolidated responsive system missing");
+if (!css.includes("Mobile Rhythm v9 — 390px")) failures.push("styles.css: 390px mobile rhythm system missing");
+if (!css.includes("--m-section-y:56px")) failures.push("styles.css: mobile section rhythm must use 56px");
+if (!css.includes("--m-heading-gap:24px")) failures.push("styles.css: mobile heading rhythm must use 24px");
+if (!css.includes(".home-it-adviser-v2 .pricing-grid-v2{\n    gap:16px;")) failures.push("styles.css: pricing card rhythm must use 16px gap");
 if ((css.match(/\.home-it-adviser-v2 \.advisor-final-cta \.final-cta-grid/g) || []).length > 4) failures.push("styles.css: final CTA selector duplicated excessively");
 if ((css.match(/\.home-it-adviser-v2 \.brand-v2 \.brand-logo-wrap\.brand-logo-official/g) || []).length > 5) failures.push("styles.css: header logo selector duplicated excessively");
 
