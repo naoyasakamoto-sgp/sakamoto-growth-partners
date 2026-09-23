@@ -1433,3 +1433,300 @@ body.home-it-adviser-v2{
     width:100%;
   }
 }
+
+
+/* =========================================================
+   Brand polish v5 — compact header / elegant signature footer / brand movie
+   ========================================================= */
+
+/* Shared official logo proportions */
+.brand-logo-wrap.brand-logo-official{
+  width:210px;
+  height:44px;
+  border:0;
+  border-radius:0;
+  background:transparent;
+  box-shadow:none;
+  overflow:visible;
+  flex:0 0 auto;
+}
+.brand-logo-wrap.brand-logo-official .brand-logo{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  object-position:left center;
+  transform:none;
+}
+
+/* Header: reduce vertical weight and align logo with navigation */
+.home-it-adviser-v2 .site-header{
+  background:rgba(255,255,255,.97);
+  border-bottom:1px solid #dbe7eb;
+}
+.home-it-adviser-v2 .nav-wrap{
+  height:74px;
+  min-height:74px;
+  gap:30px;
+}
+.home-it-adviser-v2 .brand-v2{
+  min-height:44px;
+  align-items:center;
+}
+.home-it-adviser-v2 .brand-v2 .brand-logo-wrap.brand-logo-official{
+  width:210px;
+  height:44px;
+}
+.home-it-adviser-v2 .nav-v2{
+  gap:24px;
+}
+.home-it-adviser-v2 .nav-v2 a{
+  line-height:1.2;
+}
+.home-it-adviser-v2 .nav-v2 .nav-cta{
+  min-height:42px;
+  display:inline-flex;
+  align-items:center;
+  padding:0 16px;
+}
+
+/* Founder brand panel: signature-like, not a logo card */
+.home-it-adviser-v2 .founder-brand-panel{
+  min-height:340px;
+  padding:42px;
+  border:1px solid #d8e5e9;
+  border-left:3px solid var(--sgp-cyan);
+  border-radius:10px;
+  background:
+    linear-gradient(135deg,rgba(16,196,210,.04),transparent 42%),
+    #fff;
+  box-shadow:none;
+}
+.home-it-adviser-v2 .founder-brand-panel img{
+  width:min(330px,92%);
+  max-width:92%;
+  margin:0;
+}
+.home-it-adviser-v2 .founder-brand-panel p{
+  position:relative;
+  margin:auto 0 0;
+  padding-top:26px;
+  color:var(--sgp-navy);
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:25px;
+  line-height:1.45;
+}
+.home-it-adviser-v2 .founder-brand-panel p:before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:0;
+  width:54px;
+  height:2px;
+  background:var(--sgp-cyan);
+}
+
+/* Brand movie */
+.brand-movie{
+  position:relative;
+  overflow:hidden;
+  padding:88px 0;
+  background:
+    radial-gradient(circle at 12% 10%,rgba(16,196,210,.17),transparent 28%),
+    linear-gradient(135deg,#062b49 0%,#0a3b5c 100%);
+  color:#fff;
+}
+.brand-movie:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background-image:
+    linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
+  background-size:44px 44px;
+  mask-image:linear-gradient(90deg,#000,transparent 78%);
+}
+.brand-movie-grid{
+  position:relative;
+  display:grid;
+  grid-template-columns:.78fr 1.22fr;
+  gap:64px;
+  align-items:center;
+}
+.brand-movie-copy .advisor-eyebrow{
+  color:#74e5ec;
+}
+.brand-movie-copy h2{
+  margin:0;
+  color:#fff;
+  font-size:clamp(34px,4vw,50px);
+  line-height:1.3;
+  letter-spacing:-.04em;
+}
+.brand-movie-copy>p:last-of-type{
+  margin:18px 0 0;
+  color:#c9dbe4;
+  font-size:14px;
+  line-height:1.9;
+}
+.brand-movie-meta{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  margin-top:24px;
+}
+.brand-movie-meta span{
+  padding:6px 9px;
+  border:1px solid rgba(255,255,255,.17);
+  border-radius:999px;
+  color:#d9ebf0;
+  font-size:9px;
+  font-weight:800;
+}
+.brand-movie-player{
+  min-width:0;
+}
+.brand-movie-frame{
+  position:relative;
+  aspect-ratio:16/9;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.2);
+  border-radius:14px;
+  background:#020b11;
+  box-shadow:0 28px 70px rgba(0,0,0,.26);
+}
+.brand-movie-frame iframe{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  border:0;
+}
+.brand-movie-player>p{
+  margin:10px 2px 0;
+  color:#90aebc;
+  font-size:9px;
+  letter-spacing:.08em;
+}
+
+/* Footer: replace the navy + white-logo-tile look with a light signature footer */
+.home-it-adviser-v2 .advisor-footer{
+  position:relative;
+  padding:0;
+  background:#f7fafb;
+  color:var(--sgp-navy);
+  border-top:1px solid #d8e5e9;
+}
+.home-it-adviser-v2 .advisor-footer:before{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  top:0;
+  height:3px;
+  background:linear-gradient(90deg,var(--sgp-cyan),#6fe3e9 34%,transparent 72%);
+}
+.home-it-adviser-v2 .advisor-footer-main{
+  padding-top:48px;
+  padding-bottom:46px;
+  align-items:center;
+}
+.home-it-adviser-v2 .footer-brand-v2 img{
+  width:260px;
+  max-width:100%;
+  height:auto;
+  padding:0;
+  background:transparent;
+  border:0;
+  border-radius:0;
+}
+.home-it-adviser-v2 .footer-brand-v2 p{
+  margin-top:12px;
+  color:#5f7482;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:13px;
+}
+.home-it-adviser-v2 .advisor-footer nav a{
+  color:#3f5a6c;
+  font-size:10px;
+}
+.home-it-adviser-v2 .advisor-footer nav a:hover{
+  color:var(--sgp-cyan-dark);
+}
+.home-it-adviser-v2 .footer-company-v2 strong{
+  color:var(--sgp-navy);
+}
+.home-it-adviser-v2 .footer-company-v2 span{
+  color:#667d89;
+}
+.home-it-adviser-v2 .footer-company-v2 small{
+  color:#8a9da6;
+}
+
+/* Generated/news headers using the same logo asset */
+.brand .brand-logo-wrap.brand-logo-official{
+  width:210px;
+  height:44px;
+}
+.brand .brand-logo-wrap.brand-logo-official + .brand-text{
+  display:none!important;
+}
+
+@media(max-width:1080px){
+  .brand-logo-wrap.brand-logo-official,
+  .brand .brand-logo-wrap.brand-logo-official,
+  .home-it-adviser-v2 .brand-v2 .brand-logo-wrap.brand-logo-official{
+    width:182px;
+    height:40px;
+  }
+  .home-it-adviser-v2 .nav-wrap{
+    height:68px;
+    min-height:68px;
+  }
+  .brand-movie-grid{
+    grid-template-columns:1fr;
+    gap:34px;
+  }
+  .brand-movie-copy{
+    max-width:720px;
+  }
+}
+
+@media(max-width:640px){
+  .brand-logo-wrap.brand-logo-official,
+  .brand .brand-logo-wrap.brand-logo-official,
+  .home-it-adviser-v2 .brand-v2 .brand-logo-wrap.brand-logo-official{
+    width:150px;
+    height:34px;
+  }
+  .home-it-adviser-v2 .nav-wrap{
+    height:62px;
+    min-height:62px;
+  }
+  .home-it-adviser-v2 .brand-v2{
+    min-height:34px;
+  }
+  .brand-movie{
+    padding:64px 0;
+  }
+  .brand-movie-grid{
+    gap:26px;
+  }
+  .brand-movie-copy h2{
+    font-size:31px;
+  }
+  .home-it-adviser-v2 .founder-brand-panel{
+    min-height:260px;
+    padding:28px;
+  }
+  .home-it-adviser-v2 .founder-brand-panel p{
+    font-size:21px;
+  }
+  .home-it-adviser-v2 .advisor-footer-main{
+    padding-top:38px;
+    padding-bottom:34px;
+  }
+  .home-it-adviser-v2 .footer-brand-v2 img{
+    width:220px;
+  }
+}
