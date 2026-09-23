@@ -1901,3 +1901,130 @@ html{scroll-padding-top:76px}
     gap:12px;
   }
 }
+
+
+/* =========================================================
+   Specialist Network Mobile v10
+   Preserve hub-and-spoke meaning at 390px.
+   ========================================================= */
+@media(max-width:760px){
+  .home-it-adviser-v2 .network-map{
+    position:relative;
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    grid-template-areas:
+      "tax labor"
+      "hub hub"
+      "legal finance";
+    column-gap:14px;
+    row-gap:20px;
+    width:100%;
+    min-height:0;
+    margin-top:24px;
+    isolation:isolate;
+  }
+
+  .home-it-adviser-v2 .network-node,
+  .home-it-adviser-v2 .network-center{
+    position:relative;
+    inset:auto;
+    left:auto;
+    right:auto;
+    top:auto;
+    bottom:auto;
+    transform:none;
+    z-index:2;
+  }
+
+  .home-it-adviser-v2 .network-node.n1{grid-area:tax}
+  .home-it-adviser-v2 .network-node.n2{grid-area:labor}
+  .home-it-adviser-v2 .network-center{grid-area:hub}
+  .home-it-adviser-v2 .network-node.n3{grid-area:legal}
+  .home-it-adviser-v2 .network-node.n4{grid-area:finance}
+
+  .home-it-adviser-v2 .network-center{
+    justify-self:center;
+    align-self:center;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+    width:112px;
+    height:112px;
+    margin:2px 0;
+    padding:0;
+    border:1px solid rgba(16,196,210,.18);
+    border-radius:50%;
+    background:#fff;
+    color:var(--sgp-navy);
+    box-shadow:0 16px 36px rgba(0,0,0,.18);
+    text-align:center;
+  }
+
+  .home-it-adviser-v2 .network-center strong{
+    display:block;
+    margin:0;
+    font-size:24px;
+    line-height:1;
+    letter-spacing:.01em;
+    color:var(--sgp-navy);
+  }
+
+  .home-it-adviser-v2 .network-center small{
+    display:block;
+    margin:0;
+    font-size:9px;
+    line-height:1;
+    font-weight:900;
+    letter-spacing:.08em;
+    color:var(--sgp-cyan-dark);
+  }
+
+  .home-it-adviser-v2 .network-node{
+    width:100%;
+    min-height:76px;
+    height:auto;
+    padding:12px 8px;
+    border-radius:10px;
+  }
+
+  .home-it-adviser-v2 .network-map:before,
+  .home-it-adviser-v2 .network-map:after{
+    content:"";
+    display:block;
+    position:absolute;
+    z-index:1;
+    left:50%;
+    top:50%;
+    width:58%;
+    height:1px;
+    background:rgba(126,229,236,.17);
+    transform-origin:center;
+    pointer-events:none;
+  }
+
+  .home-it-adviser-v2 .network-map:before{
+    transform:translate(-50%,-50%) rotate(31deg);
+  }
+
+  .home-it-adviser-v2 .network-map:after{
+    transform:translate(-50%,-50%) rotate(-31deg);
+  }
+}
+
+@media(max-width:430px){
+  .home-it-adviser-v2 .network-map{
+    column-gap:12px;
+    row-gap:18px;
+  }
+
+  .home-it-adviser-v2 .network-center{
+    width:108px;
+    height:108px;
+  }
+
+  .home-it-adviser-v2 .network-center strong{font-size:23px}
+  .home-it-adviser-v2 .network-center small{font-size:8.5px}
+  .home-it-adviser-v2 .network-node{min-height:72px}
+}
