@@ -37,7 +37,9 @@ for (const page of pages) {
 }
 
 const home = await readFile(path.join(root, "index.html"), "utf8");
-if (!home.includes("assets/sgp-wordmark.webp")) failures.push("index.html: direct WebP wordmark is not wired into homepage");
+if (!home.includes("assets/sgp-wordmark-transparent.webp")) failures.push("index.html: transparent horizontal wordmark is not wired into homepage");
+if (home.includes("assets/sgp-wordmark.webp")) failures.push("index.html: legacy opaque wordmark must not be used");
+if (home.includes("sgp-logo-official.svg")) failures.push("index.html: SVG-wrapped logo must not be used");
 if (/advisor-hero-copy[^"]*\breveal\b/.test(home)) failures.push("index.html: hero copy must not depend on reveal JS");
 if (/advisor-hero-visual[^"]*\breveal\b/.test(home)) failures.push("index.html: hero visual must not depend on reveal JS");
 if (!home.includes('id="home-case-proof"')) failures.push("index.html: static build proof section missing");
@@ -48,7 +50,8 @@ if (/advisor-hero-visual[\\s\\S]*?sendai-visual/.test(home)) failures.push("inde
 const css = await readFile(path.join(root, "styles.css"), "utf8");
 // mobile header stabilization
 if (!css.includes(".home-it-adviser-v2 .site-header{height:58px;min-height:58px}")) failures.push("styles.css: mobile header must be fixed at 58px");
-if (!css.includes("width:136px;\n    height:34px;\n    flex:0 0 136px")) failures.push("styles.css: mobile official logo geometry must be 136x34");
+if (!css.includes("width:136px;\n    height:auto;\n    flex:0 0 136px")) failures.push("styles.css: mobile transparent wordmark width must be 136px with intrinsic height");
+if (!css.includes("height:auto;\n    max-width:none")) failures.push("styles.css: wordmark image must preserve intrinsic aspect ratio");
 if (!css.includes("top:calc(100% + 6px)")) failures.push("styles.css: mobile navigation must anchor to actual header height");
 if (!css.includes(".home-it-adviser-v2 .advisor-final-cta .final-cta-grid")) failures.push("styles.css: mobile final CTA override missing");
 if (!css.includes("grid-template-columns:minmax(0,1fr)!important")) failures.push("styles.css: mobile final CTA must be one column");
@@ -79,7 +82,7 @@ if ((css.match(/\.home-it-adviser-v2 \.brand-v2 \.brand-logo-wrap\.brand-logo-of
 
 for (const asset of [
   "assets/sgp-stack.webp",
-  "assets/sgp-wordmark.webp",
+  "assets/sgp-wordmark-transparent.webp",
   "assets/sendai-office.webp",
   "assets/case-studies/my-jazz-day/hero-mobile.webp",
   "styles.css",
