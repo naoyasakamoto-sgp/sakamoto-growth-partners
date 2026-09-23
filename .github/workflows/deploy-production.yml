@@ -1,0 +1,58 @@
+name: Deploy Production to Netlify
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: sgp-production
+  cancel-in-progress: true
+
+jobs:
+  deploy-production:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install
+        run: npm install --ignore-scripts --no-audit --no-fund
+
+      - name: Build and validate
+        run: npm test
+
+      - name: Verify Netlify credentials
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        run: |
+          if [ -z "$NETLIFY_AUTH_TOKEN" ]; then
+            echo "::error::NETLIFY_AUTH_TOKEN is not configured."
+            exit 1
+          fi
+
+      - name: Deploy production to Netlify
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        run: |
+          npx --yes netlify-cli@latest deploy             --prod             --dir=.             --site=2a45dabd-9519-466b-a66d-9589261e17a7             --auth="$NETLIFY_AUTH_TOKEN"             --message="Production ${GITHUB_SHA}"             --json | tee netlify-production.json
+          node -e 'const fs=require("fs"); const x=JSON.parse(fs.readFileSync("netlify-production.json","utf8")); console.log("### Production deploy\n"+(x.url||x.deploy_ssl_url||x.deploy_url||JSON.stringify(x)))' >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload production deploy metadata
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: netlify-production-${{ github.sha }}
+          path: netlify-production.json
+          if-no-files-found: ignore
+          retention-days: 7
