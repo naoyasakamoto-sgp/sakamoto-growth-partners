@@ -1676,14 +1676,20 @@ html{scroll-padding-top:76px}
   .home-it-adviser-v2 .founder-brand-panel,
   .home-it-adviser-v2 .founder-v2-copy{width:100%;min-width:0}
   .home-it-adviser-v2 .founder-brand-panel{
-    min-height:210px;
-    padding:26px;
+    min-height:0;
+    padding:24px;
+    justify-content:flex-start;
   }
   .home-it-adviser-v2 .founder-brand-panel img{
-    width:min(255px,84%);
-    max-width:84%;
+    width:min(230px,78%);
+    max-width:78%;
   }
-  .home-it-adviser-v2 .founder-brand-panel p{font-size:21px}
+  .home-it-adviser-v2 .founder-brand-panel p{
+    margin:24px 0 0;
+    padding-top:20px;
+    font-size:20px;
+    line-height:1.5;
+  }
 
   .brand-movie{padding:64px 0}
   .brand-movie-grid{grid-template-columns:1fr;gap:26px}
