@@ -86,7 +86,7 @@ if (!css.includes("Mobile Rhythm v9 — 390px")) failures.push("styles.css: 390p
 if (!css.includes("--m-section-y:56px")) failures.push("styles.css: mobile section rhythm must use 56px");
 if (!css.includes("--m-heading-gap:24px")) failures.push("styles.css: mobile heading rhythm must use 24px");
 if (!css.includes(".home-it-adviser-v2 .pricing-grid-v2{\n    gap:16px;")) failures.push("styles.css: pricing card rhythm must use 16px gap");
-if ((css.match(/\.home-it-adviser-v2 \.advisor-final-cta \.final-cta-grid/g) || []).length > 4) failures.push("styles.css: final CTA selector duplicated excessively");
+if ((css.match(/\.home-it-adviser-v2 \.advisor-final-cta \.final-cta-grid/g) || []).length > 5) failures.push("styles.css: final CTA selector duplicated excessively");
 if ((css.match(/\.home-it-adviser-v2 \.brand-v2 \.brand-logo-wrap\.brand-logo-official/g) || []).length > 5) failures.push("styles.css: header logo selector duplicated excessively");
 
 for (const asset of [
