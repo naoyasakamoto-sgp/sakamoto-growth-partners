@@ -311,6 +311,7 @@ function renderSitemap() {
   const urls = [
     { loc: `${siteUrl}/`, lastmod: "2026-09-23" },
     { loc: `${siteUrl}/services/it-adviser/`, lastmod: "2026-09-23" },
+    { loc: `${siteUrl}/brand/`, lastmod: "2026-09-23" },
     { loc: `${siteUrl}/ai-employee/`, lastmod: "2026-09-15" },
     { loc: `${siteUrl}/services/pawn-bpo/`, lastmod: "2026-09-16" },
     { loc: canonicalFor(), lastmod: sortedNews[0].date },
