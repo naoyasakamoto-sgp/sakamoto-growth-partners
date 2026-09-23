@@ -1730,3 +1730,138 @@ body.home-it-adviser-v2{
     width:220px;
   }
 }
+
+
+/* =========================================================
+   Header stabilization v6 — single source of truth
+   Fixes mobile logo overflow / mixed legacy dimensions
+   ========================================================= */
+html{scroll-padding-top:76px}
+
+.home-it-adviser-v2 .site-header{
+  position:sticky;
+  top:0;
+  z-index:1000;
+  background:#fff;
+  border-bottom:1px solid #dce7eb;
+  color:var(--sgp-navy);
+  box-shadow:0 1px 0 rgba(6,43,73,.02);
+  backdrop-filter:none;
+  -webkit-backdrop-filter:none;
+}
+.home-it-adviser-v2 .nav-wrap{
+  position:relative;
+  height:72px;
+  min-height:72px;
+  padding-block:0;
+  align-items:center;
+}
+.home-it-adviser-v2 .brand-v2{
+  display:flex;
+  align-items:center;
+  min-width:0;
+  max-width:260px;
+  height:100%;
+  line-height:0;
+}
+.home-it-adviser-v2 .brand-v2 .brand-logo-wrap.brand-logo-official{
+  display:block;
+  width:210px;
+  height:46px;
+  flex:0 0 210px;
+  overflow:hidden;
+  border:0;
+  border-radius:0;
+  background:transparent;
+  box-shadow:none;
+  line-height:0;
+}
+.home-it-adviser-v2 .brand-v2 .brand-logo-wrap.brand-logo-official .brand-logo{
+  display:block;
+  width:100%;
+  height:100%;
+  max-width:none;
+  object-fit:contain;
+  object-position:left center;
+  transform:none;
+}
+.home-it-adviser-v2 .menu-button{
+  flex:0 0 44px;
+  width:44px;
+  height:44px;
+  padding:8px;
+  align-items:center;
+  justify-content:center;
+  gap:5px;
+  border-radius:8px;
+}
+.home-it-adviser-v2 .menu-button span{
+  width:28px;
+  height:2px;
+  flex:0 0 2px;
+  background:var(--sgp-navy);
+}
+@media(max-width:1080px){
+  .home-it-adviser-v2 .nav-wrap{
+    height:64px;
+    min-height:64px;
+  }
+  .home-it-adviser-v2 .brand-v2{
+    max-width:210px;
+  }
+  .home-it-adviser-v2 .brand-v2 .brand-logo-wrap.brand-logo-official{
+    width:176px;
+    height:40px;
+    flex-basis:176px;
+  }
+  .home-it-adviser-v2 .nav-v2{
+    top:calc(100% + 8px);
+    right:0;
+  }
+}
+@media(max-width:640px){
+  html{scroll-padding-top:62px}
+  .home-it-adviser-v2 .site-header{
+    height:58px;
+    min-height:58px;
+  }
+  .home-it-adviser-v2 .nav-wrap{
+    width:calc(100% - 28px);
+    height:58px;
+    min-height:58px;
+    gap:12px;
+  }
+  .home-it-adviser-v2 .brand-v2{
+    height:58px;
+    max-width:150px;
+    overflow:hidden;
+  }
+  .home-it-adviser-v2 .brand-v2 .brand-logo-wrap.brand-logo-official{
+    width:136px;
+    height:34px;
+    flex:0 0 136px;
+    overflow:hidden;
+  }
+  .home-it-adviser-v2 .brand-v2 .brand-logo-wrap.brand-logo-official .brand-logo{
+    width:136px;
+    height:34px;
+    object-fit:contain;
+    object-position:left center;
+  }
+  .home-it-adviser-v2 .menu-button{
+    display:flex;
+    margin-left:auto;
+    width:42px;
+    height:42px;
+    flex-basis:42px;
+    padding:7px;
+  }
+  .home-it-adviser-v2 .menu-button span{
+    width:27px;
+  }
+  .home-it-adviser-v2 .nav-v2{
+    top:calc(100% + 6px);
+    right:0;
+    width:min(330px,calc(100vw - 28px));
+  }
+}
