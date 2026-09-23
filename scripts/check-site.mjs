@@ -11,6 +11,11 @@ const failures = [];
 const fail = (message) => failures.push(message);
 const read = (relativePath) => readFile(path.join(rootDir, relativePath), "utf8");
 
+function hasSiteHref(html, href) {
+  const clean = href.replace(/^\//, "");
+  return html.includes(`href="/${clean}`) || html.includes(`href="${clean}`);
+}
+
 function count(source, pattern) {
   return [...source.matchAll(pattern)].length;
 }
@@ -134,6 +139,12 @@ await checkPage("services/it-adviser/index.html", {
   schemaTypes: ["Service", "FAQPage", "BreadcrumbList"]
 });
 
+await checkPage("brand/index.html", {
+  canonical: `${siteUrl}/brand/`,
+  ogType: "website",
+  schemaTypes: ["Organization", "BreadcrumbList"]
+});
+
 for (const item of newsItems) {
   await checkPage(`news/${item.slug}/index.html`, {
     canonical: `${siteUrl}/news/${item.slug}/`,
@@ -144,13 +155,15 @@ for (const item of newsItems) {
 
 const home = await read("index.html");
 for (const token of [
-  "社外IT担当</span>という選択を",
+  "誰に聞けばいい？</span>をなくす。",
   'id="advisor"',
   'id="pricing"',
   'id="industries"',
   "月額</small><strong>10,000",
   "月額</small><strong>30,000",
   "30分無料IT診断",
+  "pricing-decision-strip",
+  "pricing-compare",
   "宮城県「令和8年度県内事業者デジタル化実態調査」",
   "Sakamoto Growth Partners"
 ]) {
@@ -160,13 +173,14 @@ const homeSchemaTypes = parseSchemas(home, "index.html").flatMap((schema) => sch
 for (const type of ["Organization", "Service"]) {
   if (!homeSchemaTypes.includes(type)) fail(`index.html: missing ${type} JSON-LD`);
 }
-if (!home.includes('href="/contact/?source=home&intent=it-adviser-diagnosis"')) fail("index.html: diagnosis CTA attribution missing");
+if (!hasSiteHref(home, "contact/?source=home&intent=it-adviser-diagnosis")) fail("index.html: diagnosis CTA attribution missing");
 if (!home.includes('data-analytics-event="home_plan_click"')) fail("index.html: pricing analytics event missing");
-if (!home.includes('href="/news/"')) fail("index.html: NEWS navigation is missing");
-if (!home.includes('href="/ai-employee/"')) fail("index.html: AI employee navigation is missing");
-if (!home.includes('href="/services/pawn-bpo/"')) fail("index.html: pawn BPO internal link is missing");
+if (!hasSiteHref(home, "news/")) fail("index.html: NEWS navigation is missing");
+if (!hasSiteHref(home, "brand/")) fail("index.html: brand/company navigation is missing");
+if (!hasSiteHref(home, "ai-employee/")) fail("index.html: AI employee navigation is missing");
+if (!hasSiteHref(home, "services/pawn-bpo/")) fail("index.html: pawn BPO internal link is missing");
 for (const item of [...newsItems].sort((a, b) => b.date.localeCompare(a.date)).slice(0, 3)) {
-  if (!home.includes(`/news/${item.slug}/`)) fail(`index.html: latest NEWS missing ${item.slug}`);
+  if (!home.includes(`news/${item.slug}/`)) fail(`index.html: latest NEWS missing ${item.slug}`);
 }
 await checkInternalLinks(home, "index.html");
 
@@ -175,6 +189,7 @@ const sitemapUrls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) =>
 const expectedUrls = [
   `${siteUrl}/`,
   `${siteUrl}/services/it-adviser/`,
+  `${siteUrl}/brand/`,
   `${siteUrl}/services/pawn-bpo/`,
   `${siteUrl}/news/`,
   ...newsItems.map((item) => `${siteUrl}/news/${item.slug}/`)

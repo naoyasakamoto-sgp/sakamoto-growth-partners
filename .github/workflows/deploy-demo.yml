@@ -1,0 +1,57 @@
+name: Deploy IT Adviser Demo
+
+on:
+  push:
+    branches:
+      - demo/it-adviser-preview-20260923
+
+permissions:
+  contents: read
+
+jobs:
+  deploy-demo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install
+        run: npm install --ignore-scripts --no-audit --no-fund
+
+      - name: Validate demo preview paths
+        run: node scripts/check-demo-preview.mjs
+
+      - name: Build and validate
+        run: npm test
+
+      - name: Deploy draft to Netlify
+        id: deploy
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        run: |
+          if [ -z "$NETLIFY_AUTH_TOKEN" ]; then
+            echo "NETLIFY_AUTH_TOKEN is not configured; skipping Netlify draft deploy."
+            echo "### Demo hosting\nNetlify token unavailable. Use the public demo branch preview for review." >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          npx --yes netlify-cli@latest deploy \
+            --dir=. \
+            --site=2a45dabd-9519-466b-a66d-9589261e17a7 \
+            --auth="$NETLIFY_AUTH_TOKEN" \
+            --message="IT adviser demo 2026-09-23" \
+            --json | tee netlify-demo.json
+          node -e 'const fs=require("fs"); const x=JSON.parse(fs.readFileSync("netlify-demo.json","utf8")); console.log("### Demo URL\n"+(x.deploy_url||x.deploy_ssl_url||x.url||JSON.stringify(x)))' >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload deploy metadata
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: netlify-demo-metadata-${{ github.sha }}
+          path: netlify-demo.json
+          if-no-files-found: ignore
+          retention-days: 3

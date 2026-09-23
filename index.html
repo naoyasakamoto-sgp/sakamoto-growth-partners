@@ -19,6 +19,7 @@
   <meta name="twitter:description" content="会社のIT、誰に聞けばいい？をなくす。月1万円から、仙台の中小企業の社外IT担当。" />
   <meta name="theme-color" content="#062b49" />
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="case-studies/case-study.css" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -26,7 +27,7 @@
     "name": "合同会社SGP",
     "alternateName": "Sakamoto Growth Partners",
     "url": "https://sakamoto-growth-partners.com/",
-    "logo": "https://sakamoto-growth-partners.com/assets/sgp-wordmark.webp",
+    "logo": "https://sakamoto-growth-partners.com/assets/sgp-wordmark-transparent.webp",
     "description": "仙台・宮城の中小企業向けに、社外IT担当・IT顧問としてIT・AI・業務改善を支援し、必要に応じてシステム実装まで行う会社です。",
     "areaServed": ["仙台市", "宮城県", "日本"]
   }
@@ -46,20 +47,19 @@
   <header class="site-header brand-header" id="top">
     <div class="container nav-wrap">
       <a class="brand brand-v2" href="#top" aria-label="Sakamoto Growth Partners トップへ戻る">
-        <span class="brand-logo-wrap"><img class="brand-logo" src="/assets/sgp-wordmark.webp" alt="SGP Sakamoto Growth Partners" /></span>
-        <span class="brand-text"><strong>Sakamoto Growth Partners</strong><small>地域の企業に、ITで次の成長を。</small></span>
+        <span class="brand-logo-wrap brand-logo-official"><img class="brand-logo" src="assets/sgp-wordmark-transparent.webp" alt="Sakamoto Growth Partners" /></span>
       </a>
       <button class="menu-button" type="button" aria-label="メニューを開く" aria-expanded="false" aria-controls="global-navigation" data-menu-button>
         <span></span><span></span><span></span>
       </button>
       <nav class="nav nav-v2" id="global-navigation" aria-label="メインナビゲーション" data-nav>
-        <a href="/services/it-adviser/">社外IT担当</a>
+        <a href="services/it-adviser/">社外IT担当</a>
         <a href="#pricing">料金</a>
         <a href="#industries">業種別支援</a>
-        <a href="/case-studies/">事例</a>
-        <a href="/news/">実務ノウハウ・NEWS</a>
-        <a href="#company">会社概要</a>
-        <a class="nav-cta" href="/contact/?source=home&intent=it-adviser-diagnosis" data-analytics-event="home_diagnosis_click" data-cta-location="header">30分無料IT診断</a>
+        <a href="case-studies/">事例</a>
+        <a href="news/">実務ノウハウ・NEWS</a>
+        <a href="brand/">会社・ブランド</a>
+        <a class="nav-cta" href="contact/?source=home&intent=it-adviser-diagnosis" data-analytics-event="home_diagnosis_click" data-cta-location="header">30分無料IT診断</a>
       </nav>
     </div>
   </header>
@@ -68,39 +68,39 @@
     <section class="advisor-hero" aria-labelledby="hero-title">
       <div class="advisor-hero-bg" aria-hidden="true"></div>
       <div class="container advisor-hero-grid">
-        <div class="advisor-hero-copy reveal">
-          <p class="hero-kicker">仙台・宮城｜社員5〜30名程度の中小企業向け</p>
-          <h1 id="hero-title">仙台の中小企業に、<br><span>社外IT担当</span>という選択を。</h1>
-          <p class="hero-message">IT担当を雇うほどではない。<br class="mobile-break">でも、相談できる専門家は必要。</p>
-          <p class="hero-description">IT・AI・業務改善について、まず相談できる窓口になります。必要なときは、課題整理から自動化・システム実装・運用改善まで一気通貫で支援します。</p>
+        <div class="advisor-hero-copy">
+          <p class="hero-kicker">SENDAI / OUTSOURCED IT ADVISER</p>
+          <p class="hero-local-note">仙台・宮城｜中小企業向け</p>
+          <h1 id="hero-title">会社のIT、<br><span>誰に聞けばいい？</span>をなくす。</h1>
+          <p class="hero-message">月1万円から、社外IT担当。</p>
+          <p class="hero-description">IT・AI・業務改善を、何を入れるか決まっていない段階から相談。必要なときだけ実装まで担います。</p>
           <div class="advisor-hero-actions">
-            <a class="button advisor-primary" href="/contact/?source=home&intent=it-adviser-diagnosis" data-analytics-event="home_diagnosis_click" data-cta-location="hero">
-              30分無料IT診断を申し込む
-              <small>まずは今の困りごとを整理します</small>
+            <a class="button advisor-primary" href="contact/?source=home&intent=it-adviser-diagnosis" data-analytics-event="home_diagnosis_click" data-cta-location="hero">
+              30分無料IT診断
+              <small>1分入力・導入前提なし</small>
             </a>
-            <a class="button advisor-secondary" href="#pricing">月1万円の社外IT担当を見る →</a>
+            <a class="button advisor-secondary" href="#pricing">料金・支援範囲を見る →</a>
           </div>
           <div class="hero-microproof" aria-label="サービスの特徴">
-            <span>仙台・宮城中心</span>
-            <span>オンライン対応</span>
-            <span>相談から実装まで</span>
+            <span><b>¥10,000〜</b> 月額</span>
+            <span><b>30 min</b> 無料診断</span>
+            <span><b>Sendai</b> 相談→実装</span>
           </div>
         </div>
 
-        <div class="advisor-hero-visual reveal delay-1">
-          <figure class="sendai-visual">
-            <img src="/assets/sendai-office.webp" alt="仙台を拠点に支援するSakamoto Growth Partners" />
-            <figcaption>Sendai / Miyagi</figcaption>
-          </figure>
-          <div class="advisor-flow-card" aria-label="社外IT担当の支援フロー">
-            <p>IT顧問として、最初の相談窓口に。</p>
-            <ol>
-              <li><span>01</span><div><b>相談</b><small>今の困りごとを整理</small></div></li>
-              <li><span>02</span><div><b>課題整理</b><small>優先順位と原因を特定</small></div></li>
-              <li><span>03</span><div><b>改善提案</b><small>必要な手段だけをご提案</small></div></li>
-              <li><span>04</span><div><b>実装</b><small>必要なら設定・開発まで</small></div></li>
-              <li><span>05</span><div><b>運用改善</b><small>使われる状態まで伴走</small></div></li>
-            </ol>
+        <div class="advisor-hero-visual">
+          <div class="hero-advisory-card">
+            <div class="hero-advisory-head">
+              <div><span>OUTSOURCED IT ADVISER</span><strong>社外IT担当 / IT顧問</strong></div>
+              <img src="assets/sgp-wordmark-transparent.webp" alt="" />
+            </div>
+            <div class="hero-advisory-price"><small>ENTRY PLAN</small><p><strong>¥10,000</strong><span>/ 月〜</span></p><em>税別</em></div>
+            <div class="hero-advisory-rules">
+              <div><span>01</span><p><b>相談窓口を一本化</b><small>IT・AI・業務改善をまず聞ける</small></p></div>
+              <div><span>02</span><p><b>会社を継続して把握</b><small>毎回ゼロから説明しなくていい</small></p></div>
+              <div><span>03</span><p><b>必要な時だけ実装</b><small>設定・自動化・開発は別途明確に</small></p></div>
+            </div>
+            <div class="hero-advisory-foot"><span>Sakamoto Growth Partners</span><b>Sendai / Miyagi</b></div>
           </div>
         </div>
       </div>
@@ -108,10 +108,55 @@
 
     <section class="advisor-trust-strip" aria-label="Sakamoto Growth Partnersの特徴">
       <div class="container advisor-trust-grid">
-        <div><span>LOCAL</span><b>地域密着</b><small>仙台・宮城の企業を中心に</small></div>
-        <div><span>ACCESS</span><b>相談しやすい</b><small>「何を頼むか未定」から相談可能</small></div>
-        <div><span>BUILD</span><b>実装まで対応</b><small>提案だけで終わらせない</small></div>
-        <div><span>AI / DX</span><b>新しい技術に対応</b><small>業務から逆算して使う</small></div>
+        <div><span>LOCAL</span><b>仙台・宮城を中心に</b><small>地域企業の現場に合わせて支援</small></div>
+        <div><span>ADVISORY</span><b>何を頼むか未定でOK</b><small>ツール選定より先に課題を整理</small></div>
+        <div><span>DELIVERY</span><b>必要なら実装まで</b><small>相談・設計・設定・開発を分断しない</small></div>
+        <div><span>SCOPE</span><b>月額と実装を分ける</b><small>顧問は相談中心、制作・開発は明確に別見積</small></div>
+      </div>
+    </section>
+
+    <section class="operator-trust" id="operator-trust" aria-labelledby="operator-trust-title">
+      <div class="container operator-trust-grid">
+        <div class="operator-trust-person">
+          <div class="operator-mark" aria-hidden="true"><strong>SGP</strong></div>
+          <div>
+            <p class="advisor-eyebrow">WHO YOU TALK TO</p>
+            <h2 id="operator-trust-title">初回診断から、代表が担当します。</h2>
+            <p>相談相手と実装責任者を分けず、経営課題の整理から必要な実装まで一貫して見ます。</p>
+          </div>
+        </div>
+        <div class="operator-trust-profile">
+          <div class="operator-name"><strong>坂本 直哉</strong><span>合同会社SGP 代表社員</span></div>
+          <div class="operator-proof-grid">
+            <div><span>AI</span><b>生成AI / RAG</b></div>
+            <div><span>WEB</span><b>Web / CRM</b></div>
+            <div><span>OPS</span><b>業務改善</b></div>
+            <div><span>BUILD</span><b>システム実装</b></div>
+          </div>
+          <a href="brand/">代表・会社・ブランドを見る →</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="home-case-proof" id="home-case-proof" aria-labelledby="home-case-title">
+      <div class="container">
+        <div class="home-case-heading">
+          <div>
+            <p class="section-label">BUILD PROOF / OWN PRODUCT</p>
+            <h2 id="home-case-title">実装力は、公開できる自社プロダクトで。</h2>
+            <p>提案だけではなく、企画・データ設計・UI・実装まで自分たちでつくる。その一例を公開しています。</p>
+          </div>
+          <a href="case-studies/">開発事例を見る →</a>
+        </div>
+        <a class="case-feature-card" href="case-studies/my-jazz-day/">
+          <div class="case-feature-copy">
+            <p class="case-kicker">OWN PRODUCT 001 / SENDAI ERABU!</p>
+            <h2>897の演奏枠を、<br>1分で「自分だけの一日」へ。</h2>
+            <p>音楽の好み・気分・時間・開始エリア・歩行量・新しい音との距離から、フェスの一日を構成するMY JAZZ DAY。</p>
+            <div class="case-card-metrics"><span><b>897</b> PERFORMANCE SLOTS</span><span><b>50</b> VENUES</span><span><b>1 MIN</b> PERSONALIZATION</span></div>
+          </div>
+          <div class="case-feature-image"><img src="assets/case-studies/my-jazz-day/hero-mobile.webp" alt="MY JAZZ DAYの画面" loading="lazy"></div>
+        </a>
       </div>
     </section>
 
@@ -162,6 +207,12 @@
         </div>
         <p class="profession-note">※ SGPは士業ではありません。税務・労務・法務など資格を要する業務は各専門家の領域とし、SGPはIT・AI・業務改善の相談と実装を担当します。</p>
 
+        <div class="advisor-principle-band" aria-label="料金設計の原則">
+          <div><span>ADVISORY</span><b>日常相談は月額で</b><small>「まず聞ける」状態をつくる</small></div>
+          <div><span>IMPLEMENTATION</span><b>実作業は必要な分だけ</b><small>設定・制作・開発は範囲を明確に</small></div>
+          <div><span>GROWTH</span><b>会社の成長に合わせて拡張</b><small>Light → Standard → Growthへ</small></div>
+        </div>
+
         <div class="advisor-value-grid">
           <article><span>01</span><h3>いつでも相談できる</h3><p>業者を毎回探す前に、まず相談できる相手を持てます。</p></article>
           <article><span>02</span><h3>問題を早く見つける</h3><p>会社を継続して理解するから、改善ポイントを早期に発見できます。</p></article>
@@ -175,30 +226,38 @@
       <div class="container">
         <div class="advisor-section-heading">
           <p class="advisor-eyebrow">MONTHLY ADVISORY</p>
-          <h2 id="pricing-title">月1万円から始める、社外IT担当。</h2>
-          <p>まず相談相手を置き、必要になった分だけ支援を広げる設計です。</p>
+          <h2 id="pricing-title">月1万円から。違いは「相談量」と「実行範囲」です。</h2>
+          <p>まずは必要最小限から。社内でIT課題が増えたら、同じ相談窓口のまま支援範囲だけ広げられます。</p>
+        </div>
+
+        <div class="pricing-decision-strip" aria-label="プランの選び方">
+          <div><span>相談相手だけ欲しい</span><b>Light</b><small>月1万円</small></div>
+          <i>→</i>
+          <div class="active"><span>相談＋小さな改善も任せたい</span><b>Standard</b><small>月3万円</small></div>
+          <i>→</i>
+          <div><span>部門横断で改善を進めたい</span><b>Growth</b><small>月8万円</small></div>
         </div>
 
         <div class="pricing-grid-v2">
           <article class="pricing-card-v2">
-            <div class="pricing-head"><p>ENTRY</p><h3>Light</h3><span>社外IT担当 ライト</span></div>
+            <div class="pricing-head"><p>ENTRY</p><h3>Light</h3><span>相談窓口を社外に置く</span></div>
             <p class="pricing-price"><small>月額</small><strong>10,000</strong><b>円</b><em>税別</em></p>
-            <p class="pricing-fit">まず相談相手が欲しい小規模企業へ</p>
+            <p class="pricing-fit">1〜10名程度 / IT相談中心</p><div class="pricing-contract"><span>最低契約期間なし</span><span>実作業は別途</span></div>
             <ul>
               <li>月1回 30〜45分相談</li>
-              <li>チャットでIT・AI相談</li>
+              <li>チャット相談（簡易回答）</li>
               <li>課題整理・改善提案</li>
               <li>一次回答目安：2営業日以内</li>
               <li>実作業・設定・開発は別途</li>
             </ul>
-            <a href="/contact/?source=home&plan=light&intent=it-adviser" data-analytics-event="home_plan_click" data-plan="light" data-cta-location="pricing">Lightを相談する →</a>
+            <a href="contact/?source=home&plan=light&intent=it-adviser" data-analytics-event="home_plan_click" data-plan="light" data-cta-location="pricing">Lightを相談する →</a>
           </article>
 
           <article class="pricing-card-v2 featured">
-            <div class="pricing-recommend">おすすめ</div>
-            <div class="pricing-head"><p>MAIN</p><h3>Standard</h3><span>社外IT担当 スタンダード</span></div>
+            <div class="pricing-recommend">標準プラン</div>
+            <div class="pricing-head"><p>CORE</p><h3>Standard</h3><span>相談＋継続改善を任せる</span></div>
             <p class="pricing-price"><small>月額</small><strong>30,000</strong><b>円</b><em>税別</em></p>
-            <p class="pricing-fit">継続的に改善したい5〜30名程度の企業へ</p>
+            <p class="pricing-fit">5〜30名程度 / 継続改善</p><div class="pricing-contract"><span>3か月〜</span><span>軽微作業 月2時間</span></div>
             <ul>
               <li>月1回 60分定例</li>
               <li>チャット相談</li>
@@ -206,13 +265,13 @@
               <li>IT台帳・SaaS整理</li>
               <li>AI活用・ベンダー相談</li>
             </ul>
-            <a href="/contact/?source=home&plan=standard&intent=it-adviser" data-analytics-event="home_plan_click" data-plan="standard" data-cta-location="pricing">Standardを相談する →</a>
+            <a href="contact/?source=home&plan=standard&intent=it-adviser" data-analytics-event="home_plan_click" data-plan="standard" data-cta-location="pricing">Standardを相談する →</a>
           </article>
 
           <article class="pricing-card-v2">
-            <div class="pricing-head"><p>GROWTH</p><h3>Growth</h3><span>IT改善顧問</span></div>
+            <div class="pricing-head"><p>GROWTH</p><h3>Growth</h3><span>改善テーマを継続推進</span></div>
             <p class="pricing-price"><small>月額</small><strong>80,000</strong><b>円</b><em>税別</em></p>
-            <p class="pricing-fit">本格的な業務改善・AI導入を進めたい企業へ</p>
+            <p class="pricing-fit">10〜50名程度 / 部門横断改善</p><div class="pricing-contract"><span>3か月〜</span><span>軽微作業 月4時間</span></div>
             <ul>
               <li>月2回定例</li>
               <li>業務フロー整理</li>
@@ -220,13 +279,36 @@
               <li>AI導入設計・社員教育</li>
               <li>軽微作業 月4時間まで</li>
             </ul>
-            <a href="/contact/?source=home&plan=growth&intent=it-adviser" data-analytics-event="home_plan_click" data-plan="growth" data-cta-location="pricing">Growthを相談する →</a>
+            <a href="contact/?source=home&plan=growth&intent=it-adviser" data-analytics-event="home_plan_click" data-plan="growth" data-cta-location="pricing">Growthを相談する →</a>
           </article>
         </div>
 
+        <div class="pricing-compare" role="table" aria-label="社外IT担当プラン比較">
+          <div class="pricing-compare-row pricing-compare-head" role="row"><b>比較</b><span>Light</span><span>Standard</span><span>Growth</span></div>
+          <div class="pricing-compare-row" role="row"><b>月額</b><span>1万円</span><span>3万円</span><span>8万円</span></div>
+          <div class="pricing-compare-row" role="row"><b>定例</b><span>30〜45分 / 月</span><span>60分 / 月</span><span>60分 × 2 / 月</span></div>
+          <div class="pricing-compare-row" role="row"><b>軽微作業</b><span>別途</span><span>月2時間まで</span><span>月4時間まで</span></div>
+          <div class="pricing-compare-row" role="row"><b>向いている状態</b><span>まず聞ける人が欲しい</span><span>小改善も継続したい</span><span>改善を計画的に進めたい</span></div>
+          <div class="pricing-compare-row" role="row"><b>開発・制作</b><span>別見積</span><span>別見積</span><span>別見積</span></div>
+        </div>
+
+        <details class="pricing-scope-details">
+          <summary>月額顧問に含まれない主な対応を見る</summary>
+          <div>
+            <span>24時間・休日の常時サポート</span>
+            <span>PC修理・データ復旧</span>
+            <span>ネットワーク工事</span>
+            <span>セキュリティ事故の緊急対応</span>
+            <span>大量入力・データクレンジング</span>
+            <span>Web制作・広告運用</span>
+            <span>個別システム開発</span>
+          </div>
+          <p>必要な場合は対応可否を確認し、範囲・納期・費用を別途お見積りします。</p>
+        </details>
+
         <div class="fde-band">
           <div><p>ADVANCED / FDE PARTNER</p><h3>社外DX責任者</h3><span>経営と現場の間に入り、業務設計・データ・AI・システムを横断して推進します。</span></div>
-          <div class="fde-price"><small>月額</small><strong>200,000円〜</strong><a href="/contact/?source=home&plan=fde&intent=dx-partner">個別相談 →</a></div>
+          <div class="fde-price"><small>月額</small><strong>200,000円〜</strong><a href="contact/?source=home&plan=fde&intent=dx-partner">個別相談 →</a></div>
         </div>
         <p class="pricing-note">公開価格は標準的な支援範囲の目安です。対象規模、拠点数、SaaS数、対応時間、実装範囲により個別にお見積りします。</p>
       </div>
@@ -236,13 +318,13 @@
       <div class="container">
         <div class="advisor-section-heading left">
           <p class="advisor-eyebrow">WHEN YOU NEED TO BUILD</p>
-          <h2>必要になったら、実装まで。</h2>
+          <h2>顧問で見つけた課題を、必要なときだけ実装。</h2>
           <p>顧問契約の中に大規模開発を詰め込まず、成果物が必要な仕事はプロジェクトとして明確に分けます。</p>
         </div>
         <div class="outcome-grid">
-          <article><span>01 / IMPROVE</span><h3>業務改善 Sprint</h3><p class="outcome-price">30万円〜</p><p>1つの業務を2〜4週間で整理し、改善後フロー・設定・運用ルールまで整えます。</p><small>例：見積 / 案件管理 / 請求 / 日報 / 顧客管理</small></article>
+          <article><span>01 / BUSINESS IMPROVEMENT</span><h3>業務改善パック</h3><p class="outcome-price">30万円〜</p><p>1つの業務を2〜4週間で整理し、改善後フロー・設定・運用ルールまで整えます。</p><small>例：見積 / 案件管理 / 請求 / 日報 / 顧客管理</small></article>
           <article><span>02 / AUTOMATE</span><h3>定型業務の自動化</h3><p class="outcome-price">50万円〜</p><p>入力・転記・通知・集計など、人が繰り返している仕事をツールやAPIで自動化します。</p><small>例：フォーム → CRM → 通知 → 集計</small></article>
-          <article><span>03 / AI SYSTEM</span><h3>AI業務システム</h3><p class="outcome-price">100万円〜</p><p>検索・問い合わせ・見積補助など、特定業務に組み込むAIシステムを構築します。</p><small>例：RAG / AI検索 / 業務Agent / Human approval</small></article>
+          <article><span>03 / AI SYSTEM</span><h3>AIを使った業務システム</h3><p class="outcome-price">100万円〜</p><p>検索・問い合わせ・見積補助など、特定業務に組み込むAIシステムを構築します。</p><small>例：RAG / AI検索 / 業務Agent / Human approval</small></article>
         </div>
       </div>
     </section>
@@ -287,7 +369,7 @@
           <article><span>バックオフィス</span><h3>同じ内容を何度も転記する</h3><div><b>BEFORE</b><p>フォーム・Excel・会計へ手入力</p></div><i>→</i><div><b>AFTER</b><p>入力元を一本化し、自動連携</p></div></article>
         </div>
         <div class="case-link-row">
-          <a href="/case-studies/">公開中の開発・Case Studyを見る →</a>
+          <a href="case-studies/">公開中の開発・Case Studyを見る →</a>
         </div>
       </div>
     </section>
@@ -301,7 +383,7 @@
           <p class="network-note">特定士業との提携・代理業務を意味するものではありません。</p>
         </div>
         <div class="network-map" aria-label="専門家との役割分担">
-          <div class="network-center"><img src="/assets/sgp-stack.webp" alt="" /><strong>SGP</strong><small>IT / AI</small></div>
+          <div class="network-center"><strong>SGP</strong><small>IT / AI</small></div>
           <span class="network-node n1">税務<br><b>税理士</b></span>
           <span class="network-node n2">労務<br><b>社労士</b></span>
           <span class="network-node n3">法務<br><b>弁護士</b></span>
@@ -333,9 +415,9 @@
           <h2 id="solutions-title">業種・課題が明確なら、専門サービスからも。</h2>
         </div>
         <div class="specialist-grid">
-          <a href="/services/pawn-bpo/"><span>PAWN / BPO</span><h3>質屋バックオフィスBPO</h3><p>質札・入金照合・利息・期限・KPI管理を支援。</p><b>詳しく見る →</b></a>
-          <a href="/ai-employee/"><span>AI / OPERATIONS</span><h3>AI社員</h3><p>問い合わせ・登録・見積補助・追客など定型業務を仕組み化。</p><b>詳しく見る →</b></a>
-          <a href="/products/my-home-plan/"><span>PRODUCT / DECISION</span><h3>MY HOME PLAN</h3><p>住宅選びの条件を構造化し、比較・意思決定を支援する自社プロダクト。</p><b>詳しく見る →</b></a>
+          <a href="services/pawn-bpo/"><span>PAWN / BPO</span><h3>質屋バックオフィスBPO</h3><p>質札・入金照合・利息・期限・KPI管理を支援。</p><b>詳しく見る →</b></a>
+          <a href="ai-employee/"><span>AI / OPERATIONS</span><h3>AI社員</h3><p>問い合わせ・登録・見積補助・追客など定型業務を仕組み化。</p><b>詳しく見る →</b></a>
+          <a href="products/my-home-plan/"><span>PRODUCT / DECISION</span><h3>MY HOME PLAN</h3><p>住宅選びの条件を構造化し、比較・意思決定を支援する自社プロダクト。</p><b>詳しく見る →</b></a>
         </div>
       </div>
     </section>
@@ -344,7 +426,7 @@
       <span id="founder" class="anchor-alias" aria-hidden="true"></span>
       <div class="container founder-v2-grid">
         <div class="founder-brand-panel">
-          <img src="/assets/sgp-wordmark.webp" alt="Sakamoto Growth Partners" />
+          <img src="assets/sgp-wordmark-transparent.webp" alt="Sakamoto Growth Partners" />
           <p>地域の企業に、<br>ITで次の成長を。</p>
         </div>
         <div class="founder-v2-copy">
@@ -352,8 +434,34 @@
           <h2>経営と現場の間に入り、<br>実装まで担う。</h2>
           <div class="founder-name"><strong>坂本 直哉</strong><span>合同会社SGP 代表社員</span></div>
           <p>AI・Web・CRM・業務システムの開発経験を活かし、会社の「何をどう変えるか」を整理するところから、実際に現場で使える仕組みへ落とし込みます。</p>
-          <div class="founder-tags"><span>生成AI / RAG</span><span>Web / CRM</span><span>業務改善</span><span>システム実装</span></div>
-          <a href="/case-studies/">実装・開発事例を見る →</a>
+          <div class="founder-credentials">
+            <div><span>AI</span><b>生成AI / RAG</b></div>
+            <div><span>WEB</span><b>Web / CRM</b></div>
+            <div><span>OPS</span><b>業務改善</b></div>
+            <div><span>BUILD</span><b>システム実装</b></div>
+          </div>
+          <a href="case-studies/">実装・開発事例を見る →</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="brand-movie" id="brand-movie" aria-labelledby="brand-movie-title">
+      <div class="container brand-movie-grid">
+        <div class="brand-movie-copy">
+          <p class="advisor-eyebrow">BRAND MOVIE / SGP</p>
+          <h2 id="brand-movie-title">Sakamoto Growth Partnersを、<br>動画で。</h2>
+          <p>社外IT担当として何を支援するのか、どのような考え方で地域企業のIT・AI・業務改善に向き合うのかを短い動画でご紹介します。</p>
+          <div class="brand-movie-meta">
+            <span>社外IT担当</span>
+            <span>IT・AI</span>
+            <span>業務改善</span>
+          </div>
+        </div>
+        <div class="brand-movie-player">
+          <div class="brand-movie-frame">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/OBJAqJzNgbc?si=pdCOojEIpAAFMQpR" title="Sakamoto Growth Partners 紹介動画" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
+          </div>
+          <p>SGP / Sakamoto Growth Partners</p>
         </div>
       </div>
     </section>
@@ -366,7 +474,7 @@
           <h2 id="home-news-title">SGPの最新活動</h2>
           <p>会社の設立以降に開始・公開した事業、プロダクト、研究開発を記録しています。</p>
         </div>
-        <a class="home-news-all" href="/news/">すべてのNEWSを見る<span aria-hidden="true"> →</span></a>
+        <a class="home-news-all" href="news/">すべてのNEWSを見る<span aria-hidden="true"> →</span></a>
       </div>
       <div class="container home-news-list"></div>
     </section>
@@ -393,11 +501,11 @@
       <div class="container final-cta-grid">
         <div>
           <p>30 MINUTES / FREE DIAGNOSIS</p>
-          <h2>まずは、会社のITの詰まりを<br>一緒に整理しませんか？</h2>
-          <span>無理な営業はせず、今すぐ直すべきことと、後でいいことを整理します。</span>
+          <h2>30分で、次にやることを<br>3つまでに絞ります。</h2>
+          <span>導入するツールを決める場ではなく、「今やる / 後でやる / やらない」を整理する診断です。</span>
         </div>
         <div class="final-cta-actions">
-          <a class="button advisor-primary" href="/contact/?source=home&intent=it-adviser-diagnosis" data-analytics-event="home_diagnosis_click" data-cta-location="final">30分無料IT診断を申し込む →</a>
+          <a class="button advisor-primary" href="contact/?source=home&intent=it-adviser-diagnosis" data-analytics-event="home_diagnosis_click" data-cta-location="final">30分無料IT診断を申し込む →</a>
           <a href="#pricing">料金をもう一度見る</a>
         </div>
       </div>
@@ -407,16 +515,17 @@
   <footer class="site-footer advisor-footer">
     <div class="container advisor-footer-main">
       <div class="footer-brand-v2">
-        <img src="/assets/sgp-wordmark.webp" alt="Sakamoto Growth Partners" />
+        <img src="assets/sgp-wordmark-transparent.webp" alt="Sakamoto Growth Partners" />
         <p>地域の企業に、ITで次の成長を。</p>
       </div>
       <nav aria-label="フッターナビゲーション">
-        <a href="/services/it-adviser/">社外IT担当</a>
+        <a href="services/it-adviser/">社外IT担当</a>
         <a href="#pricing">料金</a>
         <a href="#industries">業種別支援</a>
-        <a href="/case-studies/">事例</a>
-        <a href="/news/">NEWS</a>
-        <a href="/contact/?source=footer&intent=it-adviser-diagnosis">お問い合わせ</a>
+        <a href="case-studies/">事例</a>
+        <a href="news/">NEWS</a>
+        <a href="brand/">Brand / Company</a>
+        <a href="contact/?source=footer&intent=it-adviser-diagnosis">お問い合わせ</a>
       </nav>
       <div class="footer-company-v2">
         <strong>合同会社SGP</strong>
@@ -426,9 +535,12 @@
     </div>
   </footer>
 
-  <a class="mobile-diagnosis-cta" href="/contact/?source=home-mobile&intent=it-adviser-diagnosis" data-analytics-event="home_diagnosis_click" data-cta-location="mobile-sticky">30分無料IT診断</a>
+  <div class="mobile-action-bar" aria-label="モバイル固定アクション">
+    <a class="mobile-action-secondary" href="#pricing">料金を見る</a>
+    <a class="mobile-action-primary" href="contact/?source=home-mobile&intent=it-adviser-diagnosis" data-analytics-event="home_diagnosis_click" data-cta-location="mobile-sticky">30分無料IT診断</a>
+  </div>
 
-  <script src="/script.js"></script>
-  <script src="/analytics.js"></script>
+  <script src="script.js"></script>
+  <script src="analytics.js"></script>
 </body>
 </html>

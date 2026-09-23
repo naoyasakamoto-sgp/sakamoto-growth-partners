@@ -48,8 +48,7 @@ function renderHeader() {
   <header class="site-header" id="top">
     <div class="container nav-wrap">
       <a class="brand brand-v2" href="/" aria-label="Sakamoto Growth Partners トップへ戻る">
-        <span class="brand-logo-wrap"><img class="brand-logo" src="/assets/sgp-wordmark.webp" alt="SGP Sakamoto Growth Partners" /></span>
-        <span class="brand-text"><strong>Sakamoto Growth Partners</strong><small>地域の企業に、ITで次の成長を。</small></span>
+        <span class="brand-logo-wrap brand-logo-official"><img class="brand-logo" src="/assets/sgp-wordmark-transparent.webp" alt="Sakamoto Growth Partners" /></span>
       </a>
       <button class="menu-button" type="button" aria-label="メニューを開く" aria-expanded="false" aria-controls="global-navigation" data-menu-button>
         <span></span><span></span><span></span>
@@ -312,6 +311,7 @@ function renderSitemap() {
   const urls = [
     { loc: `${siteUrl}/`, lastmod: "2026-09-23" },
     { loc: `${siteUrl}/services/it-adviser/`, lastmod: "2026-09-23" },
+    { loc: `${siteUrl}/brand/`, lastmod: "2026-09-23" },
     { loc: `${siteUrl}/ai-employee/`, lastmod: "2026-09-15" },
     { loc: `${siteUrl}/services/pawn-bpo/`, lastmod: "2026-09-16" },
     { loc: canonicalFor(), lastmod: sortedNews[0].date },
