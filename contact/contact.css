@@ -306,3 +306,22 @@
     height:42px;
   }
 }
+
+
+/* Compact official-logo header rhythm */
+.sgp-brand-contact .nav-wrap{
+  height:74px;
+  min-height:74px;
+}
+.sgp-brand-contact .brand-logo-wrap.brand-logo-official{
+  width:210px;
+  height:44px;
+}
+@media(max-width:1080px){
+  .sgp-brand-contact .nav-wrap{height:68px;min-height:68px}
+  .sgp-brand-contact .brand-logo-wrap.brand-logo-official{width:182px;height:40px}
+}
+@media(max-width:640px){
+  .sgp-brand-contact .nav-wrap{height:62px;min-height:62px}
+  .sgp-brand-contact .brand-logo-wrap.brand-logo-official{width:150px;height:34px}
+}
