@@ -4,7 +4,7 @@ import { fileURLToPath } from "node:url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, "..");
-const pages = ["index.html", "services/it-adviser/index.html", "contact/index.html"];
+const pages = ["index.html", "services/it-adviser/index.html", "contact/index.html", "brand/index.html"];
 const failures = [];
 
 const exists = async (p) => {
@@ -37,6 +37,9 @@ for (const page of pages) {
 }
 
 const home = await readFile(path.join(root, "index.html"), "utf8");
+const brand = await readFile(path.join(root, "brand/index.html"), "utf8");
+if (!brand.includes("../assets/sgp-wordmark-transparent.webp")) failures.push("brand/index.html: brand page must use transparent wordmark");
+if (!brand.includes('href="../">社外IT担当サービスを見る')) failures.push("brand/index.html: service gateway missing");
 if (!home.includes("assets/sgp-wordmark-transparent.webp")) failures.push("index.html: transparent horizontal wordmark is not wired into homepage");
 if (home.includes("assets/sgp-wordmark.webp")) failures.push("index.html: legacy opaque wordmark must not be used");
 if (home.includes("sgp-logo-official.svg")) failures.push("index.html: SVG-wrapped logo must not be used");
@@ -99,7 +102,8 @@ for (const asset of [
   "script.js",
   "analytics.js",
   "contact/contact.css",
-  "contact/contact.js"
+  "contact/contact.js",
+  "brand/brand.css"
 ]) {
   if (!(await exists(path.join(root, asset)))) failures.push(`missing required demo asset: ${asset}`);
 }
