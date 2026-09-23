@@ -139,6 +139,12 @@ await checkPage("services/it-adviser/index.html", {
   schemaTypes: ["Service", "FAQPage", "BreadcrumbList"]
 });
 
+await checkPage("brand/index.html", {
+  canonical: `${siteUrl}/brand/`,
+  ogType: "website",
+  schemaTypes: ["Organization", "BreadcrumbList"]
+});
+
 for (const item of newsItems) {
   await checkPage(`news/${item.slug}/index.html`, {
     canonical: `${siteUrl}/news/${item.slug}/`,
@@ -170,6 +176,7 @@ for (const type of ["Organization", "Service"]) {
 if (!hasSiteHref(home, "contact/?source=home&intent=it-adviser-diagnosis")) fail("index.html: diagnosis CTA attribution missing");
 if (!home.includes('data-analytics-event="home_plan_click"')) fail("index.html: pricing analytics event missing");
 if (!hasSiteHref(home, "news/")) fail("index.html: NEWS navigation is missing");
+if (!hasSiteHref(home, "brand/")) fail("index.html: brand/company navigation is missing");
 if (!hasSiteHref(home, "ai-employee/")) fail("index.html: AI employee navigation is missing");
 if (!hasSiteHref(home, "services/pawn-bpo/")) fail("index.html: pawn BPO internal link is missing");
 for (const item of [...newsItems].sort((a, b) => b.date.localeCompare(a.date)).slice(0, 3)) {
@@ -182,6 +189,7 @@ const sitemapUrls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) =>
 const expectedUrls = [
   `${siteUrl}/`,
   `${siteUrl}/services/it-adviser/`,
+  `${siteUrl}/brand/`,
   `${siteUrl}/services/pawn-bpo/`,
   `${siteUrl}/news/`,
   ...newsItems.map((item) => `${siteUrl}/news/${item.slug}/`)
