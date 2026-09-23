@@ -235,3 +235,20 @@ if (failures.length) {
 } else {
   console.log(`Validated NEWS archive, ${newsItems.length} articles, metadata, structured data, internal links and sitemap.`);
 }
+
+
+const styles = await read("styles.css");
+for (const token of [
+  "Specialist Network Mobile v10",
+  'grid-template-areas:',
+  '"tax labor"',
+  '"hub hub"',
+  '"legal finance"',
+  "display:flex;",
+  "flex-direction:column;",
+  "gap:6px;",
+  "rotate(31deg)",
+  "rotate(-31deg)"
+]) {
+  if (!styles.includes(token)) fail(`styles.css: specialist network mobile token missing: ${token}`);
+}
