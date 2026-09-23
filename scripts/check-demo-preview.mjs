@@ -51,7 +51,7 @@ const css = await readFile(path.join(root, "styles.css"), "utf8");
 // mobile header stabilization
 if (!css.includes(".home-it-adviser-v2 .site-header{height:58px;min-height:58px}")) failures.push("styles.css: mobile header must be fixed at 58px");
 if (!css.includes("width:136px;\n    height:auto;\n    flex:0 0 136px")) failures.push("styles.css: mobile transparent wordmark width must be 136px with intrinsic height");
-if (!css.includes("height:auto;\n    max-width:none")) failures.push("styles.css: wordmark image must preserve intrinsic aspect ratio");
+if (!/brand-logo-wrap\.brand-logo-official \.brand-logo\s*\{[^}]*height:\s*auto/i.test(css)) failures.push("styles.css: wordmark image must preserve intrinsic aspect ratio");
 if (!css.includes("top:calc(100% + 6px)")) failures.push("styles.css: mobile navigation must anchor to actual header height");
 if (!css.includes(".home-it-adviser-v2 .advisor-final-cta .final-cta-grid")) failures.push("styles.css: mobile final CTA override missing");
 if (!css.includes("grid-template-columns:minmax(0,1fr)!important")) failures.push("styles.css: mobile final CTA must be one column");
