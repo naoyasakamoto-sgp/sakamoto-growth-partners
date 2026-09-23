@@ -48,7 +48,7 @@ function renderHeader() {
   <header class="site-header" id="top">
     <div class="container nav-wrap">
       <a class="brand brand-v2" href="/" aria-label="Sakamoto Growth Partners トップへ戻る">
-        <span class="brand-logo-wrap brand-logo-official"><img class="brand-logo" src="/assets/sgp-logo-official.svg" alt="Sakamoto Growth Partners" /></span>
+        <span class="brand-logo-wrap brand-logo-official"><img class="brand-logo" src="/assets/sgp-wordmark.webp" alt="Sakamoto Growth Partners" /></span>
       </a>
       <button class="menu-button" type="button" aria-label="メニューを開く" aria-expanded="false" aria-controls="global-navigation" data-menu-button>
         <span></span><span></span><span></span>
