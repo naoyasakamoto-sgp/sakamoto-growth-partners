@@ -1,5 +1,7 @@
 name: Deploy Production to Netlify
 
+# Production deploy is credential-gated via NETLIFY_AUTH_TOKEN.
+
 on:
   push:
     branches:
