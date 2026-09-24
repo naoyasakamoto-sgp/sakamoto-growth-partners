@@ -46,6 +46,11 @@ if (!detailHeader.includes("sgp-wordmark-v2.webp")) throw new Error("Case detail
 if (detailHeader.includes("sgp-wordmark.webp")) throw new Error("Case detail header still uses legacy square wordmark");
 if (detailHeader.includes("brand-text")) throw new Error("Case detail header still contains legacy company-name text block");
 
+for (const [label, html] of [["Case listing", listing], ["Case detail", detail]]) {
+  const footer = html.match(/<footer\s+class=["'][^"']*site-footer[^"']*["'][\s\S]*?<\/footer>/i)?.[0] ?? "";
+  if (/<img\b/i.test(footer)) throw new Error(`${label} footer must not contain logo image`);
+}
+
 if (!listing.includes("/case-studies/my-jazz-day/")) throw new Error("Case listing does not link detail");
 if (!news.includes("NewsArticle") || !news.includes("/case-studies/my-jazz-day/")) throw new Error("News/Case bridge missing");
 if (!contact.includes("lead_source") || !contact.includes("lead_case") || !contact.includes("lead_intent") || !contact.includes("lead_plan")) throw new Error("Contact attribution fields missing");
