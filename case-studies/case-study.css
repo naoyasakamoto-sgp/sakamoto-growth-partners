@@ -65,3 +65,143 @@
   .home-it-adviser-v2 .case-feature-copy{padding:26px}
   .home-it-adviser-v2 .case-feature-image{min-height:260px}
 }
+
+
+/* =========================================================
+   Unified SGP Subsite Header v11
+   White header + horizontal transparent wordmark.
+   ========================================================= */
+.subsite-header.site-header{
+  position:sticky;
+  top:0;
+  z-index:1000;
+  height:84px;
+  min-height:84px;
+  background:#fff;
+  color:#062b49;
+  border-bottom:1px solid #d9e4e9;
+  box-shadow:0 1px 0 rgba(6,43,73,.02);
+  backdrop-filter:none;
+  -webkit-backdrop-filter:none;
+}
+.subsite-header .nav-wrap{
+  position:relative;
+  height:84px;
+  min-height:84px;
+  padding-block:0;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:28px;
+}
+.subsite-header .brand.brand-v2{
+  display:flex;
+  align-items:center;
+  height:100%;
+  min-width:0;
+  max-width:280px;
+  line-height:0;
+}
+.subsite-header .brand-logo-wrap.brand-logo-official{
+  display:block;
+  width:250px;
+  height:auto;
+  flex:0 0 250px;
+  overflow:visible;
+  border:0;
+  border-radius:0;
+  background:transparent;
+  box-shadow:none;
+  line-height:0;
+}
+.subsite-header .brand-logo-wrap.brand-logo-official .brand-logo{
+  display:block;
+  width:100%;
+  height:auto;
+  max-width:none;
+  object-fit:contain;
+  object-position:left center;
+  transform:none;
+}
+.subsite-header .brand-text{display:none!important}
+.subsite-header .nav.nav-v2{
+  display:flex;
+  align-items:center;
+  gap:22px;
+  font-size:12px;
+  font-weight:800;
+}
+.subsite-header .nav.nav-v2 a{
+  color:#29485c;
+  line-height:1.2;
+}
+.subsite-header .nav.nav-v2 a:hover,
+.subsite-header .nav.nav-v2 a[aria-current="page"]{
+  color:#079baa;
+}
+.subsite-header .nav.nav-v2 .nav-cta{
+  display:inline-flex;
+  align-items:center;
+  min-height:42px;
+  padding:0 16px;
+  border-radius:7px;
+  background:#10c4d2;
+  color:#07353f!important;
+  box-shadow:none;
+}
+.subsite-header .menu-button span{background:#062b49}
+
+@media(max-width:1080px){
+  .subsite-header.site-header,
+  .subsite-header .nav-wrap{
+    height:64px;
+    min-height:64px;
+  }
+  .subsite-header .brand.brand-v2{
+    height:64px;
+    max-width:190px;
+  }
+  .subsite-header .brand-logo-wrap.brand-logo-official{
+    width:168px;
+    flex:0 0 168px;
+  }
+  .subsite-header .nav.nav-v2{
+    position:absolute;
+    top:calc(100% + 8px);
+    right:0;
+    display:none;
+    flex-direction:column;
+    align-items:stretch;
+    width:min(360px,calc(100vw - 36px));
+    padding:12px;
+    gap:4px;
+    border:1px solid #d7e3e8;
+    border-radius:10px;
+    background:#fff;
+    box-shadow:0 22px 54px rgba(6,43,73,.16);
+  }
+  .subsite-header .nav.nav-v2.open{display:flex}
+  .subsite-header .nav.nav-v2 a{
+    width:100%;
+    padding:11px 12px;
+    border-radius:6px;
+    color:#29485c;
+  }
+  .subsite-header .menu-button{
+    display:flex;
+    margin-left:auto;
+  }
+}
+
+@media(max-width:640px){
+  .subsite-header .nav-wrap{
+    width:calc(100% - 28px);
+  }
+  .subsite-header .brand.brand-v2{
+    max-width:170px;
+  }
+  .subsite-header .brand-logo-wrap.brand-logo-official{
+    width:156px;
+    flex:0 0 156px;
+  }
+}
