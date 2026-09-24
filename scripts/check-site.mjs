@@ -230,6 +230,24 @@ for (const item of [...newsItems].sort((a, b) => b.date.localeCompare(a.date)).s
 }
 await checkInternalLinks(home, "index.html");
 
+
+const subsitePages = [
+  ["case-studies/index.html", await read("case-studies/index.html")],
+  ["news/index.html", await read("news/index.html")]
+];
+for (const [pagePath, html] of subsitePages) {
+  const header = html.match(/<header\s+class=["'][^"']*site-header[^"']*["'][\s\S]*?<\/header>/i)?.[0] ?? "";
+  if (!header.includes("subsite-header")) fail(`${pagePath}: unified subsite header class missing`);
+  if (!header.includes("sgp-wordmark-v2.webp")) fail(`${pagePath}: subsite header must use new horizontal wordmark`);
+  if (header.includes("sgp-wordmark.webp")) fail(`${pagePath}: legacy square wordmark must not be used in header`);
+  if (header.includes("brand-text")) fail(`${pagePath}: legacy company-name text block must not remain in header`);
+}
+for (const cssPath of ["case-studies/case-study.css", "news/news.css"]) {
+  const css = await read(cssPath);
+  if (!css.includes("Unified SGP Subsite Header v11")) fail(`${cssPath}: unified subsite header styles missing`);
+  if (!css.includes(".subsite-header .brand-logo-wrap.brand-logo-official")) fail(`${cssPath}: new wordmark sizing rule missing`);
+}
+
 const sitemap = await read("sitemap.xml");
 const sitemapUrls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
 const expectedUrls = [
