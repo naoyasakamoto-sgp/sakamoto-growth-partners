@@ -45,7 +45,7 @@ const sortedNews = [...newsItems].sort((a, b) => b.date.localeCompare(a.date));
 
 function renderHeader() {
   return `
-  <header class="site-header" id="top">
+  <header class="site-header subsite-header brand-header" id="top">
     <div class="container nav-wrap">
       <a class="brand brand-v2" href="/" aria-label="Sakamoto Growth Partners トップへ戻る">
         <span class="brand-logo-wrap brand-logo-official"><img class="brand-logo" src="/assets/sgp-wordmark-v2.webp" alt="Sakamoto Growth Partners" /></span>
@@ -53,13 +53,13 @@ function renderHeader() {
       <button class="menu-button" type="button" aria-label="メニューを開く" aria-expanded="false" aria-controls="global-navigation" data-menu-button>
         <span></span><span></span><span></span>
       </button>
-      <nav class="nav" id="global-navigation" aria-label="メインナビゲーション" data-nav>
+      <nav class="nav nav-v2" id="global-navigation" aria-label="メインナビゲーション" data-nav>
         <a href="/services/it-adviser/">社外IT担当</a>
         <a href="/#pricing">料金</a>
         <a href="/#industries">業種別支援</a>
         <a href="/case-studies/">事例</a>
-        <a href="/news/" aria-current="page">NEWS</a>
-        <a href="/#company">会社概要</a>
+        <a href="/news/" aria-current="page">実務ノウハウ・NEWS</a>
+        <a href="/brand/">会社・ブランド</a>
         <a class="nav-cta" href="/contact/?source=news&intent=it-adviser-diagnosis">30分無料IT診断</a>
       </nav>
     </div>
@@ -111,8 +111,8 @@ function renderBasePage({ title, description, canonical, ogType, content, struct
   <meta name="twitter:title" content="${escapeHtml(title)}" />
   <meta name="twitter:description" content="${escapeHtml(description)}" />
   <meta name="theme-color" content="#062b49" />
-  <link rel="stylesheet" href="/styles.css" />
-  <link rel="stylesheet" href="/news/news.css" />
+  <link rel="stylesheet" href="/styles.css?v=20260924-header-v11" />
+  <link rel="stylesheet" href="/news/news.css?v=20260924-header-v11" />
 ${schemas}
 </head>
 <body class="news-page">
