@@ -168,6 +168,26 @@ await checkPage("brand/index.html", {
   schemaTypes: ["Organization", "BreadcrumbList"]
 });
 
+const brandPage = await read("brand/index.html");
+for (const token of [
+  'id="purpose"',
+  'id="principles"',
+  "判断と行動を、",
+  "仕組みに変える。",
+  "企業には、",
+  "利益と時間",
+  "人には、",
+  "自分で選べる余地",
+  "現場から始める。",
+  "手段から考えない。",
+  "使えるところまでつくる。",
+  "数字で確かめる。",
+  "選ぶのは人。",
+  "ONE PHILOSOPHY"
+]) {
+  if (!brandPage.includes(token)) fail(`brand/index.html: purpose token missing: ${token}`);
+}
+
 for (const item of newsItems) {
   await checkPage(`news/${item.slug}/index.html`, {
     canonical: `${siteUrl}/news/${item.slug}/`,
