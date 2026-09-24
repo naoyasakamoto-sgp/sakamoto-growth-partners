@@ -1,0 +1,30 @@
+name: Export Sendai corporate master
+
+on:
+  push:
+    branches:
+      - chore/sendai-public-corporate-master-20260925
+    paths:
+      - "tools/export_sendai_corporate_master.py"
+      - ".github/workflows/export-sendai-corporate-master.yml"
+  workflow_dispatch:
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: chore/sendai-public-corporate-master-20260925
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install requests
+      - run: python tools/export_sendai_corporate_master.py
+      - run: cat generated/sendai_corporate_master/summary.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sendai-public-corporate-master
+          path: generated/sendai_corporate_master/
+          retention-days: 7
