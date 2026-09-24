@@ -40,6 +40,12 @@ for (const token of [requiredCase.seo.title, "897", "50", "1 MIN", requiredCase.
 for (const token of ["TechArticle", "BreadcrumbList", "canonical", "data-analytics-page=\"case-study\""]) {
   if (!detail.includes(token)) throw new Error(`Case SEO/analytics missing: ${token}`);
 }
+const detailHeader = detail.match(/<header\s+class=["'][^"']*site-header[^"']*["'][\s\S]*?<\/header>/i)?.[0] ?? "";
+if (!detailHeader.includes("subsite-header")) throw new Error("Case detail header missing unified subsite class");
+if (!detailHeader.includes("sgp-wordmark-v2.webp")) throw new Error("Case detail header must use new SGP wordmark");
+if (detailHeader.includes("sgp-wordmark.webp")) throw new Error("Case detail header still uses legacy square wordmark");
+if (detailHeader.includes("brand-text")) throw new Error("Case detail header still contains legacy company-name text block");
+
 if (!listing.includes("/case-studies/my-jazz-day/")) throw new Error("Case listing does not link detail");
 if (!news.includes("NewsArticle") || !news.includes("/case-studies/my-jazz-day/")) throw new Error("News/Case bridge missing");
 if (!contact.includes("lead_source") || !contact.includes("lead_case") || !contact.includes("lead_intent") || !contact.includes("lead_plan")) throw new Error("Contact attribution fields missing");
