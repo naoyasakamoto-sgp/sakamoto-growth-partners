@@ -48,6 +48,44 @@ img{display:block;max-width:100%}
 .brand-section h2{margin:0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(38px,4.5vw,58px);font-weight:500;line-height:1.35;letter-spacing:-.04em}
 .brand-manifesto p{margin:0 0 24px;color:var(--text);font-size:15px;line-height:2}
 .brand-manifesto blockquote{margin:52px 0 0;padding-top:28px;border-top:1px solid var(--line);font-family:Georgia,"Times New Roman",serif;font-size:28px;line-height:1.5;color:var(--navy)}
+
+/* Purpose / philosophy system */
+.brand-purpose{background:#fff}
+.brand-purpose-intro{display:grid;grid-template-columns:.88fr 1.12fr;gap:100px;align-items:start}
+.brand-purpose-intro>p:last-child{margin:4px 0 0;color:var(--text);font-size:15px;line-height:2}
+.brand-purpose-outcome{display:grid;grid-template-columns:1fr 1fr;margin-top:72px;border:1px solid var(--line)}
+.brand-outcome-card{min-height:390px;padding:42px;display:flex;flex-direction:column}
+.brand-outcome-card.business{background:var(--navy);color:#fff}
+.brand-outcome-card.people{background:var(--cyan-soft);color:var(--ink)}
+.brand-outcome-card>span{font-size:9px;font-weight:900;letter-spacing:.17em}
+.brand-outcome-card.business>span{color:#71e1e9}
+.brand-outcome-card.people>span{color:#079eab}
+.brand-outcome-card h3{margin:56px 0 0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(30px,3.2vw,42px);font-weight:500;line-height:1.45;letter-spacing:-.035em}
+.brand-outcome-card h3 strong{font-weight:500}
+.brand-outcome-card.business h3 strong{color:#7ce5eb}
+.brand-outcome-card.people h3 strong{color:#078e9b}
+.brand-outcome-card p{max-width:520px;margin:24px 0 0;font-size:13px;line-height:2}
+.brand-outcome-card.business p{color:#c1d3dc}
+.brand-outcome-card.people p{color:#4d6675}
+.brand-outcome-card b{margin-top:auto;padding-top:36px;font-size:9px;line-height:1.7;letter-spacing:.06em}
+.brand-outcome-card.business b{color:#8ab1c2}
+.brand-outcome-card.people b{color:#67818e}
+.brand-purpose-bridge{display:grid;grid-template-columns:180px 1fr;gap:12px 36px;margin-top:34px;padding:28px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.brand-purpose-bridge span{grid-row:1/3;color:#079eab;font-size:9px;font-weight:900;letter-spacing:.15em}
+.brand-purpose-bridge strong{font-family:Georgia,"Times New Roman",serif;font-size:23px;font-weight:500;line-height:1.5}
+.brand-purpose-bridge p{margin:0;color:#718793;font-size:10px;line-height:1.8}
+
+/* Principles */
+.brand-principles{background:var(--soft)}
+.principles-heading{align-items:end;margin-bottom:52px}
+.principles-heading>p{margin:0;color:var(--text);font-size:14px;line-height:1.95}
+.brand-principles-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.brand-principles-grid article{min-height:300px;padding:30px 20px;border-right:1px solid var(--line)}
+.brand-principles-grid article:last-child{border-right:0}
+.brand-principles-grid span{color:#079eab;font-size:9px;font-weight:900;letter-spacing:.12em}
+.brand-principles-grid h3{margin:54px 0 14px;font-size:18px;line-height:1.5}
+.brand-principles-grid p{margin:0;color:#607884;font-size:11px;line-height:1.9}
+
 .brand-method{background:var(--soft)}
 .brand-section-head{max-width:760px;margin-bottom:52px}
 .brand-section-head.light{color:#fff}
@@ -106,9 +144,13 @@ img{display:block;max-width:100%}
   .brand-navigation.open{display:flex}
   .brand-nav{height:68px}
   .brand-hero{padding-top:74px}
-  .brand-hero-inner,.brand-section-grid,.brand-company-grid{grid-template-columns:1fr;gap:48px}
+  .brand-hero-inner,.brand-section-grid,.brand-company-grid,.brand-purpose-intro{grid-template-columns:1fr;gap:48px}
   .brand-hero-statement{max-width:620px}
   .brand-method-grid{grid-template-columns:1fr 1fr}
+  .brand-principles-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .brand-principles-grid article{min-height:250px;border-bottom:1px solid var(--line)}
+  .brand-principles-grid article:nth-child(2n){border-right:0}
+  .brand-principles-grid article:last-child{border-bottom:0}
   .brand-method-grid article:nth-child(2){border-right:0}
   .brand-method-grid article:nth-child(-n+2){border-bottom:1px solid var(--line)}
 }
@@ -129,6 +171,23 @@ img{display:block;max-width:100%}
   .brand-section{padding:72px 0}
   .brand-section-grid{gap:34px}
   .brand-section h2{font-size:36px}
+  .brand-purpose-intro{gap:24px}
+  .brand-purpose-intro>p:last-child{font-size:13px;line-height:1.9}
+  .brand-purpose-outcome{grid-template-columns:1fr;margin-top:42px}
+  .brand-outcome-card{min-height:0;padding:28px 22px}
+  .brand-outcome-card h3{margin-top:32px;font-size:30px}
+  .brand-outcome-card p{margin-top:18px;font-size:12px;line-height:1.9}
+  .brand-outcome-card b{margin-top:28px;padding-top:0}
+  .brand-purpose-bridge{grid-template-columns:1fr;gap:10px;margin-top:24px;padding:22px 0}
+  .brand-purpose-bridge span{grid-row:auto}
+  .brand-purpose-bridge strong{font-size:20px}
+  .principles-heading{margin-bottom:28px}
+  .principles-heading>p{font-size:12px;line-height:1.9}
+  .brand-principles-grid{grid-template-columns:1fr}
+  .brand-principles-grid article{min-height:0;padding:22px 18px;border-right:0;border-bottom:1px solid var(--line)}
+  .brand-principles-grid article:last-child{border-bottom:0}
+  .brand-principles-grid h3{margin:24px 0 10px;font-size:18px}
+  .brand-principles-grid p{font-size:11px;line-height:1.85}
   .brand-manifesto p{font-size:13px;line-height:1.9}
   .brand-manifesto blockquote{margin-top:36px;font-size:23px}
   .brand-section-head{margin-bottom:32px}
