@@ -168,6 +168,12 @@ await checkPage("brand/index.html", {
   schemaTypes: ["Organization", "BreadcrumbList"]
 });
 
+await checkPage("naoya-sakamoto/index.html", {
+  canonical: `${siteUrl}/naoya-sakamoto/`,
+  ogType: "profile",
+  schemaTypes: ["Person", "BreadcrumbList"]
+});
+
 const brandPage = await read("brand/index.html");
 for (const token of [
   'id="purpose"',
@@ -223,6 +229,7 @@ if (!hasSiteHref(home, "contact/?source=home&intent=it-adviser-diagnosis")) fail
 if (!home.includes('data-analytics-event="home_plan_click"')) fail("index.html: pricing analytics event missing");
 if (!hasSiteHref(home, "news/")) fail("index.html: NEWS navigation is missing");
 if (!hasSiteHref(home, "brand/")) fail("index.html: brand/company navigation is missing");
+if (!hasSiteHref(home, "naoya-sakamoto/")) fail("index.html: representative profile internal link is missing");
 if (!hasSiteHref(home, "ai-employee/")) fail("index.html: AI employee navigation is missing");
 if (!hasSiteHref(home, "services/pawn-bpo/")) fail("index.html: pawn BPO internal link is missing");
 for (const item of [...newsItems].sort((a, b) => b.date.localeCompare(a.date)).slice(0, 3)) {
@@ -248,12 +255,33 @@ for (const cssPath of ["case-studies/case-study.css", "news/news.css"]) {
   if (!css.includes(".subsite-header .brand-logo-wrap.brand-logo-official")) fail(`${cssPath}: new wordmark sizing rule missing`);
 }
 
+const netlifyConfig = await read("netlify.toml");
+for (const [from, to] of [
+  ["/about/", "/brand/"],
+  ["/cases/", "/case-studies/"],
+  ["/faq/", "/#faq"],
+  ["/diagnosis/", "/contact/"],
+  ["/services/ai/", "/ai-employee/"],
+  ["/services/business-improvement/", "/services/it-adviser/"],
+  ["/services/web-marketing/", "/services/it-adviser/"]
+]) {
+  if (!netlifyConfig.includes(`from = "${from}"`) || !netlifyConfig.includes(`to = "${to}"`)) {
+    fail(`netlify.toml: legacy redirect missing ${from} -> ${to}`);
+  }
+}
+const notFound = await read("404.html");
+if (!/noindex/i.test(metaContent(notFound, "robots"))) fail("404.html: must be noindex");
+for (const href of ["/", "/brand/", "/contact/"]) {
+  if (!notFound.includes(`href="${href}"`)) fail(`404.html: recovery link missing ${href}`);
+}
+
 const sitemap = await read("sitemap.xml");
 const sitemapUrls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
 const expectedUrls = [
   `${siteUrl}/`,
   `${siteUrl}/services/it-adviser/`,
   `${siteUrl}/brand/`,
+  `${siteUrl}/naoya-sakamoto/`,
   `${siteUrl}/services/pawn-bpo/`,
   `${siteUrl}/news/`,
   ...newsItems.map((item) => `${siteUrl}/news/${item.slug}/`)

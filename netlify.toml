@@ -25,3 +25,89 @@
   for = "/*.js"
   [headers.values]
     Cache-Control = "public, max-age=3600"
+
+
+# Legacy URL migration — preserve old search/external links with permanent redirects.
+[[redirects]]
+  from = "/about"
+  to = "/brand/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/about/"
+  to = "/brand/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/cases"
+  to = "/case-studies/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/cases/"
+  to = "/case-studies/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/faq"
+  to = "/#faq"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/faq/"
+  to = "/#faq"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/diagnosis"
+  to = "/contact/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/diagnosis/"
+  to = "/contact/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/services/ai"
+  to = "/ai-employee/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/services/ai/"
+  to = "/ai-employee/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/services/business-improvement"
+  to = "/services/it-adviser/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/services/business-improvement/"
+  to = "/services/it-adviser/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/services/web-marketing"
+  to = "/services/it-adviser/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/services/web-marketing/"
+  to = "/services/it-adviser/"
+  status = 301
+  force = true
