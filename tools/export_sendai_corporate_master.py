@@ -87,6 +87,13 @@ def discover_miyagi_downloads(page: str) -> tuple[list[str], str]:
     # choose the one that produces the largest valid Sendai extract.
     file_nos = list(dict.fromkeys(file_nos))
 
+    # The NTA page lays out the six Tohoku prefectures in one table row.
+    # The first three doDownload IDs in that row are Aomori's
+    # Shift-JIS / Unicode / XML files. Each prefecture advances by 3 IDs,
+    # so Miyagi (two prefectures after Aomori) is +6.
+    if len(file_nos) >= 3:
+        file_nos = [str(int(n) + 6) for n in file_nos[:3]]
+
     token = ""
     input_tags = re.findall(r"<input\b[^>]*>", page, flags=re.I)
     for tag in input_tags:
