@@ -213,7 +213,7 @@ for (const token of [
   'id="industries"',
   "月額</small><strong>10,000",
   "月額</small><strong>30,000",
-  "30分無料IT診断",
+  "1業務無料改善",
   "pricing-decision-strip",
   "pricing-compare",
   "宮城県「令和8年度県内事業者デジタル化実態調査」",
@@ -225,7 +225,7 @@ const homeSchemaTypes = parseSchemas(home, "index.html").flatMap((schema) => sch
 for (const type of ["Organization", "Service"]) {
   if (!homeSchemaTypes.includes(type)) fail(`index.html: missing ${type} JSON-LD`);
 }
-if (!hasSiteHref(home, "contact/?source=home&intent=it-adviser-diagnosis")) fail("index.html: diagnosis CTA attribution missing");
+if (!hasSiteHref(home, "free-improvement/")) fail("index.html: free improvement CTA missing");
 if (!home.includes('data-analytics-event="home_plan_click"')) fail("index.html: pricing analytics event missing");
 if (!hasSiteHref(home, "news/")) fail("index.html: NEWS navigation is missing");
 if (!hasSiteHref(home, "brand/")) fail("index.html: brand/company navigation is missing");
@@ -236,6 +236,7 @@ for (const item of [...newsItems].sort((a, b) => b.date.localeCompare(a.date)).s
   if (!home.includes(`news/${item.slug}/`)) fail(`index.html: latest NEWS missing ${item.slug}`);
 }
 await checkInternalLinks(home, "index.html");
+await checkPage("free-improvement/index.html", { canonical: `${siteUrl}/free-improvement/`, ogType: "website", schemaTypes: ["Service"] });
 
 
 const subsitePages = [
