@@ -60,7 +60,7 @@ function renderHeader() {
         <a href="/case-studies/">事例</a>
         <a href="/news/" aria-current="page">実務ノウハウ・NEWS</a>
         <a href="/brand/">会社・ブランド</a>
-        <a class="nav-cta" href="/contact/?source=news&intent=it-adviser-diagnosis">30分無料IT診断</a>
+        <a class="nav-cta" href="/free-improvement/">1業務改善無料</a>
       </nav>
     </div>
   </header>`;
@@ -309,7 +309,9 @@ ${latest.map((item) => `        <article>
 
 function renderSitemap() {
   const urls = [
-    { loc: `${siteUrl}/`, lastmod: "2026-09-24" },
+    { loc: `${siteUrl}/`, lastmod: "2026-09-26" },
+    { loc: `${siteUrl}/free-improvement/`, lastmod: "2026-09-26" },
+    { loc: `${siteUrl}/contact/`, lastmod: "2026-09-26" },
     { loc: `${siteUrl}/services/it-adviser/`, lastmod: "2026-09-23" },
     { loc: `${siteUrl}/brand/`, lastmod: "2026-09-24" },
     { loc: `${siteUrl}/naoya-sakamoto/`, lastmod: "2026-09-24" },
