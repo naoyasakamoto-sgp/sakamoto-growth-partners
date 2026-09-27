@@ -69,32 +69,22 @@ img{display:block;max-width:100%}
 .mvv-vision-svg{display:block;width:min(100%,420px);height:auto;max-height:390px;overflow:visible}
 
 .mvv-mission{background:var(--soft)}
-.mvv-mission-grid{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line)}
-.mvv-mission-grid article{min-height:500px;padding:34px;background:#fff;border-right:1px solid var(--line)}
-.mvv-mission-grid article:last-child{border-right:0}
-.mvv-card-top{display:flex;align-items:center;justify-content:space-between;gap:16px}
-.mvv-card-top span{color:var(--cyan-strong);font-size:9px;font-weight:900}
-.mvv-card-top b{color:#86a0ac;font-size:8px;letter-spacing:.12em}
-.mvv-icon{position:relative;height:96px;margin:48px 0 30px}
-.mvv-icon-growth{display:flex;align-items:end;gap:8px;width:122px}
-.mvv-icon-growth i{display:block;width:22px;background:var(--navy)}
-.mvv-icon-growth i:nth-child(1){height:28px}.mvv-icon-growth i:nth-child(2){height:48px}.mvv-icon-growth i:nth-child(3){height:70px}
-.mvv-icon-growth em{position:absolute;left:22px;top:10px;width:94px;height:5px;background:var(--cyan);transform:rotate(-28deg);transform-origin:left center}
-.mvv-icon-growth em::after{content:"";position:absolute;right:-2px;top:-9px;border-left:18px solid var(--cyan);border-top:11px solid transparent;border-bottom:11px solid transparent}
-.mvv-icon-cost{width:130px}
-.mvv-icon-cost i{position:absolute;bottom:0;width:62px;height:28px;border:4px solid var(--navy);border-radius:50%}
-.mvv-icon-cost i::before,.mvv-icon-cost i::after{content:"";position:absolute;left:-4px;width:62px;height:28px;border:4px solid var(--navy);border-radius:50%}
-.mvv-icon-cost i::before{bottom:18px}.mvv-icon-cost i::after{bottom:40px}
-.mvv-icon-cost i:nth-child(2){left:54px;bottom:2px;transform:scale(.8)}
-.mvv-icon-cost em{position:absolute;right:-8px;top:-10px;color:var(--cyan);font-size:64px;font-style:normal;font-weight:300}
-.mvv-icon-time{width:104px;height:104px;border:7px solid var(--navy);border-radius:50%}
-.mvv-icon-time i{position:absolute;left:45px;top:20px;width:5px;height:34px;background:var(--navy);transform-origin:bottom}
-.mvv-icon-time i::after{content:"";position:absolute;left:0;bottom:0;width:30px;height:5px;background:var(--navy);transform:rotate(28deg);transform-origin:left}
-.mvv-icon-time em{position:absolute;right:-18px;bottom:2px;width:38px;height:38px;border-right:7px solid var(--cyan);border-bottom:7px solid var(--cyan);transform:rotate(12deg)}
-.mvv-mission-grid h3{margin:0;font-family:"Hiragino Mincho ProN","Yu Mincho","YuMincho","Noto Serif JP",Georgia,"Times New Roman",serif;font-size:38px;font-weight:500;line-height:1.35}
+.mvv-mission-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;border:0}
+.mvv-mission-grid article{display:grid;grid-template-columns:minmax(0,1fr) 124px;grid-template-areas:"top top" "title icon" "body body";gap:20px 16px;align-items:start;min-width:0;min-height:430px;padding:30px;background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:0 10px 30px rgba(6,43,73,.035)}
+.mvv-card-top{grid-area:top;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.mvv-card-top span{position:relative;color:var(--cyan-strong);font-size:10px;font-weight:900;letter-spacing:.04em}
+.mvv-card-top span::after{content:"";display:inline-block;width:42px;height:1px;margin:0 0 3px 14px;background:#7595a8}
+.mvv-card-top b{color:#86a0ac;font-size:9px;letter-spacing:.18em}
+.mvv-icon-wrap{grid-area:icon;position:relative;width:124px;height:124px;justify-self:end;align-self:start}
+.mvv-icon-backdrop{position:absolute;inset:4px;border-radius:50%;background:linear-gradient(145deg,rgba(16,196,210,.025),rgba(16,196,210,.09))}
+.mvv-icon-svg{position:relative;z-index:1;display:block;width:100%;height:100%;overflow:visible}
+.mvv-icon-svg .stroke-line,.mvv-icon-svg .stroke-circle,.mvv-icon-svg .stroke-rect{fill:none;stroke:var(--navy);stroke-width:5;stroke-linecap:round;stroke-linejoin:round}
+.mvv-icon-svg .accent-line{fill:none;stroke:var(--cyan);stroke-width:6;stroke-linecap:round;stroke-linejoin:round}
+.mvv-icon-svg .accent-fill{fill:var(--cyan)}
+.mvv-mission-grid h3{grid-area:title;margin:8px 0 0;font-family:"Hiragino Mincho ProN","Yu Mincho","YuMincho","Noto Serif JP",Georgia,"Times New Roman",serif;font-size:clamp(32px,3vw,40px);font-weight:500;line-height:1.35;letter-spacing:-.025em}
 .mvv-mission-grid h3 strong{color:var(--cyan-strong);font-weight:500}
-.mvv-mission-grid p{margin:24px 0 0;color:var(--text);font-size:12px;line-height:1.95}
-.mvv-mission-equation{display:grid;grid-template-columns:auto auto auto auto auto auto 1fr;align-items:center;gap:16px;margin-top:26px;padding:24px 28px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.mvv-mission-grid p{grid-area:body;margin:0;color:var(--text);font-size:12px;line-height:1.95}
+.mvv-mission-equation{display:grid;grid-template-columns:auto auto auto auto auto auto 1fr;align-items:center;gap:16px;margin-top:30px;padding:24px 28px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .mvv-mission-equation span{color:#7a929e;font-size:8px;font-weight:900;letter-spacing:.12em}
 .mvv-mission-equation b{font-size:12px}
 .mvv-mission-equation i{color:#a1b3bc;font-style:normal}
@@ -160,9 +150,11 @@ img{display:block;max-width:100%}
   .mvv-vision-panel{min-height:0}
   .mvv-vision-mark{min-height:240px}
   .mvv-mission-grid,.mvv-value-grid{grid-template-columns:1fr}
-  .mvv-mission-grid article,.mvv-value-grid article{min-height:0;border-right:0;border-bottom:1px solid var(--line)}
-  .mvv-value-grid article{border-bottom-color:rgba(255,255,255,.16)}
-  .mvv-mission-grid article:last-child,.mvv-value-grid article:last-child{border-bottom:0}
+  .mvv-mission-grid{gap:18px}
+  .mvv-mission-grid article{grid-template-columns:minmax(0,1fr) 148px;min-height:0;padding:32px;border:1px solid var(--line)}
+  .mvv-icon-wrap{width:148px;height:148px}
+  .mvv-value-grid article{min-height:0;border-right:0;border-bottom:1px solid rgba(255,255,255,.16)}
+  .mvv-value-grid article:last-child{border-bottom:0}
   .mvv-mission-equation{grid-template-columns:auto 1fr auto 1fr}
   .mvv-mission-equation>strong{grid-column:1/-1;text-align:left}
 }
@@ -194,9 +186,13 @@ img{display:block;max-width:100%}
   .mvv-vision-mark{min-height:180px;padding:20px 22px}
   .mvv-vision-svg{width:min(88vw,360px);max-height:180px}
   .mvv-vision-index{right:18px;top:14px;font-size:54px}
-  .mvv-mission-grid article,.mvv-value-grid article{padding:26px 22px}
-  .mvv-mission-grid h3{font-size:34px}
-  .mvv-icon{margin-top:34px}
+  .mvv-mission-grid article{grid-template-columns:minmax(0,1fr) 118px;gap:18px 12px;padding:24px 22px;border-radius:14px}
+  .mvv-icon-wrap{width:118px;height:118px}
+  .mvv-card-top b{font-size:8px;letter-spacing:.16em}
+  .mvv-card-top span::after{width:34px;margin-left:10px}
+  .mvv-mission-grid h3{margin-top:4px;font-size:36px;line-height:1.3}
+  .mvv-mission-grid p{font-size:12px;line-height:1.9}
+  .mvv-value-grid article{padding:26px 22px}
   .mvv-mission-equation{grid-template-columns:1fr 1fr;gap:10px;margin-top:18px;padding:20px 0}
   .mvv-mission-equation i{display:none}
   .mvv-mission-equation>strong{font-size:18px}
@@ -212,4 +208,10 @@ img{display:block;max-width:100%}
   .mvv-closing-actions a{min-width:0}
   .mvv-footer-grid{grid-template-columns:1fr;gap:24px}
   .mvv-footer nav{flex-wrap:wrap}
+}
+@media(max-width:390px){
+  .mvv-mission-grid article{grid-template-columns:minmax(0,1fr) 106px;padding:22px 18px}
+  .mvv-icon-wrap{width:106px;height:106px}
+  .mvv-mission-grid h3{font-size:33px}
+  .mvv-card-top b{letter-spacing:.12em}
 }
