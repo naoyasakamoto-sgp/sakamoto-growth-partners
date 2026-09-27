@@ -46,6 +46,32 @@ jobs:
             echo "available=true" >> "$GITHUB_OUTPUT"
           fi
 
+      - name: Verify Netlify API access
+        if: steps.netlify-auth.outputs.available == 'true'
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        run: |
+          set -euo pipefail
+          user_code="$(curl --silent --show-error --output /tmp/netlify-user.json --write-out "%{http_code}" \
+            -H "Authorization: Bearer $NETLIFY_AUTH_TOKEN" \
+            https://api.netlify.com/api/v1/user)"
+          site_code="$(curl --silent --show-error --output /tmp/netlify-site.json --write-out "%{http_code}" \
+            -H "Authorization: Bearer $NETLIFY_AUTH_TOKEN" \
+            https://api.netlify.com/api/v1/sites/2a45dabd-9519-466b-a66d-9589261e17a7)"
+          {
+            echo "### Netlify auth preflight"
+            echo "- User API: $user_code"
+            echo "- Site API: $site_code"
+          } >> "$GITHUB_STEP_SUMMARY"
+          if [ "$user_code" != "200" ]; then
+            echo "::error::NETLIFY_AUTH_TOKEN is not accepted by Netlify (user API HTTP $user_code)."
+            exit 1
+          fi
+          if [ "$site_code" != "200" ]; then
+            echo "::error::NETLIFY_AUTH_TOKEN is valid but cannot access the production site (site API HTTP $site_code)."
+            exit 1
+          fi
+
       - name: Deploy production to Netlify
         if: steps.netlify-auth.outputs.available == 'true'
         env:
