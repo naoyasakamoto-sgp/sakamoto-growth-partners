@@ -189,7 +189,12 @@ for (const token of [
   "最後までやる。",
   "難しいを、簡単に。",
   'class="mvv-vision-svg"',
-  'viewBox="0 0 420 360"'
+  'viewBox="0 0 420 360"',
+  'class="mvv-icon-wrap"',
+  'class="mvv-icon-svg"',
+  "GROW REVENUE",
+  "REDUCE COST",
+  "GIVE BACK TIME"
 ]) {
   if (!mvvPage.includes(token)) fail(`mvv/index.html: MVV token missing: ${token}`);
 }
@@ -199,11 +204,17 @@ for (const token of [
   ".mvv-vision-svg",
   "grid-template-columns:minmax(0,1.65fr) minmax(280px,.75fr)",
   "@media(max-width:1024px)",
-  "white-space:nowrap"
+  "white-space:nowrap",
+  ".mvv-icon-wrap",
+  ".mvv-icon-svg .accent-line",
+  "border-radius:18px"
 ]) {
   if (!mvvCss.includes(token)) fail(`mvv/mvv.css: responsive MVV token missing: ${token}`);
 }
 if (mvvCss.includes(".mvv-arrow{")) fail("mvv/mvv.css: legacy fixed-pixel Vision arrows must not remain");
+for (const legacyMissionIcon of [".mvv-icon-growth", ".mvv-icon-cost", ".mvv-icon-time"]) {
+  if (mvvCss.includes(legacyMissionIcon)) fail(`mvv/mvv.css: legacy Mission icon CSS must not remain: ${legacyMissionIcon}`);
+}
 
 await checkPage("naoya-sakamoto/index.html", {
   canonical: `${siteUrl}/naoya-sakamoto/`,
