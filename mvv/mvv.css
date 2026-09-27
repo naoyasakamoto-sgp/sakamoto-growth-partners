@@ -11,8 +11,9 @@
   --white:#fff;
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;scroll-padding-top:96px}
 body{margin:0;background:#fff;color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Hiragino Sans","Yu Gothic",sans-serif;-webkit-font-smoothing:antialiased}
+:where(#vision,#mission,#value){scroll-margin-top:96px}
 a{color:inherit}
 img{display:block;max-width:100%}
 .mvv-shell{width:min(1180px,calc(100% - 48px));margin-inline:auto}
@@ -31,7 +32,7 @@ img{display:block;max-width:100%}
 .mvv-hero-grid{position:relative;display:grid;grid-template-columns:1.12fr .88fr;gap:96px;align-items:end;padding-bottom:94px}
 .mvv-eyebrow{margin:0 0 18px;color:#70e4ec;font-size:10px;font-weight:900;letter-spacing:.18em}
 .mvv-eyebrow.dark{color:var(--cyan-strong)}
-.mvv-hero h1{margin:0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(54px,7vw,90px);font-weight:500;line-height:1.15;letter-spacing:-.055em}
+.mvv-hero h1{margin:0;font-family:"Hiragino Mincho ProN","Yu Mincho","YuMincho","Noto Serif JP",Georgia,"Times New Roman",serif;font-size:clamp(54px,7vw,90px);font-weight:500;line-height:1.15;letter-spacing:-.055em}
 .mvv-hero h1 span{color:#7ce5eb}
 .mvv-hero-lead{max-width:680px;margin:28px 0 0;color:#c6d9e2;font-size:16px;line-height:2}
 .mvv-hero-links{display:flex;gap:24px;margin-top:34px}
@@ -40,7 +41,7 @@ img{display:block;max-width:100%}
 .mvv-hero-index>div{display:grid;grid-template-columns:42px 1fr auto;gap:14px;align-items:center;padding:20px 0;border-bottom:1px solid rgba(255,255,255,.12)}
 .mvv-hero-index>div:last-child{border-bottom:0}
 .mvv-hero-index span{color:#70e4ec;font-size:10px;font-weight:900}
-.mvv-hero-index strong{font-family:Georgia,"Times New Roman",serif;font-size:26px;font-weight:400;letter-spacing:.03em}
+.mvv-hero-index strong{font-family:"Hiragino Mincho ProN","Yu Mincho","YuMincho","Noto Serif JP",Georgia,"Times New Roman",serif;font-size:26px;font-weight:400;letter-spacing:.03em}
 .mvv-hero-index small{color:#8aa7b5;font-size:8px;font-weight:900;letter-spacing:.12em}
 .mvv-hero-foot{position:relative;display:grid;grid-template-columns:auto 1fr auto 1fr auto 1fr;border-top:1px solid rgba(255,255,255,.16)}
 .mvv-hero-foot span,.mvv-hero-foot b{padding:18px 16px;border-right:1px solid rgba(255,255,255,.12);font-size:9px}
@@ -52,23 +53,20 @@ img{display:block;max-width:100%}
 .mvv-section-label span{display:grid;place-items:center;width:34px;height:34px;border:1px solid var(--cyan);border-radius:50%;color:var(--cyan-strong);font-size:9px;font-weight:900}
 .mvv-section-label p{margin:0;color:var(--cyan-strong);font-size:9px;font-weight:900;letter-spacing:.16em}
 .mvv-section-heading{display:grid;grid-template-columns:.95fr 1.05fr;gap:92px;align-items:end;margin-bottom:58px}
-.mvv-section-heading h2{margin:0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(40px,4.6vw,60px);font-weight:500;line-height:1.35;letter-spacing:-.04em}
+.mvv-section-heading h2{margin:0;font-family:"Hiragino Mincho ProN","Yu Mincho","YuMincho","Noto Serif JP",Georgia,"Times New Roman",serif;font-size:clamp(40px,4.6vw,60px);font-weight:500;line-height:1.35;letter-spacing:-.04em}
 .mvv-section-heading>p{margin:0 0 4px;color:var(--text);font-size:14px;line-height:1.95}
 
 .mvv-vision{background:#fff}
-.mvv-vision-panel{position:relative;overflow:hidden;display:grid;grid-template-columns:1.18fr .82fr;min-height:520px;background:linear-gradient(135deg,#f8fcfd 0%,#e5f7f9 48%,#d2f1f4 100%);border:1px solid var(--line)}
-.mvv-vision-copy{position:relative;z-index:2;padding:64px}
+.mvv-vision-panel{position:relative;overflow:hidden;display:grid;grid-template-columns:minmax(0,1.65fr) minmax(280px,.75fr);min-height:500px;background:linear-gradient(135deg,#f8fcfd 0%,#e5f7f9 52%,#d2f1f4 100%);border:1px solid var(--line)}
+.mvv-vision-copy{position:relative;z-index:2;padding:clamp(40px,4.4vw,56px)}
 .mvv-kicker{margin:0;color:var(--cyan-strong);font-size:9px;font-weight:900;letter-spacing:.18em}
-.mvv-vision-copy h2{margin:50px 0 0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(52px,6.6vw,84px);font-weight:500;line-height:1.2;letter-spacing:-.055em}
-.mvv-vision-copy h2 strong{color:#078e9b;font-weight:500}
-.mvv-vision-copy>p:last-child{max-width:680px;margin:32px 0 0;color:#4d6675;font-size:14px;line-height:2}
-.mvv-vision-mark{position:relative;overflow:hidden;background:linear-gradient(165deg,rgba(6,43,73,.04),rgba(6,43,73,.13));clip-path:polygon(18% 0,100% 0,100% 100%,0 100%)}
-.mvv-vision-mark>span{position:absolute;right:40px;top:28px;color:rgba(6,43,73,.18);font-family:Georgia,"Times New Roman",serif;font-size:100px}
-.mvv-arrow{position:absolute;bottom:-80px;width:54px;height:390px;border-radius:999px 999px 0 0;background:linear-gradient(to top,rgba(16,196,210,.14),rgba(16,196,210,.82));transform:rotate(36deg)}
-.mvv-arrow::after{content:"";position:absolute;top:-34px;left:-22px;border-left:49px solid transparent;border-right:49px solid transparent;border-bottom:72px solid rgba(16,196,210,.78)}
-.mvv-arrow-one{left:80px;height:330px;opacity:.55}
-.mvv-arrow-two{left:165px;height:430px;opacity:.75}
-.mvv-arrow-three{left:255px;height:520px}
+.mvv-vision-copy h2{margin:44px 0 0;font-family:"Hiragino Mincho ProN","Yu Mincho","YuMincho","Noto Serif JP",Georgia,"Times New Roman",serif;font-size:clamp(50px,4.35vw,62px);font-weight:500;line-height:1.22;letter-spacing:-.035em;text-wrap:balance}
+.mvv-vision-copy h2 strong{display:inline;color:#078e9b;font-weight:500;white-space:nowrap}
+.mvv-vision-copy h2 strong span{white-space:nowrap}
+.mvv-vision-copy>p:last-child{max-width:680px;margin:30px 0 0;color:#4d6675;font-size:14px;line-height:2}
+.mvv-vision-mark{position:relative;display:grid;place-items:center;min-width:0;padding:48px 28px;background:linear-gradient(165deg,rgba(6,43,73,.035),rgba(6,43,73,.12));border-left:1px solid rgba(6,43,73,.07)}
+.mvv-vision-index{position:absolute;right:28px;top:20px;color:rgba(6,43,73,.12);font-family:"Hiragino Mincho ProN","Yu Mincho","YuMincho","Noto Serif JP",Georgia,"Times New Roman",serif;font-size:clamp(64px,7vw,92px);line-height:1}
+.mvv-vision-svg{display:block;width:min(100%,420px);height:auto;max-height:390px;overflow:visible}
 
 .mvv-mission{background:var(--soft)}
 .mvv-mission-grid{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line)}
@@ -93,14 +91,14 @@ img{display:block;max-width:100%}
 .mvv-icon-time i{position:absolute;left:45px;top:20px;width:5px;height:34px;background:var(--navy);transform-origin:bottom}
 .mvv-icon-time i::after{content:"";position:absolute;left:0;bottom:0;width:30px;height:5px;background:var(--navy);transform:rotate(28deg);transform-origin:left}
 .mvv-icon-time em{position:absolute;right:-18px;bottom:2px;width:38px;height:38px;border-right:7px solid var(--cyan);border-bottom:7px solid var(--cyan);transform:rotate(12deg)}
-.mvv-mission-grid h3{margin:0;font-family:Georgia,"Times New Roman",serif;font-size:38px;font-weight:500;line-height:1.35}
+.mvv-mission-grid h3{margin:0;font-family:"Hiragino Mincho ProN","Yu Mincho","YuMincho","Noto Serif JP",Georgia,"Times New Roman",serif;font-size:38px;font-weight:500;line-height:1.35}
 .mvv-mission-grid h3 strong{color:var(--cyan-strong);font-weight:500}
 .mvv-mission-grid p{margin:24px 0 0;color:var(--text);font-size:12px;line-height:1.95}
 .mvv-mission-equation{display:grid;grid-template-columns:auto auto auto auto auto auto 1fr;align-items:center;gap:16px;margin-top:26px;padding:24px 28px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .mvv-mission-equation span{color:#7a929e;font-size:8px;font-weight:900;letter-spacing:.12em}
 .mvv-mission-equation b{font-size:12px}
 .mvv-mission-equation i{color:#a1b3bc;font-style:normal}
-.mvv-mission-equation>strong{text-align:right;color:var(--cyan-strong);font-family:Georgia,"Times New Roman",serif;font-size:20px;font-weight:500}
+.mvv-mission-equation>strong{text-align:right;color:var(--cyan-strong);font-family:"Hiragino Mincho ProN","Yu Mincho","YuMincho","Noto Serif JP",Georgia,"Times New Roman",serif;font-size:20px;font-weight:500}
 
 .mvv-value{background:var(--navy-deep);color:#fff}
 .value-heading .mvv-section-label p{color:#73dfe7}
@@ -111,25 +109,25 @@ img{display:block;max-width:100%}
 .mvv-value-grid article:last-child{border-right:0}
 .mvv-value-no{color:#70e1e9;font-size:9px;font-weight:900}
 .mvv-value-en{margin:9px 0 0!important;color:#7f9eab!important;font-size:8px!important;font-weight:900;letter-spacing:.16em}
-.mvv-value-symbol{display:grid;place-items:center;width:92px;height:92px;margin:46px 0 30px;color:#70e1e9;font-family:Georgia,"Times New Roman",serif;font-size:56px}
+.mvv-value-symbol{display:grid;place-items:center;width:92px;height:92px;margin:46px 0 30px;color:#70e1e9;font-family:"Hiragino Mincho ProN","Yu Mincho","YuMincho","Noto Serif JP",Georgia,"Times New Roman",serif;font-size:56px}
 .mvv-value-symbol.move{border-left:3px solid rgba(112,225,233,.25);justify-content:start;padding-left:10px}
 .mvv-value-symbol.finish{border:1px solid rgba(112,225,233,.42);border-radius:50%;font-size:42px}
 .mvv-value-symbol.simple{position:relative;border:1px solid rgba(112,225,233,.42);border-radius:50%;font-size:0}
 .mvv-value-symbol.simple::before,.mvv-value-symbol.simple::after{content:"";position:absolute;width:58px;height:3px;background:#70e1e9}
 .mvv-value-symbol.simple::before{transform:rotate(45deg)}.mvv-value-symbol.simple::after{transform:rotate(-45deg)}
-.mvv-value-grid h3{margin:0;font-family:Georgia,"Times New Roman",serif;font-size:34px;font-weight:500}
+.mvv-value-grid h3{margin:0;font-family:"Hiragino Mincho ProN","Yu Mincho","YuMincho","Noto Serif JP",Georgia,"Times New Roman",serif;font-size:34px;font-weight:500}
 .mvv-value-grid article>p:last-child{margin:22px 0 0;color:#a9c0cb;font-size:12px;line-height:1.95}
 
 .mvv-purpose-link{padding:110px 0;background:#fff}
 .mvv-purpose-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:96px;align-items:start}
-.mvv-purpose-link h2{margin:0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(38px,4.5vw,58px);font-weight:500;line-height:1.35;letter-spacing:-.04em}
-.mvv-purpose-link blockquote{margin:0;padding-top:28px;border-top:1px solid var(--line);font-family:Georgia,"Times New Roman",serif;font-size:30px;line-height:1.55;color:var(--navy)}
+.mvv-purpose-link h2{margin:0;font-family:"Hiragino Mincho ProN","Yu Mincho","YuMincho","Noto Serif JP",Georgia,"Times New Roman",serif;font-size:clamp(38px,4.5vw,58px);font-weight:500;line-height:1.35;letter-spacing:-.04em}
+.mvv-purpose-link blockquote{margin:0;padding-top:28px;border-top:1px solid var(--line);font-family:"Hiragino Mincho ProN","Yu Mincho","YuMincho","Noto Serif JP",Georgia,"Times New Roman",serif;font-size:30px;line-height:1.55;color:var(--navy)}
 .mvv-purpose-link blockquote+p{margin:26px 0 0;color:var(--text);font-size:13px;line-height:1.95}
 .mvv-purpose-link a{display:inline-block;margin-top:28px;color:var(--cyan-strong);font-size:11px;font-weight:900;text-underline-offset:5px}
 
 .mvv-closing{padding:96px 0;background:linear-gradient(135deg,#edf9fa,#fff);text-align:center;border-top:1px solid var(--line)}
 .mvv-closing>div>p{margin:0;color:#7a929e;font-size:9px;font-weight:900;letter-spacing:.18em}
-.mvv-closing h2{display:flex;justify-content:center;flex-wrap:wrap;gap:10px 22px;margin:28px auto 0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(31px,4vw,48px);font-weight:500;line-height:1.35}
+.mvv-closing h2{display:flex;justify-content:center;flex-wrap:wrap;gap:10px 22px;margin:28px auto 0;font-family:"Hiragino Mincho ProN","Yu Mincho","YuMincho","Noto Serif JP",Georgia,"Times New Roman",serif;font-size:clamp(31px,4vw,48px);font-weight:500;line-height:1.35}
 .mvv-closing h2 span:nth-child(1),.mvv-closing h2 span:nth-child(3){color:#078e9b}
 .mvv-closing>div>strong{display:block;margin-top:24px;color:#31566b;font-size:13px}
 .mvv-closing-actions{display:flex;justify-content:center;gap:14px;margin-top:36px}
@@ -143,6 +141,14 @@ img{display:block;max-width:100%}
 .mvv-footer nav{display:flex;gap:18px}
 .mvv-footer nav a,.mvv-footer-grid>a{color:#566f7d;font-size:9px;font-weight:800;text-decoration:none}
 
+@media(max-width:1024px){
+  .mvv-vision-panel{grid-template-columns:1fr}
+  .mvv-vision-copy{padding:46px 42px}
+  .mvv-vision-copy h2{font-size:clamp(48px,7vw,60px)}
+  .mvv-vision-mark{min-height:250px;padding:28px 34px;border-left:0;border-top:1px solid rgba(6,43,73,.07)}
+  .mvv-vision-svg{width:min(74vw,520px);max-height:250px}
+  .mvv-vision-index{right:30px;top:18px;font-size:72px}
+}
 @media(max-width:920px){
   .mvv-menu-button{display:flex}
   .mvv-navigation{position:absolute;top:68px;right:24px;display:none;flex-direction:column;align-items:stretch;width:min(330px,calc(100vw - 48px));padding:16px;border:1px solid var(--line);border-radius:10px;background:#fff;box-shadow:0 24px 60px rgba(6,43,73,.16)}
@@ -151,8 +157,8 @@ img{display:block;max-width:100%}
   .mvv-hero{padding-top:76px}
   .mvv-hero-grid,.mvv-section-heading,.mvv-purpose-grid{grid-template-columns:1fr;gap:48px}
   .mvv-hero-index{max-width:680px}
-  .mvv-vision-panel{grid-template-columns:1fr;min-height:0}
-  .mvv-vision-mark{height:260px;clip-path:none}
+  .mvv-vision-panel{min-height:0}
+  .mvv-vision-mark{min-height:240px}
   .mvv-mission-grid,.mvv-value-grid{grid-template-columns:1fr}
   .mvv-mission-grid article,.mvv-value-grid article{min-height:0;border-right:0;border-bottom:1px solid var(--line)}
   .mvv-value-grid article{border-bottom-color:rgba(255,255,255,.16)}
@@ -178,10 +184,16 @@ img{display:block;max-width:100%}
   .mvv-section-heading{gap:28px;margin-bottom:34px}
   .mvv-section-heading h2{font-size:36px}
   .mvv-section-heading>p{font-size:12px}
-  .mvv-vision-copy{padding:34px 24px}
-  .mvv-vision-copy h2{margin-top:34px;font-size:45px}
+  html{scroll-padding-top:72px}
+  :where(#vision,#mission,#value){scroll-margin-top:72px}
+  .mvv-vision-copy{padding:32px 22px}
+  .mvv-vision-copy h2{margin-top:30px;font-size:clamp(34px,10.2vw,40px);line-height:1.28;letter-spacing:-.025em}
+  .mvv-vision-copy h2 strong{display:block;white-space:normal}
+  .mvv-vision-copy h2 strong span{display:block;white-space:nowrap}
   .mvv-vision-copy>p:last-child{font-size:12px;line-height:1.9}
-  .mvv-vision-mark{height:200px}
+  .mvv-vision-mark{min-height:180px;padding:20px 22px}
+  .mvv-vision-svg{width:min(88vw,360px);max-height:180px}
+  .mvv-vision-index{right:18px;top:14px;font-size:54px}
   .mvv-mission-grid article,.mvv-value-grid article{padding:26px 22px}
   .mvv-mission-grid h3{font-size:34px}
   .mvv-icon{margin-top:34px}
