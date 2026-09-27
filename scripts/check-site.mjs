@@ -168,6 +168,43 @@ await checkPage("brand/index.html", {
   schemaTypes: ["Organization", "BreadcrumbList"]
 });
 
+await checkPage("mvv/index.html", {
+  canonical: `${siteUrl}/mvv/`,
+  ogType: "website",
+  schemaTypes: ["WebPage"]
+});
+
+const mvvPage = await read("mvv/index.html");
+const mvvCss = await read("mvv/mvv.css");
+for (const token of [
+  'id="vision"',
+  'id="mission"',
+  'id="value"',
+  "世界一の",
+  "時価総額企業",
+  "売上を",
+  "コストを",
+  "時間を",
+  "まず動く。",
+  "最後までやる。",
+  "難しいを、簡単に。",
+  'class="mvv-vision-svg"',
+  'viewBox="0 0 420 360"'
+]) {
+  if (!mvvPage.includes(token)) fail(`mvv/index.html: MVV token missing: ${token}`);
+}
+for (const token of [
+  "scroll-padding-top:96px",
+  "scroll-margin-top:96px",
+  ".mvv-vision-svg",
+  "grid-template-columns:minmax(0,1.65fr) minmax(280px,.75fr)",
+  "@media(max-width:1024px)",
+  "white-space:nowrap"
+]) {
+  if (!mvvCss.includes(token)) fail(`mvv/mvv.css: responsive MVV token missing: ${token}`);
+}
+if (mvvCss.includes(".mvv-arrow{")) fail("mvv/mvv.css: legacy fixed-pixel Vision arrows must not remain");
+
 await checkPage("naoya-sakamoto/index.html", {
   canonical: `${siteUrl}/naoya-sakamoto/`,
   ogType: "profile",
@@ -229,6 +266,7 @@ if (!hasSiteHref(home, "free-improvement/")) fail("index.html: free improvement 
 if (!home.includes('data-analytics-event="home_plan_click"')) fail("index.html: pricing analytics event missing");
 if (!hasSiteHref(home, "news/")) fail("index.html: NEWS navigation is missing");
 if (!hasSiteHref(home, "brand/")) fail("index.html: brand/company navigation is missing");
+if (!hasSiteHref(home, "mvv/")) fail("index.html: MVV navigation is missing");
 if (!hasSiteHref(home, "naoya-sakamoto/")) fail("index.html: representative profile internal link is missing");
 if (!hasSiteHref(home, "ai-employee/")) fail("index.html: AI employee navigation is missing");
 if (!hasSiteHref(home, "services/pawn-bpo/")) fail("index.html: pawn BPO internal link is missing");
@@ -282,6 +320,7 @@ const expectedUrls = [
   `${siteUrl}/`,
   `${siteUrl}/services/it-adviser/`,
   `${siteUrl}/brand/`,
+  `${siteUrl}/mvv/`,
   `${siteUrl}/naoya-sakamoto/`,
   `${siteUrl}/services/pawn-bpo/`,
   `${siteUrl}/news/`,
