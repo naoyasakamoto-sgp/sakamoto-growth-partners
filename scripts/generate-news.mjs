@@ -55,12 +55,11 @@ function renderHeader() {
       </button>
       <nav class="nav nav-v2" id="global-navigation" aria-label="メインナビゲーション" data-nav>
         <a href="/services/it-adviser/">社外IT担当</a>
-        <a href="/#pricing">料金</a>
-        <a href="/#industries">業種別支援</a>
-        <a href="/case-studies/">事例</a>
-        <a href="/news/" aria-current="page">実務ノウハウ・NEWS</a>
-        <a href="/brand/">会社・ブランド</a>
-        <a class="nav-cta" href="/free-improvement/">1業務改善無料</a>
+        <a href="/naoya-sakamoto/">代表</a>
+        <a href="/case-studies/">実績</a>
+        <a href="/brand/">Purpose</a>
+        <a href="/mvv/">MVV</a>
+        <a class="nav-cta" href="/contact/?source=news-header">相談する</a>
       </nav>
     </div>
   </header>`;
@@ -72,11 +71,11 @@ function renderFooter() {
     <div class="container news-footer-grid">
       <p>© 2026 合同会社SGP / Sakamoto Growth Partners</p>
       <nav class="news-footer-links" aria-label="フッターナビゲーション">
-        <a href="/news/">NEWS</a>
+        <a href="/">HOME</a>
         <a href="/services/it-adviser/">社外IT担当</a>
-        <a href="/#pricing">料金</a>
-        <a href="/#company">会社概要</a>
-        <a href="/contact/?source=news-footer&intent=it-adviser-diagnosis">お問い合わせ</a>
+        <a href="/brand/">Purpose</a>
+        <a href="/mvv/">MVV</a>
+        <a href="/contact/?source=news-footer">お問い合わせ</a>
       </nav>
       <a href="#top">ページ上部へ</a>
     </div>
@@ -265,9 +264,9 @@ ${renderRelatedLinks(item.relatedLinks)}
           <h2 id="news-company-title">合同会社SGPについて</h2>
           <p>${escapeHtml(companyDescription)}</p>
           <div class="news-company-links">
-            <a href="/#company">合同会社SGPの会社概要を見る</a>
-            <a href="/services/it-adviser/">社外IT担当・IT顧問を見る</a>
-            <a href="/contact/?source=news-article&intent=it-adviser-diagnosis">Sakamoto Growth Partnersへ相談する</a>
+            <a href="/naoya-sakamoto/">代表を見る</a>
+            <a href="/services/it-adviser/">社外IT担当を見る</a>
+            <a href="/contact/?source=news-article">Sakamoto Growth Partnersへ相談する</a>
           </div>
         </aside>
         <p class="news-back"><a href="/news/">← NEWS一覧へ戻る</a></p>
@@ -371,20 +370,11 @@ async function main() {
     await writeFile(path.join(articleDir, "index.html"), renderArticle(item), "utf8");
   }
 
-  const indexPath = path.join(rootDir, "index.html");
-  const indexSource = await readFile(indexPath, "utf8");
-  const nextIndex = replaceGeneratedBlock(
-    indexSource,
-    "<!-- NEWS_LATEST_START -->",
-    "<!-- NEWS_LATEST_END -->",
-    renderHomeLatest()
-  );
-  await writeFile(indexPath, nextIndex, "utf8");
   await writeFile(path.join(rootDir, "sitemap.xml"), renderSitemap(), "utf8");
   await writeFile(path.join(rootDir, "robots.txt"), `User-agent: *\nAllow: /\n\nSitemap: ${siteUrl}/sitemap.xml\n`, "utf8");
   await writeFile(path.join(newsDir, "feed.xml"), renderFeed(), "utf8");
 
-  console.log(`Generated ${newsItems.length} NEWS articles, archive, homepage activity, sitemap and RSS.`);
+  console.log(`Generated ${newsItems.length} NEWS articles, archive, sitemap and RSS.`);
 }
 
 await main();
