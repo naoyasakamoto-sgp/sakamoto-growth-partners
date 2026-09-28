@@ -17,7 +17,7 @@
   <meta name="twitter:title" content="30分無料相談｜合同会社SGP" />
   <meta name="twitter:description" content="何を頼むか決まっていなくても大丈夫です。" />
   <meta name="theme-color" content="#ffffff" />
-  <link rel="stylesheet" href="../local-home.css?v=20260929-plain-v1" />
+  <link rel="stylesheet" href="../local-home.css?v=20260929-contact-submit-v2" />
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
@@ -48,43 +48,62 @@
     </section>
 
     <section>
-      <form class="plain-form" data-contact-form>
+      <form
+        class="plain-form"
+        data-contact-form
+        action="https://formsubmit.co/naoya.sakamoto@sakamoto-growth-partners.com"
+        method="POST"
+      >
         <input type="hidden" name="lead_source" data-lead-source value="direct" />
         <input type="hidden" name="lead_case" data-lead-case value="" />
         <input type="hidden" name="lead_intent" data-lead-intent value="general" />
         <input type="hidden" name="lead_plan" data-lead-plan value="" />
-
-        <div class="form-field">
-          <label for="name">お名前</label>
-          <input id="name" name="name" autocomplete="name" required />
+        <input type="hidden" name="_subject" value="[SGP相談] Webフォームから新しい相談" />
+        <input type="hidden" name="_template" value="table" />
+        <input type="hidden" name="_captcha" value="false" />
+        <input type="hidden" name="_next" value="https://sakamoto-growth-partners.com/contact/?submitted=1" />
+        <input type="hidden" name="_url" value="https://sakamoto-growth-partners.com/contact/" />
+        <div class="form-honeypot" aria-hidden="true">
+          <label for="website">Webサイト</label>
+          <input id="website" name="_honey" tabindex="-1" autocomplete="off" />
         </div>
 
-        <div class="form-field">
-          <label for="email">メールアドレス</label>
-          <input id="email" name="email" type="email" autocomplete="email" required />
+        <div data-contact-form-fields>
+          <div class="form-field">
+            <label for="name">お名前</label>
+            <input id="name" name="name" autocomplete="name" required />
+          </div>
+
+          <div class="form-field">
+            <label for="email">メールアドレス</label>
+            <input id="email" name="email" type="email" autocomplete="email" required />
+          </div>
+
+          <fieldset>
+            <legend>相談したいこと</legend>
+            <label class="radio-line"><input type="radio" name="topic" value="30分無料相談" checked />まず30分話したい</label>
+            <label class="radio-line"><input type="radio" name="topic" value="初回1業務改善無料について" />初回1業務改善無料について</label>
+            <label class="radio-line"><input type="radio" name="topic" value="社外IT担当・IT顧問について" />社外IT担当について</label>
+            <label class="radio-line"><input type="radio" name="topic" value="AI活用・自動化について" />AI・自動化について</label>
+            <label class="radio-line"><input type="radio" name="topic" value="まだ決まっていない" />まだ決まっていない</label>
+          </fieldset>
+
+          <div class="form-field">
+            <label for="company">会社名・屋号 <span class="small">任意</span></label>
+            <input id="company" name="company" autocomplete="organization" />
+          </div>
+
+          <div class="form-field">
+            <label for="message">今困っていること <span class="small">任意</span></label>
+            <textarea id="message" name="message" placeholder="例：見積と案件情報がExcelとLINEに分かれていて面倒です。"></textarea>
+          </div>
+
+          <button class="form-submit" type="submit" data-contact-submit>無料相談を送信する →</button>
+          <p class="form-note">メールアプリは開きません。このページからそのまま送信できます。</p>
+          <p class="form-note">送信内容はフォーム配信サービスを経由してSGP宛に送信され、ご相談への対応にのみ使用します。</p>
         </div>
 
-        <fieldset>
-          <legend>相談したいこと</legend>
-          <label class="radio-line"><input type="radio" name="topic" value="30分無料相談" required />まず30分話したい</label>
-          <label class="radio-line"><input type="radio" name="topic" value="初回1業務改善無料について" />初回1業務改善無料について</label>
-          <label class="radio-line"><input type="radio" name="topic" value="社外IT担当・IT顧問について" />社外IT担当について</label>
-          <label class="radio-line"><input type="radio" name="topic" value="AI活用・自動化について" />AI・自動化について</label>
-          <label class="radio-line"><input type="radio" name="topic" value="まだ決まっていない" />まだ決まっていない</label>
-        </fieldset>
-
-        <div class="form-field">
-          <label for="company">会社名・屋号 <span class="small">任意</span></label>
-          <input id="company" name="company" autocomplete="organization" />
-        </div>
-
-        <div class="form-field">
-          <label for="message">今困っていること <span class="small">任意</span></label>
-          <textarea id="message" name="message" placeholder="例：見積と案件情報がExcelとLINEに分かれていて面倒です。"></textarea>
-        </div>
-
-        <button class="form-submit" type="submit">相談メールを作る →</button>
-        <p class="form-note">押すとメールアプリが開きます。フォーム内容をWebサーバーへ自動保存する仕様ではありません。</p>
+        <div class="form-status" data-contact-status role="status" aria-live="polite" hidden></div>
       </form>
     </section>
 
