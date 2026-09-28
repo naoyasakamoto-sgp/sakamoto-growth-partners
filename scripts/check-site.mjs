@@ -281,8 +281,6 @@ for (const token of [
   "これまでの仕事。",
   "会社員時代。",
   "個人事業主時代。",
-  "RAGでは一次回答率80%",
-  "議事録作成時間を80%削減",
   'id="career"',
   'id="price"',
   'id="works"',
@@ -291,6 +289,11 @@ for (const token of [
   "Sakamoto Growth Partners"
 ]) {
   if (!home.includes(token)) fail(`index.html: plain merchant-site token missing: ${token}`);
+}
+for (const forbidden of [
+  "RAGでは一次回答率80%（社内計測）。議事録アプリでは、PoC期間中に議事録作成時間を80%削減（社内計測）しました。"
+]) {
+  if (home.includes(forbidden)) fail(`index.html: removed copy must not remain: ${forbidden}`);
 }
 const homeSchemaTypes = parseSchemas(home, "index.html").flatMap((schema) => schemaTypes(schema));
 for (const type of ["Organization", "Service"]) {
