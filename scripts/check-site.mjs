@@ -199,6 +199,25 @@ await checkPage("naoya-sakamoto/index.html", {
   schemaTypes: ["Person", "BreadcrumbList"]
 });
 
+await checkPage("career/index.html", {
+  canonical: `${siteUrl}/career/`,
+  ogType: "profile",
+  schemaTypes: ["ProfilePage", "Person", "BreadcrumbList"]
+});
+
+const careerPage = await read("career/index.html");
+for (const token of [
+  "2023–2025　会社員時代。",
+  "2025–2026　個人事業主時代。",
+  "2026–　合同会社SGP。",
+  "一次回答率80%",
+  "議事録の作成時間を80%削減",
+  "大手通信事業者向けAIプラットフォーム",
+  "扱ってきた技術。"
+]) {
+  if (!careerPage.includes(token)) fail(`career/index.html: career proof token missing: ${token}`);
+}
+
 const brandPage = await read("brand/index.html");
 for (const token of [
   "人と企業が、",
@@ -248,17 +267,12 @@ for (const token of [
   "Google Drive",
   "Google Meet",
   "Cloudflare / GitHub Pages / Netlify",
-  "これまで仕事で使ってきた技術。",
-  "TanStack Router",
-  "Hono.js",
-  "Azure OpenAI",
-  "pgvector",
-  "OpenSearch",
-  "Langfuse",
-  "Selenium",
-  "Terraform",
-  "GitHub Actions",
-  "AWS / Azure",
+  "これまでの仕事。",
+  "会社員時代。",
+  "個人事業主時代。",
+  "RAGでは一次回答率80%",
+  "議事録作成時間を80%削減",
+  'id="career"',
   'id="price"',
   'id="works"',
   "Purpose",
@@ -271,7 +285,7 @@ const homeSchemaTypes = parseSchemas(home, "index.html").flatMap((schema) => sch
 for (const type of ["Organization", "Service"]) {
   if (!homeSchemaTypes.includes(type)) fail(`index.html: missing ${type} JSON-LD`);
 }
-for (const href of ["brand/", "mvv/", "naoya-sakamoto/", "case-studies/", "services/it-adviser/"]) {
+for (const href of ["brand/", "mvv/", "naoya-sakamoto/", "career/", "case-studies/", "services/it-adviser/"]) {
   if (!hasSiteHref(home, href)) fail(`index.html: required site link missing ${href}`);
 }
 for (const forbidden of [
@@ -336,6 +350,7 @@ const expectedUrls = [
   `${siteUrl}/brand/`,
   `${siteUrl}/mvv/`,
   `${siteUrl}/naoya-sakamoto/`,
+  `${siteUrl}/career/`,
   `${siteUrl}/services/pawn-bpo/`,
   `${siteUrl}/news/`,
   ...newsItems.map((item) => `${siteUrl}/news/${item.slug}/`)
