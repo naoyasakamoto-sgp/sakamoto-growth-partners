@@ -175,45 +175,22 @@ await checkPage("mvv/index.html", {
 });
 
 const mvvPage = await read("mvv/index.html");
-const mvvCss = await read("mvv/mvv.css");
 for (const token of [
   'id="vision"',
   'id="mission"',
   'id="value"',
-  "世界一の",
-  "時価総額企業",
-  "売上を",
-  "コストを",
-  "時間を",
+  "世界一の時価総額企業をつくる。",
+  "売上を増やす。",
+  "コストを下げる。",
+  "時間を返す。",
   "まず動く。",
   "最後までやる。",
-  "難しいを、簡単に。",
-  'class="mvv-vision-svg"',
-  'viewBox="0 0 420 360"',
-  'class="mvv-icon-wrap"',
-  'class="mvv-icon-svg"',
-  "GROW REVENUE",
-  "REDUCE COST",
-  "GIVE BACK TIME"
+  "難しいを、簡単に。"
 ]) {
   if (!mvvPage.includes(token)) fail(`mvv/index.html: MVV token missing: ${token}`);
 }
-for (const token of [
-  "scroll-padding-top:96px",
-  "scroll-margin-top:96px",
-  ".mvv-vision-svg",
-  "grid-template-columns:minmax(0,1.65fr) minmax(280px,.75fr)",
-  "@media(max-width:1024px)",
-  "white-space:nowrap",
-  ".mvv-icon-wrap",
-  ".mvv-icon-svg .accent-line",
-  "border-radius:18px"
-]) {
-  if (!mvvCss.includes(token)) fail(`mvv/mvv.css: responsive MVV token missing: ${token}`);
-}
-if (mvvCss.includes(".mvv-arrow{")) fail("mvv/mvv.css: legacy fixed-pixel Vision arrows must not remain");
-for (const legacyMissionIcon of [".mvv-icon-growth", ".mvv-icon-cost", ".mvv-icon-time"]) {
-  if (mvvCss.includes(legacyMissionIcon)) fail(`mvv/mvv.css: legacy Mission icon CSS must not remain: ${legacyMissionIcon}`);
+for (const forbidden of ["mvv-mission-grid", "mvv-icon-svg", "mvv-vision-svg", "mvv-value-grid"]) {
+  if (mvvPage.includes(forbidden)) fail(`mvv/index.html: visual card token must not remain: ${forbidden}`);
 }
 
 await checkPage("naoya-sakamoto/index.html", {
@@ -226,12 +203,16 @@ const brandPage = await read("brand/index.html");
 for (const token of [
   "人と企業が、",
   "より良く判断し、行動できる仕組みをつくる。",
-  "企業には、",
-  "利益と時間を。",
-  "ONE PHILOSOPHY",
+  "企業には、利益と時間を。",
+  "売上を増やす。",
+  "コストを下げる。",
+  "時間を返す。",
   "仙台・一番町から。"
 ]) {
   if (!brandPage.includes(token)) fail(`brand/index.html: purpose token missing: ${token}`);
+}
+for (const forbidden of ["local-service-grid", "local-human-grid", "local-person-card", "local-call-card"]) {
+  if (brandPage.includes(forbidden)) fail(`brand/index.html: card layout token must not remain: ${forbidden}`);
 }
 
 for (const item of newsItems) {
@@ -247,39 +228,51 @@ await checkWebpIntegrity("assets/sgp-wordmark-transparent.webp");
 
 const home = await read("index.html");
 for (const token of [
-  "IT担当を雇う前に。",
-  "月1万円から、社外IT担当。",
+  "月1万円から、",
+  "社外IT担当。",
   "仙台・一番町",
-  "代表が直接対応",
-  'id="representative"',
+  "だいたい、いつも同じ服を着ています。",
+  "SEIKO Presage",
+  "サバ缶",
+  "ラムネとコーヒー",
+  "売上、いくら上がるの？",
+  "利益はどれくらい増えるの？",
+  "コストはどれくらい下がるの？",
+  "その業務に、毎月何時間使ってるの？",
   'id="price"',
-  'id="proof"',
-  "普段、実際に使っている道具。",
-  "仕事の外側でも、",
-  "OUTSIDE THE DESK",
-  "普通にもっと上手くなりたいです。",
-  "考えていることは、",
-  "この2ページだけ。",
+  'id="works"',
+  "Purpose",
+  "Mission",
   "Sakamoto Growth Partners"
 ]) {
-  if (!home.includes(token)) fail(`index.html: local human-first token missing: ${token}`);
+  if (!home.includes(token)) fail(`index.html: plain merchant-site token missing: ${token}`);
 }
 const homeSchemaTypes = parseSchemas(home, "index.html").flatMap((schema) => schemaTypes(schema));
 for (const type of ["Organization", "Service"]) {
   if (!homeSchemaTypes.includes(type)) fail(`index.html: missing ${type} JSON-LD`);
 }
 for (const href of ["brand/", "mvv/", "naoya-sakamoto/", "case-studies/", "services/it-adviser/"]) {
-  if (!hasSiteHref(home, href)) fail(`index.html: required local-site link missing ${href}`);
+  if (!hasSiteHref(home, href)) fail(`index.html: required site link missing ${href}`);
 }
-for (const forbidden of ["guides/", "industries/", "実務ガイド", "業種別支援"]) {
-  if (home.includes(forbidden)) fail(`index.html: removed content-cluster token must not remain ${forbidden}`);
+for (const forbidden of [
+  "local-fact-grid",
+  "local-service-grid",
+  "local-tools",
+  "local-price-card",
+  "local-person-card",
+  "local-life-grid",
+  "local-philosophy-grid",
+  "OUTSIDE THE DESK",
+  "WHAT I DO",
+  "MY TOOLS"
+]) {
+  if (home.includes(forbidden)) fail(`index.html: card/SaaS layout token must not remain ${forbidden}`);
 }
 await checkInternalLinks(home, "index.html");
 await checkPage("free-improvement/index.html", { canonical: `${siteUrl}/free-improvement/`, ogType: "website", schemaTypes: ["Service"] });
 
 
 const subsitePages = [
-  ["case-studies/index.html", await read("case-studies/index.html")],
   ["news/index.html", await read("news/index.html")]
 ];
 for (const [pagePath, html] of subsitePages) {
