@@ -224,20 +224,12 @@ await checkPage("naoya-sakamoto/index.html", {
 
 const brandPage = await read("brand/index.html");
 for (const token of [
-  'id="purpose"',
-  'id="principles"',
-  "判断と行動を、",
-  "仕組みに変える。",
+  "人と企業が、",
+  "より良く判断し、行動できる仕組みをつくる。",
   "企業には、",
-  "利益と時間",
-  "人には、",
-  "自分で選べる余地",
-  "現場から始める。",
-  "手段から考えない。",
-  "使えるところまでつくる。",
-  "数字で確かめる。",
-  "選ぶのは人。",
-  "ONE PHILOSOPHY"
+  "利益と時間を。",
+  "ONE PHILOSOPHY",
+  "仙台・一番町から。"
 ]) {
   if (!brandPage.includes(token)) fail(`brand/index.html: purpose token missing: ${token}`);
 }
@@ -257,33 +249,27 @@ const home = await read("index.html");
 for (const token of [
   "IT担当を雇う前に。",
   "月1万円から、社外IT担当。",
-  'id="advisor"',
-  'id="pricing"',
-  'id="industries"',
-  "月額</small><strong>10,000",
-  "月額</small><strong>30,000",
-  "1業務無料改善",
-  "pricing-decision-strip",
-  "pricing-compare",
-  "宮城県「令和8年度県内事業者デジタル化実態調査」",
+  "仙台・一番町",
+  "代表が直接対応",
+  'id="representative"',
+  'id="price"',
+  'id="proof"',
+  "普段、実際に使っている道具。",
+  "考えていることは、",
+  "この2ページだけ。",
   "Sakamoto Growth Partners"
 ]) {
-  if (!home.includes(token)) fail(`index.html: IT adviser redesign token missing: ${token}`);
+  if (!home.includes(token)) fail(`index.html: local human-first token missing: ${token}`);
 }
 const homeSchemaTypes = parseSchemas(home, "index.html").flatMap((schema) => schemaTypes(schema));
 for (const type of ["Organization", "Service"]) {
   if (!homeSchemaTypes.includes(type)) fail(`index.html: missing ${type} JSON-LD`);
 }
-if (!hasSiteHref(home, "free-improvement/")) fail("index.html: free improvement CTA missing");
-if (!home.includes('data-analytics-event="home_plan_click"')) fail("index.html: pricing analytics event missing");
-if (!hasSiteHref(home, "news/")) fail("index.html: NEWS navigation is missing");
-if (!hasSiteHref(home, "brand/")) fail("index.html: brand/company navigation is missing");
-if (!hasSiteHref(home, "mvv/")) fail("index.html: MVV navigation is missing");
-if (!hasSiteHref(home, "naoya-sakamoto/")) fail("index.html: representative profile internal link is missing");
-if (!hasSiteHref(home, "ai-employee/")) fail("index.html: AI employee navigation is missing");
-if (!hasSiteHref(home, "services/pawn-bpo/")) fail("index.html: pawn BPO internal link is missing");
-for (const item of [...newsItems].sort((a, b) => b.date.localeCompare(a.date)).slice(0, 3)) {
-  if (!home.includes(`news/${item.slug}/`)) fail(`index.html: latest NEWS missing ${item.slug}`);
+for (const href of ["brand/", "mvv/", "naoya-sakamoto/", "case-studies/", "services/it-adviser/"]) {
+  if (!hasSiteHref(home, href)) fail(`index.html: required local-site link missing ${href}`);
+}
+for (const forbidden of ["guides/", "industries/", "実務ガイド", "業種別支援"]) {
+  if (home.includes(forbidden)) fail(`index.html: removed content-cluster token must not remain ${forbidden}`);
 }
 await checkInternalLinks(home, "index.html");
 await checkPage("free-improvement/index.html", { canonical: `${siteUrl}/free-improvement/`, ogType: "website", schemaTypes: ["Service"] });
