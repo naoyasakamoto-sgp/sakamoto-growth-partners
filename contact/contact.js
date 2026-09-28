@@ -24,6 +24,7 @@
     fde: "社外DX責任者 / FDE Partner"
   };
   const intentLabels = {
+    "free-consult": "30分無料相談",
     "free-improvement": "初回1業務改善無料",
     "it-adviser-diagnosis": "初回IT相談",
     "it-adviser": "社外IT担当・IT顧問",
@@ -41,7 +42,10 @@
     }
   }
 
-  if (intent === "free-improvement") {
+  if (intent === "free-consult") {
+    const consultRadio = document.querySelector('input[name="topic"][value="30分無料相談"]');
+    if (consultRadio) consultRadio.checked = true;
+  } else if (intent === "free-improvement") {
     const freeRadio = document.querySelector('input[name="topic"][value="初回1業務改善無料について"]');
     if (freeRadio) freeRadio.checked = true;
   } else if (intent === "it-adviser" || intent === "it-adviser-diagnosis" || plan) {
@@ -84,9 +88,11 @@
     const lines = [
       "Sakamoto Growth Partners 坂本様",
       "",
-      intent === "free-improvement"
-        ? "Webサイトを拝見し、初回1業務改善無料について申し込みたくご連絡しました。"
-        : "Webサイトを拝見し、IT・AI・業務改善について相談したくご連絡しました。",
+      intent === "free-consult"
+        ? "Webサイトを拝見し、30分無料相談を希望してご連絡しました。"
+        : intent === "free-improvement"
+          ? "Webサイトを拝見し、初回1業務改善無料について申し込みたくご連絡しました。"
+          : "Webサイトを拝見し、IT・AI・業務改善について相談したくご連絡しました。",
       "",
       `会社名・屋号: ${data.get("company") || "未記入"}`,
       `お名前: ${data.get("name") || ""}`,
