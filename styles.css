@@ -2032,9 +2032,17 @@ html{scroll-padding-top:76px}
 
 /* Free first improvement offer */
 .hero-message strong{color:var(--sgp-navy);font-weight:900}
-.hero-free-card{
-  position:absolute;right:0;top:18px;width:94%;padding:28px;border-radius:22px;
-  background:#fff;border:1px solid var(--sgp-line);box-shadow:0 28px 80px rgba(6,43,73,.14);
+.home-it-adviser-v2 .hero-free-card{
+  position:relative;
+  top:auto;
+  right:auto;
+  width:94%;
+  margin-left:auto;
+  padding:28px;
+  border-radius:22px;
+  background:#fff;
+  border:1px solid var(--sgp-line);
+  box-shadow:0 28px 80px rgba(6,43,73,.14);
 }
 .hero-free-head{display:flex;align-items:center;justify-content:space-between;gap:18px;padding-bottom:18px;border-bottom:1px solid var(--sgp-line)}
 .hero-free-head span{display:block;color:var(--sgp-cyan-dark);font-size:9px;letter-spacing:.14em;font-weight:900}
