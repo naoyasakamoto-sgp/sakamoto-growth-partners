@@ -60,6 +60,11 @@ jobs:
             case-studies/*/index.html
             contact/index.html
             services/it-adviser/index.html
+            guides/index.html
+            guides/*/index.html
+            industries/index.html
+            industries/*/index.html
+            seo/seo.css
             products/my-home-plan/*
             assets/case-studies/my-jazz-day/*.webp
           if-no-files-found: error

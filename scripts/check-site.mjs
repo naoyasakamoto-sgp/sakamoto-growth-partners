@@ -255,7 +255,8 @@ await checkWebpIntegrity("assets/sgp-wordmark-transparent.webp");
 
 const home = await read("index.html");
 for (const token of [
-  "誰に聞けばいい？</span>をなくす。",
+  "IT担当を雇う前に。",
+  "月1万円から、社外IT担当。",
   'id="advisor"',
   'id="pricing"',
   'id="industries"',

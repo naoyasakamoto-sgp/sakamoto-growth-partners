@@ -309,10 +309,10 @@ ${latest.map((item) => `        <article>
 
 function renderSitemap() {
   const urls = [
-    { loc: `${siteUrl}/`, lastmod: "2026-09-26" },
+    { loc: `${siteUrl}/`, lastmod: "2026-09-29" },
     { loc: `${siteUrl}/free-improvement/`, lastmod: "2026-09-26" },
     { loc: `${siteUrl}/contact/`, lastmod: "2026-09-26" },
-    { loc: `${siteUrl}/services/it-adviser/`, lastmod: "2026-09-23" },
+    { loc: `${siteUrl}/services/it-adviser/`, lastmod: "2026-09-29" },
     { loc: `${siteUrl}/brand/`, lastmod: "2026-09-27" },
     { loc: `${siteUrl}/mvv/`, lastmod: "2026-09-27" },
     { loc: `${siteUrl}/naoya-sakamoto/`, lastmod: "2026-09-24" },
