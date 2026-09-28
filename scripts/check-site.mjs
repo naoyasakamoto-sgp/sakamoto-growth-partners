@@ -206,6 +206,13 @@ await checkPage("career/index.html", {
 });
 
 const careerPage = await read("career/index.html");
+const naoyaProfilePage = await read("naoya-sakamoto/index.html");
+for (const [pagePath, source, forbidden] of [
+  ["career/index.html", careerPage, "要件整理、実装、テスト、運用改善、進捗・品質管理まで見ました。"],
+  ["naoya-sakamoto/index.html", naoyaProfilePage, "RAGの一次回答率80%（社内計測）、議事録作成時間80%削減（PoC期間内・社内計測）など、実際の業務で改善を重ねてきました。"]
+]) {
+  if (source.includes(forbidden)) fail(`${pagePath}: removed career/profile copy must not remain: ${forbidden}`);
+}
 for (const token of [
   "2023–2025　会社員時代。",
   "2025–2026　個人事業主時代。",
