@@ -43,18 +43,43 @@
   }
 
   if (intent === "free-consult") {
-    const consultRadio = document.querySelector('input[name="topic"][value="30分無料相談"]');
-    if (consultRadio) consultRadio.checked = true;
+    document.querySelector('input[name="topic"][value="30分無料相談"]')?.click();
   } else if (intent === "free-improvement") {
-    const freeRadio = document.querySelector('input[name="topic"][value="初回1業務改善無料について"]');
-    if (freeRadio) freeRadio.checked = true;
+    document.querySelector('input[name="topic"][value="初回1業務改善無料について"]')?.click();
   } else if (intent === "it-adviser" || intent === "it-adviser-diagnosis" || plan) {
-    const adviserRadio = document.querySelector('input[name="topic"][value="社外IT担当・IT顧問について"]');
-    if (adviserRadio) adviserRadio.checked = true;
+    document.querySelector('input[name="topic"][value="社外IT担当・IT顧問について"]')?.click();
   }
 
   const form = document.querySelector("[data-contact-form]");
   if (!form) return;
+
+  const fields = form.querySelector("[data-contact-form-fields]");
+  const status = form.querySelector("[data-contact-status]");
+  const submit = form.querySelector("[data-contact-submit]");
+  const endpoint = "https://formsubmit.co/ajax/naoya.sakamoto@sakamoto-growth-partners.com";
+
+  const showStatus = (kind, html) => {
+    if (!status) return;
+    status.dataset.kind = kind;
+    status.innerHTML = html;
+    status.hidden = false;
+    status.focus?.();
+  };
+
+  const setSubmitting = (isSubmitting) => {
+    if (!submit) return;
+    submit.disabled = isSubmitting;
+    submit.setAttribute("aria-busy", String(isSubmitting));
+    submit.textContent = isSubmitting ? "送信しています…" : "無料相談を送信する →";
+  };
+
+  if (qs.get("submitted") === "1") {
+    if (fields) fields.hidden = true;
+    showStatus(
+      "success",
+      "<strong>送信しました。</strong><br>ご相談ありがとうございます。内容を確認し、入力いただいたメールアドレスへ返信します。"
+    );
+  }
 
   let formStarted = false;
   form.addEventListener("focusin", () => {
@@ -67,62 +92,85 @@
     });
   }, { once: true });
 
-  const optional = form.querySelector(".contact-optional");
-  if (optional) {
-    optional.addEventListener("toggle", () => {
-      if (!optional.open) return;
-      window.sgpAnalytics?.track?.("contact_optional_open", {
-        lead_source: source,
-        lead_intent: intent,
-        lead_plan: plan || "none"
-      });
-    });
-  }
-
-  form.addEventListener("submit", (event) => {
+  form.addEventListener("submit", async (event) => {
+    if (!window.fetch) return;
     event.preventDefault();
     if (!form.reportValidity()) return;
-    const data = new FormData(form);
-    const topic = data.get("topic") || "ご相談";
-    const subject = `[SGP相談] ${topic}`;
-    const lines = [
-      "Sakamoto Growth Partners 坂本様",
-      "",
-      intent === "free-consult"
-        ? "Webサイトを拝見し、30分無料相談を希望してご連絡しました。"
-        : intent === "free-improvement"
-          ? "Webサイトを拝見し、初回1業務改善無料について申し込みたくご連絡しました。"
-          : "Webサイトを拝見し、IT・AI・業務改善について相談したくご連絡しました。",
-      "",
-      `会社名・屋号: ${data.get("company") || "未記入"}`,
-      `お名前: ${data.get("name") || ""}`,
-      `メールアドレス: ${data.get("email") || ""}`,
-      `業種: ${data.get("industry") || "未記入"}`,
-      `従業員規模: ${data.get("employees") || "未記入"}`,
-      `相談テーマ: ${topic}`,
-      `関心プラン: ${planLabels[plan] || plan || "未指定"}`,
-      "",
-      "現在の状況・相談内容:",
-      String(data.get("message") || ""),
-      "",
-      "--- Web attribution ---",
-      `lead_source: ${source}`,
-      `lead_case: ${caseSlug || "none"}`,
-      `lead_intent: ${intent}`,
-      `lead_plan: ${plan || "none"}`
-    ];
 
-    window.sgpAnalytics?.track?.("contact_submit", {
+    const data = new FormData(form);
+    const topic = String(data.get("topic") || "30分無料相談");
+
+    const payload = {
+      name: String(data.get("name") || ""),
+      email: String(data.get("email") || ""),
+      company: String(data.get("company") || "未記入"),
+      topic,
+      message: String(data.get("message") || "未記入"),
+      lead_source: source,
+      lead_case: caseSlug || "none",
+      lead_intent: intent,
+      lead_plan: planLabels[plan] || plan || "none",
+      _subject: `[SGP相談] ${topic}`,
+      _template: "table",
+      _captcha: "false",
+      _honey: String(data.get("_honey") || ""),
+      _url: window.location.href
+    };
+
+    window.sgpAnalytics?.track?.("contact_submit_attempt", {
       lead_source: source,
       lead_case: caseSlug || "none",
       lead_intent: intent,
       lead_plan: plan || "none",
-      industry: String(data.get("industry") || ""),
-      employees: String(data.get("employees") || ""),
-      topic: String(topic)
+      topic
     });
 
-    const href = `mailto:naoya.sakamoto@sakamoto-growth-partners.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join("\n"))}`;
-    window.location.href = href;
+    setSubmitting(true);
+    if (status) status.hidden = true;
+
+    try {
+      const response = await fetch(endpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify(payload)
+      });
+      const result = await response.json().catch(() => ({}));
+      if (!response.ok || result.success === false || result.success === "false") {
+        throw new Error(result.message || "Form submission failed");
+      }
+
+      window.sgpAnalytics?.track?.("contact_submit", {
+        lead_source: source,
+        lead_case: caseSlug || "none",
+        lead_intent: intent,
+        lead_plan: plan || "none",
+        topic
+      });
+
+      if (fields) fields.hidden = true;
+      showStatus(
+        "success",
+        "<strong>送信しました。</strong><br>ご相談ありがとうございます。内容を確認し、入力いただいたメールアドレスへ返信します。"
+      );
+      form.reset();
+      window.history.replaceState({}, "", "/contact/?submitted=1");
+    } catch (error) {
+      console.error("Contact form submission failed", error);
+      window.sgpAnalytics?.track?.("contact_submit_error", {
+        lead_source: source,
+        lead_intent: intent,
+        lead_plan: plan || "none",
+        topic
+      });
+      showStatus(
+        "error",
+        '<strong>送信できませんでした。</strong><br>通信状況を確認してもう一度お試しいただくか、<a href="mailto:naoya.sakamoto@sakamoto-growth-partners.com">直接メール</a>でご連絡ください。'
+      );
+    } finally {
+      setSubmitting(false);
+    }
   });
 })();
