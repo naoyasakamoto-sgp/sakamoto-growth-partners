@@ -72,3 +72,18 @@ p{margin:0 0 18px}
   h1{font-size:2.65rem}
   .price{font-size:1.75rem}
 }
+
+.plain-form{margin-top:28px}
+.form-field{margin:0 0 24px}
+.form-field label,.plain-form legend{display:block;margin-bottom:7px;font-weight:700}
+.form-field input,.form-field textarea{
+  width:100%;padding:11px 12px;border:1px solid #bfcbd3;border-radius:0;background:#fff;color:var(--ink);
+  font:inherit;line-height:1.5
+}
+.form-field textarea{min-height:150px;resize:vertical}
+.plain-form fieldset{margin:0 0 24px;padding:0;border:0}
+.radio-line{display:block;margin:8px 0;font-weight:400}
+.radio-line input{margin-right:8px}
+.form-submit{padding:0;border:0;border-bottom:2px solid var(--ink);background:none;color:var(--ink);font:inherit;font-weight:800;cursor:pointer}
+.form-submit:hover{opacity:.7}
+.form-note{margin-top:14px;color:var(--muted);font-size:.85rem}
