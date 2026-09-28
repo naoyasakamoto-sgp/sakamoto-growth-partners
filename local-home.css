@@ -87,3 +87,35 @@ p{margin:0 0 18px}
 .form-submit{padding:0;border:0;border-bottom:2px solid var(--ink);background:none;color:var(--ink);font:inherit;font-weight:800;cursor:pointer}
 .form-submit:hover{opacity:.7}
 .form-note{margin-top:14px;color:var(--muted);font-size:.85rem}
+
+/* Contact web submit states */
+.form-honeypot{
+  position:absolute!important;
+  width:1px!important;
+  height:1px!important;
+  overflow:hidden!important;
+  clip:rect(0 0 0 0)!important;
+  white-space:nowrap!important;
+}
+.form-submit:disabled{
+  opacity:.55;
+  cursor:wait;
+}
+.form-status{
+  margin-top:18px;
+  padding:18px 20px;
+  border-left:3px solid var(--ink);
+  background:#f5f8fa;
+  color:var(--ink);
+}
+.form-status strong{font-size:1.05rem}
+.form-status[data-kind="success"]{
+  border-left-color:#257a52;
+  background:#f2f8f4;
+}
+.form-status[data-kind="error"]{
+  border-left-color:#9b4d3a;
+  background:#fff6f3;
+}
+.form-status[hidden]{display:none}
+
