@@ -10,11 +10,6 @@ const item = extraNewsItems[0];
 const newsUrl = `${siteUrl}/news/${item.slug}/`;
 
 const timelineArticle = `<article class="news-timeline-item"><time datetime="${item.date}"><span>SEP</span>02</time><p class="news-category">${item.category}</p><div><h3><a href="/news/${item.slug}/">${item.title}</a></h3><p>${item.description}</p></div></article>`;
-const homeNewsArticle = `<article><div><time datetime="${item.date}">2026.09.02</time><span>${item.category}</span></div><h3><a href="/news/${item.slug}/">${item.title}</a></h3></article>`;
-const homeCase = `<!-- CASE_STUDY_HOME_START -->
-    <section class="home-case-proof" aria-labelledby="home-case-title"><div class="container"><div class="home-case-heading"><div><p class="section-label">CASE STUDY</p><h2 id="home-case-title">言葉ではなく、実際につくったもので。</h2><p>SGPが企画・設計・開発したプロダクトから、どのような問題を、どう仕組みに変えたかをご紹介します。</p></div><a href="/case-studies/">すべての開発事例を見る →</a></div><a class="case-feature-card" href="/case-studies/my-jazz-day/"><div class="case-feature-copy"><p class="case-kicker">CASE STUDY 001 / SENDAI ERABU!</p><h2>897の演奏枠を、<br>1分で「自分だけの一日」へ。</h2><p>音楽の好み・気分・時間・開始エリア・歩行量・新しい音との距離から、フェスの一日を構成するMY JAZZ DAY。</p><div class="case-card-metrics"><span><b>897</b> PERFORMANCE SLOTS</span><span><b>50</b> VENUES</span><span><b>1 MIN</b> PERSONALIZATION</span></div></div><div class="case-feature-image"><img src="/assets/case-studies/my-jazz-day/hero-mobile.webp" alt="MY JAZZ DAYの画面" loading="lazy" /></div></a></div></section>
-<!-- CASE_STUDY_HOME_END -->`;
-
 function ensureNav(html) {
   if (html.includes('href="/case-studies/">CASE STUDY</a>')) return html;
   return html.replace('<a href="/news/">NEWS</a>', '<a href="/case-studies/">CASE STUDY</a>\n        <a href="/news/">NEWS</a>');
@@ -22,10 +17,6 @@ function ensureNav(html) {
 function ensureAnalytics(html) {
   if (html.includes('src="/analytics.js"')) return html;
   return html.replace('</body>', '  <script src="/analytics.js"></script>\n</body>');
-}
-function ensureCaseCss(html) {
-  if (html.includes('/case-studies/case-study.css')) return html;
-  return html.replace('</head>', '  <link rel="stylesheet" href="/case-studies/case-study.css" />\n</head>');
 }
 function patchItemList(html) {
   return html.replace(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g, (block, jsonText) => {
@@ -48,17 +39,6 @@ async function patchNewsIndex() {
   html = patchItemList(html);
   html = ensureNav(html);
   html = ensureAnalytics(html);
-  await writeFile(file, html, "utf8");
-}
-
-async function patchHome() {
-  const file = path.join(root, "index.html");
-  let html = await readFile(file, "utf8");
-  html = ensureNav(html);
-  html = ensureCaseCss(html);
-  html = ensureAnalytics(html);
-  if (!html.includes('<!-- CASE_STUDY_HOME_START -->')) html = html.replace('<!-- NEWS_LATEST_START -->', `${homeCase}\n\n<!-- NEWS_LATEST_START -->`);
-  if (!html.includes(`/news/${item.slug}/`)) html = html.replace('<div class="container home-news-list">', `<div class="container home-news-list">\n        ${homeNewsArticle}`);
   await writeFile(file, html, "utf8");
 }
 
@@ -93,9 +73,8 @@ async function main() {
   await access(path.join(root, `news/${item.slug}/index.html`));
   await access(path.join(root, "case-studies/my-jazz-day/index.html"));
   await patchNewsIndex();
-  await patchHome();
   await patchSitemap();
   await patchFeed();
-  console.log("Applied MY JAZZ DAY Case Study, NEWS, homepage, sitemap and RSS extensions.");
+  console.log("Applied MY JAZZ DAY Case Study, NEWS, sitemap and RSS extensions.");
 }
 await main();
