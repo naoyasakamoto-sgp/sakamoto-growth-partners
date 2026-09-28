@@ -18,6 +18,17 @@
 - `contact/`: Case Study起点の問い合わせ導線
 - `docs/analytics.md`: GA4イベント・カスタムディメンション仕様
 
+## Hosting / Production
+
+本番公開は **GitHub Pages** を唯一の正式経路として運用します。
+
+- Production branch: `main`
+- Custom domain: `sakamoto-growth-partners.com`
+- Domain source: `CNAME`
+- Public deployment: GitHub Pagesの `pages build and deployment`
+- Netlifyは本番公開経路として使用しません
+- 本番判定は `Validate static site` と GitHub Pages deployment のsuccessを基準にします
+
 ## 公開URL
 
 - `/news/`
