@@ -51,6 +51,13 @@ body.local-site{margin:0;background:#fbfcfc;color:var(--ink);font-family:-apple-
 .local-call-card{background:#fff;border:1px solid var(--line)}
 .local-call-card blockquote{margin:0;color:var(--navy);font-size:clamp(1.6rem,3vw,2.55rem);line-height:1.45;font-weight:800;letter-spacing:-.025em}
 .local-call-card p{margin:24px 0 0;color:#607582;line-height:1.9}
+.founder-life{background:linear-gradient(180deg,#f4faf9 0%,#eef6f4 100%);border-top:1px solid #deebe8;border-bottom:1px solid #deebe8}
+.local-life-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.local-life-card{display:flex;flex-direction:column;min-height:310px;padding:30px;border:1px solid #d8e7e3;border-radius:22px;background:#fff;box-shadow:0 18px 45px rgba(6,43,73,.055)}
+.local-life-card>span{display:block;color:var(--aqua);font-size:.72rem;letter-spacing:.14em;font-weight:900}
+.local-life-card h3{margin:12px 0 14px;color:var(--navy);font-size:1.5rem;line-height:1.45;letter-spacing:-.02em}
+.local-life-card p{margin:0;color:#607682;line-height:1.9}
+.local-life-card small{display:block;margin-top:auto;padding-top:24px;color:#7a8b94;font-size:.82rem;line-height:1.7}
 .local-service-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .local-service-card{padding:28px;border:1px solid var(--line);border-radius:20px;background:#fff}
 .local-service-card b{display:block;color:var(--aqua);font-size:.74rem;letter-spacing:.1em}
@@ -99,6 +106,7 @@ body.local-site{margin:0;background:#fbfcfc;color:var(--ink);font-family:-apple-
   .local-links.open{display:flex}.local-menu{display:block}
   .local-hero-grid,.local-section-head,.local-human-grid,.local-price-wrap,.local-proof-card{grid-template-columns:1fr}
   .local-service-grid,.local-tools{grid-template-columns:1fr 1fr}
+  .local-life-grid{grid-template-columns:1fr}
   .local-fact-grid{grid-template-columns:1fr 1fr}.local-fact:nth-child(2){border-right:0}.local-fact:nth-child(-n+2){border-bottom:1px solid var(--line)}
   .local-closing-inner{align-items:flex-start;flex-direction:column}
   .local-proof-image{order:-1}.local-proof-image img{min-height:280px;max-height:360px}
@@ -110,7 +118,7 @@ body.local-site{margin:0;background:#fbfcfc;color:var(--ink);font-family:-apple-
   .local-lead{font-size:1rem}.local-section{padding:62px 0}
   .local-fact{padding:20px 16px}.local-fact strong{font-size:1rem}
   .local-service-grid,.local-tools,.local-philosophy-grid{grid-template-columns:1fr}
-  .local-person-card,.local-call-card,.local-price-card,.local-price-side,.local-proof-copy,.local-philosophy{padding:26px}
+  .local-person-card,.local-call-card,.local-life-card,.local-price-card,.local-price-side,.local-proof-copy,.local-philosophy{padding:26px}
   .local-price strong{font-size:3.4rem}
   .local-footer-inner{align-items:flex-start;flex-direction:column}.local-footer nav{flex-wrap:wrap}
 }

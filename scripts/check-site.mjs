@@ -255,6 +255,9 @@ for (const token of [
   'id="price"',
   'id="proof"',
   "普段、実際に使っている道具。",
+  "仕事の外側でも、",
+  "OUTSIDE THE DESK",
+  "普通にもっと上手くなりたいです。",
   "考えていることは、",
   "この2ページだけ。",
   "Sakamoto Growth Partners"
