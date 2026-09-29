@@ -17,7 +17,7 @@
   <meta name="twitter:title" content="月1万円から、仙台・一番町の社外IT担当" />
   <meta name="twitter:description" content="会社のITで困ったら、まず坂本に聞いてください。" />
   <meta name="theme-color" content="#ffffff" />
-  <link rel="stylesheet" href="local-home.css?v=20260929-plain-v1" />
+  <link rel="stylesheet" href="local-home.css?v=20260929-youtube-v1" />
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
@@ -155,6 +155,36 @@
       <p class="small"><a href="services/it-adviser/">社外IT担当の詳しい範囲を見る →</a></p>
     </section>
 
+    <section id="video">
+      <h2>社外IT担当って、どんなサービス？</h2>
+      <p>IT担当を1人採用するほどではない。でも、社内で誰かがパソコンやExcel、問い合わせ対応まで抱え続けるのもしんどい。そんな会社向けのサービスです。</p>
+      <p>どんな考え方で、何を支援するのか。短い動画で説明しています。</p>
+
+      <div class="youtube-lite" data-youtube-id="OBJAqJzNgbc">
+        <a class="youtube-lite-button"
+           href="https://youtu.be/OBJAqJzNgbc"
+           target="_blank"
+           rel="noopener noreferrer"
+           aria-label="社外IT担当の紹介動画を再生"
+           data-analytics-event="home_it_adviser_video_play"
+           data-video-id="OBJAqJzNgbc">
+          <img src="https://i.ytimg.com/vi/OBJAqJzNgbc/hqdefault.jpg"
+               alt=""
+               width="480"
+               height="360"
+               loading="lazy"
+               decoding="async" />
+          <span class="youtube-play" aria-hidden="true">▶</span>
+        </a>
+      </div>
+
+      <p class="small">動画を見なくても、相談内容が決まっていなくても大丈夫です。<br>
+      <a href="https://youtube.com/playlist?list=PLWnwaNic0kzc"
+         target="_blank"
+         rel="noopener noreferrer"
+         data-analytics-event="home_youtube_playlist_click">YouTubeでもっと見る →</a></p>
+    </section>
+
     <span class="compat-anchor" id="pricing" aria-hidden="true"></span>
     <section id="price">
       <h2>料金。</h2>
@@ -241,9 +271,36 @@
   <footer class="text-footer">
     <div class="text-footer-inner">
       <span>© 2026 合同会社SGP / Sakamoto Growth Partners</span>
-      <nav><a href="career/">経歴</a><a href="log/">今日のSGP</a><a href="brand/">Purpose</a><a href="mvv/">MVV</a><a href="case-studies/">実績</a><a href="contact/">お問い合わせ</a></nav>
+      <nav><a href="career/">経歴</a><a href="log/">今日のSGP</a><a href="brand/">Purpose</a><a href="mvv/">MVV</a><a href="case-studies/">実績</a><a href="https://youtube.com/playlist?list=PLWnwaNic0kzc" target="_blank" rel="noopener noreferrer" data-analytics-event="footer_youtube_click">YouTube</a><a href="contact/">お問い合わせ</a></nav>
     </div>
   </footer>
   <script src="analytics.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const video = document.querySelector(".youtube-lite[data-youtube-id]");
+      if (!video) return;
+
+      const trigger = video.querySelector(".youtube-lite-button");
+      if (!trigger) return;
+
+      trigger.addEventListener("click", (event) => {
+        event.preventDefault();
+
+        const videoId = video.dataset.youtubeId;
+        if (!videoId) return;
+
+        const iframe = document.createElement("iframe");
+        iframe.className = "youtube-iframe";
+        iframe.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(videoId)}?autoplay=1&rel=0`;
+        iframe.title = "社外IT担当の紹介動画";
+        iframe.loading = "lazy";
+        iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+        iframe.referrerPolicy = "strict-origin-when-cross-origin";
+        iframe.allowFullscreen = true;
+
+        video.replaceChildren(iframe);
+      });
+    });
+  </script>
 </body>
 </html>
