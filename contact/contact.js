@@ -57,6 +57,7 @@
   const status = form.querySelector("[data-contact-status]");
   const submit = form.querySelector("[data-contact-submit]");
   const endpoint = "https://formsubmit.co/ajax/naoya.sakamoto@sakamoto-growth-partners.com";
+  const formLoadedAt = Date.now();
 
   const showStatus = (kind, html) => {
     if (!status) return;
@@ -98,6 +99,30 @@
     if (!form.reportValidity()) return;
 
     const data = new FormData(form);
+    const honey = String(data.get("_honey") || "").trim();
+
+    // FormSubmit側のhoneypotに加え、ブラウザ側でもbot送信を止める。
+    // botには判定結果を返さず、通常の送信完了と同じ見え方にする。
+    if (honey) {
+      if (fields) fields.hidden = true;
+      showStatus(
+        "success",
+        "<strong>送信しました。</strong><br>ご相談ありがとうございます。内容を確認し、入力いただいたメールアドレスへ返信します。"
+      );
+      form.reset();
+      window.history.replaceState({}, "", "/contact/?submitted=1");
+      return;
+    }
+
+    // ページ表示直後の機械的な即時POSTを抑止。通常の入力操作には影響しない短い閾値。
+    if (Date.now() - formLoadedAt < 1200) {
+      showStatus(
+        "error",
+        "<strong>入力内容をご確認ください。</strong><br>少し時間をおいて、もう一度送信してください。"
+      );
+      return;
+    }
+
     const topic = String(data.get("topic") || "30分無料相談");
 
     const payload = {
@@ -106,10 +131,12 @@
       company: String(data.get("company") || "未記入"),
       topic,
       message: String(data.get("message") || "未記入"),
+      lead_type: "consultation",
       lead_source: source,
       lead_case: caseSlug || "none",
       lead_intent: intent,
       lead_plan: planLabels[plan] || plan || "none",
+      non_solicitation_confirmed: String(data.get("non_solicitation_confirmed") || "no"),
       _subject: `[SGP相談] ${topic}`,
       _template: "table",
       _captcha: "false",
