@@ -17,7 +17,7 @@
   <meta name="twitter:title" content="30分無料相談｜合同会社SGP" />
   <meta name="twitter:description" content="何を頼むか決まっていなくても大丈夫です。" />
   <meta name="theme-color" content="#ffffff" />
-  <link rel="stylesheet" href="../local-home.css?v=20260929-contact-submit-v2" />
+  <link rel="stylesheet" href="../local-home.css?v=20260929-contact-submit-v3" />
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
@@ -98,6 +98,16 @@
             <textarea id="message" name="message" placeholder="例：見積と案件情報がExcelとLINEに分かれていて面倒です。"></textarea>
           </div>
 
+          <div class="form-consent">
+            <label for="non-solicitation-confirmed">
+              <input id="non-solicitation-confirmed" name="non_solicitation_confirmed" type="checkbox" value="yes" required />
+              <span>
+                <strong>営業・勧誘目的ではありません。</strong>
+                <small>このフォームはSGPへのご相談用です。営業・勧誘を目的としたご連絡には返信しておりません。</small>
+              </span>
+            </label>
+          </div>
+
           <button class="form-submit" type="submit" data-contact-submit>無料相談を送信する →</button>
           <p class="form-note">メールアプリは開きません。このページからそのまま送信できます。</p>
           <p class="form-note">送信内容はフォーム配信サービスを経由してSGP宛に送信され、ご相談への対応にのみ使用します。</p>
@@ -117,6 +127,6 @@
     <div class="text-footer-inner"><span>© 2026 合同会社SGP</span><nav><a href="../">HOME</a><a href="../brand/">Purpose</a><a href="../mvv/">MVV</a></nav></div>
   </footer>
   <script src="../analytics.js"></script>
-  <script src="contact.js"></script>
+  <script src="contact.js?v=20260929-spam-guard-v1"></script>
 </body>
 </html>

@@ -322,6 +322,26 @@ for (const forbidden of [
   if (home.includes(forbidden)) fail(`index.html: card/SaaS layout token must not remain ${forbidden}`);
 }
 await checkInternalLinks(home, "index.html");
+
+const contactPage = await read("contact/index.html");
+const contactScript = await read("contact/contact.js");
+for (const token of [
+  'name="_honey"',
+  'name="non_solicitation_confirmed"',
+  "営業・勧誘目的ではありません。",
+  "営業・勧誘を目的としたご連絡には返信しておりません。"
+]) {
+  if (!contactPage.includes(token)) fail(`contact/index.html: spam guard token missing: ${token}`);
+}
+for (const token of [
+  'const formLoadedAt = Date.now();',
+  'const honey = String(data.get("_honey") || "").trim();',
+  'lead_type: "consultation"',
+  'non_solicitation_confirmed: String(data.get("non_solicitation_confirmed") || "no")'
+]) {
+  if (!contactScript.includes(token)) fail(`contact/contact.js: spam guard token missing: ${token}`);
+}
+
 await checkPage("free-improvement/index.html", { canonical: `${siteUrl}/free-improvement/`, ogType: "website", schemaTypes: ["Service"] });
 
 
