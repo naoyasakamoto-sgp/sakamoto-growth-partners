@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="822" height="633" viewBox="0 0 822 633" role="img" aria-labelledby="title desc">
+<title id="title">寿司打 10,000円コースの記録</title>
+<desc id="desc">スコア22,980円、10,000人中102位、平均キータイプ数6.9回毎秒、正しく打ったキー1,141回、ミスタイプ24回。</desc>
+<defs>
+  <linearGradient id="wood" x1="0" x2="1"><stop stop-color="#efad4a"/><stop offset=".5" stop-color="#f7ca77"/><stop offset="1" stop-color="#eaa044"/></linearGradient>
+  <linearGradient id="panel" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#fff"/><stop offset="1" stop-color="#fafafa"/></linearGradient>
+  <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%"><feDropShadow dx="0" dy="5" stdDeviation="5" flood-opacity=".2"/></filter>
+</defs>
+<rect width="822" height="633" rx="16" fill="#fff"/>
+<rect x="42" y="28" width="738" height="560" rx="12" fill="url(#wood)" stroke="#b87b1f" stroke-width="3" filter="url(#shadow)"/>
+<rect x="82" y="58" width="658" height="430" fill="url(#panel)"/>
+<rect x="82" y="82" width="658" height="74" fill="#303030"/>
+<text x="145" y="130" font-family="system-ui,-apple-system,sans-serif" font-size="29" font-weight="800" fill="#d93a17">高級</text>
+<text x="230" y="130" font-family="system-ui,-apple-system,sans-serif" font-size="31" font-weight="800" fill="#fff">10,000円コース</text>
+<text x="595" y="130" font-family="system-ui,-apple-system,sans-serif" font-size="28" font-weight="800" fill="#ffd91a">【普通】</text>
+
+<g transform="translate(115 180)">
+  <rect x="0" y="0" width="75" height="75" rx="8" fill="none" stroke="#dc2b22" stroke-width="5" transform="rotate(-12 38 38)"/>
+  <text x="15" y="48" font-family="serif" font-size="25" font-weight="800" fill="#dc2b22" transform="rotate(-12 38 38)">成績</text>
+</g>
+<text x="250" y="205" font-family="system-ui,-apple-system,sans-serif" font-size="29" font-weight="700" fill="#161616">22,980円分のお寿司をゲット!</text>
+<text x="250" y="250" font-family="system-ui,-apple-system,sans-serif" font-size="27" font-weight="700" fill="#161616">10,000円 払って・・・</text>
+
+<rect x="165" y="277" width="500" height="70" rx="13" fill="#fff" stroke="#5b9f00" stroke-width="6"/>
+<text x="235" y="323" font-family="system-ui,-apple-system,sans-serif" font-size="33" font-weight="800" fill="#111">12,980</text>
+<text x="370" y="323" font-family="system-ui,-apple-system,sans-serif" font-size="30" font-weight="800" fill="#579800">円分お得でした!</text>
+
+<text x="150" y="386" font-family="system-ui,-apple-system,sans-serif" font-size="18" font-weight="700" fill="#d43c29">正しく打ったキーの数</text>
+<text x="376" y="386" font-family="system-ui,-apple-system,sans-serif" font-size="18" font-weight="700" fill="#d43c29">平均キータイプ数</text>
+<text x="593" y="386" font-family="system-ui,-apple-system,sans-serif" font-size="18" font-weight="700" fill="#d43c29">ミスタイプ数</text>
+<line x1="348" y1="365" x2="348" y2="438" stroke="#999" stroke-dasharray="4 4"/>
+<line x1="565" y1="365" x2="565" y2="438" stroke="#999" stroke-dasharray="4 4"/>
+<text x="190" y="427" font-family="system-ui,-apple-system,sans-serif" font-size="36" font-weight="800" fill="#111">1141</text>
+<text x="288" y="427" font-family="system-ui,-apple-system,sans-serif" font-size="20" fill="#555">回</text>
+<text x="410" y="427" font-family="system-ui,-apple-system,sans-serif" font-size="36" font-weight="800" fill="#111">6.9</text>
+<text x="482" y="427" font-family="system-ui,-apple-system,sans-serif" font-size="20" fill="#555">回/秒</text>
+<text x="627" y="427" font-family="system-ui,-apple-system,sans-serif" font-size="36" font-weight="800" fill="#111">24</text>
+<text x="686" y="427" font-family="system-ui,-apple-system,sans-serif" font-size="20" fill="#555">回</text>
+
+<rect x="145" y="452" width="255" height="48" rx="8" fill="#e79b00" stroke="#c98000" stroke-width="3"/>
+<text x="180" y="484" font-family="system-ui,-apple-system,sans-serif" font-size="24" font-weight="800" fill="#fff">★ ランキングを表示</text>
+<rect x="425" y="452" width="245" height="48" rx="8" fill="#050505"/>
+<text x="470" y="484" font-family="system-ui,-apple-system,sans-serif" font-size="23" font-weight="800" fill="#fff">結果をXでポスト</text>
+
+<rect x="120" y="515" width="205" height="48" rx="8" fill="#fff" stroke="#8e5a00" stroke-width="4"/>
+<rect x="337" y="515" width="205" height="48" rx="8" fill="#fff" stroke="#8e5a00" stroke-width="4"/>
+<rect x="554" y="515" width="170" height="48" rx="8" fill="#fff" stroke="#8e5a00" stroke-width="4"/>
+<text x="172" y="548" font-family="system-ui,-apple-system,sans-serif" font-size="24" font-weight="800" fill="#111">もう一度</text>
+<text x="380" y="548" font-family="system-ui,-apple-system,sans-serif" font-size="24" font-weight="800" fill="#111">コース選択</text>
+<text x="583" y="548" font-family="system-ui,-apple-system,sans-serif" font-size="22" font-weight="800" fill="#111">タイトルに戻る</text>
+
+<rect x="170" y="582" width="482" height="36" rx="18" fill="#eef7de" stroke="#8aa84b" stroke-width="2"/>
+<text x="225" y="607" font-family="system-ui,-apple-system,sans-serif" font-size="23" font-weight="800" fill="#17210a">ランキング 102位 / 10,000人</text>
+</svg>
