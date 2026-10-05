@@ -1,4 +1,30 @@
 (() => {
+  const GA4_MEASUREMENT_ID = "G-08TBS4LE54";
+
+  function initGa4() {
+    if (window.__sgpGa4Initialized) return;
+    window.__sgpGa4Initialized = true;
+
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = window.gtag || function gtag() {
+      window.dataLayer.push(arguments);
+    };
+
+    const selector = `script[src*="googletagmanager.com/gtag/js?id=${GA4_MEASUREMENT_ID}"]`;
+    if (!document.querySelector(selector)) {
+      const gaScript = document.createElement("script");
+      gaScript.async = true;
+      gaScript.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(GA4_MEASUREMENT_ID)}`;
+      gaScript.dataset.sgpGa4 = GA4_MEASUREMENT_ID;
+      document.head.appendChild(gaScript);
+    }
+
+    window.gtag("js", new Date());
+    window.gtag("config", GA4_MEASUREMENT_ID);
+  }
+
+  initGa4();
+
   const safeParams = (params = {}) => Object.fromEntries(
     Object.entries(params).filter(([, value]) => value !== undefined && value !== null && value !== "")
   );
