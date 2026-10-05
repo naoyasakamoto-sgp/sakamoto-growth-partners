@@ -2,7 +2,7 @@
 
 ## Principle
 
-`analytics.js` sends no GA4 Measurement ID by itself. It writes structured events to `dataLayer` and, when an existing `gtag` is available, forwards the same event to GA4. This prevents hard-coding an unknown production Measurement ID.
+`analytics-config.js` stores the production GA4 Measurement ID (`G-08TBS4LE54`). `analytics.js` loads that config, initializes `gtag.js`, and sends the standard page view plus structured SGP events. Pages that load `script.js` receive `analytics.js` automatically; standalone pages include `/analytics.js` directly. Keeping the Measurement ID out of the event implementation preserves the existing validation rule against hard-coding IDs in analytics/contact scripts.
 
 ## SGP website events
 
