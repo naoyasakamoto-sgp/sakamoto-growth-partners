@@ -2,7 +2,7 @@
 
 ## Principle
 
-`analytics.js` initializes the production GA4 property with Measurement ID `G-08TBS4LE54`, loads `gtag.js`, and sends the standard page view plus structured SGP events. Pages that load `script.js` receive `analytics.js` automatically; standalone pages include `/analytics.js` directly.
+`analytics-config.js` stores the production GA4 Measurement ID (`G-08TBS4LE54`). `analytics.js` loads that config, initializes `gtag.js`, and sends the standard page view plus structured SGP events. Pages that load `script.js` receive `analytics.js` automatically; standalone pages include `/analytics.js` directly. Keeping the Measurement ID out of the event implementation preserves the existing validation rule against hard-coding IDs in analytics/contact scripts.
 
 ## SGP website events
 
