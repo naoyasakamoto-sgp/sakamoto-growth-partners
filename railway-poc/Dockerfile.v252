@@ -8,6 +8,7 @@ COPY requirements-web.txt .
 RUN pip install --no-cache-dir -r requirements-web.txt
 COPY main.py ticket_pipeline.py ticket_pipeline_patch.py extraction_orchestrator.py orchestrator_patch_v8_1.py orchestrator_patch_v8_2.py ./
 COPY vlm_pipeline_v9.py gemini_pipeline_v10.py client_ai_ops_v101.py bank_matching_engine.py ground_truth_v1_public.json ./
+COPY line_newsletter_v15.py ./
 COPY start_v2.py start_v3.py start_v4.py start_v5.py start_v6.py start_v7.py start_v8.py start_v9.py start_v10.py start_v11.py start_v12.py start_v13.py start_v14.py ./
 RUN python -m py_compile *.py \
  && python - <<'PY'
@@ -18,15 +19,25 @@ rows,diag=bank._parse_csv_bytes(sample.encode('cp932'))
 assert diag['total_rows']==3 and diag['inbound_rows']==2 and diag['outgoing_rows_skipped']==1
 assert rows[0]['amount']==54 and rows[1]['amount']==1056000
 assert bme.classify_credit('Ｄ現金還元','8ネン 4ガツブン',54)[0]=='NON_CUSTOMER'
+import line_newsletter_v15 as ln
+assert '鶴亀屋グループ通信' in ln._render(ln.DEFAULT_TEMPLATE,'2026-10-08','本日は宮町の残置物撤去です。')
+assert '2026.10.8（木）' in ln._render(ln.DEFAULT_TEMPLATE,'2026-10-08','本日は宮町の残置物撤去です。')
 import start_v14 as ui
-assert ui.APP_VERSION=='2.5.2-poc'
+assert ui.APP_VERSION=='2.6.0-poc'
 assert 'contract-mobile-responsive-v252' in ui.main.HTML
 assert 'aria-label="契約一覧"' in ui.main.HTML
 assert '#ks,#ks tbody{display:block;width:100%;min-width:0!important;max-width:100%!important}' in ui.main.HTML
 assert "grid-template-areas:'contract status' 'customer amount' 'item item'" in ui.main.HTML
-h=ui.health_v252()
-assert h['version']=='2.5.2-poc' and h['contract_mobile_responsive'] is True
-print('Contract responsive v2.5.2 regression test OK')
+assert 'data-x="l">LINE配信</button>' in ui.main.HTML
+assert 'id="linePanelGrid"' in ui.main.HTML
+paths={(getattr(r,'path',None),tuple(sorted(getattr(r,'methods',set())))) for r in ui.main.app.router.routes}
+assert ('/api/line/webhook',('POST',)) in paths
+assert ('/api/line/cron',('POST',)) in paths
+assert ('/api/line/drafts',('POST',)) in paths
+h=ui.health_v260()
+assert h['version']=='2.6.0-poc' and h['contract_mobile_responsive'] is True
+assert h['line_automation_version']=='1.0.0'
+print('Contract responsive + LINE automation v2.6.0 regression test OK')
 PY
 EXPOSE 8000
 CMD ["python","start_v14.py"]

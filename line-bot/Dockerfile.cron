@@ -1,0 +1,6 @@
+FROM python:3.11-slim
+ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1
+WORKDIR /app
+COPY line-bot/cron.py ./
+RUN python -m py_compile cron.py
+CMD ["python","cron.py"]
