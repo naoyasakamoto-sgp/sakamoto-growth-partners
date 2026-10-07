@@ -1,9 +1,10 @@
 import os
 import uvicorn
 import start_v13, start_v2
+import line_newsletter_v15
 
 main = start_v13.main
-APP_VERSION = '2.5.2-poc'
+APP_VERSION = '2.6.0-poc'
 
 CONTRACT_RESPONSIVE_CSS = r'''
 <style id="contract-mobile-responsive-v252">
@@ -45,18 +46,28 @@ if 'contract-mobile-responsive-v252' not in main.HTML and '</head>' in main.HTML
 main.HTML = main.HTML.replace('<table id="ks"></table>', '<table id="ks" aria-label="契約一覧"></table>')
 main.HTML = main.HTML.replace('v2.5.1-poc', APP_VERSION)
 
+# LINE公式アカウント向け「鶴亀屋グループ通信」配信管理。
+# 既定は平日11:45・承認必須。認証情報や配信先が未設定なら送信しない。
+line_newsletter_v15.install(main, start_v2)
 
-def health_v252():
+
+def health_v260():
     x = start_v13.health()
     x.update({
         'version': APP_VERSION,
         'contract_mobile_responsive': True,
         'contract_mobile_layout': 'responsive-card-table',
         'contract_overflow_fix': 'override-legacy-table-min-width',
+        'line_automation_version': line_newsletter_v15.LINE_AUTOMATION_VERSION,
+        'line_access_token_configured': bool(os.getenv('LINE_CHANNEL_ACCESS_TOKEN', '').strip()),
+        'line_channel_secret_configured': bool(os.getenv('LINE_CHANNEL_SECRET', '').strip()),
+        'line_cron_secret_configured': bool(os.getenv('LINE_CRON_SECRET', '').strip()),
+        'line_default_mode': 'weekdays-11:45-approval-required',
     })
     return x
 
-start_v2.replace('/api/health', 'GET', health_v252)
+
+start_v2.replace('/api/health', 'GET', health_v260)
 
 if __name__ == '__main__':
     uvicorn.run(main.app, host='0.0.0.0', port=int(os.environ.get('PORT', '8000')), proxy_headers=True)
