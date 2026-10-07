@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#0d3328">
+<title>SGP Decision OS｜MVP</title>
+<meta name="description" content="経営者の判断コストを減らし、決めるべきことだけに集中するためのSGP Decision OS MVP。">
+<style>
+:root{--bg:#f4f7f5;--panel:#fff;--ink:#13231d;--muted:#6c7a74;--line:#dce5e0;--green:#0f513d;--green2:#1f6f54;--soft:#eaf4ef;--red:#b63b3b;--redbg:#fff0ef;--amber:#9a6711;--amberbg:#fff8e6}
+*{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP",sans-serif;background:var(--bg);color:var(--ink)}button{font:inherit}
+.shell{display:grid;grid-template-columns:230px 1fr;min-height:100vh}.side{background:#0d3328;color:#fff;padding:26px 18px;display:flex;flex-direction:column;gap:24px}.brand{font-weight:800;font-size:21px;letter-spacing:-.5px}.brand small{display:block;font-size:11px;opacity:.62;font-weight:500;margin-top:5px}.nav button{width:100%;border:0;background:transparent;color:#d8e8e1;text-align:left;padding:11px 12px;border-radius:11px;margin:3px 0;cursor:pointer}.nav button.active{background:#1f5b47;color:white}.nav button:hover{background:#184c3b}.sidefoot{margin-top:auto;font-size:12px;color:#bad0c6;line-height:1.6}.main{padding:28px;max-width:1280px;width:100%;margin:auto}.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px}.top h1{font-size:28px;margin:0;letter-spacing:-.8px}.top p{margin:6px 0 0;color:var(--muted);font-size:14px}.pill{background:var(--panel);border:1px solid var(--line);padding:9px 12px;border-radius:999px;color:var(--muted);font-size:13px}.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px}.hero{grid-column:span 7}.score{grid-column:span 5}.kicker{font-size:12px;color:var(--green2);font-weight:800;letter-spacing:.08em;text-transform:uppercase}.big{font-size:54px;font-weight:800;line-height:1;margin:10px 0}.sub{color:var(--muted);font-size:14px}.statrow{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:18px}.stat{padding:12px;border-radius:12px;background:#f7faf8;border:1px solid var(--line)}.stat b{display:block;font-size:21px}.stat span{font-size:11px;color:var(--muted)}.section{margin-top:18px}.section h2{font-size:16px;margin:0 0 12px}.decision-list{display:grid;gap:10px}.decision{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;padding:14px;border:1px solid var(--line);border-radius:14px;background:#fff}.ico{width:40px;height:40px;border-radius:11px;background:var(--soft);display:grid;place-items:center;font-size:20px}.decision h3{font-size:14px;margin:0 0 5px}.meta{font-size:12px;color:var(--muted);display:flex;gap:8px;flex-wrap:wrap}.tag{padding:3px 7px;border-radius:999px;background:#eef2f0}.tag.red{background:var(--redbg);color:var(--red)}.tag.amber{background:var(--amberbg);color:var(--amber)}.btn{border:0;border-radius:10px;padding:9px 13px;background:var(--green);color:white;font-weight:700;cursor:pointer}.btn.secondary{background:#edf3f0;color:var(--green)}.btn.ghost{background:white;color:var(--green);border:1px solid var(--line)}.meter{height:12px;background:#edf2ef;border-radius:999px;overflow:hidden;margin:14px 0}.meter i{display:block;height:100%;width:74%;background:var(--green)}.donut{width:145px;height:145px;border-radius:50%;background:conic-gradient(var(--green) 0 43%,#4e8a74 43% 78%,#d8a645 78% 94%,#d86868 94% 100%);position:relative;margin:14px auto}.donut:after{content:"213\A判断";white-space:pre;position:absolute;inset:24px;background:white;border-radius:50%;display:grid;place-items:center;text-align:center;font-weight:800;font-size:18px;line-height:1.1}.hidden{display:none!important}.split{display:grid;grid-template-columns:1.4fr .9fr;gap:16px}.rule{display:flex;align-items:center;justify-content:space-between;padding:13px 0;border-bottom:1px solid var(--line)}.rule:last-child{border-bottom:0}.rule b{font-size:13px}.rule span{font-size:12px;color:var(--muted)}.toggle{width:44px;height:24px;border-radius:999px;background:#cdd8d3;position:relative;cursor:pointer}.toggle.on{background:var(--green)}.toggle:after{content:"";position:absolute;width:18px;height:18px;border-radius:50%;background:white;top:3px;left:3px;transition:.18s}.toggle.on:after{left:23px}.chart{display:grid;gap:11px;margin-top:14px}.bar{display:grid;grid-template-columns:80px 1fr 38px;gap:9px;align-items:center;font-size:12px}.track{height:9px;background:#edf2ef;border-radius:99px;overflow:hidden}.fill{height:100%;background:var(--green);border-radius:99px}.drawer{position:fixed;inset:0;background:rgba(7,20,15,.36);display:grid;place-items:center;padding:20px;z-index:20}.dialog{width:min(680px,100%);background:white;border-radius:20px;padding:24px;box-shadow:0 20px 70px rgba(0,0,0,.25)}.dialoghead{display:flex;justify-content:space-between;gap:14px}.dialog h2{margin:0 0 5px}.close{border:0;background:#f0f3f2;border-radius:9px;width:36px;height:36px;cursor:pointer}.recommend{background:var(--soft);border:1px solid #cfe3da;padding:16px;border-radius:14px;margin:18px 0}.recommend strong{font-size:26px;display:block;margin-top:5px}.options{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.option{padding:14px;border:1px solid var(--line);border-radius:12px;cursor:pointer}.option.selected{border:2px solid var(--green);background:#f4faf7}.option b{display:block;font-size:18px;margin:6px 0}.toast{position:fixed;right:20px;bottom:20px;background:#102f25;color:white;padding:12px 16px;border-radius:12px;z-index:30;font-size:13px}.prototype{font-size:11px;color:#91ada1;margin-top:3px}
+@media(max-width:860px){.shell{grid-template-columns:1fr}.side{position:sticky;top:0;z-index:10;padding:12px 14px;display:block}.brand{font-size:17px}.brand small,.sidefoot{display:none}.nav{display:flex;gap:4px;overflow:auto;margin-top:9px}.nav button{width:auto;white-space:nowrap}.main{padding:18px}.hero,.score{grid-column:span 12}.split{grid-template-columns:1fr}.statrow{grid-template-columns:repeat(2,1fr)}.options{grid-template-columns:1fr}.top{align-items:flex-start;gap:10px}.big{font-size:42px}.decision{grid-template-columns:auto 1fr}.decision .btn{grid-column:2}.grid>.card[style]{grid-column:span 12!important}}
+</style>
+</head>
+<body>
+<div class="shell">
+<aside class="side">
+<div class="brand">SGP Decision OS<small>社長の脳の帯域を取り戻す。</small><div class="prototype">MVP prototype</div></div>
+<div class="nav">
+<button class="active" data-view="today">☀️ Today</button>
+<button data-view="inbox">📥 Inbox <span id="inboxBadge">5</span></button>
+<button data-view="rules">⚙️ Rules</button>
+<button data-view="insights">📊 Insights</button>
+</div>
+<div class="sidefoot">Decision-centered operating system<br>Prototype data only</div>
+</aside>
+<main class="main">
+<section id="today" class="view">
+<div class="top"><div><h1>おはようございます。</h1><p>今日あなたが考える必要があることだけを集めました。</p></div><div class="pill">2026年10月7日</div></div>
+<div class="grid">
+<div class="card hero"><div class="kicker">Today's decisions</div><div class="big"><span id="needCount">3</span>件</div><div class="sub">昨日より −6件。ほか12件は自動処理・ルール適用済みです。</div><div class="statrow"><div class="stat"><b>83</b><span>処理された判断</span></div><div class="stat"><b>41</b><span>自動処理</span></div><div class="stat"><b>26</b><span>ルール適用</span></div><div class="stat"><b id="ceoStat">3</b><span>CEO判断</span></div></div></div>
+<div class="card score"><div class="kicker">Decision load</div><h2 style="margin:8px 0 0">判断負荷は先週比 −79%</h2><div class="meter"><i></i></div><div class="sub">AIとルールが、あなたに上がる前に67件を処理しました。</div></div>
+</div>
+<div class="section"><h2>今日決める</h2><div id="todayList" class="decision-list"></div></div>
+</section>
+
+<section id="inbox" class="view hidden">
+<div class="top"><div><h1>Decision Inbox</h1><p>タスクではなく「判断」を1か所に集約します。</p></div><div class="pill"><span id="inboxCount">5</span>件</div></div>
+<div class="card"><div id="inboxList" class="decision-list"></div></div>
+</section>
+
+<section id="rules" class="view hidden">
+<div class="top"><div><h1>Rules</h1><p>100回判断する代わりに、1回ルールを作って99回考えない。</p></div><button class="btn" id="addRule">＋ ルール候補を追加</button></div>
+<div class="split">
+<div class="card"><div class="kicker">Active rules</div><div id="ruleList"></div></div>
+<div class="card"><div class="kicker">Learning suggestion</div><h2>同じ判断を8回しています</h2><p class="sub">「3万円以下のSaaS契約は事業用途なら自動承認」をルール化できます。</p><button class="btn" id="acceptRule" style="margin-top:12px">ルール化する</button></div>
+</div>
+</section>
+
+<section id="insights" class="view hidden">
+<div class="top"><div><h1>Insights</h1><p>売上ではなく、経営者の判断コストそのものを可視化します。</p></div><div class="pill">今月</div></div>
+<div class="grid">
+<div class="card" style="grid-column:span 5"><div class="kicker">Decision mix</div><div class="donut"></div><p class="sub" style="text-align:center">CEO Decision Ratio <b style="color:var(--ink)">5.6%</b></p></div>
+<div class="card" style="grid-column:span 7"><div class="kicker">Cognitive load by area</div><div class="chart">
+<div class="bar"><span>営業</span><div class="track"><div class="fill" style="width:92%"></div></div><b>31%</b></div>
+<div class="bar"><span>契約</span><div class="track"><div class="fill" style="width:71%"></div></div><b>24%</b></div>
+<div class="bar"><span>財務</span><div class="track"><div class="fill" style="width:56%"></div></div><b>19%</b></div>
+<div class="bar"><span>採用</span><div class="track"><div class="fill" style="width:32%"></div></div><b>11%</b></div>
+<div class="bar"><span>その他</span><div class="track"><div class="fill" style="width:44%"></div></div><b>15%</b></div>
+</div></div>
+</div>
+<div class="section"><div class="card"><div class="kicker">Context switch</div><h2 style="font-size:28px;margin:8px 0">17回 → 推定集中損失 2時間08分</h2><p class="sub">提案：営業・契約の判断を17:30にまとめて処理する「Decision Batch」を設定。</p></div></div>
+</section>
+</main>
+</div>
+
+<div id="drawer" class="drawer hidden" role="dialog" aria-modal="true">
+<div class="dialog">
+<div class="dialoghead"><div><div class="kicker">Decision brief</div><h2 id="dTitle"></h2><div class="meta" id="dMeta"></div></div><button class="close" id="closeDrawer" aria-label="閉じる">✕</button></div>
+<div class="recommend"><span class="sub">AI推奨</span><strong id="dRec"></strong><span class="sub" id="dReason"></span></div>
+<div class="options" id="dOptions"></div>
+<div style="display:flex;gap:10px;justify-content:flex-end;margin-top:18px;flex-wrap:wrap"><button class="btn ghost" id="deferBtn">明日に回す</button><button class="btn" id="decideBtn">この案で決定</button></div>
+</div>
+</div>
+<div id="toast" class="toast hidden" aria-live="polite"></div>
+
+<script>
+(function(){
+var decisions=[
+{id:1,title:'不動産売却タイミング',icon:'🏢',level:'CEO判断',risk:'不可逆',deadline:'今日',rec:'2027年まで保有',reason:'税負担・保有期間・想定CFを比較した推奨です。',opts:['今売却','2027年まで保有','再評価する']},
+{id:2,title:'新規契約書の確認',icon:'📄',level:'要確認',risk:'法務',deadline:'今日',rec:'2条項だけ修正して締結',reason:'責任上限と解約条件に確認事項があります。',opts:['そのまま締結','2条項修正','専門家確認']},
+{id:3,title:'新サービスの価格設定',icon:'💴',level:'CEO判断',risk:'可逆',deadline:'3日後',rec:'月額 50,000円',reason:'粗利・成約率・既存単価のバランスが最も良好です。',opts:['30,000円','50,000円','100,000円']},
+{id:4,title:'Google Ads 30万円増額',icon:'📣',level:'要確認',risk:'中',deadline:'明日',rec:'15万円で小さく検証',reason:'一括増額より可逆性を高く保てます。',opts:['見送る','15万円','30万円']},
+{id:5,title:'採用判断：エンジニア1名',icon:'👤',level:'CEO判断',risk:'不可逆',deadline:'2日後',rec:'業務委託で3か月検証',reason:'固定費化する前に成果と相性を確認できます。',opts:['正社員','業務委託','見送り']}
+];
+var rules=[['3万円以下のSaaS契約','事業用途なら自動承認',true],['定例請求書の発行','毎月末に自動作成',true],['契約100万円超','弁護士レビュー必須',true],['広告費5万円以下','過去ROI基準で自動承認',false]];
+var current=null;
+function toast(t){var el=document.getElementById('toast');el.textContent=t;el.classList.remove('hidden');setTimeout(function(){el.classList.add('hidden')},1800)}
+function badge(level){var c=level==='CEO判断'?'red':level==='要確認'?'amber':'';return '<span class="tag '+c+'">'+level+'</span>'}
+function row(d){return '<div class="decision"><div class="ico">'+d.icon+'</div><div><h3>'+d.title+'</h3><div class="meta">'+badge(d.level)+'<span class="tag">'+d.risk+'</span><span>'+d.deadline+'</span></div></div><button class="btn secondary open" data-id="'+d.id+'">判断する</button></div>'}
+function render(){document.getElementById('todayList').innerHTML=decisions.slice(0,3).map(row).join('');document.getElementById('inboxList').innerHTML=decisions.map(row).join('');document.querySelectorAll('.open').forEach(function(b){b.addEventListener('click',function(){openDecision(Number(b.dataset.id))})});document.getElementById('needCount').textContent=Math.min(3,decisions.length);document.getElementById('inboxCount').textContent=decisions.length;document.getElementById('inboxBadge').textContent=decisions.length;document.getElementById('ceoStat').textContent=decisions.filter(function(d){return d.level==='CEO判断'}).length}
+function openDecision(id){current=decisions.find(function(d){return d.id===id});if(!current)return;document.getElementById('dTitle').textContent=current.title;document.getElementById('dMeta').innerHTML=badge(current.level)+'<span class="tag">'+current.risk+'</span><span>期限 '+current.deadline+'</span>';document.getElementById('dRec').textContent=current.rec;document.getElementById('dReason').textContent=current.reason;document.getElementById('dOptions').innerHTML=current.opts.map(function(o,i){return '<div class="option '+(i===1?'selected':'')+'" data-opt="'+i+'"><span class="sub">案 '+String.fromCharCode(65+i)+'</span><b>'+o+'</b><span class="sub">'+(i===1?'AI推奨':'比較候補')+'</span></div>'}).join('');document.querySelectorAll('.option').forEach(function(o){o.addEventListener('click',function(){document.querySelectorAll('.option').forEach(function(x){x.classList.remove('selected')});o.classList.add('selected')})});document.getElementById('drawer').classList.remove('hidden')}
+document.querySelectorAll('.nav button').forEach(function(b){b.addEventListener('click',function(){document.querySelectorAll('.nav button').forEach(function(x){x.classList.remove('active')});b.classList.add('active');document.querySelectorAll('.view').forEach(function(v){v.classList.add('hidden')});document.getElementById(b.dataset.view).classList.remove('hidden')})});
+document.getElementById('closeDrawer').addEventListener('click',function(){document.getElementById('drawer').classList.add('hidden')});
+document.getElementById('drawer').addEventListener('click',function(e){if(e.target.id==='drawer')document.getElementById('drawer').classList.add('hidden')});
+document.getElementById('decideBtn').addEventListener('click',function(){if(!current)return;decisions=decisions.filter(function(d){return d.id!==current.id});document.getElementById('drawer').classList.add('hidden');render();toast('判断を記録しました。次回のルール候補に反映します。')});
+document.getElementById('deferBtn').addEventListener('click',function(){document.getElementById('drawer').classList.add('hidden');toast('明日のDecision Batchへ移動しました。')});
+function renderRules(){document.getElementById('ruleList').innerHTML=rules.map(function(r,i){return '<div class="rule"><div><b>'+r[0]+'</b><br><span>'+r[1]+'</span></div><div class="toggle '+(r[2]?'on':'')+'" data-r="'+i+'" role="switch" aria-checked="'+r[2]+'" tabindex="0"></div></div>'}).join('');document.querySelectorAll('.toggle').forEach(function(t){function flip(){var i=Number(t.dataset.r);rules[i][2]=!rules[i][2];renderRules();toast(rules[i][2]?'ルールを有効化しました。':'ルールを停止しました。')}t.addEventListener('click',flip);t.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();flip()}})})}
+document.getElementById('acceptRule').addEventListener('click',function(){if(!rules.some(function(r){return r[0]==='3万円以下のSaaS契約'})){rules.unshift(['3万円以下のSaaS契約','事業用途なら自動承認',true])}renderRules();toast('学習結果からルールを作成しました。')});
+document.getElementById('addRule').addEventListener('click',function(){rules.unshift(['5万円以下の定型外注','既存取引先なら自動承認',false]);renderRules();toast('ルール候補を追加しました。')});
+render();renderRules();
+})();
+</script>
+</body>
+</html>
