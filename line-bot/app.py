@@ -13,7 +13,7 @@ from fastapi.security import HTTPBasic, HTTPBasicCredentials
 
 import line_newsletter_v15
 
-APP_VERSION = "1.0.0-line-bot"
+APP_VERSION = "1.0.1-line-bot"
 DATA_DIR = Path(os.getenv("DATA_DIR", "/data"))
 DATA_DIR.mkdir(parents=True, exist_ok=True)
 DB_PATH = DATA_DIR / "line_bot.sqlite3"
@@ -82,8 +82,8 @@ HTML = """<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name=
 @media(max-width:700px){.w{padding:10px}}
 </style></head><body>
 <header><b>鶴亀屋グループ通信｜LINE定期配信</b></header>
-<div class="w"><div class="tabs"><button class="on" data-x="a">監査</button></div>
-<section id="a" class="panel on"><div class="c"><h3>監査ログ</h3><button onclick="loadAudit()">更新</button><pre id="auditOut"></pre></div></section>
+<div class="w"><div class="tabs"><button data-x="a">監査</button></div>
+<section id="a" class="panel"><div class="c"><h3>監査ログ</h3><button onclick="loadAudit()">更新</button><pre id="auditOut"></pre></div></section>
 <div class="c"><span id="health">確認中...</span></div></div>
 <script>
 const $=x=>document.getElementById(x);
