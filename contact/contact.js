@@ -56,7 +56,6 @@
   const fields = form.querySelector("[data-contact-form-fields]");
   const status = form.querySelector("[data-contact-status]");
   const submit = form.querySelector("[data-contact-submit]");
-  const endpoint = "https://formsubmit.co/ajax/naoya.sakamoto@sakamoto-growth-partners.com";
   const formLoadedAt = Date.now();
 
   const showStatus = (kind, html) => {
@@ -67,19 +66,22 @@
     status.focus?.();
   };
 
-  const setSubmitting = (isSubmitting) => {
-    if (!submit) return;
-    submit.disabled = isSubmitting;
-    submit.setAttribute("aria-busy", String(isSubmitting));
-    submit.textContent = isSubmitting ? "送信しています…" : "無料相談を送信する →";
-  };
+  const successMarkup =
+    "<strong>送信しました。</strong><br>ご相談ありがとうございます。内容を確認し、入力いただいたメールアドレスへ返信します。";
 
+  // AJAXではなくFormSubmit標準POSTを使い、標準reCAPTCHAを有効にする。
   if (qs.get("submitted") === "1") {
     if (fields) fields.hidden = true;
-    showStatus(
-      "success",
-      "<strong>送信しました。</strong><br>ご相談ありがとうございます。内容を確認し、入力いただいたメールアドレスへ返信します。"
-    );
+    showStatus("success", successMarkup);
+    try {
+      const stored = window.sessionStorage.getItem("sgp_contact_pending");
+      if (stored) {
+        window.sgpAnalytics?.track?.("contact_submit", JSON.parse(stored));
+        window.sessionStorage.removeItem("sgp_contact_pending");
+      }
+    } catch {
+      // Storageが使えない環境でも完了画面は表示する。
+    }
   }
 
   let formStarted = false;
@@ -93,111 +95,62 @@
     });
   }, { once: true });
 
-  form.addEventListener("submit", async (event) => {
-    if (!window.fetch) return;
-    event.preventDefault();
-    if (!form.reportValidity()) return;
+  form.addEventListener("submit", (event) => {
+    if (!form.reportValidity()) {
+      event.preventDefault();
+      return;
+    }
 
     const data = new FormData(form);
     const honey = String(data.get("_honey") || "").trim();
 
-    // FormSubmit側のhoneypotに加え、ブラウザ側でもbot送信を止める。
-    // botには判定結果を返さず、通常の送信完了と同じ見え方にする。
+    // honeypotはFormSubmit側でも検証される。
     if (honey) {
+      event.preventDefault();
       if (fields) fields.hidden = true;
-      showStatus(
-        "success",
-        "<strong>送信しました。</strong><br>ご相談ありがとうございます。内容を確認し、入力いただいたメールアドレスへ返信します。"
-      );
+      showStatus("success", successMarkup);
       form.reset();
       window.history.replaceState({}, "", "/contact/?submitted=1");
       return;
     }
 
-    // ページ表示直後の機械的な即時POSTを抑止。通常の入力操作には影響しない短い閾値。
     if (Date.now() - formLoadedAt < 1200) {
-      showStatus(
-        "error",
-        "<strong>入力内容をご確認ください。</strong><br>少し時間をおいて、もう一度送信してください。"
-      );
+      event.preventDefault();
+      showStatus("error", "<strong>入力内容をご確認ください。</strong><br>少し時間をおいて、もう一度送信してください。");
+      return;
+    }
+
+    // 空白だけの送信を防止。依頼内容自体は未確定で構わない。
+    if (!String(data.get("message") || "").trim()) {
+      event.preventDefault();
+      showStatus("error", "<strong>相談内容をご入力ください。</strong><br>相談テーマが未定でも、気になっていることをひとこと記入してください。");
+      form.querySelector("#message")?.focus();
       return;
     }
 
     const topic = String(data.get("topic") || "30分無料相談");
+    const subject = form.querySelector('input[name="_subject"]');
+    if (subject) subject.value = `[SGP相談] ${topic}`;
 
-    const payload = {
-      name: String(data.get("name") || ""),
-      email: String(data.get("email") || ""),
-      company: String(data.get("company") || "未記入"),
-      topic,
-      message: String(data.get("message") || "未記入"),
-      lead_type: "consultation",
-      lead_source: source,
-      lead_case: caseSlug || "none",
-      lead_intent: intent,
-      lead_plan: planLabels[plan] || plan || "none",
-      non_solicitation_confirmed: String(data.get("non_solicitation_confirmed") || "no"),
-      _subject: `[SGP相談] ${topic}`,
-      _template: "table",
-      _captcha: "false",
-      _honey: String(data.get("_honey") || ""),
-      _url: window.location.href
-    };
-
-    window.sgpAnalytics?.track?.("contact_submit_attempt", {
+    const dimensions = {
       lead_source: source,
       lead_case: caseSlug || "none",
       lead_intent: intent,
       lead_plan: plan || "none",
       topic
-    });
-
-    setSubmitting(true);
-    if (status) status.hidden = true;
-
+    };
+    window.sgpAnalytics?.track?.("contact_submit_attempt", dimensions);
     try {
-      const response = await fetch(endpoint, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json"
-        },
-        body: JSON.stringify(payload)
-      });
-      const result = await response.json().catch(() => ({}));
-      if (!response.ok || result.success === false || result.success === "false") {
-        throw new Error(result.message || "Form submission failed");
-      }
-
-      window.sgpAnalytics?.track?.("contact_submit", {
-        lead_source: source,
-        lead_case: caseSlug || "none",
-        lead_intent: intent,
-        lead_plan: plan || "none",
-        topic
-      });
-
-      if (fields) fields.hidden = true;
-      showStatus(
-        "success",
-        "<strong>送信しました。</strong><br>ご相談ありがとうございます。内容を確認し、入力いただいたメールアドレスへ返信します。"
-      );
-      form.reset();
-      window.history.replaceState({}, "", "/contact/?submitted=1");
-    } catch (error) {
-      console.error("Contact form submission failed", error);
-      window.sgpAnalytics?.track?.("contact_submit_error", {
-        lead_source: source,
-        lead_intent: intent,
-        lead_plan: plan || "none",
-        topic
-      });
-      showStatus(
-        "error",
-        '<strong>送信できませんでした。</strong><br>通信状況を確認してもう一度お試しいただくか、<a href="mailto:naoya.sakamoto@sakamoto-growth-partners.com">直接メール</a>でご連絡ください。'
-      );
-    } finally {
-      setSubmitting(false);
+      window.sessionStorage.setItem("sgp_contact_pending", JSON.stringify(dimensions));
+    } catch {
+      // Storageが使えなくてもフォーム送信は続行する。
     }
+    if (status) status.hidden = true;
+    if (submit) {
+      submit.disabled = true;
+      submit.setAttribute("aria-busy", "true");
+      submit.textContent = "送信画面に進んでいます…";
+    }
+    // preventDefaultせず、FormSubmitの認証画面と_next遷移に委ねる。
   });
 })();
