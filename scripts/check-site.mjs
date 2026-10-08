@@ -342,6 +342,16 @@ for (const token of [
   if (!contactScript.includes(token)) fail(`contact/contact.js: spam guard token missing: ${token}`);
 }
 
+
+// 相談フォームはFormSubmitの標準reCAPTCHA + honeypotを使う。
+// 営業禁止チェックだけに依存せず、相談本文必須と迷惑送信の定型句フィルタを維持する。
+if (/name="_captcha"\\s+value="false"/.test(contactPage)) fail("contact/index.html: reCAPTCHA must not be disabled");
+if (!contactPage.includes('name="_blacklist"')) fail("contact/index.html: FormSubmit provider blacklist missing");
+if (!/<textarea\\b[^>]*name="message"[^>]*required/.test(contactPage)) fail("contact/index.html: consultation message must be required");
+if (!contactPage.includes('name="lead_type" value="consultation"')) fail("contact/index.html: lead_type missing from native POST");
+if (contactScript.includes("formsubmit.co/ajax")) fail("contact/contact.js: AJAX endpoint bypasses provider challenge");
+if (!contactScript.includes('window.sessionStorage.setItem("sgp_contact_pending"')) fail("contact/contact.js: successful POST analytics handoff missing");
+
 await checkPage("free-improvement/index.html", { canonical: `${siteUrl}/free-improvement/`, ogType: "website", schemaTypes: ["Service"] });
 
 
