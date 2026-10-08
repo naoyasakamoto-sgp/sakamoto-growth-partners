@@ -61,7 +61,9 @@
         <input type="hidden" name="lead_plan" data-lead-plan value="" />
         <input type="hidden" name="_subject" value="[SGP相談] Webフォームから新しい相談" />
         <input type="hidden" name="_template" value="table" />
-        <input type="hidden" name="_captcha" value="false" />
+        <!-- FormSubmitの標準reCAPTCHAを有効にするため、_captcha=falseを指定しない。 -->
+        <input type="hidden" name="_blacklist" value="販売パートナーとして連携,シミュレーターをご覧ください,Zoomで事例やデモ,営業提案のご連絡,弊社サービスをご紹介" />
+        <input type="hidden" name="lead_type" value="consultation" />
         <input type="hidden" name="_next" value="https://sakamoto-growth-partners.com/contact/?submitted=1" />
         <input type="hidden" name="_url" value="https://sakamoto-growth-partners.com/contact/" />
         <div class="form-honeypot" aria-hidden="true">
@@ -95,8 +97,9 @@
           </div>
 
           <div class="form-field">
-            <label for="message">今困っていること <span class="small">任意</span></label>
-            <textarea id="message" name="message" placeholder="例：見積と案件情報がExcelとLINEに分かれていて面倒です。"></textarea>
+            <label for="message">今困っていること・相談したいこと <span class="small">必須</span></label>
+            <textarea id="message" name="message" required maxlength="2000" rows="5" placeholder="例：見積と案件情報がExcelとLINEに分かれていて面倒です。／何から相談すべきかまだ決められていません。"></textarea>
+            <p class="form-note">相談内容が決まっていない場合は「何から始めればいいか相談したい」でも構いません。</p>
           </div>
 
           <div class="form-field">
@@ -109,13 +112,14 @@
               <input id="non-solicitation-confirmed" name="non_solicitation_confirmed" type="checkbox" value="yes" required />
               <span>
                 <strong>営業・勧誘目的ではありません。</strong>
-                <small>このフォームはSGPへのご相談用です。営業・勧誘を目的としたご連絡には返信しておりません。</small>
+                <small>SGPへのサービスの売り込み、広告・協業の提案、営業・勧誘目的の送信はお断りしています。営業目的のご連絡には返信しておりません。</small>
               </span>
             </label>
           </div>
 
           <button class="form-submit" type="submit" data-contact-submit>30分相談を予約する →</button>
           <p class="form-note">送信時点では予約確定ではありません。日程を確認のうえ、SGPから返信します。</p>
+          <p class="form-note">迷惑送信対策のため、送信時に認証画面が表示される場合があります。</p>
           <p class="form-note">メールアプリは開きません。このページからそのまま送信できます。</p>
           <p class="form-note">送信内容はフォーム配信サービスを経由してSGP宛に送信され、ご相談への対応にのみ使用します。</p>
         </div>
@@ -134,6 +138,6 @@
     <div class="text-footer-inner"><span>© 2026 合同会社SGP</span><nav><a href="../">HOME</a><a href="../brand/">Purpose</a><a href="../mvv/">MVV</a></nav></div>
   </footer>
   <script src="../analytics.js"></script>
-  <script src="contact.js?v=20260929-spam-guard-v1"></script>
+  <script src="contact.js?v=20261008-spam-guard-v2"></script>
 </body>
 </html>
