@@ -2,7 +2,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFile, access } from "node:fs/promises";
 const read=path=>readFile(new URL("../"+path,import.meta.url),"utf8");
-test("Preview remains unlinked and noindex until copy is approved",async()=>{
+test("Preview remains unlinked and noindex until full release readiness",async()=>{
  const home=await read("index.html"),lab=await read("taste-lab/index.html");
  assert.match(lab,/<meta name="robots" content="noindex,nofollow,noarchive">/);
  assert.doesNotMatch(home,/href="\/taste-lab\//);
@@ -40,11 +40,57 @@ test("Source separates conceptual figures from real product images",async()=>{
  assert.match(html,/assets\/case-studies\/my-jazz-day\/hero-mobile\.webp/);
 });
 
-test("User-facing preview copy is inventoried and explicitly pending approval",async()=>{
+test("Owner-approved A-G copy inventory is recorded and production remains gated",async()=>{
  const manifest=JSON.parse(await read("taste/copy-review.json"));
- assert.equal(manifest.releaseCopyStatus,"pending");
+ assert.equal(manifest.releaseCopyStatus,"approved");
+ assert.equal(manifest.approvedAt,"2026-11-02");
+ assert.equal(manifest.approvalRecord.decision,"all_groups_approved");
+ assert.equal(manifest.approvalRecord.corrections,"none");
+ assert.equal(manifest.publishState,"blocked_pending_non_copy_review");
+ for(const letter of ["A","B","C","D","E","F","G"])assert.equal(manifest.approvalRecord.groups[letter].status,"approved");
  assert.equal(manifest.allNewUserFacingCopyRequiresExplicitApproval,true);
  assert.ok(manifest.groups.html_visible.length>30);
  assert.ok(manifest.groups.html_accessible.length>0);
  assert.ok(manifest.groups.external_ai_prompt.length>0);
+});
+
+
+function sortedUnique(values){return [...new Set(values)].sort()}
+test("Release gate rejects new or modified page-visible copy unless owner approves it",async()=>{
+ const manifest=JSON.parse(await read("taste/copy-review.json")),html=await read("taste-lab/index.html");
+ const actual=sortedUnique([...html.matchAll(/>([^<>]+)</g)].map(m=>m[1].replace(/\s+/g," ").trim()).filter(s=>s.length>1&&s.length<180));
+ const accessible=sortedUnique([...html.matchAll(/(?:aria-label|alt|placeholder)="([^"]+)"/g)].map(m=>m[1]));
+ const placeholder=[...html.matchAll(/placeholder='([^']+)'/g)].map(m=>m[1]);
+ assert.deepEqual(actual,manifest.groups.html_visible,"HTML visible wording changed without approval");
+ assert.deepEqual(accessible,manifest.groups.html_accessible,"Accessible wording changed without approval");
+ assert.deepEqual(placeholder,manifest.groups.html_placeholder,"Input placeholder changed without approval");
+});
+test("Release gate rejects new or modified AI prompt, error text and UI labels",async()=>{
+ const manifest=JSON.parse(await read("taste/copy-review.json")),js=await read("taste-lab/app.mjs");
+ const statuses=sortedUnique([...js.matchAll(/status\("([^"]+)"/g)].map(m=>m[1]));
+ assert.deepEqual(statuses,manifest.groups.js_status,"Status copy changed without approval");
+ const errorBlock=js.match(/const messages=\{([\s\S]*?)\n\};/)?.[1];
+ assert.ok(errorBlock,"Error map was removed");
+ const errors=sortedUnique([...errorBlock.matchAll(/^\s*\w+:"([^"]+)",?$/gm)].map(m=>m[1]));
+ assert.deepEqual(errors,manifest.groups.js_error,"Error copy changed without approval");
+ const promptBlock=js.match(/const prompt=\[([\s\S]*?)\]\.join\("\\n\\n"\);/)?.[1];
+ assert.ok(promptBlock,"Prompt code was removed");
+ const paragraphs=[...promptBlock.matchAll(/^"([^"]+)",?$/gm)].map(m=>m[1]);
+ assert.deepEqual(paragraphs,manifest.groups.js_prompt_paragraphs,"AI prompt changed without approval");
+ const editorBlock=js.match(/const experienceNames=\{([^}]+)\}/)?.[1];
+ assert.ok(editorBlock,"Experience labels were removed");
+ const labels=sortedUnique([...editorBlock.matchAll(/:\s*"([^"]+)"/g)].map(m=>m[1]));
+ assert.deepEqual(labels,manifest.groups.js_editor_labels,"Experience labels changed without approval");
+ const computed=sortedUnique([...js.matchAll(/\.textContent="([^"]+)"/g)].map(m=>m[1]));
+ assert.deepEqual(computed,manifest.groups.js_action_labels,"Dynamic display text changed without approval");
+});
+test("F-09 approved JSON template matches the active engine schema",async()=>{
+ const {emptyWebTaste,parseTasteInput,WEB_SCHEMA}=await import("./engine.mjs");
+ const profile=emptyWebTaste();
+ assert.equal(profile.schema,WEB_SCHEMA);
+ assert.deepEqual(Object.keys(profile),["schema","interests","experience","confidence"]);
+ assert.deepEqual(Object.keys(profile.interests),["products","design","engineering","business"]);
+ assert.deepEqual(Object.keys(profile.experience),["density","navigation","evidence","interaction","discovery"]);
+ assert.deepEqual(Object.keys(profile.confidence),["products","design","engineering","business"]);
+ assert.equal(parseTasteInput(JSON.stringify(profile)).ok,true);
 });
