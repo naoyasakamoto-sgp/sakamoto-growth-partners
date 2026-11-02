@@ -47,7 +47,7 @@ const state='(()=>{const paths={sgpLogo:"/assets/sgp-wordmark-v2.webp",erabuLogo
 const valid={schema:"sgp-web-taste@1",interests:{products:1,design:0,engineering:3,business:null},experience:{density:"balanced",navigation:"guided",evidence:"diagrams",interaction:"observe",discovery:"balanced"},confidence:{products:"inferred",design:"explicit",engineering:"explicit",business:"unknown"}};
 let chrome,page,tmp,base;
 async function capture(name){await sleep(120);const shot=await page.send("Page.captureScreenshot",{format:"png",captureBeyondViewport:false});await writeFile(join(output,name+".png"),Buffer.from(shot.data,"base64"))}
-async function logVisual(name){const shot=await page.send("Page.captureScreenshot",{format:"jpeg",quality:42,captureBeyondViewport:false});console.log("QA_IMAGE_BEGIN "+name);for(let i=0;i<shot.data.length;i+=4000)console.log("QA_IMAGE_DATA "+shot.data.slice(i,i+4000));console.log("QA_IMAGE_END "+name)}
+async function logVisual(name,quality=42){const shot=await page.send("Page.captureScreenshot",{format:"jpeg",quality,captureBeyondViewport:false});console.log("QA_IMAGE_BEGIN "+name);for(let i=0;i<shot.data.length;i+=4000)console.log("QA_IMAGE_DATA "+shot.data.slice(i,i+4000));console.log("QA_IMAGE_END "+name)}
 async function navigate(url){await page.send("Page.navigate",{url});await waitFor(async()=>page.eval("document.readyState==='complete'&&!!document.querySelector('#exhibitions')"),"page navigation")}
 async function run(code){return page.eval("(()=>{"+code+"})()")}
 try{
@@ -115,5 +115,16 @@ try{
  assert.deepEqual(pageErrors,[],"Unexpected browser errors");
  console.log("PASS interaction: invalid input, confirmed import, priority, focus, opt-in storage, reset, keyboard, reduced motion, zero third-party requests");
  console.log("PASS 6 screenshot artifacts");
+ if(process.env.CAPTURE_ERABU_SOURCE==="1"){
+  await page.send("Emulation.setDeviceMetricsOverride",{width:1280,height:900,deviceScaleFactor:1,mobile:false});
+  await page.send("Page.navigate",{url:"https://sendai-erabu.jp/"});
+  await waitFor(async()=>page.eval("document.readyState==='complete'&&document.body&&document.body.innerText.length>120"),"ERABU live site",120);
+  await sleep(1700);
+  const metadata=await page.eval("({url:location.href,title:document.title,mainHeading:document.querySelector('h1')?.textContent||'',bodyLength:document.body.innerText.length})");
+  console.log("QA_ERABU_SOURCE_META "+JSON.stringify(metadata));
+  await page.eval("document.documentElement.style.scrollBehavior='auto';window.scrollTo({top:0,behavior:'instant'})");
+  await logVisual("erabu-live-source-20261102",78);
+ }
+
 }catch(e){console.error("BROWSER QA FAILED:",e.stack||e);process.exitCode=1}
 finally{try{page?.close()}catch{}try{chrome?.kill()}catch{}try{await new Promise(ok=>http.close(ok))}catch{}try{if(tmp)await rm(tmp,{recursive:true,force:true})}catch{}}
