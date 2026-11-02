@@ -104,7 +104,14 @@ test("F-09 approved JSON template matches the active engine schema",async()=>{
 
 test("Site artifact excludes paused Taste runtime and dependent screenshots",async()=>{
  const workflow=await read(".github/workflows/deploy-pages.yml");
- for(const exclude of ["taste-lab/","taste/","assets/erabu/source/"]){
+ for(const exclude of ["taste-lab/","taste/"]){
   assert.ok(workflow.includes("--exclude '"+exclude+"'"),"Paused path leaked into published artifact: "+exclude);
  }
+});
+
+test("ERABU originals are re-used as official product media, while Taste runtime remains unpublished",async()=>{
+ const workflow=await read(".github/workflows/deploy-pages.yml");
+ assert.doesNotMatch(workflow,/--exclude 'assets\/erabu\/source\/'/);
+ assert.match(workflow,/--exclude 'taste-lab\/'/);
+ assert.match(workflow,/--exclude 'taste\/'/);
 });
