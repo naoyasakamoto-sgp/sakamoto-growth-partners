@@ -33,8 +33,6 @@ jobs:
           fc-cache -f
 
       - name: Build and validate
-        env:
-          CAPTURE_ERABU_SOURCE: "1"
         shell: bash
         run: |
           set +e
