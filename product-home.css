@@ -219,7 +219,9 @@ button{font:inherit}
  .service-row{gap:10px;padding:25px 0}
  .footer-links{gap:13px 17px}
  .sub-hero{padding:70px 0}
- .sub-hero h1{font-size:3.45rem}
+ .sub-hero h1{font-size:clamp(2.25rem,10.4vw,3.3rem);overflow-wrap:anywhere}
+ .engineering h2{font-size:clamp(2.55rem,10vw,4.2rem);overflow-wrap:anywhere}
+ .engineering-line strong{overflow-wrap:anywhere}
 }
 @media(prefers-reduced-motion:reduce){
  html{scroll-behavior:auto}
