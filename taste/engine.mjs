@@ -75,8 +75,19 @@ export function planExperience(profile=emptyWebTaste(),options={}){
   const certainty=INTERESTS.reduce((sum,k)=>sum+(safe.confidence[k]==="explicit"?.2:0)*value(k)*item.interests[k],0);
   return {...item,score:similarity*4+bonus+certainty+item.editorial}
  }).sort((a,b)=>b.score-a.score||EXHIBITS.findIndex(x=>x.id===a.id)-EXHIBITS.findIndex(x=>x.id===b.id));
- const personalized=Boolean(focus||INTERESTS.some(k=>safe.interests[k]!==null));
- const view=!personalized?"standard":safe.experience.evidence==="process"?"process":safe.experience.evidence==="diagrams"?"system":safe.experience.navigation==="guided"?"guided":"gallery";
+ const hasKnownTaste=INTERESTS.some(k=>safe.interests[k]!==null);
+ const hasKnownExperience=Object.values(safe.experience).some(value=>value!=="unknown");
+ const personalized=Boolean(focus||hasKnownTaste||hasKnownExperience);
+ // The explicit current task outranks historic AI evidence preferences.
+ const focusView=focus==="engineering"?"system":focus==="design"?"process":focus?"gallery":null;
+ const view=!personalized?"standard":focusView??(safe.experience.evidence==="process"?"process":safe.experience.evidence==="diagrams"?"system":safe.experience.navigation==="guided"?"guided":"gallery");
+ // High-discovery visitors see a deliberate, low-similarity second work.
+ // Preserve the first result and expose every exhibit, even in low-discovery mode.
+ if(personalized&&safe.experience.discovery==="high"&&ranked.length>2){
+  const unusual=[...ranked.slice(1)].sort((a,b)=>a.score-b.score||a.id.localeCompare(b.id))[0];
+  const index=ranked.findIndex(item=>item.id===unusual.id);
+  ranked.splice(index,1);ranked.splice(1,0,unusual);
+ }
  const discovery=!personalized||safe.experience.discovery==="low"?null:(ranked.find((x,i)=>i>0&&x.type!==ranked[0].type)?.id??null);
  return {ranked,orderedIds:ranked.map(x=>x.id),view,discovery,personalized,focus}
 }
