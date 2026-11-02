@@ -82,3 +82,30 @@ test("blocked storage never breaks the experience",()=>{
  assert.equal(loadSavedTaste(blocked),null);
  assert.doesNotThrow(()=>forgetTaste(blocked));
 });
+
+test("current focus decides both exhibit and visual composition, overriding AI evidence",()=>{
+ const p=amendWebTaste(makeProfile(),{experience:{evidence:"process"}});
+ const engineering=planExperience(p,{focus:"engineering"});
+ assert.equal(engineering.orderedIds[0],"erabu-system");
+ assert.equal(engineering.view,"system");
+ const design=planExperience(p,{focus:"design"});
+ assert.equal(design.orderedIds[0],"erabu-process");
+ assert.equal(design.view,"process");
+});
+test("known viewing preferences personalize without inventing interest scores",()=>{
+ const p=amendWebTaste(emptyWebTaste(),{experience:{density:"detailed",navigation:"guided"}});
+ assert.ok(Object.values(p.interests).every(v=>v===null));
+ const result=planExperience(p);
+ assert.equal(result.personalized,true);
+ assert.equal(result.view,"guided");
+ assert.equal(new Set(result.orderedIds).size,EXHIBITS.length);
+});
+test("high discovery surfaces a different secondary work while preserving primary choice",()=>{
+ const p=amendWebTaste(makeProfile(),{experience:{discovery:"balanced"}});
+ const normal=planExperience(p);
+ const curious=planExperience(amendWebTaste(p,{experience:{discovery:"high"}}));
+ assert.equal(curious.orderedIds[0],normal.orderedIds[0]);
+ assert.notEqual(curious.orderedIds[1],normal.orderedIds[1]);
+ assert.deepEqual([...curious.orderedIds].sort(),[...normal.orderedIds].sort());
+ assert.deepEqual(curious,planExperience(amendWebTaste(p,{experience:{discovery:"high"}})));
+});
