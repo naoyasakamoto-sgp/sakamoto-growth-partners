@@ -348,13 +348,19 @@
   "approvedCopyIntentionallyOmitted": [
     "プレビュー / 未承認文言"
   ],
-  "publishState": "qa_passed_opt_in_route_staged",
+  "publishState": "paused_unpublished_2026-11-03",
   "stagedRelease": {
     "scope": "/taste-lab/ with / navigation",
     "searchIndexing": "noindex",
     "homepageReplacement": false,
     "existingServicePathsRetained": true,
     "visualEvidence": "Github Actions Taste browser QA",
-    "productionLaunchVerified": false
-  }
+    "productionLaunchVerified": false,
+    "publicationPaused": true,
+    "publicationStatus": "removed from GitHub Pages artifact; public / link removed",
+    "archivedInGit": true
+  },
+  "pausedAt": "2026-11-03",
+  "pauseRequestedBy": "site owner via chat",
+  "pauseReason": "User reports ERABU exhibit layout defects, insufficient site-wide UX transformation, and requests temporary unpublication"
 }
