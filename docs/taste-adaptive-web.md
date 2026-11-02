@@ -1,11 +1,11 @@
 # SGP Taste Adaptive Web — implementation and publication gate
-Status: **prototype / COPY APPROVED (A–G), NOT APPROVED FOR PUBLICATION**  
+Status: **copy approved (A–G) / source assets verified / Chrome QA passed / staged Taste route**  
 Branch: feat/taste-adaptive-experience-20261102  
 Date: 2026-11-02
 
 ## Scope completed in this branch
 
-- A noindex, unlinked, editorial visual prototype at /taste-lab/.
+- A noindex, approved-copy editorial exhibition at /taste-lab/, linked through an owner-approved Taste label from the existing homepage.
 - Strict, versioned AI JSON importer, including fenced JSON handling and input length/type/value restrictions.
 - Existing ERABU domain seed identification (erabu-ai-taste-seed@1); the 12 location/experience axes are not deceptively converted into Web UX preferences.
 - New SGP Web experience schema (sgp-web-taste@1) with four interest scores, five experience settings, and explicit/inferred/unknown provenance.
@@ -74,9 +74,9 @@ Cross-origin read/write is not available. A future handoff must require explicit
 
 ## Known limitations
 
-- The visual layout contains working composition and sorting but still uses explicitly marked conceptual artwork for some internal/design exhibits. Actual product screenshots and verified design evidence need curation.
-- No independent external browser test or Netlify preview deploy is claimed at this point.
-- The public homepage does not link to the preview. Copy approval has been recorded, but real-browser visual QA, verified production assets and release signoff remain pending.
+- Verified 2026-11-02 live ERABU homepage screenshot, original source map, official logo asset and source-linked architecture are present. The high-level system architecture drawing remains explicitly marked CONCEPT, not an exact deployed topology.
+- Real headless Chrome QA has passed at 320, 390, 768, 1280 and 1565px, covering images, overflow, focus/keyboard, reduced-motion, import, consent, reset and no third-party requests containing Taste. No external Netlify preview deploy was needed.
+- The approved Taste label is linked from the existing homepage in desktop and mobile navigation. The adaptive page is still noindex; the existing SEO/services homepage remains unchanged otherwise.
 - Import is handoff via copy/paste or a local file; no connected AI account is accessed.
 - It is a prototype, not a commercial generalized SaaS or production-grade account system.
 
@@ -96,4 +96,16 @@ The JSON manifest is the approved-copy source of truth. The exact current HTML t
 
 The previously approved string "プレビュー / 未承認文言" was intentionally removed after it became factually false. Other existing visible labels retain the approved versions.
 
-**This is copy approval, not approval of depicted technical architecture, quality of conceptual media, automatic ERABU cross-origin data transfer, or release of the preview.** No production merge was authorized by this decision.
+**The A–G decision alone authorized only copy.** The owner's later request to complete remaining implementation triggered source-asset verification, real-browser QA and the staged opt-in Taste navigation. No approval is inferred for a wholesale replacement of `/` or cross-origin auto-import.
+
+## Staged launch acceptance (2026-11-02)
+
+- Copy: approved A–G, recorded in taste/copy-review.json, guarded by snapshots.
+- Media: verified ERABU live screenshot captured with headless Chrome, source copied SVG map and official product logo; see docs/taste-evidence.md.
+- Browser: 5 viewport sizes passed; screenshots uploaded by GitHub Actions.
+- Interaction: invalid JSON, AI import, consent, deterministic ranking, focus override, optional storage, reset/delete, keyboard and reduced motion all passed.
+- Privacy: browser-request audit found no external requests during the Taste flow. External AI providers are links opened only on user action.
+- Launch shape: keep / with its SEO anchors and service links. Publish /taste-lab/ as noindex, linked as Taste in desktop and mobile navigation.
+- Out of scope: replacing / entirely, direct connector-based AI memory extraction, production Taste Passport bridge, full authenticated account product, claims about conceptual system art as deployed screenshots.
+
+This is a functioning opt-in demonstration, not a claim to be an adaptive default for every visitor. Any later promotion to the root homepage needs its own content and SEO design review.
