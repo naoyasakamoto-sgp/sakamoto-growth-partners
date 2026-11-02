@@ -113,3 +113,24 @@
   .site-header .logo img{width:188px}
   .mobile-menu summary{font-size:11px}
 }
+
+/* Keep the mobile dropdown independent of earlier generic .nav nav styles. */
+.site-header .mobile-menu .mobile-menu-panel{display:grid;grid-template-columns:1fr;align-items:stretch;gap:2px}
+.site-header .mobile-menu .mobile-menu-panel a,
+.site-header .mobile-menu .mobile-menu-panel a:nth-child(2),
+.site-header .mobile-menu .mobile-menu-panel a:nth-child(3),
+.site-header .mobile-menu .mobile-menu-panel a:nth-child(4){
+  display:block!important;
+  width:100%;
+  margin:0;
+  padding:13px 15px;
+  border:0;
+  border-radius:7px;
+  background:transparent;
+  color:#173556;
+  font-size:14px;
+  line-height:1.5;
+  text-align:left;
+  white-space:normal;
+}
+.site-header .mobile-menu .mobile-menu-panel a:hover{background:#f1f8fc;color:#008cab}
