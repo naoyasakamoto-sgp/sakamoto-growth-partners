@@ -111,3 +111,16 @@
   to = "/services/it-adviser/"
   status = 301
   force = true
+
+# Pause Taste public pages on any secondary Netlify deployment.
+[[redirects]]
+  from = "/taste-lab/*"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/taste/*"
+  to = "/404.html"
+  status = 404
+  force = true

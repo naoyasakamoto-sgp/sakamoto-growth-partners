@@ -2,10 +2,10 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFile, access } from "node:fs/promises";
 const read=path=>readFile(new URL("../"+path,import.meta.url),"utf8");
-test("Approved Taste route is linked while remaining search-noindex",async()=>{
+test("Paused Taste route is unlinked and remains archived with noindex",async()=>{
  const home=await read("index.html"),lab=await read("taste-lab/index.html");
  assert.match(lab,/<meta name="robots" content="noindex,nofollow,noarchive">/);
- assert.match(home,/href="\/taste-lab\//);
+ assert.doesNotMatch(home,/href="\/taste-lab\//);
  assert.match(lab,/\/assets\/sgp-wordmark-v2\.webp/);
  assert.match(lab,/<html lang="ja">/);
 });
@@ -50,9 +50,10 @@ test("Owner-approved A-G copy inventory is recorded and production remains gated
  assert.equal(manifest.approvedAt,"2026-11-02");
  assert.equal(manifest.approvalRecord.decision,"all_groups_approved");
  assert.equal(manifest.approvalRecord.corrections,"none");
- assert.equal(manifest.publishState,"qa_passed_opt_in_route_staged");
+ assert.equal(manifest.publishState,"paused_unpublished_2026-11-03");
  assert.equal(manifest.stagedRelease.homepageReplacement,false);
  assert.equal(manifest.stagedRelease.searchIndexing,"noindex");
+ assert.equal(manifest.stagedRelease.publicationPaused,true);
  for(const letter of ["A","B","C","D","E","F","G"])assert.equal(manifest.approvalRecord.groups[letter].status,"approved");
  assert.equal(manifest.allNewUserFacingCopyRequiresExplicitApproval,true);
  assert.ok(manifest.groups.html_visible.length>30);
@@ -99,4 +100,11 @@ test("F-09 approved JSON template matches the active engine schema",async()=>{
  assert.deepEqual(Object.keys(profile.experience),["density","navigation","evidence","interaction","discovery"]);
  assert.deepEqual(Object.keys(profile.confidence),["products","design","engineering","business"]);
  assert.equal(parseTasteInput(JSON.stringify(profile)).ok,true);
+});
+
+test("Site artifact excludes paused Taste runtime and dependent screenshots",async()=>{
+ const workflow=await read(".github/workflows/deploy-pages.yml");
+ for(const exclude of ["taste-lab/","taste/","assets/erabu/source/"]){
+  assert.ok(workflow.includes("--exclude '"+exclude+"'"),"Paused path leaked into published artifact: "+exclude);
+ }
 });

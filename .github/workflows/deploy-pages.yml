@@ -38,7 +38,7 @@ jobs:
       - name: Stage public site
         run: |
           mkdir -p _site
-          rsync -a             --exclude '.git/'             --exclude '.github/'             --exclude '_site/'             --exclude 'node_modules/'             --exclude 'content/'             --exclude 'scripts/'             --exclude 'docs/'             --exclude 'package.json'             --exclude 'package-lock.json'             --exclude 'README.md'             --exclude 'netlify.toml'             --exclude 'qa/'             --exclude 'taste/*.test.mjs'             --exclude 'taste/copy-review.json'             ./ _site/
+          rsync -a             --exclude '.git/'             --exclude '.github/'             --exclude '_site/'             --exclude 'node_modules/'             --exclude 'content/'             --exclude 'scripts/'             --exclude 'docs/'             --exclude 'package.json'             --exclude 'package-lock.json'             --exclude 'README.md'             --exclude 'netlify.toml'             --exclude 'qa/'             --exclude 'taste-lab/'             --exclude 'taste/'             --exclude 'assets/erabu/source/'             --exclude 'taste/*.test.mjs'             --exclude 'taste/copy-review.json'             ./ _site/
           touch _site/.nojekyll
 
       - name: Upload GitHub Pages artifact
