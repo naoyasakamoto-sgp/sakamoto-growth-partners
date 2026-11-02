@@ -2,10 +2,10 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFile, access } from "node:fs/promises";
 const read=path=>readFile(new URL("../"+path,import.meta.url),"utf8");
-test("Preview remains unlinked and noindex until full release readiness",async()=>{
+test("Approved Taste route is linked while remaining search-noindex",async()=>{
  const home=await read("index.html"),lab=await read("taste-lab/index.html");
  assert.match(lab,/<meta name="robots" content="noindex,nofollow,noarchive">/);
- assert.doesNotMatch(home,/href="\/taste-lab\//);
+ assert.match(home,/href="\/taste-lab\//);
  assert.match(lab,/\/assets\/sgp-wordmark-v2\.webp/);
  assert.match(lab,/<html lang="ja">/);
 });
