@@ -158,7 +158,7 @@ function renderExperience(){
  for(const [position,id] of plan.orderedIds.entries()){
   const card=grid.querySelector('[data-id="'+id+'"]');
   if(!card)continue;
-  card.style.order=String(position);card.classList.toggle("spotlight",position===0);card.classList.toggle("companion",position===1);
+  card.style.order=String(position);card.classList.toggle("spotlight",position===0);card.classList.toggle("companion",position===1);grid.append(card);
   if(plan.discovery===id)card.dataset.discovery="true";else delete card.dataset.discovery;
  }
  document.querySelectorAll("button.focus").forEach(button=>button.setAttribute("aria-pressed",String(state.focus===button.dataset.focus)));
