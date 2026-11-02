@@ -50,7 +50,9 @@ test("Owner-approved A-G copy inventory is recorded and production remains gated
  assert.equal(manifest.approvedAt,"2026-11-02");
  assert.equal(manifest.approvalRecord.decision,"all_groups_approved");
  assert.equal(manifest.approvalRecord.corrections,"none");
- assert.equal(manifest.publishState,"blocked_pending_non_copy_review");
+ assert.equal(manifest.publishState,"qa_passed_opt_in_route_staged");
+ assert.equal(manifest.stagedRelease.homepageReplacement,false);
+ assert.equal(manifest.stagedRelease.searchIndexing,"noindex");
  for(const letter of ["A","B","C","D","E","F","G"])assert.equal(manifest.approvalRecord.groups[letter].status,"approved");
  assert.equal(manifest.allNewUserFacingCopyRequiresExplicitApproval,true);
  assert.ok(manifest.groups.html_visible.length>30);
