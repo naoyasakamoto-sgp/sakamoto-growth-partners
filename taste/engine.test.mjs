@@ -42,6 +42,10 @@ test("ERABU source requires all 12 axes and is kept separate from Web Taste",()=
  assert.equal(result.ok,true);assert.equal(result.kind,"erabu");assert.equal(Object.keys(result.domainTaste).length,12);
  assert.equal(result.profile,undefined);
  delete valid.taste.night;assert.equal(parseTasteInput(JSON.stringify(valid)).ok,false);
+ valid.taste.night=50;valid.contexts.solo.email="private@example.com";
+ assert.equal(parseTasteInput(JSON.stringify(valid)).ok,false);
+ delete valid.contexts.solo.email;valid.confidence.axes={aesthetic:2};
+ assert.equal(parseTasteInput(JSON.stringify(valid)).ok,false);
 });
 test("explicit current focus overrides historical Taste",()=>{
  const p=amendWebTaste(makeProfile(),{interests:{products:3,engineering:0,design:2}});
