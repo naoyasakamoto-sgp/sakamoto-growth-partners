@@ -131,7 +131,7 @@ try{
  assert.equal(await page.eval("document.body.dataset.interaction"),"participate");
  assert.equal(await page.eval("document.body.dataset.discovery"),"high");
  assert.ok((await page.eval("document.documentElement.scrollWidth"))<=392);
- const guidedStyle=await page.eval("getComputedStyle(document.querySelector('.exhibit.spotlight')).gridColumnEnd");
+ const guidedStyle=await page.eval("getComputedStyle(document.querySelector('.exhibit.spotlight')).gridColumnStart");
  assert.equal(guidedStyle,"span 12");
  await capture("taste-guided-390");
  console.log("PASS interaction: invalid input, confirmed import, priority, focus, opt-in storage, reset, keyboard, reduced motion, zero third-party requests");
