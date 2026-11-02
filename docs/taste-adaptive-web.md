@@ -1,5 +1,5 @@
 # SGP Taste Adaptive Web — implementation and publication gate
-Status: **prototype / NOT approved for publication**  
+Status: **prototype / COPY APPROVED (A–G), NOT APPROVED FOR PUBLICATION**  
 Branch: feat/taste-adaptive-experience-20261102  
 Date: 2026-11-02
 
@@ -30,7 +30,7 @@ Date: 2026-11-02
 
 ## Approval worklist
 
-All NEW text in taste-lab/index.html and taste-lab/app.mjs is currently **pending approval**. 
+Existing reviewed text in taste-lab/index.html and taste-lab/app.mjs is **owner-approved A–G on 2026-11-02 (no revisions requested)**. Any new or changed text remains **unapproved until separately confirmed**. 
 No generated or invented promotional copy may be reused automatically.
 A copy approval review must include:
 - Page title and description, visible headings, navigation, buttons, error messages and prompts.
@@ -56,7 +56,7 @@ Concept graphics must remain marked as conceptual, or be replaced with evidence-
 - Works on desktop, touch mobile and keyboard-only navigation; reduced-motion supported.
 - Zero external network calls containing visitor Taste; no automatic external AI access.
 - Existing /, /brand/, /contact/ and legacy SEO URLs unaffected.
-- Homepage copy approval required BEFORE linking /taste-lab/ or replacing /.
+- Copy approval A–G is recorded in taste/copy-review.json. All changes to user-facing text after this snapshot require a new owner review; linking /taste-lab/ or replacing / additionally requires visual QA and approved real content evidence.
 - Synthetic unit tests run through npm run test:taste, and existing checks through npm test where feasible.
 - Visual testing at widths 320, 390, 768, 1280, and 1565 with actual browser prior to publishing.
 - Real ERABU captures and source-backed system details replace any placeholder conceptual diagrams.
@@ -76,6 +76,24 @@ Cross-origin read/write is not available. A future handoff must require explicit
 
 - The visual layout contains working composition and sorting but still uses explicitly marked conceptual artwork for some internal/design exhibits. Actual product screenshots and verified design evidence need curation.
 - No independent external browser test or Netlify preview deploy is claimed at this point.
-- The public homepage does not link to the preview because no new copy has been approved.
+- The public homepage does not link to the preview. Copy approval has been recorded, but real-browser visual QA, verified production assets and release signoff remain pending.
 - Import is handoff via copy/paste or a local file; no connected AI account is accessed.
 - It is a prototype, not a commercial generalized SaaS or production-grade account system.
+
+## Recorded decision (2026-11-02 JST)
+
+The site owner explicitly approved **all** seven groups in the in-chat review, with **no corrections**:
+
+- A: header and hero / 11 items
+- B: Taste user interface / 30 items
+- C: exhibits and footer / 23 items
+- D: states and errors / 28 items
+- E: accessibility / 14 items
+- F: external-AI prompt / 9 items
+- G: names and technical vocabulary / 13 items
+
+The JSON manifest is the approved-copy source of truth. The exact current HTML text, accessible labels, AI prompt paragraphs, JS status and error messages, editor labels and placeholders are now enforced through `taste/preflight.test.mjs` so an accidental new phrase fails CI.
+
+The previously approved string "プレビュー / 未承認文言" was intentionally removed after it became factually false. Other existing visible labels retain the approved versions.
+
+**This is copy approval, not approval of depicted technical architecture, quality of conceptual media, automatic ERABU cross-origin data transfer, or release of the preview.** No production merge was authorized by this decision.
