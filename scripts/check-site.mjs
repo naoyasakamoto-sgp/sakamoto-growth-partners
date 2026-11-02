@@ -254,73 +254,24 @@ await checkWebpIntegrity("assets/sgp-wordmark-transparent.webp");
 
 const home = await read("index.html");
 for (const token of [
-  "月1万円から、",
-  "社外IT担当。",
-  "仙台・一番町",
-  "だいたい、いつも同じ服を着ています。",
-  "SEIKO Presage",
-  "サバ缶",
-  "ラムネとコーヒー",
-  "クライアントの送迎はできません。キーボードならかなり速く打てます。",
-  "寿司打で測ったら約6.5キー／秒でした。",
-  "送迎はできませんが、文字は送れます。",
-  "仙台の美味しい店には、あまり詳しくありません。",
-  "英語で会議も、英語で交渉もできます。",
-  "交渉は日本語でもまだ修行中です。",
-  "お酒も、タバコも、ギャンブルもしません。",
-  "浪費もあまりしません。",
-  "コスパとタイパが悪いと、だいたい途中で「これ改善できないかな」と考え始めます。",
-  "売上、いくら上がるの？",
-  "利益はどれくらい増えるの？",
-  "コストはどれくらい下がるの？",
-  "その業務に、毎月何時間使ってるの？",
-  "普段、実際に使っている道具。",
-  "Codex",
-  "Cursor",
-  "Claude Code",
-  "Google Sheets",
-  "Google Docs",
-  "Google Drive",
-  "Google Meet",
-  "Cloudflare / GitHub Pages / Netlify",
-  "これまでの仕事。",
-  "会社員時代。",
-  "個人事業主時代。",
-  'id="career"',
-  'id="price"',
+  '<header class="site-header">',
+  '/assets/sgp-wordmark-v2.webp',
+  'id="products"',
   'id="works"',
-  "Purpose",
-  "Mission",
-  "Sakamoto Growth Partners"
+  'id="technology"',
+  'id="about"',
+  'href="/product-home.css"',
+  "ERABU",
+  "SGP"
 ]) {
-  if (!home.includes(token)) fail(`index.html: plain merchant-site token missing: ${token}`);
-}
-for (const forbidden of [
-  "RAGでは一次回答率80%（社内計測）。議事録アプリでは、PoC期間中に議事録作成時間を80%削減（社内計測）しました。"
-]) {
-  if (home.includes(forbidden)) fail(`index.html: removed copy must not remain: ${forbidden}`);
+  if (!home.includes(token)) fail("index.html: missing product-led homepage token: " + token);
 }
 const homeSchemaTypes = parseSchemas(home, "index.html").flatMap((schema) => schemaTypes(schema));
-for (const type of ["Organization", "Service"]) {
-  if (!homeSchemaTypes.includes(type)) fail(`index.html: missing ${type} JSON-LD`);
+if (!homeSchemaTypes.includes("Organization")) fail("index.html: missing Organization JSON-LD");
+for (const href of ["brand/", "mvv/", "career/", "case-studies/", "services/it-adviser/", "contact/"]) {
+  if (!hasSiteHref(home, href)) fail("index.html: required site link missing " + href);
 }
-for (const href of ["brand/", "mvv/", "naoya-sakamoto/", "career/", "case-studies/", "services/it-adviser/"]) {
-  if (!hasSiteHref(home, href)) fail(`index.html: required site link missing ${href}`);
-}
-for (const forbidden of [
-  "local-fact-grid",
-  "local-service-grid",
-  "local-tools",
-  "local-price-card",
-  "local-person-card",
-  "local-life-grid",
-  "local-philosophy-grid",
-  "OUTSIDE THE DESK",
-  "WHAT I DO",
-  "MY TOOLS"
-]) {
-  if (home.includes(forbidden)) fail(`index.html: card/SaaS layout token must not remain ${forbidden}`);
-}
+if (home.includes('href="/taste-lab/')) fail("index.html: unapproved Taste preview must remain unlinked");
 await checkInternalLinks(home, "index.html");
 
 const contactPage = await read("contact/index.html");
