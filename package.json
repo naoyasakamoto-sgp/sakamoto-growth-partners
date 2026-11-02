@@ -8,6 +8,7 @@
     "preview": "node scripts/serve.mjs",
     "test": "npm run build && npm run check && npm run test:taste && npm run test:browser",
     "test:taste": "node --test taste/*.test.mjs",
-    "test:browser": "node scripts/qa-taste-browser.mjs"
+    "test:browser": "node scripts/qa-product-site-browser.mjs",
+    "test:browser:taste": "node scripts/qa-taste-browser.mjs"
   }
 }
