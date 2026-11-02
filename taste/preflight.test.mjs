@@ -10,7 +10,7 @@ test("Preview remains unlinked and noindex until full release readiness",async()
  assert.match(lab,/<html lang="ja">/);
 });
 test("All declared local assets and runtime files exist",async()=>{
- for(const path of ["assets/sgp-wordmark-v2.webp","assets/case-studies/my-jazz-day/hero-mobile.webp","taste/engine.mjs","taste-lab/app.mjs","taste-lab/taste.css"]){
+ for(const path of ["assets/sgp-wordmark-v2.webp","assets/case-studies/my-jazz-day/hero-mobile.webp","assets/erabu/source/sendai-erabu-main.svg","assets/erabu/source/sendai-ekimae-erabu-map.svg","assets/erabu/source/erabu-live-home-20261102.jpg","taste/engine.mjs","taste-lab/app.mjs","taste-lab/taste.css"]){
   await assert.doesNotReject(()=>access(new URL("../"+path,import.meta.url)),path);
  }
 });
@@ -38,6 +38,10 @@ test("Source separates conceptual figures from real product images",async()=>{
  assert.match(html,/CONCEPT/);
  assert.match(html,/設計段階の模式図/);
  assert.match(html,/assets\/case-studies\/my-jazz-day\/hero-mobile\.webp/);
+ assert.match(html,/erabu-live-home-20261102\.jpg/);
+ assert.match(html,/sendai-ekimae-erabu-map\.svg/);
+ assert.doesNotMatch(html,/class="paper paper-one"/);
+ assert.match(html,/src\/lib\/cities\/decision-engine\.ts/);
 });
 
 test("Owner-approved A-G copy inventory is recorded and production remains gated",async()=>{
