@@ -35,6 +35,18 @@ jobs:
           echo "npm_test_exit_code=${status}" >> "$GITHUB_STEP_SUMMARY"
           exit "$status"
 
+      - name: Taste browser QA (Chrome 320–1565px)
+        run: node scripts/qa-taste-browser.mjs
+
+      - name: Upload Taste screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: taste-browser-${{ github.sha }}
+          path: qa/screenshots/*.png
+          if-no-files-found: warn
+          retention-days: 7
+
       - name: Upload validation log
         if: always()
         uses: actions/upload-artifact@v4
