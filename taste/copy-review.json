@@ -331,8 +331,8 @@
       "taste-lab/app.mjs": "0f22cb430543bb88bd44ae23c5a20f6944e1855f"
     },
     "copyApprovalDoesNotApproveDeployment": true,
-    "contentEvidenceReview": "pending",
-    "browserVisualQA": "pending",
+    "contentEvidenceReview": "verified: real ERABU screenshot, SVG map, logo, source code references",
+    "browserVisualQA": "passed: Chrome 320/390/768/1280/1565, interaction and privacy checks",
     "visualSourceMaterial": "Existing ERABU source assets; no new SGP marketing copy",
     "mediaCopyChanges": {
       "newVisible": [],
@@ -348,5 +348,13 @@
   "approvedCopyIntentionallyOmitted": [
     "プレビュー / 未承認文言"
   ],
-  "publishState": "blocked_pending_non_copy_review"
+  "publishState": "qa_passed_opt_in_route_staged",
+  "stagedRelease": {
+    "scope": "/taste-lab/ with / navigation",
+    "searchIndexing": "noindex",
+    "homepageReplacement": false,
+    "existingServicePathsRetained": true,
+    "visualEvidence": "Github Actions Taste browser QA",
+    "productionLaunchVerified": false
+  }
 }
