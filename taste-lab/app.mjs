@@ -167,6 +167,9 @@ function renderExperience(){
  grid.dataset.view=plan.view;
  document.body.dataset.view=plan.view;
  document.body.dataset.density=state.active.experience.density;
+ document.body.dataset.navigation=state.active.experience.navigation;
+ document.body.dataset.interaction=state.active.experience.interaction;
+ document.body.dataset.discovery=state.active.experience.discovery;
  for(const [position,id] of plan.orderedIds.entries()){
   const card=grid.querySelector('[data-id="'+id+'"]');
   if(!card)continue;
