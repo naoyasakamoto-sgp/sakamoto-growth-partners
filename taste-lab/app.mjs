@@ -168,8 +168,13 @@ function renderExperience(){
 }
 function transitionExperience(){
  const reduce=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
- if(!reduce&&typeof document.startViewTransition==="function")document.startViewTransition(()=>renderExperience());
- else renderExperience();
+ if(!reduce&&typeof document.startViewTransition==="function"){
+  const transition=document.startViewTransition(()=>renderExperience());
+  // Rapid input, navigation or a second update can cancel the visual animation.
+  // Cancellation is expected: the DOM update is still applied.
+  void transition.ready.catch(()=>{});
+  void transition.finished.catch(()=>{renderExperience()});
+ }else renderExperience();
 }
 const saved=loadSavedTaste(getStorage()||{getItem:()=>null});
 if(saved){state.active=saved;status("保存されたTasteをこのブラウザーから読み込みました。")}
