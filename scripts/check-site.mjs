@@ -266,9 +266,12 @@ for (const token of [
 ]) {
   if (!home.includes(token)) fail("index.html: missing product-led homepage token: " + token);
 }
-for(const essential of ["erabu-live-home-20261102.jpg","sendai-ekimae-erabu-map.svg","MY JAZZ DAY","SGP Engineering"]){
+for(const essential of ["erabu-live-home-20261102.jpg","erabu-three-choices-20261102.png","MY JAZZ DAY","SGP Engineering"]){
  if(!home.includes(essential))fail("index.html: product-led evidence missing "+essential);
 }
+const experiencePanel=home.match(/id="view-experience"[\s\S]*?(?=<div id="view-technology")/)?.[0]||"";
+if(!experiencePanel.includes('src="/assets/erabu/source/erabu-three-choices-20261102.png"'))fail("Experience panel must show the original ERABU three-choice screenshot");
+if(experiencePanel.includes('src="/assets/erabu/source/sendai-ekimae-erabu-map.svg"'))fail("Experience panel must not retain the old map");
 for(const overstatement of ["世界一の時価総額企業をつくる。","次の可能性を、一緒につくろう。","まだない価値を、つくる。"]){
  if(home.includes(overstatement))fail("index.html: obsolete slogan not permitted "+overstatement);
 }
@@ -289,7 +292,7 @@ await checkPage("products/erabu/index.html",{
 await checkPage("engineering/index.html",{
  canonical:`${siteUrl}/engineering/`,ogType:"website",schemaTypes:["Service"]
 });
-for(const img of ["assets/erabu/source/erabu-live-home-20261102.jpg","assets/erabu/source/sendai-ekimae-erabu-map.svg","assets/case-studies/my-jazz-day/hero-mobile.webp","assets/case-studies/my-jazz-day/jazz-map.webp"]){
+for(const img of ["assets/erabu/source/erabu-live-home-20261102.jpg","assets/erabu/source/sendai-ekimae-erabu-map.svg","assets/erabu/source/erabu-three-choices-20261102.png","assets/case-studies/my-jazz-day/hero-mobile.webp","assets/case-studies/my-jazz-day/jazz-map.webp"]){
  try{await access(path.join(rootDir,img))}catch{fail("New product portfolio missing source asset: "+img)}
 }
 const interactiveSource=await read("product-site.js");
