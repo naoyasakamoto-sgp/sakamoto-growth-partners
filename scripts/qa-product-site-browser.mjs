@@ -76,6 +76,12 @@ try{
   assert.equal(v.h1,1);assert.equal(v.tasteLink,false);
   assert.ok(v.width<=width+1,"Homepage horizontal overflow "+width+": "+v.width);
   assert.ok(v.photo,"ERABU original screen not loaded");
+  assert.ok(v.images.some(i=>i.src==="/assets/erabu/source/erabu-three-choices-20261102.png"&&i.ok),"Experience must load the owner-provided three-choice screenshot at "+width+"px");
+  assert.equal(v.images.some(i=>i.src==="/assets/erabu/source/sendai-ekimae-erabu-map.svg"),false,"The old map must not appear on the homepage");
+  const choice=await page.eval("(()=>{const img=document.querySelector('#view-experience .visual-sheet img');const r=img?.getBoundingClientRect();return {src:img?.getAttribute('src'),width:img?.naturalWidth,height:img?.naturalHeight,displayRatio:r?r.width/r.height:null}})()");
+  assert.equal(choice.width,1028);
+  assert.equal(choice.height,747);
+  assert.ok(Math.abs(choice.displayRatio-1028/747)<.02,"Experience screenshot is distorted at "+width+"px");
   assert.ok(Math.abs(v.ratio-v.intrinsic)<.015,"ERABU real screen is cropped at "+width);
   await page.eval("window.scrollTo({top:0,behavior:'instant'})");
   await capture("home-"+width);
