@@ -1,7 +1,7 @@
 :root{color-scheme:dark;--bg:#071523;--panel:#0b1f32;--line:#34566d;--ink:#eff5f5;--soft:#a3b9c4;--accent:#54cfe1;--white:#f9fbfb}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:90px}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:"DM Sans","Noto Sans JP",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans JP","Noto Sans CJK JP","Hiragino Kaku Gothic ProN","Yu Gothic","Meiryo",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
 button,input,select,textarea{font:inherit}
 button{cursor:pointer}
 a{color:inherit;text-decoration:none}
