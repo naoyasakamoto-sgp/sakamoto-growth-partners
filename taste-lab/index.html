@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<title>SGP | Taste — Preview</title>
+<meta name="theme-color" content="#081625">
+<link rel="stylesheet" href="/taste-lab/taste.css">
+<script type="module" src="/taste-lab/app.mjs"></script>
+</head>
+<body data-view="standard">
+<a class="skip" href="#content">本文へ</a>
+<header class="topbar">
+  <a class="identity" href="/" aria-label="SGP"><img src="/assets/sgp-wordmark-v2.webp" width="360" height="100" alt="SGP Sakamoto Growth Partners"></a>
+  <nav aria-label="サイト内"><a href="#works">Works</a><a href="#taste-panel">Taste</a><a href="/contact/">Contact</a></nav>
+</header>
+<main id="content">
+ <section class="hero" aria-labelledby="hero-title">
+  <div class="hero-noise" aria-hidden="true"></div>
+  <div class="hero-main">
+   <div class="hero-overline"><span class="line" aria-hidden="true"></span> ERABU / Taste</div>
+   <h1 id="hero-title">SGP<span class="hero-period">.</span></h1>
+   <p class="hero-sub">ERABU <span aria-hidden="true">/</span> Products <span aria-hidden="true">/</span> Technology</p>
+   <div class="hero-actions">
+    <a class="link-pill" href="#works">Works <span aria-hidden="true">↗</span></a>
+    <button type="button" class="link-pill muted-button" id="taste-open">Taste <span aria-hidden="true">↗</span></button>
+   </div>
+   <p class="hero-footnote">SGP / 2026</p>
+  </div>
+  <div class="hero-sculpture" aria-label="Tasteに応じて形が変わるインタラクティブな図">
+   <svg class="sculpture-svg" viewBox="0 0 600 580" role="img" aria-label="4つの興味の軸で構成される動的な線と円">
+    <defs>
+     <radialGradient id="gCore"><stop offset="0" stop-color="#44b9d5" stop-opacity=".38"/><stop offset="1" stop-color="#0a2a46" stop-opacity="0"/></radialGradient>
+    </defs>
+    <circle cx="300" cy="270" r="255" stroke="#699bb3" stroke-opacity=".25" fill="none"/>
+    <circle cx="300" cy="270" r="205" stroke="#7ca6b9" stroke-opacity=".2" fill="none"/>
+    <circle cx="300" cy="270" r="150" fill="url(#gCore)" opacity=".8"/>
+    <ellipse cx="300" cy="270" rx="250" ry="102" transform="rotate(-34 300 270)" stroke="#b7cdda" stroke-opacity=".47" fill="none"/>
+    <ellipse cx="300" cy="270" rx="250" ry="102" transform="rotate(51 300 270)" stroke="#b7cdda" stroke-opacity=".23" fill="none"/>
+    <path id="taste-shape" d="M300 135 L435 270 L300 405 L165 270 Z" fill="#25d0e9" fill-opacity=".07" stroke="#70d0eb" stroke-width="1.6"/>
+    <g fill="#caf4ff" stroke="#167eb4" stroke-width="2">
+     <circle id="point-products" cx="300" cy="135" r="6"/>
+     <circle id="point-design" cx="435" cy="270" r="6"/>
+     <circle id="point-engineering" cx="300" cy="405" r="6"/>
+     <circle id="point-business" cx="165" cy="270" r="6"/>
+    </g>
+   </svg>
+   <div class="sculpture-center" aria-hidden="true">ERABU</div>
+   <div class="sculpture-caption" aria-hidden="true">TASTE / INTEREST</div>
+  </div>
+  <div class="hero-edge" aria-hidden="true">SGP — 01 / 04</div>
+ </section>
+ <section class="taste-section" id="taste-panel" aria-labelledby="taste-heading">
+   <div class="section-label"><span class="mark"></span> TASTE / IMPORT</div>
+   <div class="taste-intro">
+     <h2 id="taste-heading">Taste</h2>
+     
+   </div>
+   <div class="taste-columns">
+    <div class="import-side">
+     <div class="numbered"><b>01</b> AI</div>
+     <div class="ai-provider-links"><a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">ChatGPT ↗</a><a href="https://claude.ai/" target="_blank" rel="noopener noreferrer">Claude ↗</a><a href="https://gemini.google.com/" target="_blank" rel="noopener noreferrer">Gemini ↗</a></div>
+     <details class="prompt-details"><summary>AI Prompt <span aria-hidden="true">+</span></summary><div class="prompt-inner"><pre id="prompt-content" aria-label="AIに渡すプロンプト"></pre><button type="button" class="quiet-action" id="copy-prompt">Copy</button></div></details>
+     <div class="numbered"><b>02</b> JSON</div>
+     <label class="field-label" for="taste-input">Taste JSON</label>
+     <textarea id="taste-input" rows="7" maxlength="12000" spellcheck="false" autocomplete="off" placeholder='{ "schema": "sgp-web-taste@1", ... }'></textarea>
+     <div class="import-actions"><label class="file-label" for="taste-file">JSON File <input type="file" id="taste-file" accept=".json,application/json"></label><button type="button" class="solid-action" id="validate-taste">Validate ↗</button></div>
+     <p class="private-note">入力内容はブラウザー内で処理されます。外部に送信しません。</p>
+    </div>
+    <div class="profile-side">
+     <div class="numbered"><b>03</b> Taste Profile</div>
+     <div id="review" hidden>
+      <div class="review-head"><span id="review-kind">Web Taste</span><span id="review-source">AI / JSON</span></div>
+      <div id="interest-editors" class="interest-editors"></div>
+      <div id="experience-editors" class="experience-editors"></div>
+      <div class="consent">
+       <label><input type="checkbox" id="confirm-taste"> この内容を現在のページに反映する</label>
+       <label><input type="checkbox" id="save-taste"> このブラウザーに保存する（任意）</label>
+      </div>
+      <div class="actions-row"><button type="button" class="solid-action" id="apply-taste">Apply</button><button type="button" class="quiet-action" id="export-taste">Export JSON</button></div>
+     </div>
+     <div class="empty-state" id="profile-empty">
+      <span class="empty-cross" aria-hidden="true">＋</span>
+      <p>JSON / Taste Profile</p>
+      <div class="quick-controls"><span>Focus</span><button type="button" class="focus" data-focus="products">Products</button><button type="button" class="focus" data-focus="design">Design</button><button type="button" class="focus" data-focus="engineering">Engineering</button><button type="button" class="focus" data-focus="business">Business</button></div>
+     </div>
+     <div class="state-row"><span id="active-mode">STANDARD</span><button type="button" class="quiet-action" id="reset-taste">Reset</button><button type="button" class="quiet-action" id="forget-taste">Delete saved Taste</button></div>
+     <div id="status" role="status" aria-live="polite" class="status" aria-atomic="true"></div>
+    </div>
+   </div>
+ </section>
+ <section class="works" id="works" aria-labelledby="works-heading">
+  <div class="works-heading"><div class="section-label"><span class="mark"></span> 01 / WORKS</div><h2 id="works-heading">ERABU</h2><output class="adapt-reason" id="adapt-reason" aria-live="polite">STANDARD</output><div class="works-controls" role="group" aria-label="表示の優先順位">
+    <button type="button" class="focus" data-focus="products">Products</button>
+    <button type="button" class="focus" data-focus="design">Design</button>
+    <button type="button" class="focus" data-focus="engineering">Engineering</button>
+    <button type="button" class="focus" data-focus="business">Business</button>
+   </div></div>
+  <div class="exhibitions" id="exhibitions" data-view="standard">
+   <article class="exhibit exhibit-live" data-id="erabu-live">
+    <div class="exhibit-top"><span>01 / ERABU</span><span>LIVE PRODUCT</span></div>
+    <div class="exhibit-body">
+     <div class="live-art"><div class="live-art-inner"><img class="erabu-live-screen" src="/assets/erabu/source/erabu-live-home-20261102.jpg" alt="仙台えらぶ！" width="1280" height="900" loading="lazy" decoding="async"></div></div>
+     <div class="exhibit-bottom"><h3>ERABU</h3><a href="https://sendai-erabu.jp/" target="_blank" rel="noopener noreferrer" aria-label="仙台えらぶ！を開く">仙台えらぶ！ <span aria-hidden="true">↗</span></a></div>
+    </div>
+   </article>
+   <article class="exhibit exhibit-system" data-id="erabu-system">
+    <div class="exhibit-top"><span>02 / SYSTEM</span><span>ARCHITECTURE</span></div>
+    <div class="exhibit-body">
+     <div class="system-art" aria-label="設計段階の模式図。実システムの構成図ではありません">
+      <div class="system-layer"><a href="https://github.com/naoyasakamoto-sgp/sendai-erabu/blob/main/src/components/erabu/ErabuScopeHome.tsx" target="_blank" rel="noopener noreferrer">UI</a><span class="system-rail"></span></div>
+      <div class="system-layer"><a href="https://github.com/naoyasakamoto-sgp/sendai-erabu/blob/main/src/lib/cities/decision-engine.ts" target="_blank" rel="noopener noreferrer">ENGINE</a><span class="system-rail"></span></div>
+      <div class="system-layer"><a href="https://github.com/naoyasakamoto-sgp/sendai-erabu/blob/main/src/lib/cities/registry.ts" target="_blank" rel="noopener noreferrer">DATA</a><span class="system-rail"></span></div>
+      <div class="system-layer"><a href="https://github.com/naoyasakamoto-sgp/sendai-erabu/blob/main/docs/erabu-live-platform.md" target="_blank" rel="noopener noreferrer">INFRA</a><span class="system-rail"></span></div>
+     </div>
+     <div class="exhibit-bottom"><h3>ERABU / System</h3><span class="concept-tag">CONCEPT</span></div>
+    </div>
+   </article>
+   <article class="exhibit exhibit-process" data-id="erabu-process">
+    <div class="exhibit-top"><span>03 / PROCESS</span><span>STUDY</span></div>
+    <div class="exhibit-body">
+     <div class="process-art"><img class="erabu-source-map" src="/assets/erabu/source/sendai-ekimae-erabu-map.svg" alt="仙台えらぶ！" width="1440" height="820" loading="lazy" decoding="async"></div>
+     <div class="exhibit-bottom"><h3>ERABU / Design</h3><a href="https://sendai-erabu.jp/" target="_blank" rel="noopener noreferrer">仙台えらぶ！ <span aria-hidden="true">↗</span></a></div>
+    </div>
+   </article>
+   <article class="exhibit exhibit-jazz" data-id="my-jazz-day">
+    <div class="exhibit-top"><span>04 / WORK</span><span>MY JAZZ DAY</span></div>
+    <div class="exhibit-body"><div class="jazz-art"><img src="/assets/case-studies/my-jazz-day/hero-mobile.webp" alt="MY JAZZ DAYの既存サイト画像" loading="lazy"></div><div class="exhibit-bottom"><h3>MY JAZZ DAY</h3><a href="/case-studies/my-jazz-day/">Works <span aria-hidden="true">↗</span></a></div></div>
+   </article>
+  </div>
+  <p class="exhibit-caption">CONCEPT は実装説明用の図です。実際のプロダクト画面・設計資料ではありません。</p>
+ </section>
+ <section class="end-section"><a class="end-name" href="/">SGP<span>.</span></a><nav aria-label="フッター"><a href="/brand/">Brand</a><a href="/contact/">Contact</a><a href="https://sendai-erabu.jp/" target="_blank" rel="noopener noreferrer">ERABU ↗</a></nav></section>
+</main>
+</body></html>

@@ -26,6 +26,12 @@ jobs:
       - name: Install
         run: npm install --ignore-scripts --no-audit --no-fund
 
+      - name: Install Japanese font for visual QA
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends fonts-noto-cjk
+          fc-cache -f
+
       - name: Build and validate
         shell: bash
         run: |
@@ -34,6 +40,15 @@ jobs:
           status=${PIPESTATUS[0]}
           echo "npm_test_exit_code=${status}" >> "$GITHUB_STEP_SUMMARY"
           exit "$status"
+
+      - name: Upload Taste screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: taste-browser-${{ github.sha }}
+          path: qa/screenshots/*.png
+          if-no-files-found: warn
+          retention-days: 7
 
       - name: Upload validation log
         if: always()

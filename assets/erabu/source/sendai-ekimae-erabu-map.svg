@@ -1,0 +1,202 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 820" role="img" aria-labelledby="title desc">
+  <title id="title">仙台駅前えらぶ！オリジナル街歩きマップ</title>
+  <desc id="desc">仙台駅・青葉通・一番町・東二番丁・クリスロード周辺を、仙台えらぶ！編集部が街歩き向けに整理した概念図</desc>
+  <defs>
+    <linearGradient id="map-paper" x1="0" x2="1" y1="0" y2="1">
+      <stop stop-color="#fff9ea"/>
+      <stop offset=".48" stop-color="#f8f1df"/>
+      <stop offset="1" stop-color="#efe4cc"/>
+    </linearGradient>
+    <radialGradient id="map-wash-green" cx="50%" cy="50%" r="65%">
+      <stop stop-color="#b9d8a4" stop-opacity=".78"/>
+      <stop offset=".7" stop-color="#e4f2ec" stop-opacity=".42"/>
+      <stop offset="1" stop-color="#e4f2ec" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="map-wash-blue" cx="50%" cy="50%" r="70%">
+      <stop stop-color="#9ecbdc" stop-opacity=".62"/>
+      <stop offset=".74" stop-color="#d8eef4" stop-opacity=".32"/>
+      <stop offset="1" stop-color="#d8eef4" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="map-paper-noise" width="72" height="72" patternUnits="userSpaceOnUse">
+      <circle cx="12" cy="18" r="1.4" fill="#9b8b6f" opacity=".09"/>
+      <circle cx="42" cy="9" r="1.2" fill="#008f7a" opacity=".07"/>
+      <circle cx="64" cy="42" r="1.5" fill="#d99a2b" opacity=".08"/>
+      <path d="M6 58c18-7 34-7 56 2" fill="none" stroke="#8a7a61" stroke-width="1" opacity=".045"/>
+    </pattern>
+    <filter id="map-soft-shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="#10201c" flood-opacity=".13"/>
+    </filter>
+    <filter id="map-label-shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#10201c" flood-opacity=".12"/>
+    </filter>
+    <style>
+      .street-major { fill: none; stroke: #fff9ec; stroke-width: 18; stroke-linecap: round; stroke-linejoin: round; }
+      .street-major-line { fill: none; stroke: #d1c4ad; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; opacity: .58; }
+      .street-minor { fill: none; stroke: #fffdf5; stroke-width: 8; stroke-linecap: round; stroke-linejoin: round; opacity: .86; }
+      .street-minor-line { fill: none; stroke: #d8ccba; stroke-width: 1.2; stroke-linecap: round; stroke-linejoin: round; opacity: .42; }
+      .map-label { fill: #33413c; font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", sans-serif; font-size: 18px; font-weight: 800; letter-spacing: .02em; }
+      .map-label-small { fill: #66736e; font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", sans-serif; font-size: 14px; font-weight: 700; letter-spacing: .02em; }
+      .map-label-tiny { fill: #66736e; font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", sans-serif; font-size: 12px; font-weight: 700; letter-spacing: .02em; }
+      .area-title { fill: #10201c; font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", sans-serif; font-size: 16px; font-weight: 900; letter-spacing: .04em; }
+      .area-subtitle { fill: #66736e; font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", sans-serif; font-size: 11px; font-weight: 800; letter-spacing: .04em; }
+    </style>
+  </defs>
+
+  <rect width="1440" height="820" rx="26" fill="url(#map-paper)"/>
+  <rect width="1440" height="820" rx="26" fill="url(#map-paper-noise)"/>
+
+  <g opacity=".88">
+    <ellipse cx="185" cy="158" rx="210" ry="120" fill="url(#map-wash-green)"/>
+    <ellipse cx="1240" cy="145" rx="190" ry="116" fill="url(#map-wash-green)"/>
+    <ellipse cx="1122" cy="658" rx="245" ry="118" fill="url(#map-wash-green)"/>
+    <ellipse cx="232" cy="652" rx="210" ry="124" fill="url(#map-wash-green)"/>
+    <ellipse cx="832" cy="706" rx="220" ry="86" fill="url(#map-wash-blue)"/>
+  </g>
+
+  <g opacity=".76">
+    <path d="M470 34C536 136 524 226 468 324c-70 122-58 232 18 322 42 50 54 96 20 142" fill="none" stroke="#9fcfdd" stroke-width="44" stroke-linecap="round"/>
+    <path d="M470 34C536 136 524 226 468 324c-70 122-58 232 18 322 42 50 54 96 20 142" fill="none" stroke="#6aaec3" stroke-width="4" stroke-linecap="round" opacity=".5"/>
+    <path d="M760 382c92 40 176 48 255 22 78-26 126-78 200-76 72 2 122 40 182 42" fill="none" stroke="#9fcfdd" stroke-width="40" stroke-linecap="round"/>
+    <path d="M760 382c92 40 176 48 255 22 78-26 126-78 200-76 72 2 122 40 182 42" fill="none" stroke="#6aaec3" stroke-width="4" stroke-linecap="round" opacity=".5"/>
+  </g>
+
+  <g opacity=".96">
+    <path d="M70 640C210 604 336 620 470 574c124-42 206-116 352-136 168-23 322 2 548-58" class="street-major"/>
+    <path d="M70 640C210 604 336 620 470 574c124-42 206-116 352-136 168-23 322 2 548-58" class="street-major-line"/>
+    <path d="M92 352h1164" class="street-major"/>
+    <path d="M92 352h1164" class="street-major-line"/>
+    <path d="M110 226h1150" class="street-major"/>
+    <path d="M110 226h1150" class="street-major-line"/>
+    <path d="M100 500h1192" class="street-major"/>
+    <path d="M100 500h1192" class="street-major-line"/>
+    <path d="M338 84v650" class="street-major"/>
+    <path d="M338 84v650" class="street-major-line"/>
+    <path d="M620 82v682" class="street-major"/>
+    <path d="M620 82v682" class="street-major-line"/>
+    <path d="M866 72v692" class="street-major"/>
+    <path d="M866 72v692" class="street-major-line"/>
+    <path d="M1088 74v688" class="street-major"/>
+    <path d="M1088 74v688" class="street-major-line"/>
+    <path d="M1272 82v672" class="street-major"/>
+    <path d="M1272 82v672" class="street-major-line"/>
+  </g>
+
+  <g opacity=".7">
+    <path d="M170 116c96 62 182 84 286 84 142 0 260-44 404-30 184 18 278 90 430 82" class="street-minor"/>
+    <path d="M170 116c96 62 182 84 286 84 142 0 260-44 404-30 184 18 278 90 430 82" class="street-minor-line"/>
+    <path d="M178 284c160 30 302 22 426-16 122-38 254-44 414-6 112 27 204 22 312-18" class="street-minor"/>
+    <path d="M178 284c160 30 302 22 426-16 122-38 254-44 414-6 112 27 204 22 312-18" class="street-minor-line"/>
+    <path d="M176 430c142-34 280-36 418-8 186 38 338 34 510-18 84-25 154-24 214 3" class="street-minor"/>
+    <path d="M176 430c142-34 280-36 418-8 186 38 338 34 510-18 84-25 154-24 214 3" class="street-minor-line"/>
+    <path d="M190 570c130-16 242 0 330 42 128 62 246 58 368 6 142-60 258-66 408-20" class="street-minor"/>
+    <path d="M190 570c130-16 242 0 330 42 128 62 246 58 368 6 142-60 258-66 408-20" class="street-minor-line"/>
+    <path d="M244 92c-24 122-30 250-18 382 8 92 0 174-24 250" class="street-minor"/>
+    <path d="M244 92c-24 122-30 250-18 382 8 92 0 174-24 250" class="street-minor-line"/>
+    <path d="M500 90c36 146 42 284 18 414-18 98-14 174 16 226" class="street-minor"/>
+    <path d="M500 90c36 146 42 284 18 414-18 98-14 174 16 226" class="street-minor-line"/>
+    <path d="M758 90c-32 138-34 276-6 414 18 90 18 166 0 232" class="street-minor"/>
+    <path d="M758 90c-32 138-34 276-6 414 18 90 18 166 0 232" class="street-minor-line"/>
+    <path d="M980 82c42 140 48 284 18 430-20 96-12 168 28 226" class="street-minor"/>
+    <path d="M980 82c42 140 48 284 18 430-20 96-12 168 28 226" class="street-minor-line"/>
+    <path d="M1178 88c-22 128-24 266-6 416 14 114 8 190-22 244" class="street-minor"/>
+    <path d="M1178 88c-22 128-24 266-6 416 14 114 8 190-22 244" class="street-minor-line"/>
+  </g>
+
+  <g opacity=".78">
+    <path d="M178 74l62 680" fill="none" stroke="#5b6571" stroke-width="20" stroke-linecap="round"/>
+    <path d="M214 72l62 682" fill="none" stroke="#5b6571" stroke-width="20" stroke-linecap="round"/>
+    <path d="M176 74l62 680" fill="none" stroke="#f8f5ec" stroke-width="5" stroke-dasharray="26 20" stroke-linecap="round"/>
+    <path d="M212 72l62 682" fill="none" stroke="#f8f5ec" stroke-width="5" stroke-dasharray="26 20" stroke-linecap="round"/>
+  </g>
+
+  <g opacity=".92">
+    <rect x="64" y="210" width="332" height="210" rx="26" fill="#1f6fa8" opacity=".12"/>
+    <rect x="384" y="82" width="430" height="194" rx="28" fill="#008f7a" opacity=".13"/>
+    <rect x="412" y="462" width="426" height="168" rx="28" fill="#8f5fb2" opacity=".13"/>
+    <rect x="790" y="132" width="338" height="286" rx="30" fill="#e85d8a" opacity=".12"/>
+    <rect x="1110" y="94" width="260" height="324" rx="30" fill="#f2994a" opacity=".13"/>
+  </g>
+
+  <g stroke-linecap="round" stroke-linejoin="round">
+    <path d="M394 318c116 28 236 38 374 34 120-3 222-24 340-58" fill="none" stroke="#008c8c" stroke-width="14" stroke-dasharray="2 24" opacity=".95"/>
+    <path d="M405 528c88-22 180-24 284-14 70 7 124 2 174-16" fill="none" stroke="#8f5fb2" stroke-width="12" stroke-dasharray="18 14" opacity=".86"/>
+    <path d="M848 184v232" fill="none" stroke="#e85d8a" stroke-width="8" stroke-dasharray="16 14" opacity=".82"/>
+    <path d="M1128 132v300" fill="none" stroke="#f2994a" stroke-width="8" stroke-dasharray="15 13" opacity=".82"/>
+    <path d="M126 610C250 566 392 576 526 536" fill="none" stroke="#d99a2b" stroke-width="10" stroke-dasharray="22 16" opacity=".72"/>
+  </g>
+
+  <g filter="url(#map-soft-shadow)">
+    <rect x="128" y="270" width="176" height="112" rx="16" fill="#003f5c"/>
+    <text x="216" y="320" fill="#fff" font-family="-apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif" font-size="27" font-weight="900" text-anchor="middle">仙台駅</text>
+    <text x="216" y="350" fill="#d9f1ef" font-family="-apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif" font-size="14" font-weight="800" text-anchor="middle">Sendai Station</text>
+  </g>
+
+  <g filter="url(#map-label-shadow)">
+    <rect x="388" y="112" width="148" height="44" rx="22" fill="#fbfaf5" opacity=".94" stroke="#d8ded9"/>
+    <text x="462" y="140" class="area-title" text-anchor="middle">青葉通</text>
+    <rect x="498" y="646" width="176" height="44" rx="22" fill="#fbfaf5" opacity=".94" stroke="#d8ded9"/>
+    <text x="586" y="674" class="area-title" text-anchor="middle">クリスロード</text>
+    <rect x="818" y="92" width="162" height="44" rx="22" fill="#fbfaf5" opacity=".94" stroke="#d8ded9"/>
+    <text x="899" y="120" class="area-title" text-anchor="middle">一番町</text>
+    <rect x="1140" y="70" width="174" height="44" rx="22" fill="#fbfaf5" opacity=".94" stroke="#d8ded9"/>
+    <text x="1227" y="98" class="area-title" text-anchor="middle">東二番丁</text>
+  </g>
+
+  <g class="map-label-small">
+    <text x="355" y="334">あおば通駅</text>
+    <text x="558" y="338">青葉通一番町駅</text>
+    <text x="888" y="334">ぶらんどーむ一番町</text>
+    <text x="468" y="558">ハピナ名掛丁</text>
+    <text x="732" y="552">サンモール一番町</text>
+    <text x="1010" y="488">マーブルロードおおまち</text>
+    <text x="1166" y="292">東二番丁通</text>
+    <text x="110" y="472">仙台朝市</text>
+    <text x="1008" y="648">勾当台公園方面</text>
+    <text x="1038" y="220">広瀬通</text>
+  </g>
+
+  <g>
+    <g fill="#008c8c">
+      <circle cx="410" cy="318" r="15"/><circle cx="520" cy="330" r="15"/><circle cx="636" cy="344" r="15"/><circle cx="754" cy="348" r="15"/><circle cx="880" cy="336" r="15"/><circle cx="1014" cy="308" r="15"/>
+    </g>
+    <g fill="#8f5fb2">
+      <circle cx="444" cy="530" r="14"/><circle cx="560" cy="512" r="14"/><circle cx="680" cy="516" r="14"/><circle cx="802" cy="498" r="14"/>
+    </g>
+    <g fill="#e85d8a">
+      <circle cx="852" cy="186" r="13"/><circle cx="848" cy="260" r="13"/><circle cx="846" cy="348" r="13"/><circle cx="846" cy="416" r="13"/>
+    </g>
+    <g fill="#f2994a">
+      <circle cx="1128" cy="160" r="13"/><circle cx="1128" cy="236" r="13"/><circle cx="1128" cy="316" r="13"/><circle cx="1128" cy="408" r="13"/>
+    </g>
+  </g>
+
+  <g fill="#7fb069" opacity=".88">
+    <g transform="translate(1050 602)"><circle cx="0" cy="0" r="24"/><rect x="-5" y="18" width="10" height="46" rx="5"/></g>
+    <g transform="translate(1172 640)"><circle cx="0" cy="0" r="20"/><rect x="-4" y="16" width="8" height="40" rx="4"/></g>
+    <g transform="translate(1322 172)"><circle cx="0" cy="0" r="22"/><rect x="-5" y="18" width="10" height="44" rx="5"/></g>
+    <g transform="translate(1248 262)"><circle cx="0" cy="0" r="19"/><rect x="-4" y="15" width="8" height="38" rx="4"/></g>
+    <g transform="translate(156 146)"><circle cx="0" cy="0" r="24"/><rect x="-5" y="19" width="10" height="46" rx="5"/></g>
+    <g transform="translate(268 684)"><circle cx="0" cy="0" r="21"/><rect x="-5" y="17" width="10" height="42" rx="5"/></g>
+    <g transform="translate(722 126)"><circle cx="0" cy="0" r="21"/><rect x="-5" y="17" width="10" height="42" rx="5"/></g>
+  </g>
+
+  <g filter="url(#map-label-shadow)">
+    <rect x="48" y="52" width="74" height="74" rx="24" fill="#fbfaf5" opacity=".92" stroke="#d8ded9"/>
+    <path d="M85 68v42M64 89h42" stroke="#10201c" stroke-width="3" stroke-linecap="round"/>
+    <path d="M85 68l10 20M85 68l-10 20" stroke="#10201c" stroke-width="3" stroke-linecap="round"/>
+    <text x="85" y="116" class="map-label-tiny" text-anchor="middle">N</text>
+  </g>
+
+  <g transform="translate(1186 548)" filter="url(#map-label-shadow)">
+    <rect width="204" height="178" rx="18" fill="#fbfaf5" opacity=".95" stroke="#d8ded9"/>
+    <text x="24" y="34" fill="#006f61" font-family="-apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif" font-size="14" font-weight="900" letter-spacing=".12em">MAP NOTE</text>
+    <circle cx="28" cy="62" r="7" fill="#003f5c"/><text x="46" y="68" class="map-label-tiny">駅・移動拠点</text>
+    <circle cx="28" cy="90" r="7" fill="#008c8c"/><text x="46" y="96" class="map-label-tiny">歩きやすい導線</text>
+    <circle cx="28" cy="118" r="7" fill="#8f5fb2"/><text x="46" y="124" class="map-label-tiny">アーケード</text>
+    <circle cx="28" cy="146" r="7" fill="#7fb069"/><text x="46" y="152" class="map-label-tiny">公園・休憩</text>
+  </g>
+
+  <g opacity=".64" class="map-label-tiny">
+    <text x="58" y="774">仙台えらぶ！編集部作成の概念図 / 実際の縮尺・位置関係とは異なる場合があります</text>
+  </g>
+</svg>
