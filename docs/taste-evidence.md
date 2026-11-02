@@ -4,6 +4,7 @@ Sources were inspected in `naoyasakamoto-sgp/sendai-erabu` on 2026-11-02. No gen
 
 | SGP display | Real source | GitHub source blob SHA | Treatment |
 | --- | --- | --- | --- |
+| `assets/erabu/source/erabu-live-home-20261102.jpg` | Actual public `https://sendai-erabu.jp/` homepage captured by headless Chrome on 2026-11-02 (browser navigation resolved to the live query form) | `ceeaa1c5c0f6cf764d3d4779d98cbb89b2e8749e` | Real live UI screenshot, from GitHub Actions validation run `41426452657`; not a fabricated interface. |
 | `assets/erabu/source/sendai-erabu-main.svg` | `sendai-erabu/public/assets/svg/logo/sendai-erabu-main.svg` | `f4d848e60ddb99e9b78b60d5e007b7805406eca2` | Official source product branding, copied intact. |
 | `assets/erabu/source/sendai-ekimae-erabu-map.svg` | `sendai-erabu/public/assets/images/special/sendai-ekimae-erabu-map.svg` | `d87efa45e9a470afa313d420b2e28c6dee45f600` | Existing editorial street-walk concept map, **actual ERABU project asset**, not a claim to be a street survey. |
 | `assets/case-studies/my-jazz-day/hero-mobile.webp` | Existing SGP case-study media in SGP repository | Existing SGP asset | Existing real project artwork. |
@@ -18,7 +19,7 @@ The four-layer system visualization is an **interpretive layout** of verified UI
 
 The design/process exhibit now displays the *actual original editorial map*, removing a fabricated sheet-of-paper mock illustration and the claim that the artwork is not a real project asset. The map itself is a documented conceptual street map; it must not be sold as a geographically authoritative navigation map.
 
-The live product card displays an official source logo and links to the real public product. It **does not** falsely claim to be a working embedded app. The source-backed actual website screen capture remains desirable as a future enhancement but is not required to depict the verified source asset.
+The live product card displays a real screenshot captured from the deployed ERABU homepage and links to the public product. It is **not** a working embedded app and the photograph is a dated snapshot; the destination link opens the current live version. The official source logo is preserved in the asset catalog but the actual UI screenshot now leads the exhibit.
 
 ## Release constraint
 
