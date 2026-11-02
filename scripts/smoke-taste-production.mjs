@@ -7,7 +7,7 @@ import {setTimeout as sleep} from "node:timers/promises";
 const origin="https://sakamoto-growth-partners.com";
 const cacheKey=(process.env.GITHUB_SHA||"production").slice(0,12);
 const targets=[
- {path:"/",expected:['id="products"','href="/products/"','href="/engineering/"','erabu-live-home-20261102.jpg','id="about"'],forbidden:['href="/taste-lab/"','まだない価値を、つくる。']},
+ {path:"/",expected:['id="products"','href="/products/"','href="/engineering/"','erabu-live-home-20261102.jpg','erabu-three-choices-20261102.png','id="about"'],forbidden:['href="/taste-lab/"','まだない価値を、つくる。']},
  {path:"/products/",expected:["ERABU",'href="/products/erabu/"','erabu-live-home-20261102.jpg']},
  {path:"/products/erabu/",expected:["ERABU","sendai-ekimae-erabu-map.svg","erabu-live-home-20261102.jpg"]},
  {path:"/engineering/",expected:["Software Engineering","AI Engineering","Technical Partnership",'href="/career/"']},
@@ -15,6 +15,7 @@ const targets=[
  {path:"/product-site.js",expected:["aria-selected","ArrowRight","ArrowLeft"]},
  {path:"/assets/erabu/source/erabu-live-home-20261102.jpg",binary:true,minBytes:30000},
  {path:"/assets/erabu/source/sendai-ekimae-erabu-map.svg",expected:["<svg"],minBytes:4000},
+ {path:"/assets/erabu/source/erabu-three-choices-20261102.png",binary:true,minBytes:150000},
  {path:"/assets/sgp-wordmark-v2.webp",binary:true,minBytes:1000},
  {path:"/contact/",expected:["<html"]},
  {path:"/brand/",expected:["<html"]},
