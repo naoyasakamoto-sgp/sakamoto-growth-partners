@@ -271,12 +271,7 @@ if (!homeSchemaTypes.includes("Organization")) fail("index.html: missing Organiz
 for (const href of ["brand/", "mvv/", "career/", "case-studies/", "services/it-adviser/", "contact/"]) {
   if (!hasSiteHref(home, href)) fail("index.html: required site link missing " + href);
 }
-if (home.includes('href="/taste-lab/')) {
-  const copyGate = JSON.parse(await read("taste/copy-review.json"));
-  if (copyGate.releaseCopyStatus !== "approved" || copyGate.publishState !== "qa_passed_opt_in_route_staged") {
-    fail("index.html: Taste navigation requires approved copy and verified QA gate");
-  }
-}
+if (home.includes('href="/taste-lab/')) fail("index.html: paused Taste experience must not appear in navigation");
 await checkInternalLinks(home, "index.html");
 
 const contactPage = await read("contact/index.html");
@@ -349,6 +344,7 @@ for (const href of ["/", "/brand/", "/contact/"]) {
 
 const sitemap = await read("sitemap.xml");
 const sitemapUrls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
+if(sitemapUrls.some(url=>url.includes("/taste-lab/")))fail("sitemap.xml: paused Taste route must not be listed");
 const expectedUrls = [
   `${siteUrl}/`,
   `${siteUrl}/services/it-adviser/`,
