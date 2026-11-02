@@ -136,3 +136,13 @@ body[data-density="low"] .exhibit-top span:last-child{opacity:.4}
 @media(prefers-reduced-motion:no-preference){
  ::view-transition-old(root),::view-transition-new(root){animation-duration:.3s;animation-timing-function:ease}
 }
+
+/* Verified ERABU media — source copies are tracked in docs/taste-evidence.md */
+.live-art{background:linear-gradient(145deg,#edf5f0,#dbece5 70%,#bddbc9);padding:24px;display:grid;place-items:center}
+.live-art-inner{height:auto;width:min(100%,440px);max-width:100%;border:0;border-radius:0;box-shadow:none;aspect-ratio:420/96;display:grid;place-items:center}
+.live-art-inner::before{content:none}
+.erabu-source-logo{display:block;width:100%;height:auto;object-fit:contain;filter:drop-shadow(0 12px 18px #103a3325)}
+.process-art{padding:0;background:#e5dbc5;display:grid;place-items:stretch;perspective:none}
+.erabu-source-map{display:block;width:100%;height:100%;object-fit:cover;object-position:center;max-height:520px}
+.system-layer a{display:inline-flex;align-items:center;min-height:40px;color:inherit;font-size:11px;font-weight:700;letter-spacing:.17em;text-decoration:none;border-bottom:1px solid transparent}
+.system-layer a:hover,.system-layer a:focus-visible{color:#ecffff;border-bottom-color:#83dbe9}
