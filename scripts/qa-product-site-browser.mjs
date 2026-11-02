@@ -112,6 +112,14 @@ try{
    assert.equal(v.h1,1,path+" H1");
    assert.ok(v.width<=width+1,path+" horizontal overflow at "+width+": "+v.width);
    assert.equal(v.tasteLink,false);
+   if(path==="/products/erabu/"){
+    const detail=await page.eval("(()=>{const i=document.querySelector('.detail-map img');const r=i?.getBoundingClientRect();return {src:i?.getAttribute('src'),naturalWidth:i?.naturalWidth,naturalHeight:i?.naturalHeight,displayRatio:r?r.width/r.height:null}})()");
+    assert.equal(detail.src,"/assets/erabu/source/erabu-three-choices-20261102.png","ERABU detail must use same screenshot as homepage");
+    assert.equal(detail.naturalWidth,1028);
+    assert.equal(detail.naturalHeight,747);
+    assert.ok(Math.abs(detail.displayRatio-1028/747)<.02,"ERABU detail screenshot distorted at "+width);
+    assert.equal(v.images.some(i=>i.src==="/assets/erabu/source/sendai-ekimae-erabu-map.svg"),false);
+   }
    if(width===390||width===1280){await page.eval("window.scrollTo({top:0,behavior:'instant'})");await capture(path.replaceAll("/","").replace("productserabu","erabu")+"-"+width)}
   }
   console.log("PASS new product and Engineering pages "+width);
