@@ -26,6 +26,12 @@ jobs:
       - name: Install
         run: npm install --ignore-scripts --no-audit --no-fund
 
+      - name: Install Japanese font for visual QA
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends fonts-noto-cjk
+          fc-cache -f
+
       - name: Build and validate
         shell: bash
         run: |
