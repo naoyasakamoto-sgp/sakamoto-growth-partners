@@ -127,3 +127,12 @@ body[data-density="low"] .exhibit-top span:last-child{opacity:.4}
 @media(max-width:820px){.hero{min-height:560px;grid-template-columns:1fr}.hero-main{padding:70px 32px 30px}.hero h1{font-size:110px;margin:24px 0}.hero-sculpture{position:absolute;right:-85px;top:20px;bottom:0;width:65%;opacity:.45;z-index:0}.hero-main{z-index:2}.hero-edge{display:none}.hero-footnote{margin-top:40px}.taste-columns{grid-template-columns:1fr}.taste-intro{align-items:start;flex-direction:column;gap:4px}.exhibit,.exhibit.spotlight,.exhibit:nth-of-type(2):not(.spotlight),.exhibit:nth-of-type(3):not(.spotlight),#exhibitions .exhibit.companion{grid-column:span 12}.works-heading{grid-template-columns:1fr}.works-controls{justify-content:start}.topbar nav{gap:12px}}
 @media(max-width:500px){.topbar{padding:11px 16px;min-height:69px;gap:10px}.identity img{width:170px}.topbar nav a{font-size:11px}.topbar nav a:first-child{display:none}.topbar nav a:last-child{padding:8px 10px}.hero{min-height:510px}.hero-main{padding:73px 22px 40px}.hero h1{font-size:94px}.hero-sub{font-size:10px;white-space:normal}.hero-sub span{margin:0 5px}.hero-sculpture{right:-140px;width:100%;opacity:.35}.hero-actions{margin-top:34px}.link-pill{padding:13px 18px;min-width:0}.hero-footnote{margin-top:60px}.taste-section,.works{padding:70px 18px}.taste-intro{margin:20px 0 30px}.taste-intro h2{font-size:68px}.import-side,.profile-side{padding:22px}.experience-editors{grid-template-columns:1fr}.works-heading h2{font-size:78px}.works-controls{gap:6px}.focus{padding:8px}.exhibit{min-height:320px}.exhibit-body .live-art,.system-art,.process-art,.jazz-art{min-height:220px}.end-section{padding:35px 20px;gap:20px;align-items:start;flex-direction:column}.end-section nav{gap:18px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+
+
+.adapt-reason{font-size:10px;letter-spacing:.11em;color:#81b1c8;text-align:right;display:block;grid-column:2;align-self:center}
+.file-label:focus-within{outline:3px solid #67deee;outline-offset:4px}
+.exhibit[data-discovery="true"]{border-top-color:#7de4dd}
+@media(max-width:820px){.adapt-reason{grid-column:1;text-align:left}}
+@media(prefers-reduced-motion:no-preference){
+ ::view-transition-old(root),::view-transition-new(root){animation-duration:.3s;animation-timing-function:ease}
+}
