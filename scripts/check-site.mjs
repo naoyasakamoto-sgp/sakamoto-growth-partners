@@ -266,13 +266,36 @@ for (const token of [
 ]) {
   if (!home.includes(token)) fail("index.html: missing product-led homepage token: " + token);
 }
+for(const essential of ["erabu-live-home-20261102.jpg","sendai-ekimae-erabu-map.svg","MY JAZZ DAY","SGP Engineering"]){
+ if(!home.includes(essential))fail("index.html: product-led evidence missing "+essential);
+}
+for(const overstatement of ["世界一の時価総額企業をつくる。","次の可能性を、一緒につくろう。","まだない価値を、つくる。"]){
+ if(home.includes(overstatement))fail("index.html: obsolete slogan not permitted "+overstatement);
+}
 const homeSchemaTypes = parseSchemas(home, "index.html").flatMap((schema) => schemaTypes(schema));
 if (!homeSchemaTypes.includes("Organization")) fail("index.html: missing Organization JSON-LD");
-for (const href of ["brand/", "mvv/", "career/", "case-studies/", "services/it-adviser/", "contact/"]) {
+for (const href of ["products/", "products/erabu/", "engineering/", "career/", "case-studies/", "services/it-adviser/", "contact/"]) {
   if (!hasSiteHref(home, href)) fail("index.html: required site link missing " + href);
 }
 if (home.includes('href="/taste-lab/')) fail("index.html: paused Taste experience must not appear in navigation");
 await checkInternalLinks(home, "index.html");
+
+await checkPage("products/index.html",{
+ canonical:`${siteUrl}/products/`,ogType:"website",schemaTypes:["CollectionPage"]
+});
+await checkPage("products/erabu/index.html",{
+ canonical:`${siteUrl}/products/erabu/`,ogType:"website",schemaTypes:["SoftwareApplication"]
+});
+await checkPage("engineering/index.html",{
+ canonical:`${siteUrl}/engineering/`,ogType:"website",schemaTypes:["Service"]
+});
+for(const img of ["assets/erabu/source/erabu-live-home-20261102.jpg","assets/erabu/source/sendai-ekimae-erabu-map.svg","assets/case-studies/my-jazz-day/hero-mobile.webp","assets/case-studies/my-jazz-day/jazz-map.webp"]){
+ try{await access(path.join(rootDir,img))}catch{fail("New product portfolio missing source asset: "+img)}
+}
+const interactiveSource=await read("product-site.js");
+for(const token of ["aria-selected","ArrowRight","ArrowLeft","Home","End"]){
+ if(!interactiveSource.includes(token))fail("product-site.js: accessible product tab behaviour missing "+token);
+}
 
 const contactPage = await read("contact/index.html");
 const contactScript = await read("contact/contact.js");
@@ -347,6 +370,9 @@ const sitemapUrls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) =>
 if(sitemapUrls.some(url=>url.includes("/taste-lab/")))fail("sitemap.xml: paused Taste route must not be listed");
 const expectedUrls = [
   `${siteUrl}/`,
+  `${siteUrl}/products/`,
+  `${siteUrl}/products/erabu/`,
+  `${siteUrl}/engineering/`,
   `${siteUrl}/services/it-adviser/`,
   `${siteUrl}/brand/`,
   `${siteUrl}/mvv/`,
