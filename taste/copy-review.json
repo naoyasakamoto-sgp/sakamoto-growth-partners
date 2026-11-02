@@ -1,8 +1,8 @@
 {
   "version": 1,
-  "releaseCopyStatus": "pending",
-  "approvedAt": null,
-  "approvedBy": null,
+  "releaseCopyStatus": "approved",
+  "approvedAt": "2026-11-02",
+  "approvedBy": "site owner (explicit in-chat authorization for all seven groups)",
   "allNewUserFacingCopyRequiresExplicitApproval": true,
   "groups": {
     "html_visible": [
@@ -66,7 +66,6 @@
       "Works",
       "このブラウザーに保存する（任意）",
       "この内容を現在のページに反映する",
-      "プレビュー / 未承認文言",
       "仙台えらぶ！",
       "入力内容はブラウザー内で処理されます。外部に送信しません。",
       "本文へ"
@@ -104,7 +103,239 @@
       "Web Taste"
     ],
     "external_ai_prompt": [
-      "taste-lab/app.mjs: const prompt array (full review required)"
+      "taste-lab/app.mjs: const prompt array (approved F-01 through F-09, monitored via js_prompt_paragraphs and engine schema)"
+    ],
+    "js_error": [
+      "ERABU Tasteの12軸が不足しています。",
+      "ERABU Tasteの形式が正しくありません。",
+      "JSONのサイズが上限を超えています。",
+      "JSONの構文を確認してください。",
+      "JSONはオブジェクト形式にしてください。",
+      "JSONを入力するか、ファイルを選択してください。",
+      "Tasteのスキーマが一致しません。",
+      "テキストを入力してください。",
+      "信頼度の値が正しくありません。",
+      "定義されていない項目があります。会話内容や個人情報を含めないでください。",
+      "指定外の閲覧設定があります。",
+      "関心の値は0〜3、またはnullにしてください。",
+      "関心の項目が不足しています。",
+      "閲覧の設定が不足しています。"
+    ],
+    "js_editor_labels": [
+      "density",
+      "discovery",
+      "evidence",
+      "interaction",
+      "navigation"
+    ],
+    "html_placeholder": [
+      "{ \"schema\": \"sgp-web-taste@1\", ... }"
+    ],
+    "js_prompt_paragraphs": [
+      "あなたが実際にアクセスできる私との会話や明示的な好みだけを根拠に、私のWebサイト閲覧のTasteを整理してください。",
+      "知らないことは推測で埋めずnullまたはunknownにしてください。会話の引用や自由記述は出力しないでください。",
+      "氏名・所在地・メール・健康・宗教・政治・家族・仕事の機密情報などを含めないでください。",
+      "用途はSGPのWebサイト上で、本人の確認後に作品の表示順や閲覧方法を変えることです。",
+      "interestsは各0（関心が低い）〜3（関心が高い）、根拠がなければnullです。",
+      "confidenceはexplicit（本人が明言）、inferred（根拠からの推定）、unknown（不明）です。",
+      "density=low|balanced|detailed|unknown, navigation=explore|guided|unknown, evidence=actual_ui|diagrams|process|unknown, interaction=observe|participate|unknown, discovery=low|balanced|high|unknown。",
+      "以下の完全な構造と値以外を出力しないでください。コードブロックも説明文も不要です。"
+    ],
+    "dynamic_view_labels": [
+      "TASTE / GALLERY",
+      "TASTE / PROCESS",
+      "TASTE / SYSTEM",
+      "TASTE / GUIDED",
+      "STANDARD / STANDARD",
+      "FOCUS / Products",
+      "FOCUS / Design",
+      "FOCUS / Engineering",
+      "FOCUS / Business",
+      "TASTE / erabu-live",
+      "TASTE / erabu-process",
+      "TASTE / erabu-system",
+      "TASTE / my-jazz-day"
     ]
-  }
+  },
+  "approvalRecord": {
+    "decision": "all_groups_approved",
+    "corrections": "none",
+    "groups": {
+      "A": {
+        "status": "approved",
+        "ids": [
+          "A-01",
+          "A-02",
+          "A-03",
+          "A-04",
+          "A-05",
+          "A-06",
+          "A-07",
+          "A-08",
+          "A-09",
+          "A-10",
+          "A-11"
+        ]
+      },
+      "B": {
+        "status": "approved",
+        "ids": [
+          "B-01",
+          "B-02",
+          "B-03",
+          "B-04",
+          "B-05",
+          "B-06",
+          "B-07",
+          "B-08",
+          "B-09",
+          "B-10",
+          "B-11",
+          "B-12",
+          "B-13",
+          "B-14",
+          "B-15",
+          "B-16",
+          "B-17",
+          "B-18",
+          "B-19",
+          "B-20",
+          "B-21",
+          "B-22",
+          "B-23",
+          "B-24",
+          "B-25",
+          "B-26",
+          "B-27",
+          "B-28",
+          "B-29",
+          "B-30"
+        ]
+      },
+      "C": {
+        "status": "approved",
+        "ids": [
+          "C-01",
+          "C-02",
+          "C-03",
+          "C-04",
+          "C-05",
+          "C-06",
+          "C-07",
+          "C-08",
+          "C-09",
+          "C-10",
+          "C-11",
+          "C-12",
+          "C-13",
+          "C-14",
+          "C-15",
+          "C-16",
+          "C-17",
+          "C-18",
+          "C-19",
+          "C-20",
+          "C-21",
+          "C-22",
+          "C-23"
+        ]
+      },
+      "D": {
+        "status": "approved",
+        "ids": [
+          "D-01",
+          "D-02",
+          "D-03",
+          "D-04",
+          "D-05",
+          "D-06",
+          "D-07",
+          "D-08",
+          "D-09",
+          "D-10",
+          "D-11",
+          "D-12",
+          "D-13",
+          "D-14",
+          "D-15",
+          "D-16",
+          "D-17",
+          "D-18",
+          "D-19",
+          "D-20",
+          "D-21",
+          "D-22",
+          "D-23",
+          "D-24",
+          "D-25",
+          "D-26",
+          "D-27",
+          "D-28"
+        ]
+      },
+      "E": {
+        "status": "approved",
+        "ids": [
+          "E-01",
+          "E-02",
+          "E-03",
+          "E-04",
+          "E-05",
+          "E-06",
+          "E-07",
+          "E-08",
+          "E-09",
+          "E-10",
+          "E-11",
+          "E-12",
+          "E-13",
+          "E-14"
+        ]
+      },
+      "F": {
+        "status": "approved",
+        "ids": [
+          "F-01",
+          "F-02",
+          "F-03",
+          "F-04",
+          "F-05",
+          "F-06",
+          "F-07",
+          "F-08",
+          "F-09"
+        ]
+      },
+      "G": {
+        "status": "approved",
+        "ids": [
+          "G-01",
+          "G-02",
+          "G-03",
+          "G-04",
+          "G-05",
+          "G-06",
+          "G-07",
+          "G-08",
+          "G-09",
+          "G-10",
+          "G-11",
+          "G-12",
+          "G-13"
+        ]
+      }
+    },
+    "scope": "Only the specific text, error messages, accessibility strings, labels and prompt reviewed in this conversation. New or altered text requires renewed approval.",
+    "approvedSourceRefs": {
+      "taste-lab/index.html": "1c34f2bb69aeb825b2ff026b5d37e841564d366e",
+      "taste-lab/app.mjs": "0f22cb430543bb88bd44ae23c5a20f6944e1855f"
+    },
+    "copyApprovalDoesNotApproveDeployment": true,
+    "contentEvidenceReview": "pending",
+    "browserVisualQA": "pending"
+  },
+  "approvedCopyIntentionallyOmitted": [
+    "プレビュー / 未承認文言"
+  ],
+  "publishState": "blocked_pending_non_copy_review"
 }
