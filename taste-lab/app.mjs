@@ -108,20 +108,20 @@ $("apply-taste").addEventListener("click",()=>{
   try{if(!storage)throw Error();persistTaste(storage,state.active)}
   catch{status("反映しました。端末への保存はできませんでした。",true);renderExperience();return}
  }else if(storage)forgetTaste(storage);
- renderExperience();status("Tasteを反映しました。いつでもResetできます。");
+ transitionExperience();status("Tasteを反映しました。いつでもResetできます。");
  $("works").scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"instant":"smooth"});
 });
 $("reset-taste").addEventListener("click",()=>{
  state.active=emptyWebTaste();state.candidate=null;state.focus=null;state.domainTaste=null;
  $("taste-input").value="";$("review").hidden=true;$("profile-empty").hidden=false;
  const storage=getStorage();if(storage)forgetTaste(storage);
- renderExperience();status("標準表示に戻しました。保存されていたTasteも削除しました。")
+ transitionExperience();status("標準表示に戻しました。保存されていたTasteも削除しました。")
 });
 $("forget-taste").addEventListener("click",()=>{
  const storage=getStorage();if(storage)forgetTaste(storage);
  state.active=emptyWebTaste();state.candidate=null;state.focus=null;state.domainTaste=null;
  $("review").hidden=true;$("profile-empty").hidden=false;$("taste-input").value="";
- renderExperience();status("Tasteを削除しました。標準表示に戻りました。")
+ transitionExperience();status("Tasteを削除しました。標準表示に戻りました。")
 });
 $("export-taste").addEventListener("click",()=>{
  if(!state.candidate)return;
@@ -134,7 +134,7 @@ $("taste-open").addEventListener("click",()=>$("taste-panel").scrollIntoView({be
 document.querySelectorAll("button.focus").forEach(button=>button.addEventListener("click",()=>{
  const key=button.dataset.focus;
  state.focus=state.focus===key?null:key;
- renderExperience();
+ transitionExperience();
 }));
 function drawTasteShape(profile,focus){
  const values=INTERESTS.map(key=>focus?(focus===key?3:0):profile.interests[key]??1.5);
@@ -163,7 +163,13 @@ function renderExperience(){
  }
  document.querySelectorAll("button.focus").forEach(button=>button.setAttribute("aria-pressed",String(state.focus===button.dataset.focus)));
  $("active-mode").textContent=(plan.personalized?"TASTE / ":"STANDARD / ")+plan.view.toUpperCase();
+ $("adapt-reason").textContent=plan.focus?"FOCUS / "+names[plan.focus]:(plan.personalized?"TASTE / "+plan.orderedIds[0]:"STANDARD");
  drawTasteShape(state.active,state.focus);
+}
+function transitionExperience(){
+ const reduce=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+ if(!reduce&&typeof document.startViewTransition==="function")document.startViewTransition(()=>renderExperience());
+ else renderExperience();
 }
 const saved=loadSavedTaste(getStorage()||{getItem:()=>null});
 if(saved){state.active=saved;status("保存されたTasteをこのブラウザーから読み込みました。")}
