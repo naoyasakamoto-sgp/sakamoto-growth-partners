@@ -41,12 +41,12 @@ jobs:
           echo "npm_test_exit_code=${status}" >> "$GITHUB_STEP_SUMMARY"
           exit "$status"
 
-      - name: Upload Taste screenshots
+      - name: Upload Product Studio screenshots
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: taste-browser-${{ github.sha }}
-          path: qa/screenshots/*.png
+          name: sgp-product-browser-${{ github.sha }}
+          path: qa/product-site/*.png
           if-no-files-found: warn
           retention-days: 7
 
@@ -81,6 +81,12 @@ jobs:
             industries/*/index.html
             seo/seo.css
             products/my-home-plan/*
+            products/index.html
+            products/erabu/index.html
+            engineering/index.html
+            product-home.css
+            product-site.js
+            assets/erabu/source/*
             assets/case-studies/my-jazz-day/*.webp
           if-no-files-found: error
           retention-days: 7

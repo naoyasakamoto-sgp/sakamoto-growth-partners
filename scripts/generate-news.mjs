@@ -308,7 +308,10 @@ ${latest.map((item) => `        <article>
 
 function renderSitemap() {
   const urls = [
-    { loc: `${siteUrl}/`, lastmod: "2026-09-29" },
+    { loc: `${siteUrl}/`, lastmod: "2026-11-03" },
+    { loc: `${siteUrl}/products/`, lastmod: "2026-11-03" },
+    { loc: `${siteUrl}/products/erabu/`, lastmod: "2026-11-03" },
+    { loc: `${siteUrl}/engineering/`, lastmod: "2026-11-03" },
     { loc: `${siteUrl}/free-improvement/`, lastmod: "2026-09-26" },
     { loc: `${siteUrl}/contact/`, lastmod: "2026-09-26" },
     { loc: `${siteUrl}/services/it-adviser/`, lastmod: "2026-09-29" },
