@@ -67,16 +67,17 @@ try{
   const height=width<=390?844:920;
   await page.send("Emulation.setDeviceMetricsOverride",{width,height,deviceScaleFactor:1,mobile:width<=500});
   await navigate(base+"/taste-lab/");
-  await page.eval("document.querySelector('.exhibit-jazz').scrollIntoView()");
-  await page.eval("document.querySelector('.exhibit-process').scrollIntoView()");
-  await page.eval("document.querySelector('#works').scrollIntoView()");
+  await page.eval("document.documentElement.style.scrollBehavior='auto';document.querySelector('.exhibit-jazz').scrollIntoView({behavior:'instant'})");
+  await page.eval("document.querySelector('.exhibit-process').scrollIntoView({behavior:'instant'})");
+  await page.eval("document.querySelector('#works').scrollIntoView({behavior:'instant'})");
   await waitFor(async()=>{const p=await page.eval(state);return Object.values(p.assets).every(Boolean)},"loaded images "+width);
   const p=await page.eval(state);
   assert.equal(p.ready,"complete");assert.equal(p.exhibits,4);assert.ok(p.interactive&&p.hero);
   assert.ok(p.width<=width+2,"Horizontal overflow "+p.width+" at "+width);
-  await page.eval("document.querySelector('.hero').scrollIntoView()");
+  await page.eval("window.scrollTo({top:0,behavior:'instant'})");
   await capture("taste-"+width);
   if(width===390||width===1280)await logVisual("hero-"+width);
+  if(width===1280){await page.eval("document.querySelector('#works').scrollIntoView({behavior:'instant'})");await logVisual("works-1280") }
   console.log("PASS layout width "+width+"; 4 works; images loaded; no overflow");
  }
  await page.send("Emulation.setDeviceMetricsOverride",{width:390,height:844,deviceScaleFactor:1,mobile:true});
@@ -92,7 +93,7 @@ try{
  await waitFor(async()=> (await page.eval("document.querySelector('#active-mode').textContent"))==="TASTE / SYSTEM","Taste applied transition");
  assert.equal(await page.eval("document.querySelector('#exhibitions .exhibit:first-child').dataset.id"),"erabu-system");
  assert.equal(await page.eval("localStorage.getItem('sgp:adaptive-taste:v1')"),null);
- await page.eval("document.querySelector('#works').scrollIntoView()");
+ await page.eval("document.querySelector('#works').scrollIntoView({behavior:'instant'})");
  await capture("taste-personalized-390");
  await logVisual("works-390");
  await run("document.querySelector('#works button[data-focus=design]').click()");
