@@ -6,7 +6,8 @@
     "build": "node scripts/generate-news.mjs && node scripts/generate-case-extension.mjs",
     "check": "node scripts/check-site.mjs && node scripts/check-case-studies.mjs && node scripts/check-my-home-plan.mjs",
     "preview": "node scripts/serve.mjs",
-    "test": "npm run build && npm run check && npm run test:taste",
-    "test:taste": "node --test taste/*.test.mjs"
+    "test": "npm run build && npm run check && npm run test:taste && npm run test:browser",
+    "test:taste": "node --test taste/*.test.mjs",
+    "test:browser": "node scripts/qa-taste-browser.mjs"
   }
 }
