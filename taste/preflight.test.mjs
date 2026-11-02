@@ -39,3 +39,12 @@ test("Source separates conceptual figures from real product images",async()=>{
  assert.match(html,/設計段階の模式図/);
  assert.match(html,/assets\/case-studies\/my-jazz-day\/hero-mobile\.webp/);
 });
+
+test("User-facing preview copy is inventoried and explicitly pending approval",async()=>{
+ const manifest=JSON.parse(await read("taste/copy-review.json"));
+ assert.equal(manifest.releaseCopyStatus,"pending");
+ assert.equal(manifest.allNewUserFacingCopyRequiresExplicitApproval,true);
+ assert.ok(manifest.groups.html_visible.length>30);
+ assert.ok(manifest.groups.html_accessible.length>0);
+ assert.ok(manifest.groups.external_ai_prompt.length>0);
+});
