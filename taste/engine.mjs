@@ -25,6 +25,22 @@ export function parseTasteInput(raw){
  if(value.schema===ERABU_SCHEMA){
   if(!keysOK(value,["schema","taste","contexts","confidence"])||!isRecord(value.taste)||!keysOK(value.taste,ERABU_AXES))return bad("invalid_erabu");
   if(!ERABU_AXES.every(k=>Number.isInteger(value.taste[k])&&value.taste[k]>=0&&value.taste[k]<=100))return bad("missing_erabu_axes");
+  if(value.contexts!==undefined){
+   const contextNames=["everyday","travel","solo","couple","adventure"];
+   if(!isRecord(value.contexts)||!keysOK(value.contexts,contextNames))return bad("invalid_erabu_contexts");
+   for(const context of Object.values(value.contexts)){
+    if(!isRecord(context)||!keysOK(context,ERABU_AXES))return bad("invalid_erabu_contexts");
+    if(!Object.values(context).every(n=>Number.isInteger(n)&&n>=0&&n<=100))return bad("invalid_erabu_contexts");
+   }
+  }
+  if(value.confidence!==undefined){
+   if(!isRecord(value.confidence)||!keysOK(value.confidence,["overall","axes"]))return bad("invalid_erabu_confidence");
+   if(value.confidence.overall!==undefined&&(!Number.isFinite(value.confidence.overall)||value.confidence.overall<0||value.confidence.overall>1))return bad("invalid_erabu_confidence");
+   if(value.confidence.axes!==undefined){
+    if(!isRecord(value.confidence.axes)||!keysOK(value.confidence.axes,ERABU_AXES))return bad("invalid_erabu_confidence");
+    if(!Object.values(value.confidence.axes).every(n=>Number.isFinite(n)&&n>=0&&n<=1))return bad("invalid_erabu_confidence");
+   }
+  }
   return {ok:true,kind:"erabu",domainTaste:Object.fromEntries(ERABU_AXES.map(k=>[k,value.taste[k]]))};
  }
  if(value.schema!==WEB_SCHEMA)return bad("schema_mismatch");
