@@ -77,9 +77,9 @@
       "SGP",
       "SGP Sakamoto Growth Partners",
       "Tasteに応じて形が変わるインタラクティブな図",
-      "コンセプト表現。実際の制作資料ではありません",
       "サイト内",
       "フッター",
+      "仙台えらぶ！",
       "仙台えらぶ！を開く",
       "表示の優先順位",
       "設計段階の模式図。実システムの構成図ではありません"
@@ -332,7 +332,18 @@
     },
     "copyApprovalDoesNotApproveDeployment": true,
     "contentEvidenceReview": "pending",
-    "browserVisualQA": "pending"
+    "browserVisualQA": "pending",
+    "visualSourceMaterial": "Existing ERABU source assets; no new SGP marketing copy",
+    "mediaCopyChanges": {
+      "newVisible": [],
+      "newAccessible": [
+        "仙台えらぶ！"
+      ],
+      "removedVisible": [],
+      "removedAccessible": [
+        "コンセプト表現。実際の制作資料ではありません"
+      ]
+    }
   },
   "approvedCopyIntentionallyOmitted": [
     "プレビュー / 未承認文言"
