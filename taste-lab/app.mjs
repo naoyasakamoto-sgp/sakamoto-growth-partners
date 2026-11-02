@@ -4,7 +4,7 @@ const $=id=>document.getElementById(id);
 const state={active:emptyWebTaste(),candidate:null,focus:null,source:"manual",domainTaste:null};
 const getStorage=()=>{try{return window.localStorage}catch{return null}};
 const names={products:"Products",design:"Design",engineering:"Engineering",business:"Business"};
-const experienceNames={density:"Density",navigation:"Navigation",evidence:"Evidence",interaction:"Interaction",discovery:"Discovery"};
+const experienceNames={density:"density",navigation:"navigation",evidence:"evidence",interaction:"interaction",discovery:"discovery"};
 const messages={
  empty:"JSONを入力するか、ファイルを選択してください。",
  invalid_json:"JSONの構文を確認してください。",
