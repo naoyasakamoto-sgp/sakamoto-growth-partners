@@ -76,8 +76,6 @@ try{
   assert.ok(p.width<=width+2,"Horizontal overflow "+p.width+" at "+width);
   await page.eval("window.scrollTo({top:0,behavior:'instant'})");
   await capture("taste-"+width);
-  if(width===390||width===1280)await logVisual("hero-"+width);
-  if(width===1280){await page.eval("document.querySelector('#works').scrollIntoView({behavior:'instant'})");await logVisual("works-1280") }
   console.log("PASS layout width "+width+"; 4 works; images loaded; no overflow");
  }
  await page.send("Emulation.setDeviceMetricsOverride",{width:390,height:844,deviceScaleFactor:1,mobile:true});
@@ -89,17 +87,27 @@ try{
  assert.ok((await page.eval("document.querySelector('#status').textContent")).includes("定義されていない"));
  await run("document.querySelector('#taste-input').value="+JSON.stringify(JSON.stringify(valid))+";document.querySelector('#validate-taste').click()");
  assert.equal(await page.eval("document.querySelector('#review').hidden"),false);
+ // A failed second import must invalidate the earlier candidate and consent.
+ await run("document.querySelector('#confirm-taste').checked=true;document.querySelector('#taste-input').value='{invalid';document.querySelector('#validate-taste').click();document.querySelector('#apply-taste').click()");
+ assert.equal(await page.eval("document.querySelector('#review').hidden"),true);
+ assert.equal(await page.eval("document.querySelector('#confirm-taste').checked"),false);
+ assert.equal(await page.eval("document.querySelector('#active-mode').textContent"),"STANDARD / STANDARD");
+ // Restore a valid profile for the positive path.
+ await run("document.querySelector('#taste-input').value="+JSON.stringify(JSON.stringify(valid))+";document.querySelector('#validate-taste').click()");
+ assert.equal(await page.eval("document.querySelector('#review').hidden"),false);
  await run("document.querySelector('#confirm-taste').checked=true;document.querySelector('#apply-taste').click()");
  await waitFor(async()=> (await page.eval("document.querySelector('#active-mode').textContent"))==="TASTE / SYSTEM","Taste applied transition");
  assert.equal(await page.eval("document.querySelector('#exhibitions .exhibit:first-child').dataset.id"),"erabu-system");
  assert.equal(await page.eval("localStorage.getItem('sgp:adaptive-taste:v1')"),null);
  await page.eval("document.querySelector('#works').scrollIntoView({behavior:'instant'})");
  await capture("taste-personalized-390");
- await logVisual("works-390");
  await run("document.querySelector('#works button[data-focus=design]').click()");
  await waitFor(async()=> (await page.eval("document.querySelector('#exhibitions .exhibit:first-child').dataset.id"))==="erabu-process","focus transition");
+ assert.equal(await page.eval("document.body.dataset.view"),"process");
  await run("document.querySelector('#taste-input').value="+JSON.stringify(JSON.stringify(valid))+";document.querySelector('#validate-taste').click();document.querySelector('#confirm-taste').checked=true;document.querySelector('#save-taste').checked=true;document.querySelector('#apply-taste').click()");
  assert.ok(await page.eval("!!localStorage.getItem('sgp:adaptive-taste:v1')"));
+ await navigate(base+"/taste-lab/");
+ await waitFor(async()=> (await page.eval("document.querySelector('#active-mode').textContent"))==="TASTE / SYSTEM","saved Taste reload");
  await run("document.querySelector('#reset-taste').click()");
  assert.equal(await page.eval("localStorage.getItem('sgp:adaptive-taste:v1')"),null);
  await waitFor(async()=> (await page.eval("document.querySelector('#active-mode').textContent"))==="STANDARD / STANDARD","reset transition");
@@ -113,8 +121,21 @@ try{
  const leaked=externalRequests.filter(url=>!url.startsWith(base)&&!url.startsWith("data:")&&!url.startsWith("about:"));
  assert.deepEqual(leaked,[],"External network request(s)");
  assert.deepEqual(pageErrors,[],"Unexpected browser errors");
+ // Check experience-only and high-discovery variants for layout overflow.
+ await page.send("Emulation.setEmulatedMedia",{features:[]});
+ await navigate(base+"/taste-lab/");
+ const experiential={...valid,interests:{products:null,design:null,engineering:null,business:null},experience:{...valid.experience,density:"detailed",navigation:"guided",evidence:"actual_ui",interaction:"participate",discovery:"high"}};
+ await run("document.querySelector('#taste-input').value="+JSON.stringify(JSON.stringify(experiential))+";document.querySelector('#validate-taste').click();document.querySelector('#confirm-taste').checked=true;document.querySelector('#apply-taste').click()");
+ await waitFor(async()=> (await page.eval("document.body.dataset.view"))==="guided","experience-only personalization");
+ assert.equal(await page.eval("document.body.dataset.density"),"detailed");
+ assert.equal(await page.eval("document.body.dataset.interaction"),"participate");
+ assert.equal(await page.eval("document.body.dataset.discovery"),"high");
+ assert.ok((await page.eval("document.documentElement.scrollWidth"))<=392);
+ const guidedStyle=await page.eval("getComputedStyle(document.querySelector('.exhibit.spotlight')).gridColumnStart");
+ assert.equal(guidedStyle,"span 12");
+ await capture("taste-guided-390");
  console.log("PASS interaction: invalid input, confirmed import, priority, focus, opt-in storage, reset, keyboard, reduced motion, zero third-party requests");
- console.log("PASS 6 screenshot artifacts");
+ console.log("PASS 7 screenshot artifacts");
  if(process.env.CAPTURE_ERABU_SOURCE==="1"){
   await page.send("Emulation.setDeviceMetricsOverride",{width:1280,height:900,deviceScaleFactor:1,mobile:false});
   await page.send("Page.navigate",{url:"https://sendai-erabu.jp/"});

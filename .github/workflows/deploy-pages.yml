@@ -50,6 +50,7 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     permissions:
+      contents: read
       pages: write
       id-token: write
     environment:
@@ -59,3 +60,9 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+      - name: Checkout for production smoke
+        uses: actions/checkout@v4
+
+      - name: Verify production routes and Taste assets
+        run: node scripts/smoke-taste-production.mjs

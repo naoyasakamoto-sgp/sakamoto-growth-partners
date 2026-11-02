@@ -76,12 +76,22 @@ function showReview(profile,source){
  createEditors(profile);
  status("内容を確認・修正してから反映してください。");
 }
+function discardPendingReview(){
+ state.candidate=null;
+ $("review").hidden=true;$("profile-empty").hidden=false;
+ $("confirm-taste").checked=false;$("save-taste").checked=false;
+}
 function importJson(raw,source="AI / JSON"){
  const result=parseTasteInput(raw);
- if(!result.ok){status(messages[result.code]||"Tasteを読み込めませんでした。",true);return false}
+ if(!result.ok){
+  discardPendingReview();
+  state.domainTaste=null;
+  status(messages[result.code]||"Tasteを読み込めませんでした。",true);
+  return false;
+ }
  if(result.kind==="erabu"){
+  discardPendingReview();
   state.domainTaste=result.domainTaste;
-  $("review").hidden=true;$("profile-empty").hidden=false;
   status("ERABUの12軸を検証しました。Web閲覧用Tasteとは別のため、ホームページは変更されません。");
   return true;
  }
@@ -127,7 +137,9 @@ $("export-taste").addEventListener("click",()=>{
  if(!state.candidate)return;
  const blob=new Blob([exportWebTaste(state.candidate)],{type:"application/json"});
  const url=URL.createObjectURL(blob);const a=document.createElement("a");
- a.href=url;a.download="sgp-web-taste.json";document.body.append(a);a.click();a.remove();URL.revokeObjectURL(url);
+ a.href=url;a.download="sgp-web-taste.json";document.body.append(a);a.click();a.remove();
+ // Give browsers time to dispatch the download before revoking the object URL.
+ window.setTimeout(()=>URL.revokeObjectURL(url),1000);
  status("TasteをJSONファイルに書き出しました。");
 });
 $("taste-open").addEventListener("click",()=>$("taste-panel").scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"instant":"smooth"}));
@@ -155,6 +167,9 @@ function renderExperience(){
  grid.dataset.view=plan.view;
  document.body.dataset.view=plan.view;
  document.body.dataset.density=state.active.experience.density;
+ document.body.dataset.navigation=state.active.experience.navigation;
+ document.body.dataset.interaction=state.active.experience.interaction;
+ document.body.dataset.discovery=state.active.experience.discovery;
  for(const [position,id] of plan.orderedIds.entries()){
   const card=grid.querySelector('[data-id="'+id+'"]');
   if(!card)continue;
