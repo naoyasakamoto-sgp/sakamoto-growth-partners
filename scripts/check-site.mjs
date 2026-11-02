@@ -289,6 +289,12 @@ await checkPage("products/index.html",{
 await checkPage("products/erabu/index.html",{
  canonical:`${siteUrl}/products/erabu/`,ogType:"website",schemaTypes:["SoftwareApplication"]
 });
+const erabuDetail = await read("products/erabu/index.html");
+const detailExperience = erabuDetail.match(/03 \/ EXPERIMENT & EXPERIENCE[\s\S]*?(?=<section class="case-section")/)?.[0] || "";
+if(!detailExperience.includes('src="/assets/erabu/source/erabu-three-choices-20261102.png"')) fail("ERABU detail: 3-choice image missing");
+if(detailExperience.includes('sendai-ekimae-erabu-map.svg')) fail("ERABU detail: old map must not appear");
+if(!detailExperience.includes('width="1028" height="747"')) fail("ERABU detail: original image dimensions must be preserved");
+
 await checkPage("engineering/index.html",{
  canonical:`${siteUrl}/engineering/`,ogType:"website",schemaTypes:["Service"]
 });
