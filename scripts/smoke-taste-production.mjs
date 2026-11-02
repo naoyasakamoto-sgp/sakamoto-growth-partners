@@ -9,7 +9,7 @@ const cacheKey=(process.env.GITHUB_SHA||"production").slice(0,12);
 const targets=[
  {path:"/",expected:['id="products"','href="/products/"','href="/engineering/"','erabu-live-home-20261102.jpg','erabu-three-choices-20261102.png','id="about"'],forbidden:['href="/taste-lab/"','まだない価値を、つくる。']},
  {path:"/products/",expected:["ERABU",'href="/products/erabu/"','erabu-live-home-20261102.jpg']},
- {path:"/products/erabu/",expected:["ERABU","sendai-ekimae-erabu-map.svg","erabu-live-home-20261102.jpg"]},
+ {path:"/products/erabu/",expected:["ERABU","erabu-three-choices-20261102.png","erabu-live-home-20261102.jpg"],forbidden:['src="/assets/erabu/source/sendai-ekimae-erabu-map.svg"']},
  {path:"/engineering/",expected:["Software Engineering","AI Engineering","Technical Partnership",'href="/career/"']},
  {path:"/product-home.css",expected:["Product Studio","product-photo-frame","prefers-reduced-motion"]},
  {path:"/product-site.js",expected:["aria-selected","ArrowRight","ArrowLeft"]},
