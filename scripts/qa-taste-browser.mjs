@@ -47,6 +47,7 @@ const state='(()=>{const paths={sgpLogo:"/assets/sgp-wordmark-v2.webp",erabuLogo
 const valid={schema:"sgp-web-taste@1",interests:{products:1,design:0,engineering:3,business:null},experience:{density:"balanced",navigation:"guided",evidence:"diagrams",interaction:"observe",discovery:"balanced"},confidence:{products:"inferred",design:"explicit",engineering:"explicit",business:"unknown"}};
 let chrome,page,tmp,base;
 async function capture(name){await sleep(120);const shot=await page.send("Page.captureScreenshot",{format:"png",captureBeyondViewport:false});await writeFile(join(output,name+".png"),Buffer.from(shot.data,"base64"))}
+async function logVisual(name){const shot=await page.send("Page.captureScreenshot",{format:"jpeg",quality:42,captureBeyondViewport:false});console.log("QA_IMAGE_BEGIN "+name);for(let i=0;i<shot.data.length;i+=4000)console.log("QA_IMAGE_DATA "+shot.data.slice(i,i+4000));console.log("QA_IMAGE_END "+name)}
 async function navigate(url){await page.send("Page.navigate",{url});await waitFor(async()=>page.eval("document.readyState==='complete'&&!!document.querySelector('#exhibitions')"),"page navigation")}
 async function run(code){return page.eval("(()=>{"+code+"})()")}
 try{
@@ -58,7 +59,7 @@ try{
  const ws=await waitFor(async()=>{const list=await(await fetch("http://127.0.0.1:"+port+"/json/list")).json();return list.find(x=>x.type==="page")?.webSocketDebuggerUrl},"Chrome page");
  page=new CDP(ws);await page.connect();
  page.listeners.push(message=>{
-  if(message.method==="Runtime.exceptionThrown")pageErrors.push(message.params?.exceptionDetails?.text||"exception");
+  if(message.method==="Runtime.exceptionThrown")pageErrors.push(message.params?.exceptionDetails?.exception?.description||message.params?.exceptionDetails?.text||"exception");
   if(message.method==="Network.requestWillBeSent")externalRequests.push(message.params?.request?.url||"");
  });
  await page.send("Page.enable");await page.send("Runtime.enable");await page.send("Network.enable");
@@ -75,6 +76,7 @@ try{
   assert.ok(p.width<=width+2,"Horizontal overflow "+p.width+" at "+width);
   await page.eval("document.querySelector('.hero').scrollIntoView()");
   await capture("taste-"+width);
+  if(width===390||width===1280)await logVisual("hero-"+width);
   console.log("PASS layout width "+width+"; 4 works; images loaded; no overflow");
  }
  await page.send("Emulation.setDeviceMetricsOverride",{width:390,height:844,deviceScaleFactor:1,mobile:true});
@@ -92,6 +94,7 @@ try{
  assert.equal(await page.eval("localStorage.getItem('sgp:adaptive-taste:v1')"),null);
  await page.eval("document.querySelector('#works').scrollIntoView()");
  await capture("taste-personalized-390");
+ await logVisual("works-390");
  await run("document.querySelector('#works button[data-focus=design]').click()");
  await waitFor(async()=> (await page.eval("document.querySelector('#exhibitions .exhibit:first-child').dataset.id"))==="erabu-process","focus transition");
  await run("document.querySelector('#taste-input').value="+JSON.stringify(JSON.stringify(valid))+";document.querySelector('#validate-taste').click();document.querySelector('#confirm-taste').checked=true;document.querySelector('#save-taste').checked=true;document.querySelector('#apply-taste').click()");
