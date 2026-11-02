@@ -77,7 +77,7 @@ export function planExperience(profile=emptyWebTaste(),options={}){
  }).sort((a,b)=>b.score-a.score||EXHIBITS.findIndex(x=>x.id===a.id)-EXHIBITS.findIndex(x=>x.id===b.id));
  const personalized=Boolean(focus||INTERESTS.some(k=>safe.interests[k]!==null));
  const view=!personalized?"standard":safe.experience.evidence==="process"?"process":safe.experience.evidence==="diagrams"?"system":safe.experience.navigation==="guided"?"guided":"gallery";
- const discovery=safe.experience.discovery==="low"?null:(ranked.find((x,i)=>i>0&&x.type!==ranked[0].type)?.id??null);
+ const discovery=!personalized||safe.experience.discovery==="low"?null:(ranked.find((x,i)=>i>0&&x.type!==ranked[0].type)?.id??null);
  return {ranked,orderedIds:ranked.map(x=>x.id),view,discovery,personalized,focus}
 }
 export function exportWebTaste(profile){
