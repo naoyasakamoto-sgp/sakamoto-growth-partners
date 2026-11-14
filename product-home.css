@@ -240,3 +240,67 @@ button{font:inherit}
 .case-blue-proof small{font-size:.72rem;color:#adccd0;line-height:1.7}
 .case-section-blue .case-blue-fine{font-size:.77rem;color:#5d7180}
 @media(max-width:520px){.case-section-blue .case-media{padding:14px}.case-blue-proof{min-height:290px;gap:22px}.case-blue-stats{gap:12px}}
+
+
+/* MY JAZZ DAY / keep the genuine 260x564px product capture at or below native width.
+   The adjacent labels are HTML/vector-sharp, not an enlarged raster screenshot. */
+.case-jazz-media{background:#dce5df}
+.case-jazz-stage{
+ display:grid;
+ grid-template-columns:minmax(0,240px) minmax(0,1fr);
+ gap:clamp(18px,2.9vw,36px);
+ align-items:center;
+ padding:clamp(22px,3.3vw,42px);
+ min-height:606px;
+ background:#102d3c;
+ color:#f5faf8;
+ overflow:hidden
+}
+.case-jazz-device{
+ width:100%;
+ max-width:240px;
+ margin-inline:auto;
+ padding:6px;
+ border-radius:24px;
+ border:1px solid rgba(255,255,255,.23);
+ background:#edf3ee;
+ box-shadow:0 20px 42px rgba(0,0,0,.32);
+ overflow:hidden
+}
+.case-jazz-device img{
+ display:block;
+ width:100%;
+ max-width:260px;
+ height:auto;
+ aspect-ratio:260 / 564;
+ border-radius:17px;
+ object-fit:contain
+}
+.case-jazz-proof{min-width:0}
+.case-jazz-kicker{font-size:.68rem;letter-spacing:.12em;font-weight:750;color:#a9dad6;line-height:1.65;margin:0 0 18px}
+.case-jazz-proof h3{font-size:clamp(2rem,3.9vw,4rem);font-weight:620;line-height:1.05;letter-spacing:-.06em;margin:0 0 22px}
+.case-jazz-proof h3 span{color:var(--cyan)}
+.case-jazz-description{color:#e1e9e8;font-size:clamp(.82rem,1.15vw,.98rem);line-height:1.9;margin:0 0 32px}
+.case-jazz-metrics{display:grid;gap:18px;margin:0 0 26px}
+.case-jazz-metrics div{display:flex;flex-direction:column-reverse;gap:3px;border-top:1px solid rgba(255,255,255,.26);padding-top:14px}
+.case-jazz-metrics dt{font-size:.67rem;letter-spacing:.14em;font-weight:750;color:#a7c9d0}
+.case-jazz-metrics dd{margin:0;font-size:clamp(2.15rem,3.2vw,3.55rem);line-height:1;letter-spacing:-.06em;font-weight:700;color:#fafbf8}
+.case-jazz-foot{color:#96c5c8;font-size:.64rem;letter-spacing:.1em;line-height:1.7;margin:0}
+@media(max-width:1100px){
+ .case-jazz-stage{grid-template-columns:minmax(0,220px) minmax(0,1fr);min-height:545px}
+}
+@media(max-width:680px){
+ .case-jazz-stage{grid-template-columns:minmax(0,1fr);min-height:0;justify-items:center;gap:30px;padding:24px 20px}
+ .case-jazz-device{max-width:240px}
+ .case-jazz-proof{text-align:center;width:100%}
+ .case-jazz-proof h3{font-size:clamp(2.8rem,10vw,4rem);margin-bottom:12px}
+ .case-jazz-description{margin-bottom:20px}
+ .case-jazz-metrics{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-bottom:18px}
+ .case-jazz-metrics dd{font-size:2.7rem}
+}
+@media(max-width:520px){
+ .case-jazz-media{padding:14px}
+ .case-jazz-stage{padding:22px 18px}
+ .case-jazz-device{max-width:220px}
+ .case-jazz-kicker{font-size:.6rem}
+}
