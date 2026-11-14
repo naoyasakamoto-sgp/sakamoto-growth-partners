@@ -38,6 +38,26 @@ const sitemap = await read("sitemap.xml");
 const feed = await read("news/feed.xml");
 const analytics = await read("analytics.js");
 
+
+// The 260x564 MY JAZZ MAP capture is not a high-resolution desktop image.
+// Homepage and case details must never enlarge it or advertise false dimensions.
+if (!homepage.includes('class="case-jazz-device"') ||
+    !homepage.includes('width="260" height="564"') ||
+    homepage.includes('width="900" height="600"')) {
+  throw new Error("MY JAZZ MAP must be displayed in a native-size device frame with truthful dimensions");
+}
+const jazzStyles = await read("product-home.css");
+if (!jazzStyles.includes(".case-jazz-device img") ||
+    !jazzStyles.includes("max-width:240px") ||
+    !jazzStyles.includes("max-width:220px")) {
+  throw new Error("MY JAZZ MAP desktop/mobile native-size image constraints missing");
+}
+const detailStyles = await read("case-studies/case-study.css");
+if (!detail.includes('width="260" height="564"') ||
+    !detailStyles.includes('img[src*="/assets/case-studies/my-jazz-day/"]')) {
+  throw new Error("MY JAZZ DAY case detail must not upscale the low-resolution product capture");
+}
+
 const requiredCase = caseStudies[0];
 for (const token of [requiredCase.seo.title, "897", "50", "1 MIN", requiredCase.productUrl, "/contact/?source=case-study&case=my-jazz-day&intent=decision-product"]) {
   if (!detail.includes(token)) throw new Error(`Case detail missing: ${token}`);
