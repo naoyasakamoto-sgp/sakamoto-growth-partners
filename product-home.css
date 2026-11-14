@@ -227,3 +227,16 @@ button{font:inherit}
  html{scroll-behavior:auto}
  *,*::before,*::after{transition:none!important;animation:none!important}
 }
+
+/* Featured owned-media SEO case: measured data, not third-party artwork */
+.case-section-blue{background:#f8f7f1}
+.case-section-blue .case-media{background:#132f3c;border-color:#244a54;min-width:0}
+.case-blue-proof{background:#0a2935;color:#fff;min-height:400px;display:flex;flex-direction:column;justify-content:center;padding:clamp(20px,3.5vw,48px);gap:26px}
+.case-blue-eyebrow{font-size:.7rem;color:#7bd8d0;letter-spacing:.16em;font-weight:800}
+.case-blue-query{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:clamp(1.7rem,3vw,3.25rem);font-weight:550;line-height:1.4}
+.case-blue-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;border-top:1px solid #43616a;padding-top:22px}
+.case-blue-stats strong{font-size:clamp(2rem,3vw,3.5rem);line-height:1.1;letter-spacing:-.05em;display:block;color:#f1d69d}
+.case-blue-stats span{font-size:.8rem;color:#c2d9d9;display:block;margin-top:7px}
+.case-blue-proof small{font-size:.72rem;color:#adccd0;line-height:1.7}
+.case-section-blue .case-blue-fine{font-size:.77rem;color:#5d7180}
+@media(max-width:520px){.case-section-blue .case-media{padding:14px}.case-blue-proof{min-height:290px;gap:22px}.case-blue-stats{gap:12px}}
