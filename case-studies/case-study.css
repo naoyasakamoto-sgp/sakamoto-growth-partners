@@ -205,3 +205,14 @@
     flex:0 0 156px;
   }
 }
+
+
+/* Real MY JAZZ DAY mobile screenshots are ~220–260px wide.
+   Never upscale these raster captures to fill a wider case-study column. */
+.case-page .case-shot img[src*="/assets/case-studies/my-jazz-day/"]{
+ width:auto;
+ max-width:100%;
+ height:auto;
+ margin-inline:auto;
+ object-fit:contain
+}
