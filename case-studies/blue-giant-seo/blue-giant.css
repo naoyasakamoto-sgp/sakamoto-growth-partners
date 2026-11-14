@@ -1,0 +1,23 @@
+/* BLUE GIANT organic-search case: editorial proof, no third-party artwork */
+.bg-proof{display:grid;align-content:center;gap:20px;min-height:480px;padding:30px;border:1px solid rgba(255,255,255,.18);background:linear-gradient(150deg,#0a2935,#123e49 70%,#134a49);box-shadow:0 35px 70px rgba(0,0,0,.22)}
+.bg-proof-kicker{font-size:12px;font-weight:800;letter-spacing:.19em;color:#9ddbd3}
+.bg-proof-query{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:clamp(30px,3.2vw,47px);line-height:1.4;color:#fff;font-weight:600}
+.bg-proof-figures{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.bg-proof-figure{padding:18px;border:1px solid rgba(255,255,255,.18);background:#ffffff0b}
+.bg-proof-figure strong{font-size:clamp(30px,3.2vw,48px);display:block;line-height:1.1;letter-spacing:-.045em;color:#f5e8cc}
+.bg-proof-figure span{font-size:11px;color:#bfd7d7;letter-spacing:.13em;display:block;margin-top:10px}
+.bg-proof-bar{height:9px;overflow:hidden;background:#ffffff24;border-radius:999px}
+.bg-proof-bar>i{display:block;background:#d7a441;width:35.7143%;height:100%;border-radius:999px}
+.bg-proof-caption{font-size:12px;line-height:1.75;color:#b7d0d0}
+.bg-result-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:40px}
+.bg-result{background:var(--case-ink);color:white;padding:28px}
+.bg-result strong{font-size:clamp(34px,5vw,64px);line-height:1;font-weight:760;display:block}
+.bg-result span{font-size:13px;letter-spacing:.06em;color:var(--case-gold);font-weight:800;display:block;margin-top:12px}
+.bg-result small{color:#bbcdd0;line-height:1.6;display:block;margin-top:10px}
+.bg-linked-work{margin-top:28px;display:grid;gap:10px}
+.bg-linked-work a{display:flex;gap:18px;align-items:center;justify-content:space-between;padding:22px 24px;background:white;border:1px solid var(--case-line);color:var(--case-ink);font-weight:750;text-decoration:none}
+.bg-linked-work a:hover{border-color:var(--case-gold)}
+.bg-linked-work span{color:#7b8e8e;font-size:12px;letter-spacing:.05em}
+.bg-method-note{margin-top:30px;padding:22px 24px;border-left:4px solid var(--case-gold);background:#fffaf0;font-size:13px;line-height:1.8;color:#445255}
+@media(max-width:980px){.bg-proof{min-height:360px;max-width:680px}}
+@media(max-width:680px){.bg-proof{padding:20px;min-height:330px}.bg-proof-query{font-size:28px}.bg-result-grid{grid-template-columns:1fr}.bg-linked-work a{align-items:flex-start;flex-direction:column;gap:8px}}
