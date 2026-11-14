@@ -9,6 +9,9 @@ const root = path.resolve(__dirname, "..");
 const mustExist = [
   "case-studies/index.html",
   "case-studies/my-jazz-day/index.html",
+  "case-studies/blue-giant-seo/index.html",
+  "case-studies/blue-giant-seo/blue-giant.css",
+  "content/case-studies/blue-giant-seo.mdx",
   "news/sendai-erabu-my-jazz-day-2026/index.html",
   "contact/index.html",
   "contact/contact.js",
@@ -26,6 +29,8 @@ for (const rel of mustExist) await access(path.join(root, rel));
 const read = (rel) => readFile(path.join(root, rel), "utf8");
 const detail = await read("case-studies/my-jazz-day/index.html");
 const listing = await read("case-studies/index.html");
+const blueDetail = await read("case-studies/blue-giant-seo/index.html");
+const homepage = await read("index.html");
 const news = await read("news/sendai-erabu-my-jazz-day-2026/index.html");
 const contact = await read("contact/index.html");
 const contactJs = await read("contact/contact.js");
@@ -51,6 +56,26 @@ for (const [label, html] of [["Case listing", listing], ["Case detail", detail]]
   if (/<img\b/i.test(footer)) throw new Error(`${label} footer must not contain logo image`);
 }
 
+const blueCase = caseStudies.find((entry) => entry.slug === "blue-giant-seo");
+if (!blueCase || blueCase.caseNumber !== "002") throw new Error("BLUE GIANT SEO case metadata missing");
+for (const [name, html] of [["Case listing", listing], ["Homepage works", homepage]]) {
+  if (!html.includes("/case-studies/blue-giant-seo/")) throw new Error(name + ": BLUE GIANT case link missing");
+}
+for (const token of [
+  "BLUE GIANT", "2.57", "35.71%", "192",
+  "2026年10月15日〜11月13日", "2026年10月31日",
+  "https://sendai-erabu.jp/events/blue-giant-sendai-2026/",
+  "https://sendai-erabu.jp/experience/blue-giant-2026/",
+  "TechArticle", "BreadcrumbList", 'data-analytics-page="case-study"',
+  'data-analytics-event="case_study_contact_click"',
+  'data-analytics-event="case_study_product_click"'
+]) {
+  if (!blueDetail.includes(token)) throw new Error("BLUE GIANT detail missing: " + token);
+}
+if (!blueDetail.includes("主催者") || !blueDetail.includes("受託")) throw new Error("BLUE GIANT disclaimer missing");
+if (!blueDetail.includes("/case-studies/blue-giant-seo/blue-giant.css")) throw new Error("BLUE GIANT stylesheet missing");
+if (!sitemap.includes("https://sakamoto-growth-partners.com/case-studies/blue-giant-seo/")) throw new Error("Sitemap missing BLUE GIANT detail");
+
 if (!listing.includes("/case-studies/my-jazz-day/")) throw new Error("Case listing does not link detail");
 if (!news.includes("NewsArticle") || !news.includes("/case-studies/my-jazz-day/")) throw new Error("News/Case bridge missing");
 if (!contact.includes("lead_source") || !contact.includes("lead_case") || !contact.includes("lead_intent") || !contact.includes("lead_plan")) throw new Error("Contact attribution fields missing");
@@ -70,7 +95,7 @@ for (const eventName of ["case_study_view", "case_study_product_click", "case_st
 }
 if (/G-[A-Z0-9]{5,}/.test(analyticsSources)) throw new Error("Do not hard-code a GA4 Measurement ID in analytics/contact scripts");
 
-for (const html of [detail, listing, news, contact]) {
+for (const html of [detail, blueDetail, listing, news, contact]) {
   const scripts = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)];
   if (!scripts.length) throw new Error("JSON-LD missing");
   for (const match of scripts) JSON.parse(match[1]);

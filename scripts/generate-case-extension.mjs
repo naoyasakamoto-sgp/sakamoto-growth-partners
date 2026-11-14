@@ -48,6 +48,7 @@ async function patchSitemap() {
   const entries = [
     [`${siteUrl}/case-studies/`, "2026-09-02"],
     [`${siteUrl}/case-studies/my-jazz-day/`, "2026-09-02"],
+    [`${siteUrl}/case-studies/blue-giant-seo/`, "2026-11-14"],
     [`${siteUrl}/products/my-home-plan/`, "2026-09-16"],
     [`${siteUrl}/contact/`, "2026-09-02"],
     [newsUrl, item.date]
