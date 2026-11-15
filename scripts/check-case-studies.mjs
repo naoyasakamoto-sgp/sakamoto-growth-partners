@@ -100,6 +100,45 @@ if (!listing.includes("/case-studies/my-jazz-day/")) throw new Error("Case listi
 if (!news.includes("NewsArticle") || !news.includes("/case-studies/my-jazz-day/")) throw new Error("News/Case bridge missing");
 if (!contact.includes("lead_source") || !contact.includes("lead_case") || !contact.includes("lead_intent") || !contact.includes("lead_plan")) throw new Error("Contact attribution fields missing");
 
+// BLUE GIANT NEWS must advertise measured facts without presenting itself as an official event contract.
+const blueNewsSlug = "sendai-erabu-blue-giant-seo-2026";
+const blueNewsUrl = `https://sakamoto-growth-partners.com/news/${blueNewsSlug}/`;
+const blueNews = await read(`news/${blueNewsSlug}/index.html`);
+const newsArchive = await read("news/index.html");
+for (const token of [
+  "NewsArticle", "BreadcrumbList", "2026-11-15",
+  "平均2.57位", "42回", "15クリック", "35.71%",
+  "2026年10月15日〜11月13日", "2026年10月31日",
+  "/case-studies/blue-giant-seo/",
+  "https://sendai-erabu.jp/events/blue-giant-sendai-2026/",
+  "自社運営", "主催者", "受託",
+  'data-analytics-event="news_case_study_click"',
+  'data-analytics-page="news"'
+]) {
+  if (!blueNews.includes(token)) throw new Error("BLUE GIANT NEWS missing: " + token);
+}
+if (!newsArchive.includes(`/news/${blueNewsSlug}/`)) {
+  throw new Error("BLUE GIANT not linked in NEWS archive");
+}
+const blueIndex = newsArchive.indexOf('<time datetime="2026-11-15">');
+const jazzIndex = newsArchive.indexOf('<time datetime="2026-09-02">');
+const augustIndex = newsArchive.indexOf('<time datetime="2026-08-31">');
+if (!(blueIndex >= 0 && jazzIndex > blueIndex && augustIndex > jazzIndex)) {
+  throw new Error("NEWS timeline must be reverse chronological: BLUE GIANT, MY JAZZ DAY, August stories");
+}
+if (!sitemap.includes(`<loc>${blueNewsUrl}</loc>`)) {
+  throw new Error("Sitemap missing BLUE GIANT NEWS page");
+}
+if (!feed.includes(blueNewsUrl) || !feed.includes('news/sendai-erabu-my-jazz-day-2026/')) {
+  throw new Error("RSS missing BLUE GIANT or MY JAZZ DAY story");
+}
+if (feed.indexOf(blueNewsUrl) > feed.indexOf('news/sendai-erabu-my-jazz-day-2026/')) {
+  throw new Error("RSS newest announcement must appear before the September MY JAZZ DAY article");
+}
+if (!feed.includes("Sat, 14 Nov 2026 15:00:00 GMT")) {
+  throw new Error("RSS lastBuildDate should reflect November 15 JST");
+}
+
 const extraNews = extraNewsItems[0];
 if (extraNews.slug !== "sendai-erabu-my-jazz-day-2026") throw new Error("Unexpected extra NEWS slug");
 const extraNewsUrl = `https://sakamoto-growth-partners.com/news/${extraNews.slug}/`;
