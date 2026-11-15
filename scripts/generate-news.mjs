@@ -38,7 +38,7 @@ function validateNewsData() {
     }
     if (!Array.isArray(item.sections) || item.sections.length === 0) throw new Error(`Missing sections: ${item.slug}`);
   }
-  if (newsItems.length !== 13) throw new Error(`Expected 13 news items, received ${newsItems.length}`);
+  if (newsItems.length !== 14) throw new Error(`Expected 14 news items, received ${newsItems.length}`);
 }
 
 const sortedNews = [...newsItems].sort((a, b) => b.date.localeCompare(a.date));
@@ -82,7 +82,7 @@ function renderFooter() {
   </footer>`;
 }
 
-function renderBasePage({ title, description, canonical, ogType, content, structuredData, articleDate }) {
+function renderBasePage({ title, description, canonical, ogType, content, structuredData, articleDate, newsSlug, newsCategory }) {
   const articleMeta = articleDate
     ? `\n  <meta property="article:published_time" content="${articleDate}" />\n  <meta property="article:modified_time" content="${articleDate}" />`
     : "";
@@ -114,11 +114,12 @@ function renderBasePage({ title, description, canonical, ogType, content, struct
   <link rel="stylesheet" href="/news/news.css?v=20260924-header-v11" />
 ${schemas}
 </head>
-<body class="news-page">
+<body class="news-page"${newsSlug ? ` data-analytics-page="news" data-news-slug="${escapeHtml(newsSlug)}" data-news-category="${escapeHtml(newsCategory)}"` : ""}>
 ${renderHeader()}
 ${content}
 ${renderFooter()}
   <script src="/script.js"></script>
+  <script src="/analytics.js" defer></script>
 </body>
 </html>
 `;
@@ -200,7 +201,7 @@ ${renderTimeline(sortedNews)}
   });
 }
 
-function renderRelatedLinks(links = []) {
+function renderRelatedLinks(links = [], newsSlug = "") {
   if (!links.length) return "";
   return `
         <section class="news-related" aria-labelledby="related-links-title">
@@ -209,8 +210,11 @@ function renderRelatedLinks(links = []) {
 ${links.map(({ label, href }) => {
     const external = href.startsWith("http");
     const attrs = external ? ' target="_blank" rel="noopener noreferrer"' : "";
+    const tracking = href.startsWith("/case-studies/")
+      ? ` data-analytics-event="news_case_study_click" data-news-slug="${escapeHtml(newsSlug)}" data-case-slug="${escapeHtml(href.split("/")[2])}"`
+      : "";
     const suffix = external ? '<span class="visually-hidden">（新しいタブで開きます）</span>' : "";
-    return `            <li><a href="${escapeHtml(href)}"${attrs}>${escapeHtml(label)}${suffix}</a></li>`;
+    return `            <li><a href="${escapeHtml(href)}"${attrs}${tracking}>${escapeHtml(label)}${suffix}</a></li>`;
   }).join("\n")}
           </ul>
         </section>`;
@@ -258,7 +262,7 @@ ${section.body.map((paragraph) => `          <p>${escapeHtml(paragraph)}</p>`).j
       </header>
       <div class="container news-article-body">
 ${sections}
-${renderRelatedLinks(item.relatedLinks)}
+${renderRelatedLinks(item.relatedLinks, item.slug)}
         <aside class="news-company" aria-labelledby="news-company-title">
           <p class="news-eyebrow">COMPANY</p>
           <h2 id="news-company-title">合同会社SGPについて</h2>
@@ -279,6 +283,8 @@ ${renderRelatedLinks(item.relatedLinks)}
     canonical,
     ogType: "article",
     articleDate: item.date,
+    newsSlug: item.slug,
+    newsCategory: item.category,
     content,
     structuredData: [newsArticle, breadcrumb]
   });
