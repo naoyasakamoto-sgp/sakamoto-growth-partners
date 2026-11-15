@@ -20,7 +20,7 @@ function ensureAnalytics(html) {
   return html.replace('</body>', '  <script src="/analytics.js"></script>\n</body>');
 }
 function patchItemList(html) {
-  return html.replace(/<script type="application\\/ld\\+json">([\\s\\S]*?)<\\/script>/g, (block, jsonText) => {
+  return html.replace(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g, (block, jsonText) => {
     let data;
     try { data = JSON.parse(jsonText); } catch { return block; }
     if (data?.["@type"] !== "ItemList" || !Array.isArray(data.itemListElement)) return block;
@@ -40,7 +40,7 @@ function patchItemList(html) {
       ...entry, position: index + 1
     }));
     data.numberOfItems = data.itemListElement.length;
-    return `<script type="application/ld+json">\\n${JSON.stringify(data, null, 2).replaceAll("<", "\\u003c")}\\n  </script>`;
+    return `<script type="application/ld+json">\n${JSON.stringify(data, null, 2).replaceAll("<", "\\u003c")}\n  </script>`;
   });
 }
 
@@ -48,12 +48,12 @@ async function patchNewsIndex() {
   const file = path.join(root, "news/index.html");
   let html = await readFile(file, "utf8");
   if (!html.includes(`/news/${item.slug}/`)) {
-    const datedEntries = [...html.matchAll(/<article class="news-timeline-item">\\s*<time datetime="(\\d{4}-\\d{2}-\\d{2})"/g)];
+    const datedEntries = [...html.matchAll(/<article class="news-timeline-item">\s*<time datetime="(\d{4}-\d{2}-\d{2})"/g)];
     const firstOlder = datedEntries.find((match) => match[1] < item.date);
     if (firstOlder) {
-      html = `${html.slice(0, firstOlder.index)}${timelineArticle}\\n            ${html.slice(firstOlder.index)}`;
+      html = `${html.slice(0, firstOlder.index)}${timelineArticle}\n            ${html.slice(firstOlder.index)}`;
     } else {
-      html = html.replace('<div class="news-timeline">', `<div class="news-timeline">\\n            ${timelineArticle}`);
+      html = html.replace('<div class="news-timeline">', `<div class="news-timeline">\n            ${timelineArticle}`);
     }
   }
   html = patchItemList(html);
@@ -87,21 +87,21 @@ async function patchFeed() {
     const published = publishedAt.toUTCString();
     const feedItem = `<item><title>${item.title}</title><link>${newsUrl}</link><guid isPermaLink="true">${newsUrl}</guid><pubDate>${published}</pubDate><description>${item.description}</description><category>${item.category}</category></item>`;
 
-    const existingItems = [...xml.matchAll(/<item>[\\s\\S]*?<\\/item>/g)];
+    const existingItems = [...xml.matchAll(/<item>[\s\S]*?<\/item>/g)];
     const older = existingItems.find((match) => {
-      const pubDate = match[0].match(/<pubDate>([^<]+)<\\/pubDate>/)?.[1];
+      const pubDate = match[0].match(/<pubDate>([^<]+)<\/pubDate>/)?.[1];
       return pubDate && Date.parse(pubDate) < publishedAt.getTime();
     });
     if (older) {
-      xml = `${xml.slice(0, older.index)}${feedItem}\\n    ${xml.slice(older.index)}`;
+      xml = `${xml.slice(0, older.index)}${feedItem}\n    ${xml.slice(older.index)}`;
     } else {
-      xml = xml.replace('</channel>', `  ${feedItem}\\n  </channel>`);
+      xml = xml.replace('</channel>', `  ${feedItem}\n  </channel>`);
     }
 
     // The newest base NEWS (2026-11-15) must remain the RSS lastBuildDate.
-    const lastBuild = xml.match(/<lastBuildDate>([^<]+)<\\/lastBuildDate>/)?.[1];
+    const lastBuild = xml.match(/<lastBuildDate>([^<]+)<\/lastBuildDate>/)?.[1];
     if (!lastBuild || Date.parse(lastBuild) < publishedAt.getTime()) {
-      xml = xml.replace(/<lastBuildDate>[^<]+<\\/lastBuildDate>/, `<lastBuildDate>${published}</lastBuildDate>`);
+      xml = xml.replace(/<lastBuildDate>[^<]+<\/lastBuildDate>/, `<lastBuildDate>${published}</lastBuildDate>`);
     }
   }
   await writeFile(file, xml, "utf8");
