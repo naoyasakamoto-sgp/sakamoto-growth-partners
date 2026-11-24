@@ -3,7 +3,7 @@
 .creator-page .text-header{border-color:var(--creator-rule)}
 .creator-page .text-nav a{color:var(--creator-ink)}
 .creator-page .creator-main{padding:0 0 0}
-.creator-page .creator-main section{border:0;margin:0;padding:0}
+.creator-page .creator-main section{border:0;margin:0}
 .creator-page .creator-main h1,.creator-page .creator-main h2,.creator-page .creator-main h3{color:var(--creator-ink)}
 .creator-page .creator-main h1{font-weight:680}
 .creator-page .creator-main p{line-height:2.05}
